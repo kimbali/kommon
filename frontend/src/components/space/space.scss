@@ -1,0 +1,19 @@
+.space {
+  display: block;
+
+  &.extra-small {
+    margin-bottom: 8px;
+  }
+
+  &.small {
+    margin-bottom: 22px;
+  }
+
+  &.medium {
+    margin-bottom: 32px;
+  }
+
+  &.big {
+    margin-bottom: 48px;
+  }
+}

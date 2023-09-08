@@ -1,0 +1,78 @@
+.button {
+  padding: 8px 12px;
+  color: $main-font-color;
+  background-color: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  vertical-align: middle;
+  transition: 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &.center {
+    margin: 0 auto;
+  }
+
+  p {
+    margin: 0 8px;
+  }
+
+  a {
+    color: $main-font-color;
+  }
+
+  &.primary {
+    background-color: $primary-color;
+
+    &:hover {
+      background-color: $primary-color-decolored;
+    }
+  }
+
+  &.secondary {
+    border: thin solid $primary-color;
+
+    &:hover {
+      background-color: $primary-color;
+    }
+  }
+
+  &.active {
+    background-color: $primary-color-decolored;
+
+    &:hover {
+      background-color: $primary-color;
+    }
+  }
+
+  &:disabled {
+    background-color: $grey-light;
+    cursor: default;
+
+    &:hover {
+      background-color: $grey-light;
+    }
+  }
+}
+
+button.link,
+.link {
+  color: $main-font-color;
+  text-decoration: underline;
+  transition: 0.2s;
+
+  .text {
+    font-size: 12px;
+  }
+
+  &:hover {
+    color: $primary-color;
+
+    p,
+    svg {
+      color: $primary-color;
+    }
+  }
+}

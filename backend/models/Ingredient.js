@@ -22,11 +22,15 @@ const ingredientsSchema = new Schema(
       type: Number,
       default: 0,
     },
-    image: String,
+    image: {
+      type: String,
+      default: '',
+    },
     allergies: [String],
     menus: [String],
     measure: {
-      type: String,
+      type: Schema.Types.ObjectId,
+      ref: 'Measure',
       required: true,
     },
     benefits: String,

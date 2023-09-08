@@ -1,4 +1,4 @@
-const Allergies = {
+const allergiesEnum = {
   GLUTEN: 'Gluten',
   CRUSTACEANS: 'Crustaceans',
   MOLLUSCS: 'Molluscs',
@@ -15,4 +15,6 @@ const Allergies = {
   SULFUR_DIOXIDE: 'SulfurDioxide',
 };
 
-export default Allergies;
+export const allergiesArr = Object.values(allergies);
+
+export default allergiesEnum;

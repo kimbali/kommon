@@ -23,7 +23,17 @@ export const getRecipes = asyncHandler(async (req, res) => {
 // @route   GET /api/recipes/:id
 // @access  Public
 export const getRecipeById = asyncHandler(async (req, res) => {
-  const recipe = await Recipe.findById(req.params.id);
+  const recipe = await Recipe.findById(req.params.id).populate({
+    path: 'ingredients',
+    populate: {
+      path: 'ingredient',
+      model: 'Ingredient',
+      populate: {
+        path: 'measure',
+        model: 'Measure',
+      },
+    },
+  });
 
   if (recipe) {
     return res.json(recipe);

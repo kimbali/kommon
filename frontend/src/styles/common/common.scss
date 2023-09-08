@@ -1,0 +1,96 @@
+* {
+  box-sizing: border-box;
+  transition: 0.1s ease;
+}
+
+form,
+ul,
+li,
+button,
+a {
+  color: $main-font-color;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  background-color: transparent;
+  border: none;
+  text-decoration: none;
+}
+
+body {
+  background-color: $page-background-color;
+  color: $main-font-color;
+  font-family: $text-font;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+form {
+  width: 100%;
+}
+
+button,
+a {
+  cursor: pointer;
+}
+
+a {
+  color: $primary-color;
+}
+
+.white-background {
+  background-color: $white;
+  border-radius: $border-radius-wrapper;
+  padding: 32px 52px 52px;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+}
+
+.content-on-the-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+
+  button {
+    margin-left: 12px;
+  }
+}
+
+.content-left-and-right {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: flex-start;
+
+  button {
+    margin: 0 24px 0 0;
+
+    svg {
+      margin-right: 8px;
+    }
+  }
+}
+
+.absolute-right {
+  position: relative;
+
+  .absolute-right-element {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}

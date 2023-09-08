@@ -1,0 +1,129 @@
+.field {
+  position: relative;
+  cursor: pointer;
+
+  label,
+  .input-file p {
+    color: $grey;
+    font-size: 12px;
+    margin-bottom: 4px;
+    cursor: pointer;
+  }
+
+  input,
+  select,
+  .input-file {
+    border-radius: $border-radius-element;
+    background-color: $grey-light;
+    padding: 8px 18px;
+    border: none;
+    font-family: $text-font;
+    font-size: 12px;
+    width: 100%;
+
+    &::placeholder,
+    .placeholder {
+      color: $decolored-font-color;
+    }
+
+    &.no-value {
+      color: $grey;
+    }
+
+    .has-value {
+      color: $main-font-color;
+    }
+
+    &.error {
+      background-color: $danger-decolored;
+    }
+
+    &::-webkit-calendar-picker-indicator {
+      margin-right: -0.35em;
+      filter: invert(48%) sepia(30%) saturate(0%) hue-rotate(203deg)
+        brightness(100%) contrast(95%);
+      cursor: pointer;
+    }
+  }
+
+  &.checkbox {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    align-items: center;
+
+    input {
+      width: fit-content;
+      margin-right: 8px;
+      cursor: pointer;
+    }
+
+    label {
+      margin: 0;
+      color: $main-font-color;
+      cursor: pointer;
+    }
+  }
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  background-image: linear-gradient(45deg, transparent 50%, $grey 50%),
+    linear-gradient(135deg, $grey 50%, transparent 50%),
+    linear-gradient(to right, $grey, $grey);
+  background-position: calc(100% - 20px) calc(1em + 2px),
+    calc(100% - 15px) calc(1em + 2px), calc(100% - 2.5em) 0.5em;
+  background-size: 5px 5px, 5px 5px, 1px 1.5em;
+  background-repeat: no-repeat;
+
+  &:focus,
+  &.has-value {
+    background-image: linear-gradient(
+        45deg,
+        $main-font-color 50%,
+        transparent 50%
+      ),
+      linear-gradient(135deg, transparent 50%, $main-font-color 50%),
+      linear-gradient(to right, $main-font-color, $main-font-color);
+    background-position: calc(100% - 15px) 1em, calc(100% - 20px) 1em,
+      calc(100% - 2.5em) 0.5em;
+    background-size: 5px 5px, 5px 5px, 1px 1.5em;
+    background-repeat: no-repeat;
+    outline: 0;
+  }
+}
+
+.field {
+  position: relative;
+
+  input[type='file'] {
+    display: inline-block;
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 50px;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .input-file {
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+
+    p {
+      padding: 8px 18px;
+      margin: 0;
+    }
+
+    p:last-of-type {
+      background-color: $grey-icon;
+      border-radius: $border-radius-element;
+    }
+  }
+}

@@ -1,0 +1,85 @@
+@import '../../styles/shared.scss';
+
+.menu {
+  background-color: $white;
+  padding: 24px;
+
+  .logo {
+    margin: 0 auto;
+  }
+
+  .title {
+    text-align: center;
+  }
+
+  .business-info {
+    background-color: $page-background-color;
+    border-radius: $border-radius-wrapper;
+    padding: 24px;
+    text-align: center;
+
+    svg {
+      height: 24px;
+      color: $grey-icon;
+      margin-bottom: 12px;
+    }
+
+    .text {
+      margin-bottom: 8px;
+    }
+
+    .edit-CTA {
+      padding: 0;
+
+      .text {
+        width: 100%;
+        margin: 0;
+      }
+    }
+
+    .active {
+      color: $primary-color;
+
+      p {
+        color: inherit;
+      }
+    }
+  }
+
+  ul {
+    li {
+      margin-bottom: 12px;
+      border-radius: $border-radius-element;
+      transition: 0.2s;
+
+      &:hover {
+        background-color: $primary-color;
+      }
+
+      &.active {
+        background-color: $primary-color-decolored;
+      }
+
+      a,
+      button {
+        padding: 12px;
+        display: block;
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+
+        p {
+          margin: 0;
+        }
+      }
+
+      svg {
+        margin-right: 8px;
+      }
+    }
+  }
+
+  .logout {
+    margin-top: 32px;
+  }
+}

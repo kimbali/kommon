@@ -3,11 +3,10 @@ import { Schema, model } from 'mongoose';
 const ingredientsSchema = new Schema(
   {
     quantity: { type: Number },
-    // ingredient: {
-    //   type: Schema.Types.ObjectId,
-    //   ref: 'Ingredient',
-    // },
-    ingredient: String,
+    ingredient: {
+      type: Schema.Types.ObjectId,
+      ref: 'Ingredient',
+    },
   },
   {
     timestamps: true,

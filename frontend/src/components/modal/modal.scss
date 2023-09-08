@@ -1,0 +1,47 @@
+.modal {
+  position: absolute;
+  background-color: rgba($color: $grey, $alpha: 0.3);
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .modal-content {
+    width: 80%;
+    max-height: 95vh;
+    padding: 24px;
+    background-color: $white;
+    border-radius: $border-radius-wrapper;
+    position: relative;
+
+    &.scroll {
+      overflow-y: scroll;
+    }
+  }
+
+  .close-icon {
+    position: absolute;
+    right: 18px;
+    top: 18px;
+
+    svg {
+      height: 18px;
+      width: 18px;
+      color: $grey-icon;
+
+      &:hover {
+        color: $main-font-color;
+      }
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .modal-content {
+      width: 50%;
+    }
+  }
+}

@@ -1,0 +1,14 @@
+.back-button {
+  margin: 32px 0 0 32px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+
+  svg {
+    margin-right: 8px;
+  }
+
+  p {
+    display: inline-block;
+  }
+}

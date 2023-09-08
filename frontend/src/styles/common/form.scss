@@ -1,0 +1,30 @@
+form {
+  .form-section {
+    display: flex;
+    flex-wrap: wrap;
+
+    .field {
+      width: 100%;
+      margin: 0 0 24px;
+
+      .danger {
+        margin-top: 6px;
+      }
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .form-section {
+      flex-wrap: nowrap;
+
+      .field {
+        width: 50%;
+        margin-bottom: 24px;
+
+        &:first-of-type {
+          margin-right: 24px;
+        }
+      }
+    }
+  }
+}

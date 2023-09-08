@@ -1,0 +1,102 @@
+@import '../../styles/shared.scss';
+
+p,
+h1,
+h2,
+h3 {
+  margin: 0;
+  transition: 0.3s;
+}
+
+.title,
+.subtitle {
+  font-family: $title-font;
+  font-size: 24px;
+  font-weight: 700;
+  color: $main-font-color;
+
+  &.center {
+    text-align: center;
+  }
+}
+
+.subtitle {
+  font-size: 16px;
+  color: $secondary-font-color;
+
+  span {
+    font-size: 16px;
+  }
+}
+
+.section-title {
+  width: 100%;
+
+  &__title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__text {
+    font-size: 16px;
+    color: $secondary-font-color;
+    font-weight: 700;
+  }
+
+  &__line {
+    height: 1px;
+    width: 100%;
+    background-color: $decolored-font-color;
+  }
+
+  button {
+    padding: 0;
+    margin-left: 12px;
+
+    svg {
+      color: $secondary-font-color;
+
+      &:hover {
+        color: $primary-color;
+      }
+    }
+  }
+}
+
+.text {
+  font-family: $text-font;
+  font-size: 14px;
+  color: $main-font-color;
+
+  &.bold {
+    font-weight: 700;
+  }
+
+  &.uppercase {
+    text-transform: uppercase;
+    font-family: $title-font;
+    letter-spacing: 1px;
+  }
+
+  &.decolored {
+    color: $decolored-font-color;
+  }
+
+  &.danger {
+    color: $danger;
+    font-size: 12px;
+  }
+
+  &.small {
+    font-size: 12px;
+  }
+
+  &.align-right {
+    text-align: right;
+  }
+
+  &.center {
+    text-align: center;
+  }
+}

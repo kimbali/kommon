@@ -1,0 +1,31 @@
+// FONTS
+@import url('https://fonts.googleapis.com/css2?family=Exo:wght@400;700&family=Merriweather+Sans:wght@300;700&family=Trirong&display=swap');
+
+$title-font: 'Exo', sans-serif;
+$subtitle-font: 'Trirong', serif;
+$text-font: 'Merriweather Sans', sans-serif;
+
+// COLORS
+// fonts
+$main-font-color: #222222;
+$secondary-font-color: #646d76;
+$decolored-font-color: #c8c8c8;
+
+//buttons
+$primary-color: #36eddb;
+$primary-color-decolored: rgba($primary-color, 0.25);
+$secondary-color: #36ed7f;
+
+//colors
+$grey: #646d76;
+$grey-decolored: #8c8989;
+$grey-icon: #c8c8c8;
+$grey-light: #f0f0f0;
+$white: #ffffff;
+$danger: #dc3545;
+$danger-decolored: rgba($danger, 0.25);
+
+// OTHER
+$border-radius-element: 8px;
+$border-radius-wrapper: 16px;
+$page-background-color: #f0f0f0;

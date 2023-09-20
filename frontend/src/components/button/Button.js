@@ -6,15 +6,17 @@ function Button({
   className = '',
   children,
   onClick,
-  isPrimary,
-  isSecondary,
-  isLink,
-  isActive,
+  isPrimary = false,
+  isSecondary = false,
+  isLink = false,
+  isActive = false,
   iconRight,
   iconLeft,
-  type,
-  center,
+  type = 'button',
+  center = false,
   disabled,
+  onlyIcon = false,
+  small = false,
 }) {
   return (
     <button
@@ -25,11 +27,11 @@ function Button({
         isSecondary ? 'secondary' : ''
       } ${isLink ? 'link' : ''} ${isActive ? 'active' : ''} ${
         center ? 'center' : ''
-      }`}
+      } ${onlyIcon ? 'only-icon' : ''} ${small ? 'small' : ''}`}
     >
       {iconLeft && <FontAwesomeIcon icon={iconLeft} />}
 
-      <Text isCTA>{children}</Text>
+      {!onlyIcon && <Text isCTA>{children}</Text>}
 
       {iconRight && <FontAwesomeIcon icon={iconRight} />}
     </button>

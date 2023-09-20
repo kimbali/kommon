@@ -6,11 +6,34 @@ form {
     .field {
       width: 100%;
       margin: 0 0 24px;
+      display: flex;
+      flex-direction: column;
 
       .danger {
         margin-top: 6px;
       }
     }
+  }
+
+  .cols-1 {
+    grid-column: span 1;
+  }
+  .cols-2 {
+    grid-column: span 2;
+  }
+  .cols-3 {
+    grid-column: span 3;
+  }
+  .cols-4 {
+    grid-column: span 4;
+  }
+
+  .grid-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 12px;
   }
 
   @media screen and (min-width: 1024px) {

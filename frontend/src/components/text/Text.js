@@ -4,19 +4,19 @@ import Button from '../button/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function Text({
-  isTitle,
-  isSubtitle,
-  isSectionTitle,
+  isTitle = false,
+  isSubtitle = false,
+  isSectionTitle = false,
   sectionIcon,
   sectionIconClick,
-  isCTA,
-  isPlaceholder,
-  isBold,
+  isCTA = false,
+  isPlaceholder = false,
+  isBold = false,
   children,
-  danger,
-  small,
-  isCurrency,
-  center,
+  danger = false,
+  small = false,
+  isCurrency = false,
+  center = false,
   className = '',
 }) {
   if (isTitle) {
@@ -37,7 +37,7 @@ function Text({
 
   if (isSectionTitle) {
     return (
-      <div className='section-title'>
+      <div className={`${className} section-title`}>
         <div className='section-title__title'>
           <h3 className='section-title__text'>{children}</h3>
 

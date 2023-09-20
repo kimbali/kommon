@@ -1,0 +1,68 @@
+.recipe-card {
+  background-color: $element-background-color;
+  height: 230px;
+  border-radius: $border-radius-element;
+
+  img {
+    max-width: 100%;
+    border-radius: $border-radius-element;
+  }
+
+  .recipe-card-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .title {
+    font-size: 16px;
+    line-height: 18px;
+    padding: 12px;
+  }
+  .recipe-card-data {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 12px 12px;
+
+    svg {
+      margin-right: 4px;
+    }
+  }
+}
+
+.recipe-form {
+  color: $main-font-color;
+
+  .section {
+    background-color: $subelement-background-color;
+    padding: 12px;
+    border-radius: $border-radius-wrapper;
+  }
+
+  .measure {
+    display: flex;
+    align-items: center;
+    .text {
+      padding-left: 8px;
+    }
+  }
+
+  .cart-cta {
+    height: 36px;
+    align-self: end;
+    width: fit-content;
+  }
+
+  .no-submit.primary {
+    background-color: transparent;
+
+    &:hover {
+      background-color: $primary-color-decolored;
+    }
+
+    &:disabled {
+      background-color: transparent;
+    }
+  }
+}

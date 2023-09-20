@@ -1,22 +1,29 @@
 // FONTS
-@import url('https://fonts.googleapis.com/css2?family=Exo:wght@400;700&family=Merriweather+Sans:wght@300;700&family=Trirong&display=swap');
 
-$title-font: 'Exo', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:wght@300&family=Exo:wght@400;700&family=Koulen&family=Merriweather+Sans:wght@300;700&family=Trirong&display=swap');
+
+$title-font: 'Koulen', cursive;
 $subtitle-font: 'Trirong', serif;
-$text-font: 'Merriweather Sans', sans-serif;
+$text-font: 'Averia Serif Libre', cursive;
 
 // COLORS
 // fonts
-$main-font-color: #222222;
-$secondary-font-color: #646d76;
-$decolored-font-color: #c8c8c8;
+$main-font-color: #ffffff;
+$main-font-color-decolored: #c8c8c8;
+$secondary-font-color: #ef0482;
+$secondary-font-color-decolored: #d41078f5;
 
-//buttons
-$primary-color: #36eddb;
+//mai colors
+$primary-color: #ef0482;
 $primary-color-decolored: rgba($primary-color, 0.25);
 $secondary-color: #36ed7f;
 
-//colors
+// backgrounds
+$page-background-color: #201d2b;
+$element-background-color: #363441;
+$subelement-background-color: #4d4b5d;
+
+//common colors
 $grey: #646d76;
 $grey-decolored: #8c8989;
 $grey-icon: #c8c8c8;
@@ -25,7 +32,6 @@ $white: #ffffff;
 $danger: #dc3545;
 $danger-decolored: rgba($danger, 0.25);
 
-// OTHER
-$border-radius-element: 8px;
-$border-radius-wrapper: 16px;
-$page-background-color: #f0f0f0;
+// SETTINGS
+$border-radius-element: 6px;
+$border-radius-wrapper: 12px;

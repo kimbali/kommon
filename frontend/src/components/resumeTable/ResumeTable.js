@@ -8,7 +8,7 @@ function ResumeTable({ list = [] }) {
         {list.map((eachItem, index) => (
           <tr key={`table-${index}`}>
             <th>
-              <Text isBold>{eachItem.name}:</Text>
+              <Text isBold>{eachItem.name}</Text>
             </th>
 
             <td>

@@ -3,11 +3,12 @@ import Recipe from '../models/Recipe.js';
 
 // @desc    Fetch all recipes
 // @route   GET /api/recipes
+// @route   GET /api/recipes?keyword=pollo
 // @access  Public
 export const getRecipes = asyncHandler(async (req, res) => {
   const keyword = req.query.keyword
     ? {
-        name: {
+        title: {
           $regex: req.query.keyword,
           $options: 'i',
         },
@@ -59,6 +60,8 @@ export const createRecipe = asyncHandler(async (req, res) => {
     carbohydrates,
   } = req.body;
 
+  console.log(req.body);
+
   const recipe = new Recipe({
     title,
     steps,
@@ -71,8 +74,13 @@ export const createRecipe = asyncHandler(async (req, res) => {
     carbohydrates,
   });
 
-  const createdRecipe = await recipe.save();
-  res.status(201).json(createdRecipe);
+  try {
+    const createdRecipe = await recipe.save();
+    res.status(201).json(createdRecipe);
+  } catch {
+    console.error(error);
+    res.status(500).json({ message: 'Error saving recipe' });
+  }
 });
 
 // @desc    Update a recipe

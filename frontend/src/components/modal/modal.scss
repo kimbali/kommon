@@ -1,6 +1,6 @@
 .modal {
   position: absolute;
-  background-color: rgba($color: $grey, $alpha: 0.3);
+  background-color: rgba($color: $page-background-color, $alpha: 0.5);
   width: 100vw;
   height: 100vh;
   top: 0;
@@ -9,17 +9,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
 
   .modal-content {
     width: 80%;
     max-height: 95vh;
-    padding: 24px;
-    background-color: $white;
+    padding: 32px;
+    background-color: $element-background-color;
     border-radius: $border-radius-wrapper;
     position: relative;
+    z-index: 3;
 
     &.scroll {
       overflow-y: scroll;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
     }
   }
 

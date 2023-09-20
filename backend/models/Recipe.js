@@ -17,9 +17,9 @@ const recipeSchema = new Schema(
   {
     title: {
       type: String,
-      required: true,
+      default: 'Missing title',
     },
-    steps: [String],
+    steps: [{ type: String, default: '' }],
     ingredients: [ingredientsSchema],
     minutes: {
       type: Number,
@@ -27,6 +27,7 @@ const recipeSchema = new Schema(
     },
     image: {
       type: String,
+      default: 'There is no image',
     },
     calories: {
       type: Number,

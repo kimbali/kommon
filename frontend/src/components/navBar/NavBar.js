@@ -7,6 +7,7 @@ import {
   faList,
   faQrcode,
   faSquareH,
+  faUtensils,
 } from '@fortawesome/free-solid-svg-icons';
 import Text from '../text/Text';
 import Logo from '../logo/Logo';
@@ -22,24 +23,28 @@ function NavBar() {
       <div className='menu-top'>
         <Logo width='48px' />
 
-        <Space size={size.SMALL} />
+        <Space small />
 
         <Text isTitle>Body marathon</Text>
 
-        <Space size={size.MEDIUM} />
+        <Space medium />
 
         <ul>
-          <li className={location.pathname.indexOf(`/`) >= 0 ? 'active' : ''}>
-            <Link to={`/`}>
+          <li
+            className={
+              location.pathname.indexOf(`/recipes`) >= 0 ? 'active' : ''
+            }
+          >
+            <Link to={`/recipes`}>
               <Text isCTA>
-                <FontAwesomeIcon icon={faList} />
-                <span className='hide-in-mobile'>Lista</span>
+                <FontAwesomeIcon icon={faUtensils} />
+                <span className='hide-in-mobile'>Recipes</span>
               </Text>
             </Link>
           </li>
         </ul>
       </div>
-      <Space size={size.SMALL} />
+      <Space small />
     </nav>
   );
 }

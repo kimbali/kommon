@@ -1,8 +1,12 @@
 @import '../../styles/shared.scss';
 
 .menu {
-  background-color: $white;
   padding: 24px;
+
+  .text,
+  .title {
+    color: $white;
+  }
 
   .logo {
     margin: 0 auto;

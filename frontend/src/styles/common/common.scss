@@ -17,6 +17,10 @@ a {
   text-decoration: none;
 }
 
+ol {
+  padding: 0;
+}
+
 body {
   background-color: $page-background-color;
   color: $main-font-color;
@@ -39,12 +43,6 @@ a {
 
 a {
   color: $primary-color;
-}
-
-.white-background {
-  background-color: $white;
-  border-radius: $border-radius-wrapper;
-  padding: 32px 52px 52px;
 }
 
 .center {
@@ -70,6 +68,10 @@ a {
   justify-content: space-between;
   align-items: flex-start;
   width: 100%;
+
+  .content-on-the-right {
+    width: fit-content;
+  }
 }
 
 .buttons-container {
@@ -92,5 +94,13 @@ a {
     position: absolute;
     top: 0;
     right: 0;
+  }
+}
+
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 22px;
+  .card-item {
   }
 }

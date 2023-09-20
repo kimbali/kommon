@@ -4,6 +4,9 @@ import { Toaster } from 'react-hot-toast';
 import Storybook from './pages/Storybook';
 import MainLayout from './components/mainLayout/MainLayout';
 import ScrollToTop from './components/scrollToTop/ScrollToTop';
+import RecipeDetails from './pages/RecipeDetails';
+import Recipes from './pages/Recipes';
+import frontRoutes from './config/frontUrls';
 
 function App() {
   return (
@@ -16,7 +19,14 @@ function App() {
 
           <Route element={<MainLayout />}>
             <Route>
-              <Route path='*' element={<dia>Not found</dia>} />
+              <Route path={frontRoutes.recipes} element={<Recipes />} exact />
+              <Route
+                path={frontRoutes.recipeDetails}
+                element={<RecipeDetails />}
+                exact
+              />
+
+              <Route path='*' element={<div>Not found</div>} />
             </Route>
           </Route>
         </Routes>

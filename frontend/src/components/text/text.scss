@@ -9,11 +9,13 @@ h3 {
 }
 
 .title,
-.subtitle {
+.subtitle,
+h3 {
   font-family: $title-font;
   font-size: 24px;
   font-weight: 700;
-  color: $main-font-color;
+  color: $secondary-font-color;
+  letter-spacing: 1px;
 
   &.center {
     text-align: center;
@@ -22,7 +24,6 @@ h3 {
 
 .subtitle {
   font-size: 16px;
-  color: $secondary-font-color;
 
   span {
     font-size: 16px;
@@ -47,7 +48,7 @@ h3 {
   &__line {
     height: 1px;
     width: 100%;
-    background-color: $decolored-font-color;
+    background-color: $secondary-font-color-decolored;
   }
 
   button {
@@ -80,7 +81,7 @@ h3 {
   }
 
   &.decolored {
-    color: $decolored-font-color;
+    color: $main-font-color-decolored;
   }
 
   &.danger {

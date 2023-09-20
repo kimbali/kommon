@@ -1,0 +1,111 @@
+.recipe-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  .recipe-details-content {
+    flex: 1;
+
+    &:last-of-type {
+      padding-left: 24px;
+    }
+  }
+
+  img {
+    width: 100%;
+    border-radius: $border-radius-element;
+  }
+
+  .minutes {
+    display: flex;
+    align-items: center;
+
+    svg {
+      margin-right: 4px;
+    }
+  }
+
+  .propiedades {
+    display: flex;
+    justify-content: space-between;
+    background-color: $element-background-color;
+    border-radius: $border-radius-element;
+    padding: 8px 16px 12px;
+
+    .propiedad {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .text {
+        text-align: center;
+      }
+    }
+  }
+
+  .steps-title .section-title__text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    span,
+    svg {
+      margin-right: 4px;
+    }
+  }
+
+  .steps {
+    .step {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 8px;
+
+      .text {
+        margin-right: 8px;
+      }
+    }
+  }
+
+  .resume-table {
+    width: 100%;
+
+    th {
+      position: relative;
+    }
+
+    p {
+      background: $page-background-color;
+      width: fit-content;
+      padding-right: 4px;
+      z-index: 1;
+    }
+
+    th:after {
+      content: '';
+      position: absolute;
+      bottom: 12px;
+      width: 100%;
+      height: 0;
+      line-height: 0;
+      border-bottom: 2px dotted #ddd;
+      z-index: -1;
+    }
+
+    td {
+      padding-left: 4px;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+
+    .recipe-details-content {
+      margin-bottom: 24px;
+
+      &:last-of-type {
+        padding: 0;
+      }
+    }
+  }
+}

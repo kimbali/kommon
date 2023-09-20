@@ -1,9 +1,9 @@
 .button {
-  padding: 8px 12px;
+  padding: 12px;
   color: $main-font-color;
   background-color: transparent;
   border: none;
-  border-radius: 8px;
+  border-radius: $border-radius-element;
   cursor: pointer;
   vertical-align: middle;
   transition: 0.3s;
@@ -17,6 +17,7 @@
 
   p {
     margin: 0 8px;
+    line-height: 16px;
   }
 
   a {
@@ -50,10 +51,27 @@
   &:disabled {
     background-color: $grey-light;
     cursor: default;
+    color: $grey-decolored;
+
+    p {
+      color: inherit;
+    }
 
     &:hover {
       background-color: $grey-light;
     }
+  }
+
+  &.only-icon {
+    svg {
+      height: 18px;
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  &.small {
+    padding: 8px;
   }
 }
 

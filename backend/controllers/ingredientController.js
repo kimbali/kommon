@@ -14,7 +14,7 @@ export const getIngredients = asyncHandler(async (req, res) => {
       }
     : {};
 
-  const ingredients = await Ingredient.find({ ...keyword });
+  const ingredients = await Ingredient.find({ ...keyword }).populate('measure');
 
   res.json({ ingredients });
 });

@@ -17,7 +17,7 @@ function Modal({ onClose, children, scroll }) {
   return createPortal(
     <div className='modal'>
       <div className={`modal-content ${scroll ? 'scroll' : ''}`}>
-        <button className='close-icon' onClick={onClose}>
+        <button className='close-icon' onClick={() => onClose(false)}>
           <FontAwesomeIcon icon={faClose} />
         </button>
 

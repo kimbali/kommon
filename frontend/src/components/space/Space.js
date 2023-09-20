@@ -8,8 +8,19 @@ export const size = {
   BIG: 'big',
 };
 
-function Space({ size = '' }) {
-  return <span className={`space ${size}`}></span>;
+function Space({
+  extraSmall = false,
+  small = false,
+  medium = false,
+  big = false,
+}) {
+  return (
+    <span
+      className={`space ${extraSmall ? size.EXTRA_SMALL : ''} ${
+        small ? size.SMALL : ''
+      } ${medium ? size.MEDIUM : ''} ${big ? size.BIG : ''}`}
+    ></span>
+  );
 }
 
 Space.propTypes = {

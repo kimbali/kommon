@@ -105,7 +105,7 @@ function RecipeDetails() {
 
       <div className='recipe-details'>
         <div className='recipe-details-content'>
-          <img alt={title} src={FOTO_NEUTRA} />
+          {image && <img alt={title} src={`${image}`} />}
 
           <Space medium />
 
@@ -141,15 +141,23 @@ function RecipeDetails() {
           </Text>
           <Space small />
           <ol className='steps'>
-            {steps.map((eachStep, index) => (
-              <li className='step' key={`eachStep-${index}`}>
-                <Text>{index + 1}.</Text>
-                <Text>{eachStep}</Text>
-              </li>
-            ))}
+            {steps.length > 0 &&
+              steps[0] &&
+              steps.map(
+                (eachStep, index) =>
+                  eachStep && (
+                    <li className='step' key={`eachStep-${index}`}>
+                      <Text>{index + 1}.</Text>
+                      <Text>{eachStep}</Text>
+                    </li>
+                  )
+              )}
           </ol>
+
           <Space medium />
+
           <Text isSectionTitle>Ingredients</Text>
+
           <Space small />
 
           {ingredients.length > 0 && ingredients[0] && (
@@ -157,7 +165,7 @@ function RecipeDetails() {
               list={ingredients.map(ele => {
                 return {
                   name: ele.ingredient?.name,
-                  value: `${ele.quantity} ${ele.ingredient?.measure.diminutive}`,
+                  value: `${ele.quantity} ${ele.ingredient?.measure?.diminutive}`,
                 };
               })}
             />
@@ -167,7 +175,7 @@ function RecipeDetails() {
 
       {showEditModal && (
         <Modal scroll onClose={setShowEditModal}>
-          <RecipeForm recipe={recipeDetails} onCreate={editHandler} />
+          <RecipeForm isEdit recipe={recipeDetails} onCreate={editHandler} />
         </Modal>
       )}
     </>

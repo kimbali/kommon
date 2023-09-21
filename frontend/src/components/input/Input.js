@@ -22,8 +22,12 @@ function Input({
   const handleOnChange = event => {
     onChange({
       name: event.target.name,
-      value: type === 'checkbox' ? event.target.checked : event.target.value,
-      files: event.target.files,
+      value:
+        type === 'file'
+          ? event.target.files[0]
+          : type === 'checkbox'
+          ? event.target.checked
+          : event.target.value,
     });
   };
 
@@ -90,8 +94,8 @@ function Input({
 
       {type === 'file' && (
         <div className='input-file'>
-          <Text small className={value.name ? 'has-value' : 'placeholder'}>
-            {value?.name || 'Nada subido'}
+          <Text small className={value ? 'has-value' : 'placeholder'}>
+            {value || 'Upload an image'}
           </Text>
           <Text small>
             <FontAwesomeIcon icon={faPlus} />

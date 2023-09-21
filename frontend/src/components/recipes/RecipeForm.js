@@ -4,6 +4,7 @@ import Text from '../text/Text';
 import Space from '../space/Space';
 import Input from '../input/Input';
 import Button from '../button/Button';
+import Modal from '../modal/Modal';
 import {
   faAdd,
   faCartPlus,
@@ -15,9 +16,12 @@ import { useGetIngredientsQuery } from '../../slices/ingredientsApiSlices';
 import {
   useCreateRecipeMutation,
   useUpdateRecipeMutation,
+  useUploadRecipeImageMutation,
 } from '../../slices/recipesApiSlice';
+import IngredientForm from '../ingredients/IngredientForm';
 
-function RecipeForm({ recipe, onCreate }) {
+function RecipeForm({ recipe, onCreate, isEdit }) {
+  const [showCreateIngredient, setShowCreateIngredient] = useState(false);
   const [recipeData, setRecipeData] = useState(
     recipe || {
       steps: [''],
@@ -25,16 +29,29 @@ function RecipeForm({ recipe, onCreate }) {
     }
   );
 
-  console.log(recipeData);
-
   const { data: ingredientsData } = useGetIngredientsQuery({});
+  const [uploadRecipeImage, { isLoading: loadingUpload }] =
+    useUploadRecipeImageMutation();
 
-  const handleOnChange = ({ files, name, value }) => {
+  const handleOnChange = ({ name, value }) => {
     setRecipeData({ ...recipeData, [name]: value });
   };
 
+  const handleUploadImage = async ({ value }) => {
+    const formData = new FormData();
+    formData.append('image', value);
+    try {
+      const res = await uploadRecipeImage(formData).unwrap();
+      toast.success(res.message);
+
+      setRecipeData({ ...recipeData, image: res.image });
+    } catch (err) {
+      toast.error(err?.data?.message || err.error);
+    }
+  };
+
   const handleOnChangeSteps = ({ name, value }) => {
-    const steps = recipeData.steps;
+    let steps = [...recipeData.steps];
     const stepNum = name.split('step')[1];
     const stepValue = value;
 
@@ -54,15 +71,10 @@ function RecipeForm({ recipe, onCreate }) {
     const ingredients = recipeData.ingredients;
     const position = inputName.split('ingredient')[1];
     const ingredientId = value;
-    const { measure, name } = ingredientsData.ingredients.find(
-      elem => elem._id === ingredientId
-    );
 
     ingredients[position] = {
       quantity: 0,
-      measure: measure.diminutive,
       ingredient: ingredientId,
-      name,
     };
 
     setRecipeData({ ...recipeData, ingredients });
@@ -85,6 +97,20 @@ function RecipeForm({ recipe, onCreate }) {
     ingredients.push({});
 
     setRecipeData({ ...recipeData, ingredients });
+  };
+
+  const handleDeleteIngredientFromList = index => {
+    let ingredients = recipeData.ingredients.filter((_, i) => i !== index);
+
+    if (ingredients.length === 0) {
+      ingredients[0] = {};
+    }
+
+    setRecipeData({ ...recipeData, ingredients });
+  };
+
+  const createIngredientHandler = () => {
+    setShowCreateIngredient(true);
   };
 
   const ingredientsOptions = ingredientsData
@@ -148,10 +174,9 @@ function RecipeForm({ recipe, onCreate }) {
           <div className='cols-3'>
             <Input
               label='image'
-              name='minuimagetes'
-              placeholder='0'
-              onChange={handleOnChange}
-              value={recipeData.minutes}
+              name='image'
+              onChange={handleUploadImage}
+              value={recipeData.image}
               type='file'
             />
           </div>
@@ -203,59 +228,77 @@ function RecipeForm({ recipe, onCreate }) {
         <Space medium />
 
         <div className='section'>
-          <div className='content-left-and-right'>
-            <Text isSubtitle>Ingredients</Text>
+          <Text isSubtitle>Ingredients</Text>
 
-            <Button small isPrimary iconLeft={faCartPlus}>
-              Create ingredient
-            </Button>
-          </div>
+          <Button
+            small
+            isPrimary
+            iconLeft={faCartPlus}
+            onClick={createIngredientHandler}
+          >
+            Create ingredient
+          </Button>
+
+          {showCreateIngredient && (
+            <Modal onClose={setShowCreateIngredient}>
+              <IngredientForm />
+            </Modal>
+          )}
 
           <Space small />
 
-          {recipeData.ingredients.map((eachIngredient, index) => (
-            <React.Fragment key={`ingredient-${index}`}>
-              <div className='grid-container'>
-                <Input
-                  name={`ingredient${index}`}
-                  value={eachIngredient.name}
-                  type='select'
-                  selectOption='Select ingredient'
-                  options={ingredientsOptions}
-                  className='cols-2'
-                  onChange={handleIngredientChange}
-                />
+          {recipeData.ingredients.map((eachIngredient, index) => {
+            const currentIngredient = ingredientsData?.ingredients.find(
+              elem => {
+                if (!isEdit) {
+                  return elem._id === eachIngredient.ingredient;
+                } else {
+                  return elem._id === eachIngredient.ingredient?._id;
+                }
+              }
+            );
 
-                <div className='cols-1 measure'>
+            return (
+              <React.Fragment key={`ingredient-${index}`}>
+                <div className='grid-container'>
                   <Input
-                    name={`measure${index}`}
-                    type='number'
-                    placeholder='quantity'
-                    onChange={handleIngredientMeasure}
-                    value={eachIngredient.quantity}
+                    name={`ingredient${index}`}
+                    value={currentIngredient?.name}
+                    type='select'
+                    selectOption='Select ingredient'
+                    options={ingredientsOptions}
+                    className='cols-2'
+                    onChange={handleIngredientChange}
                   />
 
-                  <Text>{recipeData.ingredients[index].measure || ''}</Text>
+                  <div className='cols-1 measure'>
+                    <Input
+                      name={`measure${index}`}
+                      type='number'
+                      placeholder='quantity'
+                      onChange={handleIngredientMeasure}
+                      value={eachIngredient.quantity}
+                    />
+
+                    <Text>{currentIngredient?.measure?.diminutive || ''}</Text>
+                  </div>
+
+                  <Button
+                    onClick={() => handleDeleteIngredientFromList(index)}
+                    iconLeft={faTrash}
+                    onlyIcon
+                    type='button'
+                    isPrimary
+                    className='cols-1 no-submit'
+                    small
+                    disabled={!recipeData.ingredients[index]}
+                  />
                 </div>
 
-                <Button
-                  onClick={() => {}}
-                  iconLeft={faTrash}
-                  onlyIcon
-                  type='button'
-                  isPrimary
-                  className='cols-1 no-submit'
-                  small
-                  disabled={
-                    !recipeData.ingredients[recipeData.ingredients.length - 1]
-                      .name
-                  }
-                />
-              </div>
-
-              <Space extraSmall />
-            </React.Fragment>
-          ))}
+                <Space extraSmall />
+              </React.Fragment>
+            );
+          })}
 
           <Button
             onClick={handleAddIngredient}
@@ -263,11 +306,11 @@ function RecipeForm({ recipe, onCreate }) {
             type='button'
             isPrimary
             disabled={
-              !recipeData.ingredients[recipeData.ingredients.length - 1].name
+              !recipeData.ingredients[recipeData.ingredients.length - 1]?.name
             }
             className='cols-1 cart-cta no-submit'
           >
-            Add ingredient
+            Add ingredient to recipe
           </Button>
         </div>
 
@@ -326,23 +369,25 @@ function RecipeForm({ recipe, onCreate }) {
         <Space medium />
 
         <div className='content-on-the-right'>
-          <Button
-            isPrimary
-            iconLeft={faAdd}
-            onClick={handleCreateRecipe}
-            type='submit'
-          >
-            Create recipe
-          </Button>
-
-          <Button
-            isPrimary
-            iconLeft={faEdit}
-            onClick={handleEditRecipe}
-            type='submit'
-          >
-            Edit recipe
-          </Button>
+          {isEdit ? (
+            <Button
+              isPrimary
+              iconLeft={faEdit}
+              onClick={handleEditRecipe}
+              type='submit'
+            >
+              Edit recipe
+            </Button>
+          ) : (
+            <Button
+              isPrimary
+              iconLeft={faAdd}
+              onClick={handleCreateRecipe}
+              type='submit'
+            >
+              Create recipe
+            </Button>
+          )}
         </div>
 
         <Space small />

@@ -60,8 +60,6 @@ export const createRecipe = asyncHandler(async (req, res) => {
     carbohydrates,
   } = req.body;
 
-  console.log(req.body);
-
   const recipe = new Recipe({
     title,
     steps,

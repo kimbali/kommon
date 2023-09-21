@@ -9,6 +9,7 @@ import recipes from './fakeData/recipes.js';
 import recipesRoutes from './routes/recipesRoutes.js';
 import ingredientsRoutes from './routes/ingredientsRoutes.js';
 import measuresRoutes from './routes/measuresRoutes.js';
+import uploadRoutes from './routes/uploadsRoutes.js';
 
 dotenv.config();
 
@@ -25,13 +26,14 @@ app.use(express.json());
 app.use('/api/recipes', recipesRoutes);
 app.use('/api/ingredients', ingredientsRoutes);
 app.use('/api/measures', measuresRoutes);
+app.use('/api/upload', uploadRoutes);
 
 // app.get('/api/config/paypal', (req, res) =>
 //   res.send(process.env.PAYPAL_CLIENT_ID)
 // );
 
-// const __dirname = path.resolve();
-// app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+const __dirname = path.resolve();
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
 // if (process.env.NODE_ENV === 'production') {
 //   app.use(express.static(path.join(__dirname, '/front/build')));

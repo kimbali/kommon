@@ -27,7 +27,7 @@ const recipeSchema = new Schema(
     },
     image: {
       type: String,
-      default: 'There is no image',
+      default: '',
     },
     calories: {
       type: Number,

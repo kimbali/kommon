@@ -3,7 +3,7 @@ import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { createPortal } from 'react-dom';
 
-function Modal({ onClose, children, scroll }) {
+function Modal({ onClose, children, scroll, className }) {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
@@ -15,7 +15,7 @@ function Modal({ onClose, children, scroll }) {
   }, []);
 
   return createPortal(
-    <div className='modal'>
+    <div className={`modal ${className}`}>
       <div className={`modal-content ${scroll ? 'scroll' : ''}`}>
         <button className='close-icon' onClick={() => onClose(false)}>
           <FontAwesomeIcon icon={faClose} />

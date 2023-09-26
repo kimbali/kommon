@@ -9,7 +9,6 @@ import LoadingError from '../components/loadingError/LoadingError';
 import Text from '../components/text/Text';
 import Space from '../components/space/Space';
 import ResumeTable from '../components/resumeTable/ResumeTable';
-import FOTO_NEUTRA from '../styles/assets/foto-comida-neutra.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import Button from '../components/button/Button';
@@ -17,6 +16,7 @@ import frontRoutes from '../config/frontUrls';
 import ConfirmModal from '../components/modal/ConfirmModal';
 import Modal from '../components/modal/Modal';
 import RecipeForm from '../components/recipes/RecipeForm';
+import { getMeasureDiminutive } from '../config/enums/measuresEnum';
 
 function RecipeDetails() {
   const { id } = useParams();
@@ -165,7 +165,9 @@ function RecipeDetails() {
               list={ingredients.map(ele => {
                 return {
                   name: ele.ingredient?.name,
-                  value: `${ele.quantity} ${ele.ingredient?.measure?.diminutive}`,
+                  value: `${ele.quantity} ${getMeasureDiminutive(
+                    ele.ingredient?.measure
+                  )}`,
                 };
               })}
             />

@@ -13,6 +13,7 @@ import LoadingError from '../components/loadingError/LoadingError';
 
 function Recipes() {
   const [searchValue, setSearchValue] = useState('');
+  const [keywordValue, setKeywordValue] = useState('');
   const [showRecipeModal, setShowRecipeModal] = useState(false);
   const navigate = useNavigate();
 
@@ -21,10 +22,18 @@ function Recipes() {
     isLoading,
     isError,
     refetch: refetchRecipes,
-  } = useGetRecipesQuery({});
+  } = useGetRecipesQuery({
+    keyword: keywordValue,
+  });
+
+  const handleSearchValueChange = ({ value }) => {
+    setSearchValue(value);
+  };
 
   const handleSearchSubmit = e => {
     e.preventDefault();
+
+    setKeywordValue(searchValue);
   };
 
   const handleCreateRecipe = () => {
@@ -53,12 +62,12 @@ function Recipes() {
 
         <form onSubmit={handleSearchSubmit} className='search-input'>
           <Input
-            onChange={setSearchValue}
+            onChange={handleSearchValueChange}
             placeholder='Search by title'
             iconLeft={faMagnifyingGlass}
             isSecondary
             name='search'
-            value={searchValue.value}
+            value={searchValue}
             type='search'
           />
           <Button type='submit' isPrimary iconLeft={faMagnifyingGlass} />

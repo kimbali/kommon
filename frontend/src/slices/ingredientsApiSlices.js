@@ -18,9 +18,10 @@ export const ingredientsApiSlice = apiSlice.injectEndpoints({
       keepUnusedDataFor: 5,
     }),
     createIngredient: builder.mutation({
-      query: () => ({
+      query: data => ({
         url: `${INGREDIENTS_URL}`,
         method: 'POST',
+        body: data,
       }),
       invalidatesTags: ['Ingredient'],
     }),

@@ -8,31 +8,22 @@ const ingredientsSchema = new Schema(
     },
     calories: {
       type: Number,
-      default: 0,
     },
     proteins: {
       type: Number,
-      default: 0,
     },
     fats: {
       type: Number,
-      default: 0,
     },
     carbohydrates: {
       type: Number,
-      default: 0,
     },
     image: {
       type: String,
       default: '',
     },
-    allergies: [String],
-    menus: [String],
-    measure: {
-      type: Schema.Types.ObjectId,
-      ref: 'Measure',
-      required: true,
-    },
+    allergy: String,
+    measure: String,
     benefits: String,
   },
   {

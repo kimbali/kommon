@@ -49,6 +49,10 @@
         brightness(100%) contrast(95%);
       cursor: pointer;
     }
+
+    &[type='number'] {
+      text-align: right;
+    }
   }
 
   &.checkbox {
@@ -69,12 +73,43 @@
       cursor: pointer;
     }
   }
+
+  .multi-select {
+    color: $grey-dark;
+    font-size: 13px;
+
+    .multi-prefix__input-container,
+    .multi-prefix__value-container,
+    input {
+      height: 36px;
+    }
+
+    .multi-prefix__input-container {
+      margin: 0;
+      padding: 0;
+    }
+
+    div[role='button'],
+    .multi-prefix__indicator {
+      cursor: pointer;
+    }
+
+    input::placeholder {
+      color: $main-font-color-decolored;
+      font-size: 12px;
+    }
+  }
+
+  &.benefits textarea {
+    height: 64px;
+  }
 }
 
 select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+  cursor: pointer;
 
   background-image: linear-gradient(45deg, transparent 50%, $grey 50%),
     linear-gradient(135deg, $grey 50%, transparent 50%),

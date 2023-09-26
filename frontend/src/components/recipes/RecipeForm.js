@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import categoriesEnum from '../../config/enums/categoriesEnum';
 import toast from 'react-hot-toast';
 import Text from '../text/Text';
 import Space from '../space/Space';
@@ -16,12 +17,12 @@ import { useGetIngredientsQuery } from '../../slices/ingredientsApiSlices';
 import {
   useCreateRecipeMutation,
   useUpdateRecipeMutation,
-  useUploadRecipeImageMutation,
 } from '../../slices/recipesApiSlice';
 import IngredientForm from '../ingredients/IngredientForm';
 
 function RecipeForm({ recipe, onCreate, isEdit }) {
   const [showCreateIngredient, setShowCreateIngredient] = useState(false);
+  const [ingredientsOptions, setIngredientsOptions] = useState([]);
   const [recipeData, setRecipeData] = useState(
     recipe || {
       steps: [''],
@@ -29,25 +30,8 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
     }
   );
 
-  const { data: ingredientsData } = useGetIngredientsQuery({});
-  const [uploadRecipeImage, { isLoading: loadingUpload }] =
-    useUploadRecipeImageMutation();
-
   const handleOnChange = ({ name, value }) => {
     setRecipeData({ ...recipeData, [name]: value });
-  };
-
-  const handleUploadImage = async ({ value }) => {
-    const formData = new FormData();
-    formData.append('image', value);
-    try {
-      const res = await uploadRecipeImage(formData).unwrap();
-      toast.success(res.message);
-
-      setRecipeData({ ...recipeData, image: res.image });
-    } catch (err) {
-      toast.error(err?.data?.message || err.error);
-    }
   };
 
   const handleOnChangeSteps = ({ name, value }) => {
@@ -68,25 +52,14 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
   };
 
   const handleIngredientChange = ({ name: inputName, value }) => {
-    const ingredients = recipeData.ingredients;
-    const position = inputName.split('ingredient')[1];
-    const ingredientId = value;
+    const ingredients = [...recipeData.ingredients];
 
-    ingredients[position] = {
-      quantity: 0,
-      ingredient: ingredientId,
-    };
-
-    setRecipeData({ ...recipeData, ingredients });
-  };
-
-  const handleIngredientMeasure = ({ name: inputName, value: quantity }) => {
-    const ingredients = recipeData.ingredients;
-    const position = inputName.split('measure')[1];
+    const property = inputName.split('-')[0];
+    const position = inputName.split('-')[1];
 
     ingredients[position] = {
       ...ingredients[position],
-      quantity,
+      [property]: value,
     };
 
     setRecipeData({ ...recipeData, ingredients });
@@ -109,21 +82,36 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
     setRecipeData({ ...recipeData, ingredients });
   };
 
-  const createIngredientHandler = () => {
-    setShowCreateIngredient(true);
+  const { data: ingredientsData, refetch: refetchIngredients } =
+    useGetIngredientsQuery({});
+
+  const onCreateIngredient = () => {
+    setShowCreateIngredient(false);
+    refetchIngredients();
   };
 
-  const ingredientsOptions = ingredientsData
-    ? ingredientsData.ingredients.map(eachIngredient => {
-        return {
-          name: eachIngredient.name,
-          value: eachIngredient._id,
-          disabled: recipeData.ingredients.find(
-            ele => ele.ingredient === eachIngredient._id
-          ),
-        };
-      })
-    : [];
+  useEffect(() => {
+    const options =
+      ingredientsData?.ingredients
+        .map(eachIngredient => {
+          const alreadySelected = recipeData.ingredients.find(
+            each =>
+              each.ingredient === eachIngredient._id ||
+              each.ingredient?._id === eachIngredient._id
+          );
+
+          if (alreadySelected) {
+            return null;
+          }
+          return {
+            label: eachIngredient.name,
+            value: eachIngredient,
+          };
+        })
+        .filter(option => !!option) || [];
+
+    setIngredientsOptions(options);
+  }, [ingredientsData?.ingredients, recipeData.ingredients]);
 
   const [createRecipe] = useCreateRecipeMutation();
 
@@ -160,36 +148,16 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
       <Space small />
 
       <form>
-        <Input
-          label='title'
-          name='title'
-          placeholder='Berenjenas rellenas'
-          onChange={handleOnChange}
-          value={recipeData.title}
-        />
+        <div className='section'>
+          <Input
+            label='title'
+            name='title'
+            placeholder='Berenjenas rellenas'
+            onChange={handleOnChange}
+            value={recipeData.title}
+          />
 
-        <Space small />
-
-        <div className='grid-container'>
-          <div className='cols-3'>
-            <Input
-              label='image'
-              name='image'
-              onChange={handleUploadImage}
-              value={recipeData.image}
-              type='file'
-            />
-          </div>
-          <div className='cols-1'>
-            <Input
-              label='minutes'
-              name='minutes'
-              placeholder='0'
-              onChange={handleOnChange}
-              value={recipeData.minutes}
-              type='number'
-            />
-          </div>
+          <Space small />
         </div>
 
         <Space medium />
@@ -230,57 +198,56 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
         <div className='section'>
           <Text isSubtitle>Ingredients</Text>
 
+          <Space extraSmall />
+
           <Button
             small
             isPrimary
             iconLeft={faCartPlus}
-            onClick={createIngredientHandler}
+            onClick={() => setShowCreateIngredient(true)}
           >
             Create ingredient
           </Button>
 
           {showCreateIngredient && (
-            <Modal onClose={setShowCreateIngredient}>
-              <IngredientForm />
+            <Modal
+              className='ingredient-modal'
+              onClose={setShowCreateIngredient}
+            >
+              <IngredientForm onCreate={onCreateIngredient} />
             </Modal>
           )}
 
           <Space small />
 
+          <Space small />
+
           {recipeData.ingredients.map((eachIngredient, index) => {
-            const currentIngredient = ingredientsData?.ingredients.find(
-              elem => {
-                if (!isEdit) {
-                  return elem._id === eachIngredient.ingredient;
-                } else {
-                  return elem._id === eachIngredient.ingredient?._id;
-                }
-              }
-            );
+            const ingredientOption = eachIngredient.ingredient && {
+              label: eachIngredient.ingredient?.name,
+              value: eachIngredient,
+            };
 
             return (
-              <React.Fragment key={`ingredient-${index}`}>
+              <React.Fragment key={`ingredient-measure-${index}`}>
                 <div className='grid-container'>
                   <Input
-                    name={`ingredient${index}`}
-                    value={currentIngredient?.name}
-                    type='select'
-                    selectOption='Select ingredient'
-                    options={ingredientsOptions}
                     className='cols-2'
+                    name={`ingredient-${index}`}
+                    isSingleSelect
+                    options={ingredientsOptions}
                     onChange={handleIngredientChange}
+                    defaultValue={ingredientOption}
                   />
 
                   <div className='cols-1 measure'>
                     <Input
-                      name={`measure${index}`}
+                      name={`quantity-${index}`}
                       type='number'
                       placeholder='quantity'
-                      onChange={handleIngredientMeasure}
+                      onChange={handleIngredientChange}
                       value={eachIngredient.quantity}
                     />
-
-                    <Text>{currentIngredient?.measure?.diminutive || ''}</Text>
                   </div>
 
                   <Button
@@ -306,7 +273,8 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
             type='button'
             isPrimary
             disabled={
-              !recipeData.ingredients[recipeData.ingredients.length - 1]?.name
+              !recipeData.ingredients[recipeData.ingredients.length - 1]
+                ?.ingredient || ingredientsOptions.length === 0
             }
             className='cols-1 cart-cta no-submit'
           >
@@ -362,6 +330,56 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
               />
             </div>
           </div>
+
+          <Space small />
+        </div>
+
+        <Space medium />
+
+        <div className='section grid-container'>
+          <div className='cols-3'>
+            <Input
+              label='image'
+              name='image'
+              onChange={handleOnChange}
+              value={recipeData.image}
+              type='file'
+            />
+          </div>
+
+          <div className='cols-1'>
+            <Input
+              label='minutes'
+              name='minutes'
+              placeholder='0'
+              onChange={handleOnChange}
+              value={recipeData.minutes}
+              type='number'
+            />
+          </div>
+
+          <Space extraSmall />
+        </div>
+
+        <Space medium />
+
+        <div className='section '>
+          <Input
+            key={'categories-form'}
+            name='categories'
+            label='Categories'
+            placeholder='Select all possible categories'
+            isMultiSelect
+            options={categoriesEnum}
+            onChange={handleOnChange}
+            defaultValue={
+              recipeData.categories
+                ? categoriesEnum.filter(cat =>
+                    recipeData.categories?.includes(cat.value)
+                  )
+                : []
+            }
+          />
 
           <Space extraSmall />
         </div>

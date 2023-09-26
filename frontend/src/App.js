@@ -1,5 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import Storybook from './pages/Storybook';
 import MainLayout from './components/mainLayout/MainLayout';
@@ -26,6 +31,7 @@ function App() {
                 exact
               />
 
+              <Route index element={<Navigate to={frontRoutes.recipes} />} />
               <Route path='*' element={<div>Not found</div>} />
             </Route>
           </Route>

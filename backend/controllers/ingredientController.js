@@ -44,8 +44,7 @@ export const createIngredient = asyncHandler(async (req, res) => {
     fats,
     carbohydrates,
     image,
-    allergies,
-    menus,
+    allergy,
     measure,
     benefits,
   } = req.body;
@@ -57,8 +56,7 @@ export const createIngredient = asyncHandler(async (req, res) => {
     fats,
     carbohydrates,
     image,
-    allergies,
-    menus,
+    allergy,
     measure,
     benefits,
   });
@@ -78,8 +76,7 @@ export const updateIngredient = asyncHandler(async (req, res) => {
     fats,
     carbohydrates,
     image,
-    allergies,
-    menus,
+    allergy,
     measure,
     benefits,
   } = req.body;
@@ -93,8 +90,7 @@ export const updateIngredient = asyncHandler(async (req, res) => {
     ingredient.fats = fats || ingredient.fats;
     ingredient.carbohydrates = carbohydrates || ingredient.carbohydrates;
     ingredient.image = image || ingredient.image;
-    ingredient.allergies = allergies || ingredient.allergies;
-    ingredient.menus = menus || ingredient.menus;
+    ingredient.allergy = allergy || ingredient.allergy;
     ingredient.measure = measure || ingredient.measure;
     ingredient.benefits = benefits || ingredient.benefits;
 

@@ -29,10 +29,6 @@ export const getRecipeById = asyncHandler(async (req, res) => {
     populate: {
       path: 'ingredient',
       model: 'Ingredient',
-      populate: {
-        path: 'measure',
-        model: 'Measure',
-      },
     },
   });
 
@@ -58,6 +54,7 @@ export const createRecipe = asyncHandler(async (req, res) => {
     proteins,
     fats,
     carbohydrates,
+    categories,
   } = req.body;
 
   const recipe = new Recipe({
@@ -70,6 +67,7 @@ export const createRecipe = asyncHandler(async (req, res) => {
     proteins,
     fats,
     carbohydrates,
+    categories,
   });
 
   try {
@@ -95,6 +93,7 @@ export const updateRecipe = asyncHandler(async (req, res) => {
     proteins,
     fats,
     carbohydrates,
+    categories,
   } = req.body;
 
   const recipe = await Recipe.findById(req.params.id);
@@ -109,6 +108,7 @@ export const updateRecipe = asyncHandler(async (req, res) => {
     recipe.proteins = proteins || recipe.proteins;
     recipe.fats = fats || recipe.fats;
     recipe.carbohydrates = carbohydrates || recipe.carbohydrates;
+    recipe.categories = categories || recipe.categories;
 
     const updatedRecipe = await recipe.save();
     res.json(updatedRecipe);

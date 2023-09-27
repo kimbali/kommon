@@ -3,13 +3,14 @@ import express from 'express';
 import dotenv from 'dotenv';
 import colors from 'colors';
 import morgan from 'morgan';
+import cookieParser from 'cookie-parser';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 import connectDB from './config/db.js';
-import recipes from './fakeData/recipes.js';
 import recipesRoutes from './routes/recipesRoutes.js';
 import ingredientsRoutes from './routes/ingredientsRoutes.js';
 import measuresRoutes from './routes/measuresRoutes.js';
 import uploadRoutes from './routes/uploadsRoutes.js';
+import usersRoutes from './routes/usersRoutes.js';
 
 dotenv.config();
 
@@ -22,11 +23,14 @@ const app = express();
 // }
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 app.use('/api/recipes', recipesRoutes);
 app.use('/api/ingredients', ingredientsRoutes);
 app.use('/api/measures', measuresRoutes);
 app.use('/api/upload', uploadRoutes);
+app.use('/api/users', usersRoutes);
 
 // app.get('/api/config/paypal', (req, res) =>
 //   res.send(process.env.PAYPAL_CLIENT_ID)

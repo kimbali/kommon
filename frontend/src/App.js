@@ -11,6 +11,8 @@ import MainLayout from './components/mainLayout/MainLayout';
 import ScrollToTop from './components/scrollToTop/ScrollToTop';
 import RecipeDetails from './pages/RecipeDetails';
 import Recipes from './pages/Recipes';
+import Users from './pages/Users';
+import Login from './pages/Login';
 import frontRoutes from './config/frontUrls';
 
 function App() {
@@ -25,6 +27,8 @@ function App() {
           <Route element={<MainLayout />}>
             <Route>
               <Route path={frontRoutes.recipes} element={<Recipes />} exact />
+              <Route path={frontRoutes.users} element={<Users />} exact />
+              <Route path={frontRoutes.login} element={<Login />} exact />
               <Route
                 path={frontRoutes.recipeDetails}
                 element={<RecipeDetails />}

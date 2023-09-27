@@ -1,47 +1,52 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { toast } from 'react-hot-toast';
+import React from 'react';
 import {
-  faCopy,
-  faList,
-  faQrcode,
-  faSquareH,
+  faBarsProgress,
+  faBowlFood,
+  faDumbbell,
+  faSpa,
+  faUser,
   faUtensils,
 } from '@fortawesome/free-solid-svg-icons';
 import Text from '../text/Text';
-import Logo from '../logo/Logo';
-import Space, { size } from '../space/Space';
+import Space from '../space/Space';
 import './navBar.scss';
+import frontRoutes from '../../config/frontUrls';
+import NavLink from './NavLink';
 
 function NavBar() {
-  const navigate = useNavigate();
-  const location = useLocation();
-
   return (
     <nav className='menu'>
       <div className='menu-top'>
-        <Logo width='48px' />
-
-        <Space small />
-
         <Text isTitle>Body marathon</Text>
 
         <Space medium />
 
-        <ul>
-          <li
-            className={
-              location.pathname.indexOf(`/recipes`) >= 0 ? 'active' : ''
-            }
-          >
-            <Link to={`/recipes`}>
-              <Text isCTA>
-                <FontAwesomeIcon icon={faUtensils} />
-                <span className='hide-in-mobile'>Recipes</span>
-              </Text>
-            </Link>
-          </li>
+        <ul className='nav-bar'>
+          <NavLink icon={faUser} label='Users' route={frontRoutes.users} />
+
+          <NavLink
+            icon={faUtensils}
+            label='Recipes'
+            route={frontRoutes.recipes}
+          />
+
+          <NavLink
+            icon={faDumbbell}
+            label='Workouts'
+            route={frontRoutes.workouts}
+          />
+
+          <NavLink
+            icon={faSpa}
+            label='Meditations'
+            route={frontRoutes.meditation}
+          />
+
+          <NavLink
+            icon={faSpa}
+            label='To do list'
+            route={frontRoutes.todoList}
+          />
         </ul>
       </div>
       <Space small />

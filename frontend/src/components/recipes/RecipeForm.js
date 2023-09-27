@@ -23,7 +23,7 @@ import IngredientForm from '../ingredients/IngredientForm';
 function RecipeForm({ recipe, onCreate, isEdit }) {
   const [showCreateIngredient, setShowCreateIngredient] = useState(false);
   const [ingredientsOptions, setIngredientsOptions] = useState([]);
-  const [recipeData, setRecipeData] = useState(
+  const [formData, setFormData] = useState(
     recipe || {
       steps: [''],
       ingredients: [{}],
@@ -31,28 +31,28 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
   );
 
   const handleOnChange = ({ name, value }) => {
-    setRecipeData({ ...recipeData, [name]: value });
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleOnChangeSteps = ({ name, value }) => {
-    let steps = [...recipeData.steps];
+    let steps = [...formData.steps];
     const stepNum = name.split('step')[1];
     const stepValue = value;
 
     steps[stepNum] = stepValue;
 
-    setRecipeData({ ...recipeData, steps });
+    setFormData({ ...formData, steps });
   };
 
   const handleAddStep = () => {
-    const steps = recipeData.steps;
+    const steps = formData.steps;
     steps[steps.length] = '';
 
-    setRecipeData({ ...recipeData, steps });
+    setFormData({ ...formData, steps });
   };
 
   const handleIngredientChange = ({ name: inputName, value }) => {
-    const ingredients = [...recipeData.ingredients];
+    const ingredients = [...formData.ingredients];
 
     const property = inputName.split('-')[0];
     const position = inputName.split('-')[1];
@@ -62,24 +62,24 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
       [property]: value,
     };
 
-    setRecipeData({ ...recipeData, ingredients });
+    setFormData({ ...formData, ingredients });
   };
 
   const handleAddIngredient = () => {
-    const ingredients = recipeData.ingredients;
+    const ingredients = formData.ingredients;
     ingredients.push({});
 
-    setRecipeData({ ...recipeData, ingredients });
+    setFormData({ ...formData, ingredients });
   };
 
   const handleDeleteIngredientFromList = index => {
-    let ingredients = recipeData.ingredients.filter((_, i) => i !== index);
+    let ingredients = formData.ingredients.filter((_, i) => i !== index);
 
     if (ingredients.length === 0) {
       ingredients[0] = {};
     }
 
-    setRecipeData({ ...recipeData, ingredients });
+    setFormData({ ...formData, ingredients });
   };
 
   const { data: ingredientsData, refetch: refetchIngredients } =
@@ -94,7 +94,7 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
     const options =
       ingredientsData?.ingredients
         .map(eachIngredient => {
-          const alreadySelected = recipeData.ingredients.find(
+          const alreadySelected = formData.ingredients.find(
             each =>
               each.ingredient === eachIngredient._id ||
               each.ingredient?._id === eachIngredient._id
@@ -111,7 +111,7 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
         .filter(option => !!option) || [];
 
     setIngredientsOptions(options);
-  }, [ingredientsData?.ingredients, recipeData.ingredients]);
+  }, [ingredientsData?.ingredients, formData.ingredients]);
 
   const [createRecipe] = useCreateRecipeMutation();
 
@@ -119,7 +119,7 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
     e.preventDefault();
 
     try {
-      await createRecipe(recipeData).unwrap();
+      await createRecipe(formData).unwrap();
       onCreate();
       toast.success('Created');
     } catch (err) {
@@ -133,7 +133,7 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
     e.preventDefault();
 
     try {
-      await updateRecipe(recipeData).unwrap();
+      await updateRecipe(formData).unwrap();
       onCreate();
       toast.success('Updated');
     } catch (err) {
@@ -154,7 +154,7 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
             name='title'
             placeholder='Berenjenas rellenas'
             onChange={handleOnChange}
-            value={recipeData.title}
+            value={formData.title}
           />
 
           <Space small />
@@ -167,7 +167,7 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
 
           <Space extraSmall />
 
-          {recipeData.steps.map((eachStep, index) => (
+          {formData.steps.map((eachStep, index) => (
             <React.Fragment key={`step-${index}`}>
               <Input
                 name={`step${index}`}
@@ -187,7 +187,7 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
             isPrimary
             className='no-submit'
             type='button'
-            disabled={recipeData.steps[recipeData.steps.length - 1] === ''}
+            disabled={formData.steps[formData.steps.length - 1] === ''}
           >
             Add step
           </Button>
@@ -222,7 +222,7 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
 
           <Space small />
 
-          {recipeData.ingredients.map((eachIngredient, index) => {
+          {formData.ingredients.map((eachIngredient, index) => {
             const ingredientOption = eachIngredient.ingredient && {
               label: eachIngredient.ingredient?.name,
               value: eachIngredient,
@@ -258,7 +258,7 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
                     isPrimary
                     className='cols-1 no-submit'
                     small
-                    disabled={!recipeData.ingredients[index]}
+                    disabled={!formData.ingredients[index]}
                   />
                 </div>
 
@@ -273,7 +273,7 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
             type='button'
             isPrimary
             disabled={
-              !recipeData.ingredients[recipeData.ingredients.length - 1]
+              !formData.ingredients[formData.ingredients.length - 1]
                 ?.ingredient || ingredientsOptions.length === 0
             }
             className='cols-1 cart-cta no-submit'
@@ -292,7 +292,7 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
                 name='calories'
                 placeholder='0'
                 onChange={handleOnChange}
-                value={recipeData.calories}
+                value={formData.calories}
                 type='number'
               />
             </div>
@@ -303,7 +303,7 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
                 name='fats'
                 placeholder='0'
                 onChange={handleOnChange}
-                value={recipeData.fats}
+                value={formData.fats}
                 type='number'
               />
             </div>
@@ -314,7 +314,7 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
                 name='proteins'
                 placeholder='0'
                 onChange={handleOnChange}
-                value={recipeData.proteins}
+                value={formData.proteins}
                 type='number'
               />
             </div>
@@ -325,7 +325,7 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
                 name='carbohydrates'
                 placeholder='0'
                 onChange={handleOnChange}
-                value={recipeData.carbohydrates}
+                value={formData.carbohydrates}
                 type='number'
               />
             </div>
@@ -342,7 +342,7 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
               label='image'
               name='image'
               onChange={handleOnChange}
-              value={recipeData.image}
+              value={formData.image}
               type='file'
             />
           </div>
@@ -353,7 +353,7 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
               name='minutes'
               placeholder='0'
               onChange={handleOnChange}
-              value={recipeData.minutes}
+              value={formData.minutes}
               type='number'
             />
           </div>
@@ -373,9 +373,9 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
             options={categoriesEnum}
             onChange={handleOnChange}
             defaultValue={
-              recipeData.categories
+              formData.categories
                 ? categoriesEnum.filter(cat =>
-                    recipeData.categories?.includes(cat.value)
+                    formData.categories?.includes(cat.value)
                   )
                 : []
             }

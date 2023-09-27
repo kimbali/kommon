@@ -8,7 +8,7 @@ ul,
 li,
 button,
 a {
-  color: $main-font-color;
+  color: $secondary-color;
   padding: 0;
   margin: 0;
   list-style-type: none;
@@ -23,7 +23,7 @@ ol {
 
 body {
   background-color: $page-background-color;
-  color: $main-font-color;
+  color: $secondary-color;
   font-family: $text-font;
   font-size: 14px;
   display: flex;
@@ -79,7 +79,7 @@ a {
   justify-content: flex-start;
 
   button {
-    margin: 0 24px 0 0;
+    margin: 0 0 0 24px;
 
     svg {
       margin-right: 8px;
@@ -101,6 +101,4 @@ a {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
   gap: 22px;
-  .card-item {
-  }
 }

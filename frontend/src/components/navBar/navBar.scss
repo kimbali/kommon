@@ -3,82 +3,55 @@
 .menu {
   padding: 24px;
 
-  .text,
-  .title {
+  .text {
     color: $white;
   }
 
-  .logo {
-    margin: 0 auto;
-  }
-
   .title {
-    text-align: center;
+    color: $primary-color;
   }
 
-  .business-info {
-    background-color: $page-background-color;
-    border-radius: $border-radius-wrapper;
-    padding: 24px;
-    text-align: center;
-
-    svg {
-      height: 24px;
-      color: $grey-icon;
-      margin-bottom: 12px;
-    }
-
-    .text {
-      margin-bottom: 8px;
-    }
-
-    .edit-CTA {
-      padding: 0;
-
-      .text {
-        width: 100%;
-        margin: 0;
-      }
-    }
-
-    .active {
-      color: $primary-color;
-
-      p {
-        color: inherit;
-      }
-    }
-  }
-
-  ul {
+  .nav-bar {
     li {
-      margin-bottom: 12px;
-      border-radius: $border-radius-element;
       transition: 0.2s;
+      margin-bottom: 24px;
 
-      &:hover {
-        background-color: $primary-color;
-      }
-
-      &.active {
-        background-color: $primary-color-decolored;
-      }
-
-      a,
-      button {
-        padding: 12px;
+      a {
         display: block;
         width: 100%;
         display: flex;
-        justify-content: flex-start;
+        align-items: center;
+        color: $disabled;
+
+        svg {
+          margin-right: 16px;
+          background-color: $element-background-color;
+          padding: 12px;
+          border-radius: $border-radius-element;
+          color: inherit;
+          font-size: 16px;
+        }
 
         p {
           margin: 0;
+          font-size: 16px;
+          color: inherit;
+        }
+
+        &:hover {
+          color: $secondary-color;
         }
       }
 
-      svg {
-        margin-right: 8px;
+      &.active {
+        svg {
+          background-color: $primary-color;
+          color: $secondary-color;
+        }
+
+        p {
+          color: $secondary-color;
+        }
       }
     }
   }

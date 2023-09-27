@@ -28,7 +28,7 @@
 
     &::placeholder,
     .placeholder {
-      color: $main-font-color-decolored;
+      color: $secondary-color-decolored;
     }
 
     &.no-value {
@@ -36,7 +36,7 @@
     }
 
     .has-value {
-      color: $secondary-font-color;
+      color: $secondary-color;
     }
 
     &.error {
@@ -69,7 +69,7 @@
 
     label {
       margin: 0;
-      color: $main-font-color;
+      color: $secondary-color;
       cursor: pointer;
     }
   }
@@ -95,7 +95,7 @@
     }
 
     input::placeholder {
-      color: $main-font-color-decolored;
+      color: $secondary-color-decolored;
       font-size: 12px;
     }
   }

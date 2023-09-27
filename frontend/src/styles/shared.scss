@@ -7,16 +7,13 @@ $subtitle-font: 'Trirong', serif;
 $text-font: 'Open Sans', sans-serif;
 
 // COLORS
-// fonts
-$main-font-color: #ffffff;
-$main-font-color-decolored: #c8c8c8;
-$secondary-font-color: #ef0482;
-$secondary-font-color-decolored: #d41078f5;
 
-//mai colors
+//main colors
 $primary-color: #ef0482;
-$primary-color-decolored: rgba($primary-color, 0.25);
-$secondary-color: #36ed7f;
+$primary-color-decolored: rgba($primary-color, 0.7);
+$secondary-color: #ffffff;
+$secondary-color-decolored: #c8c8c8;
+$disabled: #838190;
 
 // backgrounds
 $page-background-color: #201d2b;
@@ -27,7 +24,7 @@ $subelement-background-color: #4d4b5d;
 $grey-dark: #464545;
 $grey: #646d76;
 $grey-decolored: #8c8989;
-$grey-icon: #c8c8c8;
+
 $grey-light: #f0f0f0;
 $white: #ffffff;
 $black: #000;
@@ -35,5 +32,5 @@ $danger: #dc3545;
 $danger-decolored: rgba($danger, 0.25);
 
 // SETTINGS
-$border-radius-element: 6px;
+$border-radius-element: 12px;
 $border-radius-wrapper: 12px;

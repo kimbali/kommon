@@ -8,7 +8,7 @@ import Space from '../components/space/Space';
 import RecipeCard from '../components/recipes/RecipeCard';
 import Modal from '../components/modal/Modal';
 import RecipeForm from '../components/recipes/RecipeForm';
-import frontRoutes from '../config/frontUrls';
+import frontRoutes from '../config/frontRoutes';
 import LoadingError from '../components/loadingError/LoadingError';
 
 function Recipes() {

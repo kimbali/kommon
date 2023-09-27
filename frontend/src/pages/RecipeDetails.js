@@ -12,7 +12,7 @@ import ResumeTable from '../components/resumeTable/ResumeTable';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import Button from '../components/button/Button';
-import frontRoutes from '../config/frontUrls';
+import frontRoutes from '../config/frontRoutes';
 import ConfirmModal from '../components/modal/ConfirmModal';
 import Modal from '../components/modal/Modal';
 import RecipeForm from '../components/recipes/RecipeForm';

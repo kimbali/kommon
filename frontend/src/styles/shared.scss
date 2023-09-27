@@ -16,21 +16,25 @@ $secondary-color-decolored: #c8c8c8;
 $disabled: #838190;
 
 // backgrounds
-$page-background-color: #201d2b;
-$element-background-color: #363441;
-$subelement-background-color: #4d4b5d;
+$background-1: #201d2b;
+$background-2: #232736;
+$background-3: #333946;
+$background-4: #313444;
 
 //common colors
 $grey-dark: #464545;
 $grey: #646d76;
 $grey-decolored: #8c8989;
-
 $grey-light: #f0f0f0;
 $white: #ffffff;
 $black: #000;
-$danger: #dc3545;
-$danger-decolored: rgba($danger, 0.25);
+$danger: #a7ae41;
+$danger-decolored: rgba($danger, 0.5);
 
 // SETTINGS
 $border-radius-element: 12px;
-$border-radius-wrapper: 12px;
+$border-radius-wrapper: 22px;
+
+// https://getcssscan.com/css-box-shadow-examples
+$box-shadow-element: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+$box-shadow-wrapper: rgba(149, 157, 165, 0.2) 0px 8px 24px;

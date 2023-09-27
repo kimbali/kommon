@@ -22,14 +22,14 @@ ol {
 }
 
 body {
-  background-color: $page-background-color;
+  background-color: $background-1;
   color: $secondary-color;
   font-family: $text-font;
   font-size: 14px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0;
+  margin: 24px 0 0 0;
 }
 
 form {
@@ -101,4 +101,10 @@ a {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
   gap: 22px;
+}
+
+.wrapper {
+  background-color: $background-2;
+  padding: 32px;
+  border-radius: $border-radius-wrapper;
 }

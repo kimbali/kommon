@@ -28,7 +28,7 @@
   .propiedades {
     display: flex;
     justify-content: space-between;
-    background-color: $element-background-color;
+    background-color: $background-2;
     border-radius: $border-radius-element;
     padding: 8px 16px 12px;
 
@@ -75,7 +75,7 @@
     }
 
     p {
-      background: $page-background-color;
+      background: $background-1;
       width: fit-content;
       padding-right: 4px;
       z-index: 1;

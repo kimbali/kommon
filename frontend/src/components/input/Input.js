@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Text from '../text/Text';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import Select from 'react-select';
 import toast from 'react-hot-toast';
 import { useUploadRecipeImageMutation } from '../../slices/recipesApiSlice';
+import Space from '../space/Space';
 
 function Input({
   label,
@@ -27,6 +28,7 @@ function Input({
   defaultValue,
   keyValue = '',
 }) {
+  const hasError = error?.invalidFields?.includes(name);
   const [uploadRecipeImage] = useUploadRecipeImageMutation();
 
   const handleOnChange = event => {
@@ -85,7 +87,9 @@ function Input({
             required={required}
             type={type || 'text'}
             maxLength={maxLength}
-            className={`${value ? 'has-value' : 'no-value'}`}
+            className={`${value ? 'has-value' : 'no-value'} ${
+              hasError ? 'has-error' : ''
+            }`}
           />
         )}
 
@@ -162,7 +166,7 @@ function Input({
         </div>
       )}
 
-      {error && <Text danger>{error}</Text>}
+      {hasError && <Text danger>{error?.message}</Text>}
     </div>
   );
 }

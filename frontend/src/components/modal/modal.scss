@@ -1,6 +1,6 @@
 .modal {
   position: absolute;
-  background-color: rgba($color: $page-background-color, $alpha: 0.5);
+  background-color: rgba($color: $background-1, $alpha: 0.5);
   width: 100vw;
   height: 100vh;
   top: 0;
@@ -15,7 +15,7 @@
     width: 80%;
     max-height: 95vh;
     padding: 32px;
-    background-color: $element-background-color;
+    background-color: $background-2;
     border-radius: $border-radius-wrapper;
     position: relative;
     z-index: 3;

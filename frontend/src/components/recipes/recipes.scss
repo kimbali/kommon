@@ -1,5 +1,5 @@
 .recipe-card {
-  background-color: $element-background-color;
+  background-color: $background-2;
   height: 230px;
   border-radius: $border-radius-element;
 
@@ -35,7 +35,7 @@
   color: $secondary-color;
 
   .section {
-    background-color: $subelement-background-color;
+    background-color: $background-3;
     padding: 12px 22px;
     border-radius: $border-radius-wrapper;
   }

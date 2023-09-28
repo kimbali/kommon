@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLoginMutation } from '../slices/usersApiSlices';
 import { setCredentials } from '../slices/authSlice';
 import toast from 'react-hot-toast';
 import Space from '../components/space/Space';
 import Button from '../components/button/Button';
-import { faDumbbell } from '@fortawesome/free-solid-svg-icons';
+import { faPersonRunning } from '@fortawesome/free-solid-svg-icons';
 import Input from '../components/input/Input';
 import Text from '../components/text/Text';
-import registerValidator from '../utils/validators/registerValidator';
 import frontRoutes from '../config/frontRoutes';
+import loginValidator from '../utils/validators/loginValidator';
 
 const Login = () => {
   const [formData, setFormData] = useState({});
@@ -23,15 +23,11 @@ const Login = () => {
 
   const { userInfo } = useSelector(state => state.auth);
 
-  const { search } = useLocation();
-  const sp = new URLSearchParams(search);
-  const redirect = sp.get('redirect') || frontRoutes.main;
-
   useEffect(() => {
     if (userInfo) {
-      navigate(redirect);
+      navigate(userInfo.isAdmin ? frontRoutes.dietsConfig : frontRoutes.main);
     }
-  }, [navigate, redirect, userInfo]);
+  }, [navigate, userInfo]);
 
   const handleOnChange = ({ name, value }) => {
     setFormData({ ...formData, [name]: value });
@@ -40,9 +36,10 @@ const Login = () => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    const errors = registerValidator(formData);
+    const errors = loginValidator(formData);
+    setInvalidFields(errors);
+
     if (errors) {
-      setInvalidFields(errors);
       return;
     }
 
@@ -51,7 +48,7 @@ const Login = () => {
     try {
       const res = await login({ email, password }).unwrap();
       dispatch(setCredentials({ ...res }));
-      navigate(redirect);
+      navigate(res.isAdmin ? frontRoutes.dietsConfig : frontRoutes.main);
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }
@@ -62,6 +59,8 @@ const Login = () => {
       <Text isTitle>Marathon</Text>
 
       <Space small />
+
+      <Text>Sigue tu camino hacia la transformación</Text>
 
       <Space medium />
 
@@ -90,7 +89,9 @@ const Login = () => {
       <Space big />
 
       <div className='content-on-the-right'>
-        <Button type='submit' isPrimary iconLeft={faDumbbell}>
+        <Link to={frontRoutes.register}>Register</Link>
+
+        <Button type='submit' isPrimary iconRight={faPersonRunning}>
           Login
         </Button>
       </div>

@@ -3,14 +3,19 @@
   cursor: pointer;
 
   &.title,
-  label,
-  .input-file p {
+  label {
     color: $primary-color;
-    font-size: 14px;
+    font-size: 16px;
     margin-bottom: 4px;
     cursor: pointer;
     font-family: $title-font;
     letter-spacing: 1px;
+  }
+
+  .input-file p {
+    height: 42px;
+    display: flex;
+    align-items: center;
   }
 
   textarea,
@@ -78,12 +83,28 @@
 
   .multi-select {
     color: $grey-dark;
-    font-size: 13px;
+    font-size: 14px;
+
+    .multi-prefix__control {
+      background-color: $background-4;
+      border: none;
+      border-radius: $border-radius-element;
+      box-shadow: $box-shadow-element;
+      padding-left: 14px;
+
+      div {
+        color: $secondary-color;
+      }
+    }
+
+    .multi-prefix__multi-value {
+      background-color: $primary-color;
+    }
 
     .multi-prefix__input-container,
     .multi-prefix__value-container,
     input {
-      height: 36px;
+      height: 42px;
     }
 
     .multi-prefix__input-container {
@@ -98,7 +119,7 @@
 
     input::placeholder {
       color: $disabled;
-      font-size: 12px;
+      font-size: 14px;
     }
   }
 
@@ -146,7 +167,7 @@ select {
     position: absolute;
     z-index: 1;
     width: 100%;
-    height: 50px;
+    padding: 36px;
     top: 0;
     left: 0;
     opacity: 0;
@@ -190,4 +211,15 @@ select {
   p {
     display: none;
   }
+}
+
+input[type='number'] {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
 }

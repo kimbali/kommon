@@ -31,6 +31,14 @@
   }
 }
 
+.recipe-form-container {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  gap: 32px;
+}
+
 .recipe-form {
   color: $secondary-color;
 
@@ -48,14 +56,10 @@
     }
   }
 
-  .cart-cta {
-    height: 36px;
-    align-self: end;
-    width: fit-content;
-  }
-
   .no-submit.primary {
     background-color: transparent;
+    width: fit-content;
+    padding: 0 12px;
 
     &:hover {
       background-color: $primary-color-decolored;
@@ -63,6 +67,59 @@
 
     &:disabled {
       background-color: transparent;
+    }
+  }
+}
+
+.recipe-form-details {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 75%;
+  background-color: $background-1;
+  padding: 24px 32px;
+  border-radius: $border-radius-wrapper;
+  margin: 64px auto;
+
+  .title {
+    color: $secondary-color;
+  }
+
+  img {
+    height: 180px;
+    max-width: 100%;
+    border-radius: $border-radius-element;
+    margin: 0 auto;
+  }
+
+  .steps {
+    .step {
+      display: flex;
+      margin-bottom: 8px;
+
+      .text {
+        margin-right: 8px;
+      }
+    }
+  }
+
+  .propiedades {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-color: $background-3;
+    border-radius: $border-radius-element;
+    padding: 8px 32px 12px;
+    margin: 0 auto;
+
+    .propiedad {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .text {
+        text-align: center;
+      }
     }
   }
 }

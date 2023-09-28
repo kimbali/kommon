@@ -7,7 +7,7 @@ import { useRegisterMutation } from '../slices/usersApiSlices';
 import { setCredentials } from '../slices/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { faDumbbell } from '@fortawesome/free-solid-svg-icons';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import registerValidator from '../utils/validators/registerValidator';
 import frontRoutes from '../config/frontRoutes';
@@ -41,8 +41,9 @@ function Register() {
     e.preventDefault();
 
     const errors = registerValidator(formData);
+    setInvalidFields(errors);
+
     if (errors) {
-      setInvalidFields(errors);
       return;
     }
 
@@ -141,6 +142,8 @@ function Register() {
       <Space big />
 
       <div className='content-on-the-right'>
+        <Link to={frontRoutes.login}>Login</Link>
+
         <Button type='submit' isPrimary iconLeft={faDumbbell}>
           Register
         </Button>

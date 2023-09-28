@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Route,
@@ -20,8 +20,23 @@ import Diet from './pages/Diet';
 import Workouts from './pages/Workouts';
 import Meditations from './pages/Meditations';
 import Progress from './pages/Progress';
+import { useDispatch } from 'react-redux';
+import { logout } from './slices/authSlice';
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const expirationTime = localStorage.getItem('expirationTime');
+    if (expirationTime) {
+      const currentTime = new Date().getTime();
+
+      if (currentTime > expirationTime) {
+        dispatch(logout());
+      }
+    }
+  }, [dispatch]);
+
   return (
     <Router>
       <div className='main-container'>
@@ -42,7 +57,7 @@ function App() {
 
           <Route path='' element={<AdminRoute />}>
             <Route path={frontRoutes.users} element={<Users />} />
-            <Route path={frontRoutes.recipes} element={<Recipes />} />
+            <Route path={frontRoutes.dietsConfig} element={<Recipes />} />
             <Route
               path={frontRoutes.recipeDetails}
               element={<RecipeDetails />}

@@ -17,6 +17,11 @@ h3 {
   color: $primary-color;
   letter-spacing: 1px;
 
+  .secondary,
+  span.secondary {
+    color: $secondary-color;
+  }
+
   &.center {
     text-align: center;
   }
@@ -41,14 +46,14 @@ h3 {
 
   &__text {
     font-size: 16px;
-    color: $secondary-color;
+    color: $primary-color;
     font-weight: 700;
   }
 
   &__line {
     height: 1px;
     width: 100%;
-    background-color: $secondary-color-decolored;
+    background-color: $primary-color-decolored;
   }
 
   button {
@@ -99,5 +104,10 @@ h3 {
 
   &.center {
     text-align: center;
+  }
+
+  &.primary,
+  span.primary {
+    color: $primary-color;
   }
 }

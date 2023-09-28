@@ -158,7 +158,7 @@ function Input({
       {type === 'file' && (
         <div className='input-file'>
           <Text small className={value ? 'has-value' : 'placeholder'}>
-            {value || 'Upload an image'}
+            {'Change image...' || 'Upload an image...'}
           </Text>
           <Text small>
             <FontAwesomeIcon icon={faPlus} />

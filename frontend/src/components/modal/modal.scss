@@ -30,9 +30,9 @@
   }
 
   .close-icon {
-    position: absolute;
-    right: 18px;
-    top: 18px;
+    position: fixed;
+    right: 48px;
+    top: 32px;
 
     svg {
       height: 18px;

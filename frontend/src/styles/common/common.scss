@@ -14,7 +14,6 @@ a {
   list-style-type: none;
   background-color: transparent;
   border: none;
-  text-decoration: none;
 }
 
 ol {
@@ -60,6 +59,7 @@ a {
 
   button {
     margin-left: 12px;
+    margin-right: 0;
   }
 }
 
@@ -79,7 +79,7 @@ a {
   justify-content: flex-start;
 
   button {
-    margin: 0 0 0 24px;
+    margin-right: 24px;
 
     svg {
       margin-right: 8px;
@@ -99,8 +99,14 @@ a {
 
 .card-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(170px, 220px));
   gap: 22px;
+
+  .card-item {
+    img {
+      height: 160px;
+    }
+  }
 }
 
 .wrapper {

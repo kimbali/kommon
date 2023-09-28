@@ -1,7 +1,7 @@
 @import '../../styles/shared.scss';
 
 .menu {
-  padding: 24px;
+  padding: 0 24px;
 
   .text {
     color: $white;
@@ -22,6 +22,7 @@
         display: flex;
         align-items: center;
         color: $disabled;
+        text-decoration: none;
 
         svg {
           margin-right: 16px;

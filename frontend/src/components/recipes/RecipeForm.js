@@ -19,6 +19,7 @@ import {
   useUpdateRecipeMutation,
 } from '../../slices/recipesApiSlice';
 import IngredientForm from '../ingredients/IngredientForm';
+import RecipeFormDetails from './RecipeFormDetails';
 
 function RecipeForm({ recipe, onCreate, isEdit }) {
   const [showCreateIngredient, setShowCreateIngredient] = useState(false);
@@ -142,274 +143,280 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
   };
 
   return (
-    <div className='recipe-form'>
-      <Text isTitle>create recipe</Text>
+    <div className='recipe-form-container'>
+      <div className='recipe-form cols-1'>
+        <Text isTitle>create recipe</Text>
 
-      <Space small />
+        <Space small />
 
-      <form>
-        <div className='section'>
-          <Input
-            label='title'
-            name='title'
-            placeholder='Berenjenas rellenas'
-            onChange={handleOnChange}
-            value={formData.title}
-          />
+        <form>
+          <div className='section grid-container'>
+            <Input
+              className='cols-4'
+              label='title'
+              name='title'
+              placeholder='Berenjenas rellenas'
+              onChange={handleOnChange}
+              value={formData.title}
+            />
 
-          <Space small />
-        </div>
-
-        <Space medium />
-
-        <div className='section'>
-          <Text isSubtitle>Steps</Text>
-
-          <Space extraSmall />
-
-          {formData.steps.map((eachStep, index) => (
-            <React.Fragment key={`step-${index}`}>
+            <div className='cols-3'>
               <Input
-                name={`step${index}`}
-                type='textarea'
-                placeholder={`step ${index + 1}`}
-                onChange={handleOnChangeSteps}
-                value={eachStep}
+                label='image'
+                name='image'
+                onChange={handleOnChange}
+                value={formData.image}
+                type='file'
               />
+            </div>
 
-              <Space extraSmall />
-            </React.Fragment>
-          ))}
+            <div className='cols-1'>
+              <Input
+                label='minutes'
+                name='minutes'
+                placeholder='0'
+                onChange={handleOnChange}
+                value={formData.minutes}
+                type='number'
+              />
+            </div>
 
-          <Button
-            onClick={handleAddStep}
-            iconLeft={faPlus}
-            isPrimary
-            className='no-submit'
-            type='button'
-            disabled={formData.steps[formData.steps.length - 1] === ''}
-          >
-            Add step
-          </Button>
-        </div>
+            <Space extraSmall />
+          </div>
 
-        <Space medium />
+          <Space medium />
 
-        <div className='section'>
-          <Text isSubtitle>Ingredients</Text>
+          <div className='section'>
+            <Text isSubtitle>Ingredients</Text>
 
-          <Space extraSmall />
+            {showCreateIngredient && (
+              <Modal
+                className='ingredient-modal'
+                onClose={setShowCreateIngredient}
+              >
+                <IngredientForm onCreate={onCreateIngredient} />
+              </Modal>
+            )}
 
-          <Button
-            small
-            isPrimary
-            iconLeft={faCartPlus}
-            onClick={() => setShowCreateIngredient(true)}
-          >
-            Create ingredient
-          </Button>
+            {formData.ingredients.map((eachIngredient, index) => {
+              const ingredientOption = eachIngredient.ingredient && {
+                label: eachIngredient.ingredient?.name,
+                value: eachIngredient,
+              };
 
-          {showCreateIngredient && (
-            <Modal
-              className='ingredient-modal'
-              onClose={setShowCreateIngredient}
-            >
-              <IngredientForm onCreate={onCreateIngredient} />
-            </Modal>
-          )}
-
-          <Space small />
-
-          <Space small />
-
-          {formData.ingredients.map((eachIngredient, index) => {
-            const ingredientOption = eachIngredient.ingredient && {
-              label: eachIngredient.ingredient?.name,
-              value: eachIngredient,
-            };
-
-            return (
-              <React.Fragment key={`ingredient-measure-${index}`}>
-                <div className='grid-container'>
-                  <Input
-                    className='cols-2'
-                    name={`ingredient-${index}`}
-                    isSingleSelect
-                    options={ingredientsOptions}
-                    onChange={handleIngredientChange}
-                    defaultValue={ingredientOption}
-                  />
-
-                  <div className='cols-1 measure'>
+              return (
+                <React.Fragment key={`ingredient-measure-${index}`}>
+                  <div className='grid-container'>
                     <Input
-                      name={`quantity-${index}`}
-                      type='number'
-                      placeholder='quantity'
+                      key={`ingredient-option-${ingredientOption?.value.ingredient._id}`}
+                      className='cols-2'
+                      name={`ingredient-${index}`}
+                      isSingleSelect
+                      options={ingredientsOptions}
                       onChange={handleIngredientChange}
-                      value={eachIngredient.quantity}
+                      defaultValue={ingredientOption}
+                    />
+
+                    <div className='cols-1 measure'>
+                      <Input
+                        name={`quantity-${index}`}
+                        type='number'
+                        placeholder={
+                          ingredientOption?.value.ingredient.measure ||
+                          'quantity'
+                        }
+                        onChange={handleIngredientChange}
+                        value={eachIngredient.quantity}
+                      />
+                    </div>
+
+                    <Button
+                      onClick={() => handleDeleteIngredientFromList(index)}
+                      iconLeft={faTrash}
+                      onlyIcon
+                      type='button'
+                      isPrimary
+                      className='cols-1 no-submit'
+                      small
+                      disabled={!formData.ingredients[index]}
                     />
                   </div>
 
-                  <Button
-                    onClick={() => handleDeleteIngredientFromList(index)}
-                    iconLeft={faTrash}
-                    onlyIcon
-                    type='button'
-                    isPrimary
-                    className='cols-1 no-submit'
-                    small
-                    disabled={!formData.ingredients[index]}
-                  />
-                </div>
+                  <Space small />
+                </React.Fragment>
+              );
+            })}
+
+            <Space medium />
+
+            <div className='buttons-container'>
+              <Button
+                onClick={handleAddIngredient}
+                iconLeft={faPlus}
+                type='button'
+                isSecondary
+                disabled={
+                  !formData.ingredients[formData.ingredients.length - 1]
+                    ?.ingredient || ingredientsOptions.length === 0
+                }
+                className='cols-1 no-submit'
+              >
+                Add ingredient
+              </Button>
+
+              <Button
+                isPrimary
+                iconLeft={faCartPlus}
+                onClick={() => setShowCreateIngredient(true)}
+              >
+                Create ingredient
+              </Button>
+            </div>
+
+            <Space small />
+          </div>
+
+          <Space medium />
+
+          <div className='section'>
+            <Text isSubtitle>Steps</Text>
+
+            <Space extraSmall />
+
+            {formData.steps.map((eachStep, index) => (
+              <React.Fragment key={`step-${index}`}>
+                <Input
+                  name={`step${index}`}
+                  type='textarea'
+                  placeholder={`step ${index + 1}`}
+                  onChange={handleOnChangeSteps}
+                  value={eachStep}
+                />
 
                 <Space extraSmall />
               </React.Fragment>
-            );
-          })}
+            ))}
 
-          <Button
-            onClick={handleAddIngredient}
-            iconLeft={faPlus}
-            type='button'
-            isPrimary
-            disabled={
-              !formData.ingredients[formData.ingredients.length - 1]
-                ?.ingredient || ingredientsOptions.length === 0
-            }
-            className='cols-1 cart-cta no-submit'
-          >
-            Add ingredient to recipe
-          </Button>
-        </div>
+            <Button
+              onClick={handleAddStep}
+              iconLeft={faPlus}
+              isSecondary
+              className='no-submit'
+              type='button'
+              disabled={formData.steps[formData.steps.length - 1] === ''}
+            >
+              Add step
+            </Button>
 
-        <Space medium />
+            <Space small />
+          </div>
 
-        <div className='section'>
-          <div className='grid-container'>
-            <div className='cols-1'>
-              <Input
-                label='calories'
-                name='calories'
-                placeholder='0'
-                onChange={handleOnChange}
-                value={formData.calories}
-                type='number'
-              />
+          <Space medium />
+
+          <div className='section'>
+            <div className='grid-container'>
+              <div className='cols-1'>
+                <Input
+                  label='calories'
+                  name='calories'
+                  placeholder='0'
+                  onChange={handleOnChange}
+                  value={formData.calories}
+                  type='number'
+                />
+              </div>
+
+              <div className='cols-1'>
+                <Input
+                  label='proteins'
+                  name='proteins'
+                  placeholder='0'
+                  onChange={handleOnChange}
+                  value={formData.proteins}
+                  type='number'
+                />
+              </div>
+
+              <div className='cols-1'>
+                <Input
+                  label='fats'
+                  name='fats'
+                  placeholder='0'
+                  onChange={handleOnChange}
+                  value={formData.fats}
+                  type='number'
+                />
+              </div>
+
+              <div className='cols-1'>
+                <Input
+                  label='carbohydrates'
+                  name='carbohydrates'
+                  placeholder='0'
+                  onChange={handleOnChange}
+                  value={formData.carbohydrates}
+                  type='number'
+                />
+              </div>
             </div>
 
-            <div className='cols-1'>
-              <Input
-                label='fats'
-                name='fats'
-                placeholder='0'
-                onChange={handleOnChange}
-                value={formData.fats}
-                type='number'
-              />
-            </div>
+            <Space small />
+          </div>
 
-            <div className='cols-1'>
-              <Input
-                label='proteins'
-                name='proteins'
-                placeholder='0'
-                onChange={handleOnChange}
-                value={formData.proteins}
-                type='number'
-              />
-            </div>
+          <Space medium />
 
-            <div className='cols-1'>
-              <Input
-                label='carbohydrates'
-                name='carbohydrates'
-                placeholder='0'
-                onChange={handleOnChange}
-                value={formData.carbohydrates}
-                type='number'
-              />
-            </div>
+          <div className='section '>
+            <Input
+              key={'categories-form'}
+              name='categories'
+              label='Categories'
+              placeholder='Select all possible categories'
+              isMultiSelect
+              options={categoriesEnum}
+              onChange={handleOnChange}
+              defaultValue={
+                formData.categories
+                  ? categoriesEnum.filter(cat =>
+                      formData.categories?.includes(cat.value)
+                    )
+                  : []
+              }
+            />
+
+            <Space extraSmall />
+          </div>
+
+          <Space medium />
+
+          <div className='content-on-the-right'>
+            {isEdit ? (
+              <Button
+                isPrimary
+                iconLeft={faEdit}
+                onClick={handleEditRecipe}
+                type='submit'
+              >
+                Edit recipe
+              </Button>
+            ) : (
+              <Button
+                isPrimary
+                iconLeft={faAdd}
+                onClick={handleCreateRecipe}
+                type='submit'
+              >
+                Create recipe
+              </Button>
+            )}
           </div>
 
           <Space small />
-        </div>
+        </form>
+      </div>
 
-        <Space medium />
-
-        <div className='section grid-container'>
-          <div className='cols-3'>
-            <Input
-              label='image'
-              name='image'
-              onChange={handleOnChange}
-              value={formData.image}
-              type='file'
-            />
-          </div>
-
-          <div className='cols-1'>
-            <Input
-              label='minutes'
-              name='minutes'
-              placeholder='0'
-              onChange={handleOnChange}
-              value={formData.minutes}
-              type='number'
-            />
-          </div>
-
-          <Space extraSmall />
-        </div>
-
-        <Space medium />
-
-        <div className='section '>
-          <Input
-            key={'categories-form'}
-            name='categories'
-            label='Categories'
-            placeholder='Select all possible categories'
-            isMultiSelect
-            options={categoriesEnum}
-            onChange={handleOnChange}
-            defaultValue={
-              formData.categories
-                ? categoriesEnum.filter(cat =>
-                    formData.categories?.includes(cat.value)
-                  )
-                : []
-            }
-          />
-
-          <Space extraSmall />
-        </div>
-
-        <Space medium />
-
-        <div className='content-on-the-right'>
-          {isEdit ? (
-            <Button
-              isPrimary
-              iconLeft={faEdit}
-              onClick={handleEditRecipe}
-              type='submit'
-            >
-              Edit recipe
-            </Button>
-          ) : (
-            <Button
-              isPrimary
-              iconLeft={faAdd}
-              onClick={handleCreateRecipe}
-              type='submit'
-            >
-              Create recipe
-            </Button>
-          )}
-        </div>
-
-        <Space small />
-      </form>
+      <div className='cols-1'>
+        <RecipeFormDetails data={formData} />
+      </div>
     </div>
   );
 }

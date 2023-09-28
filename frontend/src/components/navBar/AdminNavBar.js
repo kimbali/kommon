@@ -11,12 +11,27 @@ import Space from '../space/Space';
 import './navBar.scss';
 import frontRoutes from '../../config/frontRoutes';
 import NavLink from './NavLink';
+import Button from '../button/Button';
+import { useNavigate } from 'react-router-dom';
 
 function AdminNavBar() {
+  const navigate = useNavigate();
+
+  const handleGoToMarathon = () => {
+    navigate(frontRoutes.main);
+  };
+
   return (
     <nav className='menu'>
       <div className='menu-top'>
-        <Text isTitle>Body marathon</Text>
+        <Text isTitle>Body marathon </Text>
+        <Text isSubtitle>configuration</Text>
+
+        <Space small />
+
+        <Button onClick={handleGoToMarathon} isSecondary>
+          Go to marathon
+        </Button>
 
         <Space medium />
 
@@ -25,26 +40,26 @@ function AdminNavBar() {
 
           <NavLink
             icon={faUtensils}
-            label='Recipes'
-            route={frontRoutes.recipes}
+            label='Diets'
+            route={frontRoutes.dietsConfig}
           />
 
           <NavLink
             icon={faDumbbell}
             label='Workouts'
-            route={frontRoutes.workouts}
+            route={frontRoutes.workoutsConfig}
           />
 
           <NavLink
             icon={faSpa}
             label='Meditations'
-            route={frontRoutes.meditation}
+            route={frontRoutes.meditationConfig}
           />
 
           <NavLink
             icon={faList}
             label='To do list'
-            route={frontRoutes.todoList}
+            route={frontRoutes.todoListConfig}
           />
         </ul>
       </div>

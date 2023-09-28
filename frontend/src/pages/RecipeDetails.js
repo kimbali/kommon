@@ -37,7 +37,7 @@ function RecipeDetails() {
     try {
       await deleteRecipe(id);
       toast.success('Recipe deleted');
-      navigate(frontRoutes.recipes);
+      navigate(frontRoutes.dietsConfig);
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }

@@ -3,6 +3,7 @@ import './mainLayout.scss';
 import { Outlet } from 'react-router-dom';
 import MainNavBar from '../navBar/MainNavBar';
 import Languages from '../languages/Languages';
+import LogoutButton from '../button/LogoutButton';
 
 function MainLayout() {
   return (
@@ -11,7 +12,9 @@ function MainLayout() {
 
       <div>
         <div className='content-on-the-right'>
-          <Languages />
+          <LogoutButton />
+
+          {/* <Languages /> */}
         </div>
 
         <div className='main-content'>

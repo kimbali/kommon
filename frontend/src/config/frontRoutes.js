@@ -1,6 +1,9 @@
 const frontRoutes = {
   recipeDetails: '/recipe/:id',
-  recipes: '/recipes',
+  dietsConfig: '/config/diet',
+  workoutsConfig: '/config/workout',
+  meditationConfig: '/config/meditation',
+  todoListConfig: '/config/todolist',
   users: '/users',
   login: '/login',
   register: '/register',

@@ -18,6 +18,7 @@ function Text({
   isCurrency = false,
   center = false,
   className = '',
+  color = '',
 }) {
   if (isTitle) {
     return (
@@ -59,7 +60,7 @@ function Text({
         isCTA ? 'uppercase' : ''
       } ${isPlaceholder ? 'decolored' : ''} ${danger ? 'danger' : ''} ${
         small ? 'small' : ''
-      } ${isCurrency ? 'align-right' : ''} ${center ? 'center' : ''}`}
+      } ${isCurrency ? 'align-right' : ''} ${center ? 'center' : ''} ${color}`}
     >
       {children}
     </p>

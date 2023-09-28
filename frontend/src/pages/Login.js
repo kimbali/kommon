@@ -6,7 +6,7 @@ import { setCredentials } from '../slices/authSlice';
 import toast from 'react-hot-toast';
 import Space from '../components/space/Space';
 import Button from '../components/button/Button';
-import { faPersonRunning } from '@fortawesome/free-solid-svg-icons';
+import { faDumbbell, faPersonRunning } from '@fortawesome/free-solid-svg-icons';
 import Input from '../components/input/Input';
 import Text from '../components/text/Text';
 import frontRoutes from '../config/frontRoutes';
@@ -91,7 +91,7 @@ const Login = () => {
       <div className='content-on-the-right'>
         <Link to={frontRoutes.register}>Register</Link>
 
-        <Button type='submit' isPrimary iconRight={faPersonRunning}>
+        <Button type='submit' isPrimary iconRight={faDumbbell}>
           Login
         </Button>
       </div>

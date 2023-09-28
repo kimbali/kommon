@@ -1,7 +1,7 @@
 import React from 'react';
 
 function WorkoutsConfig() {
-  return <div>WorkoutsConfig</div>;
+  return <div>WORKOUTS CONFIGURATION</div>;
 }
 
 export default WorkoutsConfig;

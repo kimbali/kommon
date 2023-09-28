@@ -31,12 +31,17 @@ form {
   .grid-container {
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
     grid-template-rows: auto;
     gap: 16px;
+    row-gap: 24px;
   }
 
   @media screen and (min-width: 1024px) {
+    .grid-container {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
     .form-section {
       flex-wrap: nowrap;
 

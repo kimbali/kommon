@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Meditations() {
-  return <div>Meditations</div>;
+  return <div>MEDITATIONS</div>;
 }
 
 export default Meditations;

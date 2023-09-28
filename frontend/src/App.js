@@ -1,10 +1,7 @@
 import React, { useEffect } from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Navigate,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logout } from './slices/authSlice';
 import { Toaster } from 'react-hot-toast';
 import frontRoutes from './config/frontRoutes';
 import MainLayout from './components/mainLayout/MainLayout';
@@ -20,8 +17,9 @@ import Diet from './pages/Diet';
 import Workouts from './pages/Workouts';
 import Meditations from './pages/Meditations';
 import Progress from './pages/Progress';
-import { useDispatch } from 'react-redux';
-import { logout } from './slices/authSlice';
+import WorkoutsConfig from './pages/WorkoutsConfig';
+import TodoListConfig from './pages/TodoListConfig';
+import MeditationsConfig from './pages/MeditationsConfig';
 
 function App() {
   const dispatch = useDispatch();
@@ -58,6 +56,18 @@ function App() {
           <Route path='' element={<AdminRoute />}>
             <Route path={frontRoutes.users} element={<Users />} />
             <Route path={frontRoutes.dietsConfig} element={<Recipes />} />
+            <Route
+              path={frontRoutes.workoutsConfig}
+              element={<WorkoutsConfig />}
+            />
+            <Route
+              path={frontRoutes.todoListConfig}
+              element={<TodoListConfig />}
+            />
+            <Route
+              path={frontRoutes.meditationsConfig}
+              element={<MeditationsConfig />}
+            />
             <Route
               path={frontRoutes.recipeDetails}
               element={<RecipeDetails />}

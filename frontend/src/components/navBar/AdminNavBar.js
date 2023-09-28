@@ -53,7 +53,7 @@ function AdminNavBar() {
           <NavLink
             icon={faSpa}
             label='Meditations'
-            route={frontRoutes.meditationConfig}
+            route={frontRoutes.meditationsConfig}
           />
 
           <NavLink

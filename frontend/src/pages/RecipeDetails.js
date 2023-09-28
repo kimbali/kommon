@@ -130,6 +130,25 @@ function RecipeDetails() {
               <Text>{carbohydrates}</Text>
             </div>
           </div>
+
+          <Space medium />
+
+          <Text isSectionTitle>Ingredients</Text>
+
+          <Space small />
+
+          {ingredients.length > 0 && ingredients[0] && (
+            <ResumeTable
+              list={ingredients.map(ele => {
+                return {
+                  name: ele.ingredient?.name,
+                  value: `${ele.quantity} ${getMeasureDiminutive(
+                    ele.ingredient?.measure
+                  )}`,
+                };
+              })}
+            />
+          )}
         </div>
 
         <div className='recipe-details-content'>
@@ -153,25 +172,6 @@ function RecipeDetails() {
                   )
               )}
           </ol>
-
-          <Space medium />
-
-          <Text isSectionTitle>Ingredients</Text>
-
-          <Space small />
-
-          {ingredients.length > 0 && ingredients[0] && (
-            <ResumeTable
-              list={ingredients.map(ele => {
-                return {
-                  name: ele.ingredient?.name,
-                  value: `${ele.quantity} ${getMeasureDiminutive(
-                    ele.ingredient?.measure
-                  )}`,
-                };
-              })}
-            />
-          )}
         </div>
       </div>
 

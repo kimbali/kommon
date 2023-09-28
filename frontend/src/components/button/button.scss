@@ -44,8 +44,12 @@
   &.secondary {
     border: thin solid $primary-color;
 
+    &:disabled {
+      border: thin solid $disabled;
+    }
+
     &:hover {
-      background-color: $primary-color;
+      background-color: $primary-color-decolored;
     }
   }
 

@@ -189,11 +189,10 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
           <div className='section'>
             <Text isSubtitle>Ingredients</Text>
 
+            <Space extraSmall />
+
             {showCreateIngredient && (
-              <Modal
-                className='ingredient-modal'
-                onClose={setShowCreateIngredient}
-              >
+              <Modal isSecondary onClose={setShowCreateIngredient}>
                 <IngredientForm onCreate={onCreateIngredient} />
               </Modal>
             )}
@@ -383,7 +382,7 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
               }
             />
 
-            <Space extraSmall />
+            <Space small />
           </div>
 
           <Space medium />
@@ -410,12 +409,17 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
             )}
           </div>
 
-          <Space small />
+          <Space medium />
         </form>
       </div>
 
       <div className='cols-1'>
-        <RecipeFormDetails data={formData} />
+        <RecipeFormDetails
+          data={formData}
+          isEdit={isEdit}
+          handleCreateRecipe={handleCreateRecipe}
+          handleEditRecipe={handleEditRecipe}
+        />
       </div>
     </div>
   );

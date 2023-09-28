@@ -2,16 +2,6 @@
   position: relative;
   cursor: pointer;
 
-  &.title,
-  label {
-    color: $primary-color;
-    font-size: 16px;
-    margin-bottom: 4px;
-    cursor: pointer;
-    font-family: $title-font;
-    letter-spacing: 1px;
-  }
-
   .input-file p {
     height: 42px;
     display: flex;
@@ -29,7 +19,7 @@
     font-family: $text-font;
     font-size: 13px;
     width: 100%;
-    max-height: 42px;
+    height: 42px;
     box-shadow: $box-shadow-element;
 
     &::placeholder,
@@ -60,6 +50,10 @@
     &[type='number'] {
       text-align: right;
     }
+  }
+
+  textarea {
+    min-height: 80px;
   }
 
   &.checkbox {
@@ -121,10 +115,6 @@
       color: $disabled;
       font-size: 14px;
     }
-  }
-
-  &.benefits textarea {
-    height: 64px;
   }
 }
 

@@ -3,8 +3,19 @@ import { getMeasureDiminutive } from '../../config/enums/measuresEnum';
 import Text from '../text/Text';
 import Space from '../space/Space';
 import ResumeTable from '../resumeTable/ResumeTable';
+import Button from '../button/Button';
+import { faAdd, faEdit } from '@fortawesome/free-solid-svg-icons';
+import categoriesEnum, {
+  getCategorySVGAndLabel,
+} from '../../config/enums/categoriesEnum';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-function RecipeFormDetails({ data: recipeDetails }) {
+function RecipeFormDetails({
+  data: recipeDetails,
+  handleEditRecipe,
+  handleCreateRecipe,
+  isEdit,
+}) {
   const {
     title,
     steps,
@@ -15,6 +26,7 @@ function RecipeFormDetails({ data: recipeDetails }) {
     proteins,
     fats,
     carbohydrates,
+    categories,
   } = recipeDetails;
 
   return (
@@ -39,7 +51,7 @@ function RecipeFormDetails({ data: recipeDetails }) {
             }
             return {
               name: ele.ingredient?.name,
-              value: `${ele.quantity} ${getMeasureDiminutive(
+              value: `${ele.quantity || 0} ${getMeasureDiminutive(
                 ele.ingredient?.measure
               )}`,
             };
@@ -91,6 +103,48 @@ function RecipeFormDetails({ data: recipeDetails }) {
           <Text isSubtitle>carbh</Text>
           <Text>{carbohydrates || '0'}</Text>
         </div>
+      </div>
+
+      <Space medium />
+
+      <div className='categories'>
+        {categoriesEnum.map(categoryEnum => {
+          const isActive = categories?.includes(categoryEnum.value);
+
+          return (
+            <div
+              key={`category-${categoryEnum.value}`}
+              className={`category ${isActive ? 'active' : ''}`}
+            >
+              <FontAwesomeIcon icon={categoryEnum.svg} />
+              <Text>{categoryEnum.label}</Text>
+            </div>
+          );
+        })}
+      </div>
+
+      <Space big />
+
+      <div className='content-on-the-right'>
+        {isEdit ? (
+          <Button
+            isPrimary
+            iconLeft={faEdit}
+            onClick={handleEditRecipe}
+            type='submit'
+          >
+            Edit recipe
+          </Button>
+        ) : (
+          <Button
+            isPrimary
+            iconLeft={faAdd}
+            onClick={handleCreateRecipe}
+            type='submit'
+          >
+            Create recipe
+          </Button>
+        )}
       </div>
 
       <Space small />

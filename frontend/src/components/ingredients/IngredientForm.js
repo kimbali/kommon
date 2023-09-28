@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 import { useCreateIngredientMutation } from '../../slices/ingredientsApiSlices';
 import Button from '../button/Button';
 import { faAdd } from '@fortawesome/free-solid-svg-icons';
+import Text from '../text/Text';
 
 function IngredientForm({ onCreate }) {
   const [formData, setFormData] = useState({
@@ -41,6 +42,10 @@ function IngredientForm({ onCreate }) {
 
   return (
     <form className='ingredient' onSubmit={handleOnSubmit}>
+      <Text isTitle>Create ingredient</Text>
+
+      <Space small />
+
       <Input
         label='Name'
         placeholder='Ingredient name'
@@ -51,32 +56,38 @@ function IngredientForm({ onCreate }) {
 
       <Space small />
 
-      <div className='grid-container'>
-        <Input
-          label='measure'
-          name='measure'
-          value={formData.measure}
-          type='select'
-          selectOption='Select measure'
-          options={measuresEnum}
-          className='cols-2'
-          onChange={handleOnChange}
-        />
-
-        <Input
-          label='allergy'
-          name='allergy'
-          value={formData.allergy}
-          type='select'
-          selectOption='Select allergy'
-          options={allergiesEnum}
-          noValueOption='No allergies'
-          className='cols-2'
-          onChange={handleOnChange}
-        />
-      </div>
+      <Input
+        label='measure'
+        name='measure'
+        value={formData.measure}
+        type='select'
+        selectOption='Select measure'
+        options={measuresEnum}
+        onChange={handleOnChange}
+      />
 
       <Space small />
+
+      <Input
+        label='allergy'
+        name='allergy'
+        value={formData.allergy}
+        type='select'
+        selectOption='Select allergy'
+        options={allergiesEnum}
+        noValueOption='No allergies'
+        onChange={handleOnChange}
+      />
+
+      <Space small />
+
+      <Input
+        label='image'
+        name='image'
+        onChange={handleOnChange}
+        value={formData.image}
+        type='file'
+      />
 
       <Space small />
 
@@ -90,21 +101,13 @@ function IngredientForm({ onCreate }) {
         value={formData.benefits}
       />
 
-      <Space small />
-
-      <Input
-        label='image'
-        name='image'
-        onChange={handleOnChange}
-        value={formData.image}
-        type='file'
-      />
-
       <Space medium />
 
       <div className='content-on-the-right'>
+        <Button isSecondary>Cancel</Button>
+
         <Button isPrimary iconLeft={faAdd} type='submit'>
-          Create ingredient
+          Create
         </Button>
       </div>
     </form>

@@ -3,7 +3,7 @@ const frontRoutes = {
   dietsConfig: '/config/diets',
   workoutsConfig: '/config/workouts',
   meditationsConfig: '/config/meditations',
-  todoListConfig: '/config/todolist',
+  checkListConfig: '/config/check-list',
   users: '/users',
   login: '/login',
   register: '/register',

@@ -59,7 +59,7 @@ function AdminNavBar() {
           <NavLink
             icon={faList}
             label='To do list'
-            route={frontRoutes.todoListConfig}
+            route={frontRoutes.checkListConfig}
           />
         </ul>
       </div>

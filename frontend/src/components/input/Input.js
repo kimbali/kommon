@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Text from '../text/Text';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import Select from 'react-select';
 import toast from 'react-hot-toast';
 import { useUploadRecipeImageMutation } from '../../slices/recipesApiSlice';
-import Space from '../space/Space';
 
 function Input({
   label,

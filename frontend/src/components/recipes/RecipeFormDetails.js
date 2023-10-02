@@ -5,9 +5,7 @@ import Space from '../space/Space';
 import ResumeTable from '../resumeTable/ResumeTable';
 import Button from '../button/Button';
 import { faAdd, faEdit } from '@fortawesome/free-solid-svg-icons';
-import categoriesEnum, {
-  getCategorySVGAndLabel,
-} from '../../config/enums/categoriesEnum';
+import categoriesEnum from '../../config/enums/categoriesEnum';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function RecipeFormDetails({

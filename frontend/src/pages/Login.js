@@ -6,7 +6,7 @@ import { setCredentials } from '../slices/authSlice';
 import toast from 'react-hot-toast';
 import Space from '../components/space/Space';
 import Button from '../components/button/Button';
-import { faDumbbell, faPersonRunning } from '@fortawesome/free-solid-svg-icons';
+import { faDumbbell } from '@fortawesome/free-solid-svg-icons';
 import Input from '../components/input/Input';
 import Text from '../components/text/Text';
 import frontRoutes from '../config/frontRoutes';
@@ -19,7 +19,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [login, { isLoading }] = useLoginMutation();
+  const [login] = useLoginMutation();
 
   const { userInfo } = useSelector(state => state.auth);
 

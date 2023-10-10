@@ -11,6 +11,9 @@ import ingredientsRoutes from './routes/ingredientsRoutes.js';
 import measuresRoutes from './routes/measuresRoutes.js';
 import uploadRoutes from './routes/uploadsRoutes.js';
 import usersRoutes from './routes/usersRoutes.js';
+import workoutsRoutes from './routes/workoutsRoutes.js';
+import meditationsRoutes from './routes/meditationsRoutes.js';
+import tasksRoutes from './routes/tasksRoutes.js';
 
 dotenv.config();
 
@@ -31,6 +34,9 @@ app.use('/api/ingredients', ingredientsRoutes);
 app.use('/api/measures', measuresRoutes);
 app.use('/api/upload', uploadRoutes);
 app.use('/api/users', usersRoutes);
+app.use('/api/workouts', workoutsRoutes);
+app.use('/api/meditations', meditationsRoutes);
+app.use('/api/tasks', tasksRoutes);
 
 // app.get('/api/config/paypal', (req, res) =>
 //   res.send(process.env.PAYPAL_CLIENT_ID)

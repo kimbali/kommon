@@ -7,7 +7,7 @@ import Input from '../input/Input';
 import Button from '../button/Button';
 import Modal from '../modal/Modal';
 import { faCartPlus, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { useGetIngredientsQuery } from '../../slices/ingredientsApiSlices';
+import { useGetIngredientsQuery } from '../../slices/ingredientsApiSlice';
 import {
   useCreateRecipeMutation,
   useUpdateRecipeMutation,

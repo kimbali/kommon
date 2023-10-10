@@ -4,7 +4,7 @@ import Space from '../space/Space';
 import measuresEnum from '../../config/enums/measuresEnum';
 import allergiesEnum from '../../config/enums/allergiesEnum';
 import toast from 'react-hot-toast';
-import { useCreateIngredientMutation } from '../../slices/ingredientsApiSlices';
+import { useCreateIngredientMutation } from '../../slices/ingredientsApiSlice';
 import Button from '../button/Button';
 import { faAdd } from '@fortawesome/free-solid-svg-icons';
 import Text from '../text/Text';

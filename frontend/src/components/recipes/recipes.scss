@@ -3,6 +3,14 @@
   height: 230px;
   border-radius: $border-radius-element;
 
+  .food-image {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 152px;
+    width: 100%;
+  }
+
   img {
     max-width: 100%;
     border-radius: $border-radius-element;
@@ -43,7 +51,7 @@
   color: $secondary-color;
 
   .section {
-    background-color: $background-3;
+    background-color: $background-1;
     padding: 12px 22px;
     border-radius: $border-radius-wrapper;
   }
@@ -79,7 +87,7 @@
   background-color: $background-1;
   padding: 24px 32px;
   border-radius: $border-radius-wrapper;
-  margin: 64px auto;
+  margin: 50px auto;
 
   .title {
     color: $secondary-color;

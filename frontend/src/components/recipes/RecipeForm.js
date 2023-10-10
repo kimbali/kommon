@@ -6,13 +6,7 @@ import Space from '../space/Space';
 import Input from '../input/Input';
 import Button from '../button/Button';
 import Modal from '../modal/Modal';
-import {
-  faAdd,
-  faCartPlus,
-  faEdit,
-  faPlus,
-  faTrash,
-} from '@fortawesome/free-solid-svg-icons';
+import { faCartPlus, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { useGetIngredientsQuery } from '../../slices/ingredientsApiSlices';
 import {
   useCreateRecipeMutation,
@@ -145,7 +139,7 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
   return (
     <div className='recipe-form-container'>
       <div className='recipe-form cols-1'>
-        <Text isTitle>create recipe</Text>
+        <Text isTitle>{isEdit ? 'Edit recipe' : 'Create recipe'}</Text>
 
         <Space small />
 
@@ -383,30 +377,6 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
             />
 
             <Space small />
-          </div>
-
-          <Space medium />
-
-          <div className='content-on-the-right'>
-            {isEdit ? (
-              <Button
-                isPrimary
-                iconLeft={faEdit}
-                onClick={handleEditRecipe}
-                type='submit'
-              >
-                Edit recipe
-              </Button>
-            ) : (
-              <Button
-                isPrimary
-                iconLeft={faAdd}
-                onClick={handleCreateRecipe}
-                type='submit'
-              >
-                Create recipe
-              </Button>
-            )}
           </div>
 
           <Space medium />

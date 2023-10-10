@@ -57,7 +57,7 @@ function Text({
   return (
     <p
       className={`text ${className} ${isBold ? 'bold' : ''} ${
-        isCTA ? 'uppercase' : ''
+        isCTA ? 'cta' : ''
       } ${isPlaceholder ? 'decolored' : ''} ${danger ? 'danger' : ''} ${
         small ? 'small' : ''
       } ${isCurrency ? 'align-right' : ''} ${center ? 'center' : ''} ${color}`}

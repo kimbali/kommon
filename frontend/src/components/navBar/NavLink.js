@@ -11,7 +11,7 @@ function NavLink({ icon, label, route }) {
       <Link to={route}>
         <FontAwesomeIcon icon={icon} />
 
-        <Text isCTA>{label}</Text>
+        <Text isSubtitle>{label}</Text>
       </Link>
     </li>
   );

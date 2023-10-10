@@ -1,14 +1,4 @@
 form {
-  .subtitle,
-  label {
-    color: $primary-color;
-    font-size: 16px;
-    margin-bottom: 4px;
-    cursor: pointer;
-    font-family: $title-font;
-    letter-spacing: 1px;
-  }
-
   .form-section {
     display: flex;
     flex-wrap: wrap;

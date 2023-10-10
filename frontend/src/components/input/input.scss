@@ -1,3 +1,15 @@
+form {
+  .subtitle,
+  label {
+    color: $secondary-color;
+    font-size: 14px;
+    margin: 8px 0 6px 0;
+    cursor: pointer;
+    font-family: $text-font;
+    letter-spacing: 1px;
+  }
+}
+
 .field {
   position: relative;
   cursor: pointer;

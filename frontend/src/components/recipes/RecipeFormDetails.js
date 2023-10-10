@@ -4,7 +4,7 @@ import Text from '../text/Text';
 import Space from '../space/Space';
 import ResumeTable from '../resumeTable/ResumeTable';
 import Button from '../button/Button';
-import { faAdd, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faFolderPlus } from '@fortawesome/free-solid-svg-icons';
 import categoriesEnum from '../../config/enums/categoriesEnum';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -136,7 +136,7 @@ function RecipeFormDetails({
         ) : (
           <Button
             isPrimary
-            iconLeft={faAdd}
+            iconLeft={faFolderPlus}
             onClick={handleCreateRecipe}
             type='submit'
           >

@@ -29,11 +29,11 @@ function Button({
         center ? 'center' : ''
       } ${onlyIcon ? 'only-icon' : ''} ${small ? 'small' : ''}`}
     >
-      {iconLeft && <FontAwesomeIcon icon={iconLeft} />}
+      {iconLeft && <FontAwesomeIcon icon={iconLeft} className='left' />}
 
       {!onlyIcon && <Text isCTA>{children}</Text>}
 
-      {iconRight && <FontAwesomeIcon icon={iconRight} />}
+      {iconRight && <FontAwesomeIcon icon={iconRight} className='right' />}
     </button>
   );
 }

@@ -33,9 +33,9 @@
           font-size: 16px;
         }
 
-        p {
+        .subtitle {
           margin: 0;
-          font-size: 16px;
+          font-size: 15px;
           color: inherit;
         }
 
@@ -50,7 +50,7 @@
           color: $secondary-color;
         }
 
-        p {
+        .subtitle {
           color: $secondary-color;
         }
       }

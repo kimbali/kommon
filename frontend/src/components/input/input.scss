@@ -87,6 +87,7 @@ form {
     flex-direction: row-reverse;
     justify-content: flex-start;
     align-items: center;
+    width: fit-content;
 
     input {
       width: fit-content;
@@ -98,6 +99,10 @@ form {
       margin: 0;
       color: $secondary-color;
       cursor: pointer;
+
+      &::first-letter {
+        text-transform: capitalize;
+      }
     }
   }
 

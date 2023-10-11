@@ -6,7 +6,7 @@ export const tasksApiSlice = apiSlice.injectEndpoints({
     getTasks: builder.query({
       query: ({ keyword }) => ({
         url: TASKS_URL,
-        params: { keyword },
+        params: keyword ? { keyword } : null,
       }),
       keepUnusedDataFor: 5,
       providesTags: ['Tasks'],
@@ -27,7 +27,7 @@ export const tasksApiSlice = apiSlice.injectEndpoints({
     }),
     updateTask: builder.mutation({
       query: data => ({
-        url: `${TASKS_URL}/${data.taskId}`,
+        url: `${TASKS_URL}/${data._id}`,
         method: 'PUT',
         body: data,
       }),

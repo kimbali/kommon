@@ -7,7 +7,7 @@ import Task from '../models/Task.js';
 export const getTasks = asyncHandler(async (req, res) => {
   const keyword = req.query.keyword
     ? {
-        name: {
+        title: {
           $regex: req.query.keyword,
           $options: 'i', // insensible mayus-minusculas
         },

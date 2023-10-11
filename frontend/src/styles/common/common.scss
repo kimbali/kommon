@@ -99,7 +99,7 @@ a {
 
 .card-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 220px));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 220px));
   gap: 22px;
 
   .card-item {
@@ -110,6 +110,18 @@ a {
     button,
     .recipe-card {
       height: 100%;
+    }
+  }
+
+  &.workouts {
+    grid-template-columns: 1fr 1fr;
+
+    .card-item {
+      grid-column: span 1;
+
+      &:last-of-type {
+        grid-column: span 1;
+      }
     }
   }
 }

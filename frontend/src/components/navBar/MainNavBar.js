@@ -3,8 +3,8 @@ import {
   faCalendarWeek,
   faDumbbell,
   faPlateWheat,
-  faRankingStar,
   faSpa,
+  faWeightScale,
 } from '@fortawesome/free-solid-svg-icons';
 import Text from '../text/Text';
 import Space from '../space/Space';
@@ -62,7 +62,7 @@ function MainNavBar() {
           />
 
           <NavLink
-            icon={faRankingStar}
+            icon={faWeightScale}
             label='Progress'
             route={frontRoutes.progress}
           />

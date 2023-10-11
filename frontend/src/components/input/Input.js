@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Text from '../text/Text';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -29,6 +29,7 @@ function Input({
 }) {
   const hasError = error?.invalidFields?.includes(name);
   const [uploadRecipeImage] = useUploadRecipeImageMutation();
+  const [fileName, setFileName] = useState('');
 
   const handleOnChange = event => {
     onChange({
@@ -51,6 +52,7 @@ function Input({
   };
 
   const handleUploadImage = async event => {
+    const fileName = event.target.files[0]?.name;
     const formData = new FormData();
     formData.append('image', event.target.files[0]);
     try {
@@ -58,6 +60,7 @@ function Input({
       toast.success(res.message);
 
       onChange({ name, value: res.image });
+      setFileName(fileName);
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }
@@ -65,7 +68,7 @@ function Input({
 
   return (
     <div className={`field ${className} ${name} ${type}`}>
-      <label htmlFor={name}>{label}</label>
+      {label && <label htmlFor={name}>{label}</label>}
 
       {type !== 'select' &&
         type !== 'textarea' &&
@@ -132,7 +135,7 @@ function Input({
 
       {isSingleSelect && (
         <Select
-          className='multi-select'
+          className={`multi-select ${defaultValue ? 'has-value' : 'no-value'}`}
           closeMenuOnSelect
           options={options}
           onChange={handleSingleSelectChange}
@@ -156,10 +159,10 @@ function Input({
 
       {type === 'file' && (
         <div className='input-file'>
-          <Text small className={value ? 'has-value' : 'placeholder'}>
-            {'Change image...' || 'Upload an image...'}
+          <Text className={value ? 'has-value' : 'placeholder'}>
+            {fileName ? fileName : value ? 'Change file' : 'Upload an image...'}
           </Text>
-          <Text small>
+          <Text>
             <FontAwesomeIcon icon={faPlus} />
           </Text>
         </div>

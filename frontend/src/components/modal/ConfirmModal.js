@@ -4,7 +4,13 @@ import Text from '../text/Text';
 import Button from '../button/Button';
 import Space from '../space/Space';
 
-function ConfirmModal({ onConfirm, onClose, title, text }) {
+function ConfirmModal({
+  onConfirm,
+  onClose,
+  title,
+  text,
+  confirmLabel = 'Confirm',
+}) {
   return (
     <Modal onClose={onClose}>
       <Text isTitle>{title}</Text>
@@ -21,7 +27,7 @@ function ConfirmModal({ onConfirm, onClose, title, text }) {
         </Button>
 
         <Button onClick={onConfirm} isPrimary>
-          Confirm
+          {confirmLabel}
         </Button>
       </div>
     </Modal>

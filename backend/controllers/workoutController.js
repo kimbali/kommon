@@ -7,7 +7,7 @@ import Workout from '../models/Workout.js';
 export const getWorkouts = asyncHandler(async (req, res) => {
   const keyword = req.query.keyword
     ? {
-        name: {
+        title: {
           $regex: req.query.keyword,
           $options: 'i', // insensible mayus-minusculas
         },
@@ -37,14 +37,14 @@ export const getWorkoutById = asyncHandler(async (req, res) => {
 // @route   POST /api/workouts
 // @access  Private/Admin
 export const createWorkout = asyncHandler(async (req, res) => {
-  const { title, description, minutes, image, link, level } = req.body;
+  const { title, description, minutes, image, video, level } = req.body;
 
   const newWorkout = new Workout({
     title,
     description,
     minutes,
     image,
-    link,
+    video,
     level,
   });
 
@@ -56,7 +56,7 @@ export const createWorkout = asyncHandler(async (req, res) => {
 // @route   PUT /api/workouts/:id
 // @access  Private/Admin
 export const updateWorkout = asyncHandler(async (req, res) => {
-  const { title, description, minutes, image, link, level } = req.body;
+  const { title, description, minutes, image, video, level } = req.body;
 
   const workout = await Workout.findById(req.params.id);
 
@@ -65,7 +65,7 @@ export const updateWorkout = asyncHandler(async (req, res) => {
     workout.description = description || workout.description;
     workout.minutes = minutes || workout.minutes;
     workout.image = image || workout.image;
-    workout.link = link || workout.link;
+    workout.video = video || workout.video;
     workout.level = level || workout.level;
 
     const updatedWorkout = await workout.save();

@@ -1,7 +1,7 @@
 import React from 'react';
 
-function CheckListConfig() {
+function TasksConfig() {
   return <div>Check list config</div>;
 }
 
-export default CheckListConfig;
+export default TasksConfig;

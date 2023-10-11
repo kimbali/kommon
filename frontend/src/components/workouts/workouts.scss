@@ -1,0 +1,102 @@
+.workout-card-container {
+  position: relative;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    border-radius: $border-radius-wrapper;
+    z-index: 1;
+    background: linear-gradient(
+      0deg,
+      rgba(28, 31, 43, 1) 0%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+
+  &:hover {
+    .play-button {
+      height: 32px;
+      width: 32px;
+      transform: all ease 0.3s;
+
+      &:after {
+        height: 40px;
+        width: 40px;
+        transform: all ease 0.3s;
+      }
+    }
+  }
+}
+
+.workout-card {
+  text-align: left;
+  height: 345px;
+  border-radius: $border-radius-wrapper;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background-position: top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 24px;
+
+  .workout-card-content {
+    z-index: 2;
+  }
+
+  .title {
+    font-size: 26px;
+    font-family: $text-font;
+  }
+
+  .description {
+    font-size: 14px;
+    margin-bottom: 14px;
+    line-height: 21px;
+    color: #adadad;
+  }
+
+  .minutes {
+    font-size: 16px;
+  }
+}
+
+.play-button {
+  background-color: $primary-color;
+  border-radius: 100%;
+  position: absolute;
+  top: 146px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 42px;
+  width: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 52px;
+    width: 52px;
+    background-color: transparent;
+    border: thin solid $white;
+    border-radius: 100%;
+  }
+}
+
+.text.pill {
+  background-color: #414148;
+  border-radius: 20px;
+  padding: 6px 12px;
+  font-size: 12px;
+  width: fit-content;
+}

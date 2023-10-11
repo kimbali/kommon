@@ -19,7 +19,8 @@ import Meditations from './pages/Meditations';
 import Progress from './pages/Progress';
 import WorkoutsConfig from './pages/WorkoutsConfig';
 import MeditationsConfig from './pages/MeditationsConfig';
-import CheckListConfig from './pages/CheckListConfig';
+import TasksConfig from './pages/TasksConfig';
+import WorkoutDetails from './pages/WorkoutDetails';
 
 function App() {
   const dispatch = useDispatch();
@@ -61,9 +62,10 @@ function App() {
               element={<WorkoutsConfig />}
             />
             <Route
-              path={frontRoutes.checkListConfig}
-              element={<CheckListConfig />}
+              path={frontRoutes.workoutDetails}
+              element={<WorkoutDetails />}
             />
+            <Route path={frontRoutes.tasksConfig} element={<TasksConfig />} />
             <Route
               path={frontRoutes.meditationsConfig}
               element={<MeditationsConfig />}

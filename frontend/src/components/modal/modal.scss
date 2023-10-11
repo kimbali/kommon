@@ -9,7 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 2;
+  z-index: 5;
 
   .modal-content {
     width: 100%;
@@ -18,7 +18,7 @@
     background-color: $background-2;
     border-radius: $border-radius-wrapper;
     position: relative;
-    z-index: 3;
+    z-index: 4;
 
     &.scroll {
       overflow-y: scroll;

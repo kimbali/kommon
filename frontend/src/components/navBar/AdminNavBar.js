@@ -1,10 +1,11 @@
 import React from 'react';
 import {
+  faCalendarDays,
   faDumbbell,
-  faList,
+  faListCheck,
+  faPlateWheat,
   faSpa,
   faUser,
-  faUtensils,
 } from '@fortawesome/free-solid-svg-icons';
 import Text from '../text/Text';
 import Space from '../space/Space';
@@ -36,10 +37,14 @@ function AdminNavBar() {
         <Space medium />
 
         <ul className='nav-bar'>
-          <NavLink icon={faUser} label='Users' route={frontRoutes.users} />
+          <NavLink
+            icon={faCalendarDays}
+            label='Planning'
+            route={frontRoutes.planning}
+          />
 
           <NavLink
-            icon={faUtensils}
+            icon={faPlateWheat}
             label='Diets'
             route={frontRoutes.dietsConfig}
           />
@@ -57,10 +62,12 @@ function AdminNavBar() {
           />
 
           <NavLink
-            icon={faList}
+            icon={faListCheck}
             label='Tasks'
             route={frontRoutes.tasksConfig}
           />
+
+          <NavLink icon={faUser} label='Users' route={frontRoutes.users} />
         </ul>
       </div>
       <Space small />

@@ -21,6 +21,7 @@ import WorkoutsConfig from './pages/WorkoutsConfig';
 import MeditationsConfig from './pages/MeditationsConfig';
 import TasksConfig from './pages/TasksConfig';
 import WorkoutDetails from './pages/WorkoutDetails';
+import Planning from './pages/Planning';
 
 function App() {
   const dispatch = useDispatch();
@@ -55,8 +56,13 @@ function App() {
           </Route>
 
           <Route path='' element={<AdminRoute />}>
+            <Route path={frontRoutes.planning} element={<Planning />} />
             <Route path={frontRoutes.users} element={<Users />} />
             <Route path={frontRoutes.dietsConfig} element={<Recipes />} />
+            <Route
+              path={frontRoutes.recipeDetails}
+              element={<RecipeDetails />}
+            />
             <Route
               path={frontRoutes.workoutsConfig}
               element={<WorkoutsConfig />}
@@ -65,15 +71,11 @@ function App() {
               path={frontRoutes.workoutDetails}
               element={<WorkoutDetails />}
             />
-            <Route path={frontRoutes.tasksConfig} element={<TasksConfig />} />
             <Route
               path={frontRoutes.meditationsConfig}
               element={<MeditationsConfig />}
             />
-            <Route
-              path={frontRoutes.recipeDetails}
-              element={<RecipeDetails />}
-            />
+            <Route path={frontRoutes.tasksConfig} element={<TasksConfig />} />
           </Route>
 
           <Route path='*' element={<div>Not found</div>} />

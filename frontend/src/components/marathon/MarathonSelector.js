@@ -7,7 +7,12 @@ import NewMarathonForm from './NewMarathonForm';
 import Text from '../text/Text';
 import formatDate from '../../utils/formatDate';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCalendar, faEdit, faPlus } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCalendarDays,
+  faEdit,
+  faPlus,
+} from '@fortawesome/free-solid-svg-icons';
+import Space from '../space/Space';
 
 function MarathonSelector({ setMarathon }) {
   const [marathonOptions, setmarathonOptions] = useState([]);
@@ -39,20 +44,22 @@ function MarathonSelector({ setMarathon }) {
       : null;
 
     setMarathonSelected(currentMarathon);
-    setMarathon(currentMarathon);
+    setMarathon(currentMarathon.value);
     setShowNewMarathonModal(false);
     refetchMarathons();
+  };
+
+  const handleNewMarathon = () => {
+    setShowNewMarathonModal(true);
+    setMarathonSelected(null);
+    setMarathon(null);
   };
 
   return (
     <>
       <div className='content-left-and-right'>
         <div className='buttons-container'>
-          <Button
-            iconLeft={faPlus}
-            isPrimary
-            onClick={() => setShowNewMarathonModal(true)}
-          >
+          <Button iconLeft={faPlus} isPrimary onClick={handleNewMarathon}>
             New marathon
           </Button>
 
@@ -71,20 +78,22 @@ function MarathonSelector({ setMarathon }) {
               iconLeft={faEdit}
               onClick={() => setShowNewMarathonModal(true)}
             >
-              Edit marathon
+              Modify dates
             </Button>
           )}
         </div>
-
-        {marathonSelected && (
-          <div className='start-end-dates'>
-            <FontAwesomeIcon icon={faCalendar} />
-            <Text>{formatDate(marathonSelected?.value.startDate)}</Text>
-            <Text>-</Text>
-            <Text>{formatDate(marathonSelected?.value.endDate)}</Text>
-          </div>
-        )}
       </div>
+
+      <Space medium />
+
+      {marathonSelected && (
+        <div className='start-end-dates'>
+          <FontAwesomeIcon icon={faCalendarDays} />
+          <Text>{formatDate(marathonSelected?.value.startDate)}</Text>
+          <Text>-</Text>
+          <Text>{formatDate(marathonSelected?.value.endDate)}</Text>
+        </div>
+      )}
 
       {showNewMarathonModal && (
         <Modal onClose={setShowNewMarathonModal}>

@@ -5,7 +5,10 @@ const MarathonsSchema = new Schema(
     startDate: Date,
     endDate: Date,
     name: String,
-    planning: { any: {} },
+    planning: {
+      type: Schema.Types.ObjectId,
+      ref: 'Planning',
+    },
   },
   {
     timestamps: true,

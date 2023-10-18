@@ -35,12 +35,23 @@ function PlanningSelector({ marathon }) {
       setWeekOptions(optionsWeeks);
       setSelectedWeek(optionsWeeks[0]);
 
-      setMonthArray(getWeeksArray(startDate, endDate));
+      const month = getWeeksArray(startDate, endDate);
+      setMonthArray(month);
+      setSelectedDay(month[0][0]);
+    } else {
+      setMonthArray();
+      setSelectedDay();
+      setWeekOptions([]);
+      setSelectedWeek();
     }
   }, [marathon]);
 
   const handleSelectDay = day => {
     setSelectedDay(day);
+  };
+
+  const handleWeekChanege = ({ value, label }) => {
+    setSelectedWeek({ label, value });
   };
 
   return (
@@ -51,7 +62,7 @@ function PlanningSelector({ marathon }) {
           placeholder='Select week'
           isSingleSelect
           options={weekOptions}
-          onChange={setSelectedWeek}
+          onChange={handleWeekChanege}
           selectedOption={selectedWeek}
           name='week'
         />

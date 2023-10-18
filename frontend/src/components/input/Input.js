@@ -48,8 +48,8 @@ function Input({
     onChange({ name, value: values.map(each => each.value) });
   };
 
-  const handleSingleSelectChange = ({ value }) => {
-    onChange({ name, value });
+  const handleSingleSelectChange = ({ value, label }) => {
+    onChange({ name, value, label });
   };
 
   const handleUploadImage = async event => {

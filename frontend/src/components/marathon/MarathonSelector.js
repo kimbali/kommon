@@ -9,7 +9,7 @@ import formatDate from '../../utils/formatDate';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendar, faEdit, faPlus } from '@fortawesome/free-solid-svg-icons';
 
-function MarathonSelector() {
+function MarathonSelector({ setMarathon }) {
   const [marathonOptions, setmarathonOptions] = useState([]);
   const [marathonSelected, setMarathonSelected] = useState(null);
   const [showNewMarathonModal, setShowNewMarathonModal] = useState(false);
@@ -27,17 +27,19 @@ function MarathonSelector() {
 
   const handleMarathonChange = ({ value }) => {
     setMarathonSelected({ label: value.name || value.startDate, value });
+    setMarathon(value);
   };
 
   const handleCreateMarathon = marathon => {
-    setMarathonSelected(
-      marathon
-        ? {
-            label: marathon.name,
-            value: marathon,
-          }
-        : null
-    );
+    const currentMarathon = marathon
+      ? {
+          label: marathon.name,
+          value: marathon,
+        }
+      : null;
+
+    setMarathonSelected(currentMarathon);
+    setMarathon(currentMarathon);
     setShowNewMarathonModal(false);
     refetchMarathons();
   };

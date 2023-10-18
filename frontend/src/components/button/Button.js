@@ -8,6 +8,7 @@ function Button({
   onClick,
   isPrimary = false,
   isSecondary = false,
+  isThird = false,
   isLink = false,
   isActive = false,
   iconRight,
@@ -25,9 +26,11 @@ function Button({
       type={type}
       className={`button ${className} ${isPrimary ? 'primary' : ''} ${
         isSecondary ? 'secondary' : ''
-      } ${isLink ? 'link' : ''} ${isActive ? 'active' : ''} ${
-        center ? 'center' : ''
-      } ${onlyIcon ? 'only-icon' : ''} ${small ? 'small' : ''}`}
+      } ${isThird ? 'third' : ''} ${isLink ? 'link' : ''} ${
+        isActive ? 'active' : ''
+      } ${center ? 'center' : ''} ${onlyIcon ? 'only-icon' : ''} ${
+        small ? 'small' : ''
+      }`}
     >
       {iconLeft && <FontAwesomeIcon icon={iconLeft} className='left' />}
 

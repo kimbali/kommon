@@ -6,7 +6,7 @@
   border-radius: $border-radius-element;
   cursor: pointer;
   vertical-align: middle;
-  transition: 0.3s;
+  transition: 0.2s;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -56,6 +56,10 @@
     &:hover {
       background-color: $primary-color-decolored;
     }
+  }
+
+  &.third {
+    background-color: $background-4;
   }
 
   &.active {

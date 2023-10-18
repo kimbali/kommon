@@ -5,3 +5,29 @@
     margin-left: 16px;
   }
 }
+
+.selector-fix-width {
+  min-width: 240px;
+  display: inline-block;
+}
+
+.days-selector {
+  display: flex;
+
+  .day {
+    margin-right: 12px;
+    text-align: center;
+
+    .date {
+      font-size: 12px;
+      color: $disabled;
+      margin-bottom: 4px;
+    }
+
+    button {
+      width: 64px;
+      font-size: 15px;
+      font-family: $title-font;
+    }
+  }
+}

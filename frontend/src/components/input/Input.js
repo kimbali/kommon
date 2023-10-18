@@ -14,6 +14,7 @@ function Input({
   value = '',
   options = [],
   selectOption = 'select one',
+  selectedOption,
   noValueOption = '',
   id = '',
   name = '',
@@ -142,6 +143,7 @@ function Input({
           placeholder={placeholder}
           classNamePrefix='multi-prefix'
           defaultValue={defaultValue}
+          value={selectedOption}
         />
       )}
 

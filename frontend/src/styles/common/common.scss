@@ -78,8 +78,9 @@ a {
   display: flex;
   justify-content: flex-start;
 
-  button {
-    margin-right: 24px;
+  button,
+  .multi-select {
+    margin-right: 16px;
 
     svg {
       margin-right: 8px;

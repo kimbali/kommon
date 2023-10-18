@@ -37,13 +37,8 @@ export const getMarathonById = asyncHandler(async (req, res) => {
 // @route   POST /api/marathons
 // @access  Private/Admin
 export const createMarathon = asyncHandler(async (req, res) => {
-  const { startDate, endDate, planning } = req.body;
-
-  const newMarathon = new Marathon({
-    startDate,
-    endDate,
-    planning,
-  });
+  const { startDate, endDate, name, planning } = req.body;
+  const newMarathon = new Marathon({ startDate, endDate, name, planning });
 
   const createdMarathon = await newMarathon.save();
   res.status(201).json(createdMarathon);
@@ -53,13 +48,14 @@ export const createMarathon = asyncHandler(async (req, res) => {
 // @route   PUT /api/marathons/:id
 // @access  Private/Admin
 export const updateMarathon = asyncHandler(async (req, res) => {
-  const { startDate, endDate, planning } = req.body;
+  const { startDate, endDate, name, planning } = req.body;
 
   const marathon = await Marathon.findById(req.params.id);
 
   if (marathon) {
     marathon.startDate = startDate || marathon.startDate;
     marathon.endDate = endDate || marathon.endDate;
+    marathon.name = name || marathon.name;
     marathon.planning = { ...planning } || { ...marathon.planning };
 
     const updatedMarathon = await marathon.save();

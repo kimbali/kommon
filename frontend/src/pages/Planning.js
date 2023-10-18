@@ -1,7 +1,8 @@
 import React from 'react';
-import MarathonSelector from '../components/marathonSelector/MarathonSelector';
+import MarathonSelector from '../components/marathon/MarathonSelector';
 import Text from '../components/text/Text';
 import Space from '../components/space/Space';
+import PlanningSelector from '../components/marathon/PlanningSelector';
 
 function Planning() {
   return (
@@ -11,6 +12,10 @@ function Planning() {
       <Space medium />
 
       <MarathonSelector />
+
+      <Space medium />
+
+      <PlanningSelector />
     </div>
   );
 }

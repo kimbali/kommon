@@ -9,3 +9,4 @@ export const USERS_URL = '/api/users';
 export const WORKOUTS_URL = '/api/workouts';
 export const MEDITATIONS_URL = '/api/meditations';
 export const TASKS_URL = '/api/tasks';
+export const MARATHON_URL = '/api/marathons';

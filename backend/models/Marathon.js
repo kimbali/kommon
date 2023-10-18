@@ -4,7 +4,8 @@ const MarathonsSchema = new Schema(
   {
     startDate: Date,
     endDate: Date,
-    planning: any,
+    name: String,
+    planning: { any: {} },
   },
   {
     timestamps: true,

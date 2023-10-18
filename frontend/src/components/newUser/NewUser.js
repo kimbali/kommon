@@ -68,15 +68,13 @@ function NewUser({ onCreate, onCancel }) {
       <Space big />
 
       <div className='content-on-the-right'>
-        <div className='buttons-container'>
-          <Button onClick={onCancel} isSecondary>
-            Cancel
-          </Button>
+        <Button onClick={onCancel} isSecondary>
+          Cancel
+        </Button>
 
-          <Button type='submit' isPrimary>
-            Create user
-          </Button>
-        </div>
+        <Button type='submit' isPrimary>
+          Create user
+        </Button>
       </div>
     </form>
   );

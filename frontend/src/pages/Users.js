@@ -28,6 +28,7 @@ function Users() {
       )}
 
       <Space medium />
+
       <p>Lista de usuarios</p>
     </div>
   );

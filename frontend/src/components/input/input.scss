@@ -47,6 +47,7 @@ form {
     height: 42px;
     box-shadow: $box-shadow-element;
     border: 1px solid #404350;
+    cursor: pointer;
 
     &::placeholder,
     .placeholder {
@@ -75,6 +76,19 @@ form {
 
     &[type='number'] {
       text-align: right;
+    }
+
+    &[type='date']::-webkit-calendar-picker-indicator {
+      background: transparent;
+      color: transparent;
+      bottom: 0;
+      cursor: pointer;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: auto;
+      height: auto;
     }
   }
 
@@ -110,12 +124,17 @@ form {
     color: $grey-dark;
     font-size: 14px;
 
+    input {
+      box-shadow: none;
+    }
+
     .multi-prefix__control {
+      cursor: pointer;
       background-color: $background-4;
       border: none;
       border-radius: $border-radius-element;
       box-shadow: $box-shadow-element;
-      padding-left: 14px;
+      padding-left: 8px;
 
       .multi-prefix__single-value {
         color: $secondary-color;
@@ -149,6 +168,10 @@ form {
     input::placeholder {
       color: $disabled;
       font-size: 14px;
+    }
+
+    svg {
+      margin: 0;
     }
   }
 }

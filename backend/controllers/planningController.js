@@ -1,5 +1,5 @@
 import asyncHandler from '../middleware/asyncHandler.js';
-import Planning from '../models/Planning.js';
+import Planning, { Day } from '../models/Planning.js';
 
 // @desc    Fetch all plannings
 // @route   GET /api/plannings
@@ -64,6 +64,29 @@ export const updatePlanning = asyncHandler(async (req, res) => {
   } else {
     res.status(404);
     throw new Error('Planning not found');
+  }
+});
+
+// @desc    Update a planning
+// @route   PUT /api/plannings/day/:id
+// @access  Private/Admin
+export const updateDaygDay = asyncHandler(async (req, res) => {
+  const { date, diets, workouts, meditations, tasks } = req.body;
+
+  const dayFound = await Day.findById(req.params.id);
+
+  if (dayFound) {
+    dayFound.date = date || dayFound.date;
+    dayFound.diets = diets || dayFound.diets;
+    dayFound.workouts = workouts || dayFound.workouts;
+    dayFound.meditations = meditations || dayFound.meditations;
+    dayFound.tasks = tasks || dayFound.tasks;
+
+    const updatedDay = await dayFound.save();
+    res.json(updatedDay);
+  } else {
+    res.status(404);
+    throw new Error('Day not found');
   }
 });
 

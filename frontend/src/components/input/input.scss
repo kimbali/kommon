@@ -40,7 +40,6 @@ form {
     border-radius: $border-radius-element;
     background-color: $background-4;
     padding: 12px 18px;
-    border: none;
     font-family: $text-font;
     font-size: 14px;
     width: 100%;
@@ -135,6 +134,7 @@ form {
       border-radius: $border-radius-element;
       box-shadow: $box-shadow-element;
       padding-left: 8px;
+      border: thin solid #404350;
 
       .multi-prefix__single-value {
         color: $secondary-color;

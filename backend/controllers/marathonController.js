@@ -56,7 +56,7 @@ export const updateMarathon = asyncHandler(async (req, res) => {
     marathon.startDate = startDate || marathon.startDate;
     marathon.endDate = endDate || marathon.endDate;
     marathon.name = name || marathon.name;
-    marathon.planning = { ...planning } || { ...marathon.planning };
+    marathon.planning = planning || marathon.planning;
 
     const updatedMarathon = await marathon.save();
     res.json(updatedMarathon);

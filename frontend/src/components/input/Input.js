@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import CreatableSelect from 'react-select/creatable';
 import Text from '../text/Text';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -16,6 +17,8 @@ function Input({
   selectOption = 'select one',
   selectedOption,
   noValueOption = '',
+  selectCreatable = false,
+  onCreateOption,
   id = '',
   name = '',
   required,
@@ -74,7 +77,8 @@ function Input({
       {type !== 'select' &&
         type !== 'textarea' &&
         !isMultiSelect &&
-        !isSingleSelect && (
+        !isSingleSelect &&
+        !selectCreatable && (
           <input
             id={name}
             name={name}
@@ -142,6 +146,19 @@ function Input({
           onChange={handleSingleSelectChange}
           placeholder={placeholder}
           classNamePrefix='multi-prefix'
+          defaultValue={defaultValue}
+          value={selectedOption}
+        />
+      )}
+
+      {selectCreatable && (
+        <CreatableSelect
+          className='multi-select'
+          classNamePrefix='multi-prefix'
+          onCreateOption={onCreateOption}
+          onChange={handleSingleSelectChange}
+          options={options}
+          placeholder={placeholder}
           defaultValue={defaultValue}
           value={selectedOption}
         />

@@ -1,9 +1,8 @@
 import { model, Schema } from 'mongoose';
-import Workout from './Workout';
-import Task from './Task';
 
-const daySchema = new Schema(
+const DaySchema = new Schema(
   {
+    day: Date,
     diets: [
       {
         dietKey: String,
@@ -27,7 +26,7 @@ const daySchema = new Schema(
     meditations: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Workouts',
+        ref: 'Workout',
       },
     ],
     tasks: [
@@ -42,9 +41,16 @@ const daySchema = new Schema(
   }
 );
 
+export const Day = model('Day', DaySchema);
+
 const PlanningsSchema = new Schema(
   {
-    month: [daySchema],
+    month: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: DaySchema,
+      },
+    ],
     name: String,
   },
   {

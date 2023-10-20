@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   useCreateMarathonMutation,
   useDeleteMarathonMutation,
   useUpdateMarathonMutation,
 } from '../../slices/marathonApiSlice';
+import {
+  useCreatePlanningMutation,
+  useGetPlanningDetailsQuery,
+  useGetPlanningsQuery,
+} from '../../slices/planningsApiSlice';
 import Text from '../text/Text';
 import Space from '../space/Space';
 import Input from '../input/Input';
@@ -17,10 +22,34 @@ function NewMarathonForm({ onSucces, onCancel, marathon }) {
   const [formData, setFormData] = useState(marathon);
   const [error, setError] = useState('');
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [planningsOptions, setPlanningsOptions] = useState([]);
+  const [selectedPlan, setSelectedPlan] = useState();
 
   const [createMarathon] = useCreateMarathonMutation();
   const [updateMarathon] = useUpdateMarathonMutation();
   const [deleteMarathon] = useDeleteMarathonMutation();
+
+  const { data: plansData, refetch: refetchPlans } = useGetPlanningsQuery({});
+
+  const [createPlan] = useCreatePlanningMutation();
+
+  useEffect(() => {
+    if (plansData && plansData.plannings.length > 0) {
+      const options = plansData.plannings.map(ele => {
+        return { label: ele.name, value: ele._id };
+      });
+
+      setPlanningsOptions(options);
+
+      if (marathon) {
+        const currentPlan = plansData.plannings.find(
+          ele => ele._id === marathon.planning
+        );
+
+        setSelectedPlan({ label: currentPlan.name, value: marathon.planning });
+      }
+    }
+  }, [plansData, marathon]);
 
   const handleOnChange = ({ name, value }) => {
     if (name === 'startDate') {
@@ -34,26 +63,47 @@ function NewMarathonForm({ onSucces, onCancel, marathon }) {
     e.preventDefault();
     setError(false);
 
-    if (!formData.startDate || !formData.endDate || !formData.name) {
+    if (
+      !formData ||
+      !formData.startDate ||
+      !formData.endDate ||
+      !formData.name ||
+      !formData.planning
+    ) {
       return setError(true);
     }
 
     if (marathon) {
       const res = await updateMarathon(formData).unwrap();
-      onSucces(res);
       toast.success(`${formData.name} updated`);
+      onSucces(res);
     } else {
       const res = await createMarathon(formData).unwrap();
-      onSucces(res);
       toast.success(`${formData.name} created`);
+      onSucces(res);
     }
   };
 
-  const deleteHandler = async () => {
+  const handleDeleteMarathon = async () => {
     await deleteMarathon(formData._id);
     toast.success('Marathon deleted');
     setShowDeleteModal(false);
     onSucces();
+  };
+
+  const handleCreatePlanning = async planName => {
+    const newPlan = await createPlan({ name: planName });
+    setSelectedPlan({ label: planName, value: newPlan.data._id });
+    handleOnChange({ name: 'planning', value: newPlan.data._id });
+
+    await refetchPlans();
+  };
+
+  const handleSelectPlan = ({ name, value }) => {
+    const currentPlan = plansData.plannings.find(ele => ele._id === value);
+
+    setSelectedPlan({ label: currentPlan.name, value });
+    handleOnChange({ name, value });
   };
 
   return (
@@ -63,14 +113,28 @@ function NewMarathonForm({ onSucces, onCancel, marathon }) {
       </Text>
 
       <Space medium />
+      <div className='grid-container'>
+        <Input
+          className='cols-2'
+          label='Marathon name'
+          placeholder='A name for this new marahton'
+          name='name'
+          onChange={handleOnChange}
+          value={formData?.name}
+        />
 
-      <Input
-        label='Marathon name'
-        placeholder='A title for this marahton'
-        name='name'
-        onChange={handleOnChange}
-        value={formData?.name}
-      />
+        <Input
+          className='cols-2'
+          label='Marathon plan'
+          placeholder='Select a plan or introduce a new name'
+          options={planningsOptions}
+          onChange={handleSelectPlan}
+          selectedOption={selectedPlan}
+          name='planning'
+          selectCreatable
+          onCreateOption={handleCreatePlanning}
+        />
+      </div>
 
       <Space small />
 
@@ -100,14 +164,18 @@ function NewMarathonForm({ onSucces, onCancel, marathon }) {
 
       <Space big />
 
-      <div className='content-left-and-right'>
-        <Button
-          onClick={() => setShowDeleteModal(true)}
-          isSecondary
-          iconLeft={faTrash}
-        >
-          Delete marathon
-        </Button>
+      <div
+        className={marathon ? 'content-left-and-right' : 'content-on-the-right'}
+      >
+        {marathon && (
+          <Button
+            onClick={() => setShowDeleteModal(true)}
+            isSecondary
+            iconLeft={faTrash}
+          >
+            Delete marathon
+          </Button>
+        )}
 
         <div className='content-on-the-right'>
           <Button type='submit' isPrimary>
@@ -118,7 +186,7 @@ function NewMarathonForm({ onSucces, onCancel, marathon }) {
 
       {showDeleteModal && (
         <ConfirmModal
-          onConfirm={deleteHandler}
+          onConfirm={handleDeleteMarathon}
           onClose={setShowDeleteModal}
           title='Delete recipe'
           text={`Are you sure you whant to delete: ${formData?.name}`}

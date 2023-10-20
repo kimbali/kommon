@@ -35,7 +35,7 @@ function MarathonSelector({ setMarathon }) {
     setMarathon(value);
   };
 
-  const handleCreateMarathon = marathon => {
+  const handleOnConfirmMarathon = marathon => {
     const currentMarathon = marathon
       ? {
           label: marathon.name,
@@ -78,7 +78,7 @@ function MarathonSelector({ setMarathon }) {
               iconLeft={faEdit}
               onClick={() => setShowNewMarathonModal(true)}
             >
-              Modify dates
+              Marathon
             </Button>
           )}
         </div>
@@ -98,7 +98,7 @@ function MarathonSelector({ setMarathon }) {
       {showNewMarathonModal && (
         <Modal onClose={setShowNewMarathonModal}>
           <NewMarathonForm
-            onSucces={handleCreateMarathon}
+            onSucces={handleOnConfirmMarathon}
             onCancel={() => setShowNewMarathonModal(false)}
             marathon={marathonSelected?.value}
           />

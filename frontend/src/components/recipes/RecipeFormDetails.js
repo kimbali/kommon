@@ -5,7 +5,7 @@ import Space from '../space/Space';
 import ResumeTable from '../resumeTable/ResumeTable';
 import Button from '../button/Button';
 import { faEdit, faFolderPlus } from '@fortawesome/free-solid-svg-icons';
-import categoriesEnum from '../../config/enums/categoriesEnum';
+import mealsEnum from '../../config/enums/mealsEnum';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function RecipeFormDetails({
@@ -24,7 +24,7 @@ function RecipeFormDetails({
     proteins,
     fats,
     carbohydrates,
-    categories,
+    meals,
   } = recipeDetails;
 
   return (
@@ -105,17 +105,17 @@ function RecipeFormDetails({
 
       <Space medium />
 
-      <div className='categories'>
-        {categoriesEnum.map(categoryEnum => {
-          const isActive = categories?.includes(categoryEnum.value);
+      <div className='meals'>
+        {mealsEnum.map(mealEnum => {
+          const isActive = meals?.includes(mealEnum.value);
 
           return (
             <div
-              key={`category-${categoryEnum.value}`}
-              className={`category ${isActive ? 'active' : ''}`}
+              key={`meal-${mealEnum.value}`}
+              className={`meal ${isActive ? 'active' : ''}`}
             >
-              <FontAwesomeIcon icon={categoryEnum.svg} />
-              <Text>{categoryEnum.label}</Text>
+              <FontAwesomeIcon icon={mealEnum.svg} />
+              <Text>{mealEnum.label}</Text>
             </div>
           );
         })}

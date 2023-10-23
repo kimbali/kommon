@@ -23,7 +23,16 @@ export const getPlannings = asyncHandler(async (req, res) => {
 // @route   GET /api/plannings/:id
 // @access  Public
 export const getPlanningById = asyncHandler(async (req, res) => {
-  const planning = await Planning.findById(req.params.id);
+  const planning = await Planning.findById(req.params.id).populate({
+    path: 'month',
+    populate: {
+      path: 'meals workouts meditations tasks',
+      populate: {
+        path: 'recipe',
+        model: 'Recipe',
+      },
+    },
+  });
 
   if (planning) {
     return res.json(planning);
@@ -64,29 +73,6 @@ export const updatePlanning = asyncHandler(async (req, res) => {
   } else {
     res.status(404);
     throw new Error('Planning not found');
-  }
-});
-
-// @desc    Update a planning
-// @route   PUT /api/plannings/day/:id
-// @access  Private/Admin
-export const updateDaygDay = asyncHandler(async (req, res) => {
-  const { date, diets, workouts, meditations, tasks } = req.body;
-
-  const dayFound = await Day.findById(req.params.id);
-
-  if (dayFound) {
-    dayFound.date = date || dayFound.date;
-    dayFound.diets = diets || dayFound.diets;
-    dayFound.workouts = workouts || dayFound.workouts;
-    dayFound.meditations = meditations || dayFound.meditations;
-    dayFound.tasks = tasks || dayFound.tasks;
-
-    const updatedDay = await dayFound.save();
-    res.json(updatedDay);
-  } else {
-    res.status(404);
-    throw new Error('Day not found');
   }
 });
 

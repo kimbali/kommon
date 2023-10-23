@@ -43,9 +43,9 @@ function RecipeDetails() {
     }
   };
 
-  const editHandler = () => {
+  const editHandler = async () => {
     setShowEditModal(false);
-    refetch();
+    await refetch();
   };
 
   if (isLoading || isError) {

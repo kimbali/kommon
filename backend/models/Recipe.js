@@ -45,7 +45,7 @@ const recipeSchema = new Schema(
       type: Number,
       default: 0,
     },
-    categories: [String],
+    meals: [String],
   },
   {
     timestamps: true,

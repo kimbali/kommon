@@ -31,10 +31,10 @@ function TasksConfig() {
     keyword: keywordValue,
   });
 
-  const onSuccessTask = () => {
+  const onSuccessTask = async () => {
     setShowFormModal(false);
     setCurrentTask(null);
-    refetch();
+    await refetch();
   };
 
   const handleEdit = task => {

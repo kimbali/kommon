@@ -1,40 +1,55 @@
-.recipe-card {
-  background-color: $background-2;
-  height: 230px;
-  border-radius: $border-radius-element;
+.recipe-card-cta {
+  width: 100%;
 
-  .food-image {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    height: 152px;
-    width: 100%;
-  }
-
-  img {
-    max-width: 100%;
+  .recipe-card {
+    background-color: $background-2;
     border-radius: $border-radius-element;
-  }
+    text-align: left;
+    overflow: hidden;
 
-  .recipe-card-details {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-  }
+    .food-image {
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      height: 152px;
+      width: 100%;
+    }
 
-  .title {
-    font-size: 16px;
-    line-height: 18px;
-    padding: 12px;
-  }
-  .recipe-card-data {
-    display: flex;
-    justify-content: space-between;
-    padding: 0 12px 12px;
+    .recipe-card-details {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+    }
 
-    svg {
-      margin-right: 4px;
+    .meal {
+      font-size: 14px;
+      color: #afb2c2;
+      text-align: left;
+      margin: 0 14px 0;
+    }
+
+    .title {
+      font-size: 16px;
+      line-height: 18px;
+      height: 36px;
+      margin: 0 14px 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+
+    .recipe-card-data {
+      margin: 0 14px 14px;
+      color: #afb2c2;
+      font-size: 12px;
+
+      span {
+        color: $white;
+      }
     }
   }
 }
@@ -162,12 +177,12 @@
     }
   }
 
-  .categories {
+  .meals {
     display: flex;
     justify-content: space-between;
     padding: 12px 32px;
 
-    .category {
+    .meal {
       display: flex;
       flex-direction: column;
       align-items: center;

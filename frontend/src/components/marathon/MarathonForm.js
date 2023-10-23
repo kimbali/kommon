@@ -6,7 +6,6 @@ import {
 } from '../../slices/marathonApiSlice';
 import {
   useCreatePlanningMutation,
-  useGetPlanningDetailsQuery,
   useGetPlanningsQuery,
 } from '../../slices/planningsApiSlice';
 import Text from '../text/Text';
@@ -18,7 +17,7 @@ import toast from 'react-hot-toast';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { addOneMonth } from '../../utils/formatDate';
 
-function NewMarathonForm({ onSucces, onCancel, marathon }) {
+function MarathonForm({ onSucces, onCancel, marathon }) {
   const [formData, setFormData] = useState(marathon);
   const [error, setError] = useState('');
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -196,4 +195,4 @@ function NewMarathonForm({ onSucces, onCancel, marathon }) {
   );
 }
 
-export default NewMarathonForm;
+export default MarathonForm;

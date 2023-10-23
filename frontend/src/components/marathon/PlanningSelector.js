@@ -11,12 +11,19 @@ import Space from '../space/Space';
 import Button from '../button/Button';
 import Text from '../text/Text';
 
-function PlanningSelector({ marathon }) {
+function PlanningSelector({ marathon, setCurrentDiet, setCurrentDay }) {
   const [monthArray, setMonthArray] = useState();
   const [weekOptions, setWeekOptions] = useState([]);
   const [selectedWeek, setSelectedWeek] = useState();
-  const [selectedDiet, setSelectedDiet] = useState();
   const [selectedDay, setSelectedDay] = useState();
+
+  const handleSelectDay = date => {
+    setSelectedDay(date);
+    setCurrentDay({
+      week: selectedWeek ? selectedWeek?.value : 0,
+      weekDay: date ? date?.getDay() : 1,
+    });
+  };
 
   useEffect(() => {
     if (marathon) {
@@ -37,21 +44,22 @@ function PlanningSelector({ marathon }) {
 
       const month = getWeeksArray(startDate, endDate);
       setMonthArray(month);
-      setSelectedDay(month[0][0]);
+      handleSelectDay(month[0][0]);
     } else {
       setMonthArray();
-      setSelectedDay();
+      handleSelectDay();
       setWeekOptions([]);
-      setSelectedWeek();
+      setSelectedWeek(0);
     }
   }, [marathon]);
 
-  const handleSelectDay = day => {
-    setSelectedDay(day);
-  };
-
-  const handleWeekChanege = ({ value, label }) => {
+  const handleWeekChange = ({ value, label }) => {
     setSelectedWeek({ label, value });
+    setSelectedDay(monthArray[value][0]);
+    setCurrentDay({
+      week: value,
+      weekDay: 1,
+    });
   };
 
   return (
@@ -62,7 +70,7 @@ function PlanningSelector({ marathon }) {
           placeholder='Select week'
           isSingleSelect
           options={weekOptions}
-          onChange={handleWeekChanege}
+          onChange={handleWeekChange}
           selectedOption={selectedWeek}
           name='week'
         />
@@ -72,7 +80,7 @@ function PlanningSelector({ marathon }) {
           placeholder='Select diet'
           isSingleSelect
           options={dietsEnum}
-          onChange={setSelectedDiet}
+          onChange={({ value }) => setCurrentDiet(value)}
           name='diet'
         />
       </div>

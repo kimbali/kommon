@@ -3,7 +3,7 @@ import Input from '../input/Input';
 import Modal from '../modal/Modal';
 import { useGetMarathonsQuery } from '../../slices/marathonApiSlice';
 import Button from '../button/Button';
-import NewMarathonForm from './NewMarathonForm';
+import MarathonForm from './MarathonForm';
 import Text from '../text/Text';
 import formatDate from '../../utils/formatDate';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -97,7 +97,7 @@ function MarathonSelector({ setMarathon }) {
 
       {showNewMarathonModal && (
         <Modal onClose={setShowNewMarathonModal}>
-          <NewMarathonForm
+          <MarathonForm
             onSucces={handleOnConfirmMarathon}
             onCancel={() => setShowNewMarathonModal(false)}
             marathon={marathonSelected?.value}

@@ -54,7 +54,7 @@ export const createRecipe = asyncHandler(async (req, res) => {
     proteins,
     fats,
     carbohydrates,
-    categories,
+    meals,
   } = req.body;
 
   const recipe = new Recipe({
@@ -67,7 +67,7 @@ export const createRecipe = asyncHandler(async (req, res) => {
     proteins,
     fats,
     carbohydrates,
-    categories,
+    meals,
   });
 
   try {
@@ -93,7 +93,7 @@ export const updateRecipe = asyncHandler(async (req, res) => {
     proteins,
     fats,
     carbohydrates,
-    categories,
+    meals,
   } = req.body;
 
   const recipe = await Recipe.findById(req.params.id);
@@ -108,7 +108,7 @@ export const updateRecipe = asyncHandler(async (req, res) => {
     recipe.proteins = proteins || recipe.proteins;
     recipe.fats = fats || recipe.fats;
     recipe.carbohydrates = carbohydrates || recipe.carbohydrates;
-    recipe.categories = categories || recipe.categories;
+    recipe.meals = meals || recipe.meals;
 
     const updatedRecipe = await recipe.save();
     res.json(updatedRecipe);

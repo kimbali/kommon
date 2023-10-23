@@ -2,19 +2,16 @@ import { model, Schema } from 'mongoose';
 
 const DaySchema = new Schema(
   {
-    day: Date,
-    diets: [
+    week: Number,
+    weekDay: Number,
+    meals: [
       {
-        dietKey: String,
-        recipes: [
-          {
-            meal: String,
-            recipe: {
-              type: Schema.Types.ObjectId,
-              ref: 'Recipe',
-            },
-          },
-        ],
+        diet: String,
+        meal: String,
+        recipe: {
+          type: Schema.Types.ObjectId,
+          ref: 'Recipe',
+        },
       },
     ],
     workouts: [
@@ -38,6 +35,7 @@ const DaySchema = new Schema(
   },
   {
     timestamps: true,
+    strictPopulate: false,
   }
 );
 
@@ -48,13 +46,14 @@ const PlanningsSchema = new Schema(
     month: [
       {
         type: Schema.Types.ObjectId,
-        ref: DaySchema,
+        ref: 'Day',
       },
     ],
     name: String,
   },
   {
     timestamps: true,
+    strictPopulate: false,
   }
 );
 

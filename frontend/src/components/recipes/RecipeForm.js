@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import categoriesEnum from '../../config/enums/categoriesEnum';
+import mealsEnum from '../../config/enums/mealsEnum';
 import toast from 'react-hot-toast';
 import Text from '../text/Text';
 import Space from '../space/Space';
@@ -360,18 +360,16 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
 
           <div className='section '>
             <Input
-              key={'categories-form'}
-              name='categories'
-              label='Categories'
-              placeholder='Select all possible categories'
+              key={'meals-form'}
+              name='meals'
+              label='meals'
+              placeholder='Select all possible meals'
               isMultiSelect
-              options={categoriesEnum}
+              options={mealsEnum}
               onChange={handleOnChange}
               defaultValue={
-                formData.categories
-                  ? categoriesEnum.filter(cat =>
-                      formData.categories?.includes(cat.value)
-                    )
+                formData.meals
+                  ? mealsEnum.filter(cat => formData.meals?.includes(cat.value))
                   : []
               }
             />

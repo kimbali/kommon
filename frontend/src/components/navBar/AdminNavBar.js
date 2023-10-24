@@ -45,7 +45,7 @@ function AdminNavBar() {
 
           <NavLink
             icon={faPlateWheat}
-            label='Diets'
+            label='Recipes'
             route={frontRoutes.dietsConfig}
           />
 

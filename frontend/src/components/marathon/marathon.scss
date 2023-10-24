@@ -35,30 +35,24 @@
 .marathon-diets {
   display: grid;
   width: 100%;
-  grid-template-columns: repeat(5, minmax(220px, 220px));
+  grid-template-columns: repeat(5, minmax(220px, 300px));
   grid-template-rows: auto;
   gap: 18px;
 
   overflow-x: scroll;
-  cursor: ew-resize;
 
   &::-webkit-scrollbar {
-    height: 4px; /* height of horizontal scrollbar ← You're missing this */
-    width: 4px; /* width of vertical scrollbar */
-    border: 1px solid #d5d5d5;
+    height: 6px;
+    background-color: $background-3;
+    border-radius: $border-radius-element;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $secondary-color-decolored;
+    border-radius: $border-radius-element;
   }
 
   .single-diet {
-    .recipe-card {
-      .food-image {
-        background-color: white;
-      }
-
-      .recipe-card-cta {
-        width: 100%;
-      }
-    }
-
     .no-recipe {
       background-color: $background-2;
       padding: 12px;

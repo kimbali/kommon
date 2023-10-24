@@ -70,36 +70,36 @@ function RecipeDetails() {
 
   return (
     <>
-      <div className='content-left-and-right'>
-        <Text isTitle>{title}</Text>
+      <div className='content-on-the-right'>
+        <Button
+          onClick={() => setShowEditModal(true)}
+          iconLeft={faEdit}
+          isPrimary
+        >
+          Edit recipe
+        </Button>
 
-        <div className='content-on-the-right'>
-          <Button
-            onClick={() => setShowEditModal(true)}
-            iconLeft={faEdit}
-            isPrimary
-          >
-            Edit recipe
-          </Button>
+        <Button
+          onClick={() => setShowDeleteModal(true)}
+          iconLeft={faTrash}
+          isSecondary
+        >
+          Delete recipe
+        </Button>
 
-          <Button
-            onClick={() => setShowDeleteModal(true)}
-            iconLeft={faTrash}
-            isSecondary
-          >
-            Delete recipe
-          </Button>
-
-          {showDeleteModal && (
-            <ConfirmModal
-              onConfirm={deleteHandler}
-              onClose={setShowDeleteModal}
-              title='Delete recipe'
-              text={`Are you sure you whant to delete: ${title}`}
-            />
-          )}
-        </div>
+        {showDeleteModal && (
+          <ConfirmModal
+            onConfirm={deleteHandler}
+            onClose={setShowDeleteModal}
+            title='Delete recipe'
+            text={`Are you sure you whant to delete: ${title}`}
+          />
+        )}
       </div>
+
+      <Space small />
+
+      <Text isTitle>{title}</Text>
 
       <Space medium />
 
@@ -130,15 +130,16 @@ function RecipeDetails() {
               <Text>{carbohydrates}</Text>
             </div>
           </div>
+        </div>
 
-          <Space medium />
-
+        <div className='recipe-details-content'>
           <Text isSectionTitle>Ingredients</Text>
 
           <Space small />
 
           {ingredients.length > 0 && ingredients[0] && (
             <ResumeTable
+              withBullets
               list={ingredients.map(ele => {
                 return {
                   name: ele.ingredient?.name,
@@ -149,16 +150,16 @@ function RecipeDetails() {
               })}
             />
           )}
-        </div>
 
-        <div className='recipe-details-content'>
+          <Space medium />
+
           <Text className='steps-title' isSectionTitle>
             <span>Steps</span>
-            <span>
-              <FontAwesomeIcon icon={faClock} /> {minutes}
-            </span>
+            <span>{minutes} MIN</span>
           </Text>
+
           <Space small />
+
           <ol className='steps'>
             {steps.length > 0 &&
               steps[0] &&

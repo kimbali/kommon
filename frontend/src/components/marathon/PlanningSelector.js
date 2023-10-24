@@ -15,47 +15,56 @@ function PlanningSelector({ marathon, setCurrentDiet, setCurrentDay }) {
   const [monthArray, setMonthArray] = useState();
   const [weekOptions, setWeekOptions] = useState([]);
   const [selectedWeek, setSelectedWeek] = useState();
-  const [selectedDay, setSelectedDay] = useState();
+  const [selectedDate, setSelectedDate] = useState();
 
   const handleSelectDay = date => {
-    setSelectedDay(date);
+    const dateStringToFind = date.toISOString();
+    const weekDay =
+      date &&
+      monthArray &&
+      selectedWeek?.value &&
+      monthArray[selectedWeek?.value - 1].findIndex(
+        date => date.toISOString() === dateStringToFind
+      ) + 1;
+
+    setSelectedDate(date);
     setCurrentDay({
-      week: selectedWeek ? selectedWeek?.value : 0,
-      weekDay: date ? date?.getDay() : 1,
+      week: selectedWeek?.value || 1,
+      weekDay: weekDay || 1,
     });
   };
 
   useEffect(() => {
+    const { startDate, endDate } = marathon;
+
+    const totalMarathonDays = calculateDays(startDate, endDate);
+    const totalWeeks = Math.ceil(totalMarathonDays / 7);
+
+    const optionsWeeks = [...Array(totalWeeks).keys()].map((ele, index) => {
+      return {
+        label: `Week ${index + 1}`,
+        value: index + 1,
+      };
+    });
+
+    setWeekOptions(optionsWeeks);
+    setSelectedWeek(optionsWeeks[0]);
+
     if (marathon) {
-      const { startDate, endDate } = marathon;
-
-      const totalMarathonDays = calculateDays(startDate, endDate);
-      const totalWeeks = Math.ceil(totalMarathonDays / 7);
-
-      const optionsWeeks = [...Array(totalWeeks).keys()].map((ele, index) => {
-        return {
-          label: `Week ${index + 1}`,
-          value: index,
-        };
-      });
-
-      setWeekOptions(optionsWeeks);
-      setSelectedWeek(optionsWeeks[0]);
-
       const month = getWeeksArray(startDate, endDate);
       setMonthArray(month);
       handleSelectDay(month[0][0]);
     } else {
       setMonthArray();
-      handleSelectDay();
       setWeekOptions([]);
-      setSelectedWeek(0);
+      handleSelectDay();
+      // setSelectedWeek();
     }
   }, [marathon]);
 
   const handleWeekChange = ({ value, label }) => {
     setSelectedWeek({ label, value });
-    setSelectedDay(monthArray[value][0]);
+    setSelectedDate(monthArray[value - 1][0]);
     setCurrentDay({
       week: value,
       weekDay: 1,
@@ -90,13 +99,13 @@ function PlanningSelector({ marathon, setCurrentDiet, setCurrentDay }) {
       <div className='days-selector'>
         {monthArray &&
           selectedWeek &&
-          monthArray[selectedWeek?.value].map((day, index) => (
+          monthArray[selectedWeek?.value - 1].map((day, index) => (
             <div className='day' key={`day-selector${index}`}>
               <Text className='date'>{formatDateShort(day)}</Text>
 
               <Button
-                isPrimary={day === selectedDay}
-                isThird={day !== selectedDay}
+                isPrimary={day === selectedDate}
+                isThird={day !== selectedDate}
                 onClick={() => handleSelectDay(day)}
               >
                 {formatWeekDayShort(day)}

@@ -74,7 +74,7 @@ export const deleteMarathon = asyncHandler(async (req, res) => {
 
   if (marathon) {
     await Marathon.deleteOne({ _id: marathon._id });
-    res.json({ message: `Marathon ${marathon.title} removed` });
+    res.json({ message: `Marathon ${marathon.name} removed` });
   } else {
     res.status(404);
     throw new Error('Marathon not found');

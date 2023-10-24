@@ -1,17 +1,17 @@
 import { Schema, model } from 'mongoose';
 
-const ingredientsSchema = new Schema(
-  {
-    quantity: { type: Number },
-    ingredient: {
-      type: Schema.Types.ObjectId,
-      ref: 'Ingredient',
-    },
-  },
-  {
-    timestamps: true,
-  }
-);
+// const ingredientsSchema = new Schema(
+//   {
+//     quantity: { type: Number },
+//     ingredient: {
+//       type: Schema.Types.ObjectId,
+//       ref: 'Ingredient',
+//     },
+//   },
+//   {
+//     timestamps: true,
+//   }
+// );
 
 const recipeSchema = new Schema(
   {
@@ -20,7 +20,15 @@ const recipeSchema = new Schema(
       default: 'Missing title',
     },
     steps: [{ type: String, default: '' }],
-    ingredients: [ingredientsSchema],
+    ingredients: [
+      {
+        quantity: { type: Number },
+        ingredient: {
+          type: Schema.Types.ObjectId,
+          ref: 'Ingredient',
+        },
+      },
+    ],
     minutes: {
       type: Number,
       default: 0,

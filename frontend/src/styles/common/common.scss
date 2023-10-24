@@ -100,7 +100,7 @@ a {
 
 .card-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 220px));
+  grid-template-columns: repeat(3, 1fr);
   gap: 22px;
 
   .card-item {

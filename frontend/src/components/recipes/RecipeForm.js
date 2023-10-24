@@ -149,7 +149,7 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
               className='cols-4'
               label='title'
               name='title'
-              placeholder='Berenjenas rellenas'
+              placeholder='Recipe title'
               onChange={handleOnChange}
               value={formData.title}
             />
@@ -281,7 +281,7 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
                 <Input
                   name={`step${index}`}
                   type='textarea'
-                  placeholder={`step ${index + 1}`}
+                  placeholder={`Step ${index + 1}`}
                   onChange={handleOnChangeSteps}
                   value={eachStep}
                 />

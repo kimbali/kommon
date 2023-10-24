@@ -73,9 +73,9 @@ export const createRecipe = asyncHandler(async (req, res) => {
   try {
     const createdRecipe = await recipe.save();
     res.status(201).json(createdRecipe);
-  } catch {
+  } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Error saving recipe' });
+    res.status(500).json({ message: error.message });
   }
 });
 
@@ -101,7 +101,7 @@ export const updateRecipe = asyncHandler(async (req, res) => {
   if (recipe) {
     recipe.title = title || recipe.title;
     recipe.steps = steps || recipe.steps;
-    recipe.ingredients = ingredients || recipe.steps;
+    recipe.ingredients = ingredients || recipe.ingredients;
     recipe.minutes = minutes || recipe.minutes;
     recipe.image = image || recipe.image;
     recipe.calories = calories || recipe.calories;

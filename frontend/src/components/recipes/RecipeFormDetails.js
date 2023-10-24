@@ -4,7 +4,11 @@ import Text from '../text/Text';
 import Space from '../space/Space';
 import ResumeTable from '../resumeTable/ResumeTable';
 import Button from '../button/Button';
-import { faEdit, faFolderPlus } from '@fortawesome/free-solid-svg-icons';
+import {
+  faEdit,
+  faFolderPlus,
+  faSave,
+} from '@fortawesome/free-solid-svg-icons';
 import mealsEnum from '../../config/enums/mealsEnum';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -33,7 +37,10 @@ function RecipeFormDetails({
 
       <Space small />
 
-      {image && <img alt={title} src={`${image}`} />}
+      <div
+        className='food-image'
+        style={{ backgroundImage: `url(${image})` }}
+      ></div>
 
       <Space medium />
 
@@ -43,6 +50,7 @@ function RecipeFormDetails({
 
       {ingredients.length > 0 && ingredients[0] && (
         <ResumeTable
+          withBullets
           list={ingredients.map(ele => {
             if (!ele.ingredient) {
               return {};
@@ -127,11 +135,11 @@ function RecipeFormDetails({
         {isEdit ? (
           <Button
             isPrimary
-            iconLeft={faEdit}
+            iconLeft={faSave}
             onClick={handleEditRecipe}
             type='submit'
           >
-            Edit recipe
+            Save changes
           </Button>
         ) : (
           <Button

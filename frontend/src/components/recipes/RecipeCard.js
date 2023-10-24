@@ -22,7 +22,7 @@ function RecipeCard({ recipe, meal = '', onClick }) {
 
             <Text className='title'>{recipe.title}</Text>
 
-            <Space small />
+            {meal && <Space medium />}
           </div>
 
           <Text className='recipe-card-data'>

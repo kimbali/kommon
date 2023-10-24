@@ -3,6 +3,7 @@ import { protect, admin } from '../middleware/authMiddleware.js';
 import checkObjectId from '../middleware/checkObjectId.js';
 import {
   createPlanning,
+  deleteAllPlannings,
   deletePlanning,
   getPlanningById,
   getPlannings,
@@ -11,7 +12,11 @@ import {
 
 const router = express.Router();
 
-router.route('/').get(getPlannings).post(createPlanning);
+router
+  .route('/')
+  .get(getPlannings)
+  .post(createPlanning)
+  .delete(deleteAllPlannings);
 router
   .route('/:id')
   .get(checkObjectId, getPlanningById)

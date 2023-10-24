@@ -90,3 +90,16 @@ export const deletePlanning = asyncHandler(async (req, res) => {
     throw new Error('Planning not found');
   }
 });
+
+// @desc    Delete all plannings
+// @route   DELETE /api/planning
+// @access  Private/Admin
+export const deleteAllPlannings = asyncHandler(async (req, res) => {
+  try {
+    const result = await Planning.deleteMany();
+    res.json(`${result.deletedCount} documents removed`);
+  } catch (error) {
+    res.status(404);
+    throw new Error(error);
+  }
+});

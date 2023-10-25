@@ -59,7 +59,7 @@ function MarathonDiet({ currentDiet, mealsData, dayId, onSave }) {
   };
 
   const handleSelectOption = meal => {
-    const mealFound = mealsData.find(
+    const mealFound = formData.find(
       ele => ele.diet === currentDiet && ele.meal === meal
     );
 

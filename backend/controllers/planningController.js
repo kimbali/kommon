@@ -23,16 +23,23 @@ export const getPlannings = asyncHandler(async (req, res) => {
 // @route   GET /api/plannings/:id
 // @access  Public
 export const getPlanningById = asyncHandler(async (req, res) => {
-  const planning = await Planning.findById(req.params.id).populate({
-    path: 'month',
-    populate: {
-      path: 'meals workouts meditations tasks',
+  const planning = await Planning.findById(req.params.id)
+    .populate({
+      path: 'month',
       populate: {
-        path: 'recipe',
-        model: 'Recipe',
+        path: 'meals',
+        populate: {
+          path: 'recipe',
+          model: 'Recipe',
+        },
       },
-    },
-  });
+    })
+    .populate({
+      path: 'month',
+      populate: {
+        path: 'workouts meditations tasks',
+      },
+    });
 
   if (planning) {
     return res.json(planning);

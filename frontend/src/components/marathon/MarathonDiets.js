@@ -11,10 +11,13 @@ import { useUpdateDayMutation } from '../../slices/daysApiSlice';
 import toast from 'react-hot-toast';
 import RecipeCard from '../recipes/RecipeCard';
 
-function MarathonDiet({ marathon, currentDiet, mealsData, dayId, onSave }) {
+function MarathonDiet({ currentDiet, mealsData, dayId, onSave }) {
   const [formData, setFormData] = useState(mealsData);
   const [showDietModal, setShowDietModal] = useState(false);
-  const [recipesOptions, setRecipesOptions] = useState([]);
+  const [options, setOptions] = useState([]);
+
+  const { data: recipesData } = useGetRecipesQuery({});
+  const [updateDay] = useUpdateDayMutation();
 
   useEffect(() => {
     if (mealsData) {
@@ -23,16 +26,13 @@ function MarathonDiet({ marathon, currentDiet, mealsData, dayId, onSave }) {
     }
   }, [mealsData, currentDiet]);
 
-  const { data: recipesData } = useGetRecipesQuery({});
-  const [updateDay] = useUpdateDayMutation();
-
   useEffect(() => {
     if (recipesData?.recipes) {
       const options = recipesData.recipes.map(ele => {
         return { label: ele.title, value: ele._id };
       });
 
-      setRecipesOptions(options);
+      setOptions(options);
     }
   }, [recipesData]);
 
@@ -63,7 +63,7 @@ function MarathonDiet({ marathon, currentDiet, mealsData, dayId, onSave }) {
       ele => ele.diet === currentDiet && ele.meal === meal
     );
 
-    const optionSelected = recipesOptions.find(
+    const optionSelected = options.find(
       ele => ele.value === mealFound?.recipe._id
     );
 
@@ -103,10 +103,10 @@ function MarathonDiet({ marathon, currentDiet, mealsData, dayId, onSave }) {
       {!currentDiet && <Text> Select a diet</Text>}
 
       {currentDiet && (
-        <div className='marathon-diets'>
+        <div className='marathon-config-scrollx'>
           {mealsEnum.map((enumMeal, index) => {
             const meal = formData?.find(ele => ele.meal === enumMeal.value);
-            const recipe = recipesData.recipes.find(
+            const recipe = recipesData?.recipes.find(
               ele => ele._id === meal?.recipe || ele._id === meal?.recipe?._id
             );
 
@@ -138,7 +138,7 @@ function MarathonDiet({ marathon, currentDiet, mealsData, dayId, onSave }) {
               keyValue={mealsEnum[0].value}
               label={mealsEnum[0].label}
               placeholder='Select recipe'
-              options={recipesOptions}
+              options={options}
               onChange={handleOnChange}
               selectedOption={handleSelectOption(mealsEnum[0].value)}
               name={mealsEnum[0].value}
@@ -151,7 +151,7 @@ function MarathonDiet({ marathon, currentDiet, mealsData, dayId, onSave }) {
               keyValue={mealsEnum[1].value}
               label={mealsEnum[1].label}
               placeholder='Select recipe'
-              options={recipesOptions}
+              options={options}
               onChange={handleOnChange}
               selectedOption={handleSelectOption(mealsEnum[1].value)}
               name={mealsEnum[1].value}
@@ -164,7 +164,7 @@ function MarathonDiet({ marathon, currentDiet, mealsData, dayId, onSave }) {
               keyValue={mealsEnum[2].value}
               label={mealsEnum[2].label}
               placeholder='Select recipe'
-              options={recipesOptions}
+              options={options}
               onChange={handleOnChange}
               selectedOption={handleSelectOption(mealsEnum[2].value)}
               name={mealsEnum[2].value}
@@ -177,7 +177,7 @@ function MarathonDiet({ marathon, currentDiet, mealsData, dayId, onSave }) {
               keyValue={mealsEnum[3].value}
               label={mealsEnum[3].label}
               placeholder='Select recipe'
-              options={recipesOptions}
+              options={options}
               onChange={handleOnChange}
               selectedOption={handleSelectOption(mealsEnum[3].value)}
               name={mealsEnum[3].value}
@@ -190,7 +190,7 @@ function MarathonDiet({ marathon, currentDiet, mealsData, dayId, onSave }) {
               keyValue={mealsEnum[4].value}
               label={mealsEnum[4].label}
               placeholder='Select recipe'
-              options={recipesOptions}
+              options={options}
               onChange={handleOnChange}
               selectedOption={handleSelectOption(mealsEnum[4].value)}
               name={mealsEnum[4].value}

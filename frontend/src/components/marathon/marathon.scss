@@ -32,14 +32,19 @@
   }
 }
 
-.marathon-diets {
+.marathon-config-scrollx {
   display: grid;
   width: 100%;
   grid-template-columns: repeat(5, minmax(220px, 300px));
   grid-template-rows: auto;
   gap: 18px;
-
   overflow-x: scroll;
+  overflow-y: hidden;
+
+  &.no-fix-content {
+    display: flex;
+    // grid-template-columns: repeat(auto-fill, minmax(220px, 300px));
+  }
 
   &::-webkit-scrollbar {
     height: 6px;
@@ -57,6 +62,38 @@
       background-color: $background-2;
       padding: 12px;
       border-radius: $border-radius-element;
+    }
+  }
+
+  .single-workout {
+    min-width: 262px;
+
+    .workout-card {
+      height: 280px;
+      margin-bottom: 24px;
+
+      .play-button {
+        display: none;
+      }
+    }
+  }
+}
+
+.workout-input {
+  display: grid;
+  grid-template-columns: 85% 1fr;
+
+  &.no-data {
+    grid-template-columns: 100%;
+  }
+
+  .only-icon {
+    align-items: end;
+    box-shadow: none;
+    padding-bottom: 14px;
+
+    &:hover {
+      color: $primary-color;
     }
   }
 }

@@ -9,6 +9,7 @@ import {
   useUpdatePlanningMutation,
 } from '../slices/planningsApiSlice';
 import { useCreateDayMutation } from '../slices/daysApiSlice';
+import MarathonWorkouts from '../components/marathon/MarathonWorkouts';
 
 function Planning() {
   const [currentMarathon, setCurrentMarathon] = useState();
@@ -63,7 +64,7 @@ function Planning() {
     }
   }, [currentDay, planData, currentDiet]);
 
-  const onDietSave = async () => {
+  const onEditSection = async () => {
     await refetchPlan();
   };
 
@@ -89,17 +90,28 @@ function Planning() {
         />
       )}
 
-      <Space medium />
+      <Space big />
 
       {currentMarathon && currentDay && (
         <MarathonDiets
-          marathon={currentMarathon}
           mealsData={day?.meals}
           currentDiet={currentDiet}
           dayId={day?._id}
-          onSave={onDietSave}
+          onSave={onEditSection}
         />
       )}
+
+      <Space big />
+
+      {currentMarathon && currentDay && (
+        <MarathonWorkouts
+          workoutsData={day?.workouts}
+          dayId={day?._id}
+          onSave={onEditSection}
+        />
+      )}
+
+      <Space medium />
     </div>
   );
 }

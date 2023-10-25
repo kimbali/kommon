@@ -19,6 +19,7 @@ function Text({
   center = false,
   className = '',
   color = '',
+  line = false,
 }) {
   if (isTitle) {
     return (
@@ -48,10 +49,12 @@ function Text({
             </Button>
           )}
         </div>
-
-        <div className='section-title__line'></div>
       </div>
     );
+  }
+
+  if (line) {
+    return <div className='text line' />;
   }
 
   return (

@@ -78,7 +78,7 @@ function Planning() {
 
       <Space medium />
 
-      <Text isSectionTitle />
+      <Text line />
 
       <Space medium />
 

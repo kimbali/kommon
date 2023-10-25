@@ -81,19 +81,19 @@ function MarathonSelector({ setMarathon }) {
               Marathon
             </Button>
           )}
+
+          {marathonSelected && (
+            <div className='start-end-dates content-on-the-right'>
+              <FontAwesomeIcon icon={faCalendarDays} />
+              <Text>{formatDate(marathonSelected?.value.startDate)}</Text>
+              <Text>-</Text>
+              <Text>{formatDate(marathonSelected?.value.endDate)}</Text>
+            </div>
+          )}
         </div>
       </div>
 
       <Space medium />
-
-      {marathonSelected && (
-        <div className='start-end-dates'>
-          <FontAwesomeIcon icon={faCalendarDays} />
-          <Text>{formatDate(marathonSelected?.value.startDate)}</Text>
-          <Text>-</Text>
-          <Text>{formatDate(marathonSelected?.value.endDate)}</Text>
-        </div>
-      )}
 
       {showNewMarathonModal && (
         <Modal onClose={setShowNewMarathonModal}>

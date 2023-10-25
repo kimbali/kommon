@@ -92,6 +92,7 @@ function MarathonForm({ onSucces, onCancel, marathon }) {
 
   const handleCreatePlanning = async planName => {
     const newPlan = await createPlan({ name: planName });
+
     setSelectedPlan({ label: planName, value: newPlan.data._id });
     handleOnChange({ name: 'planning', value: newPlan.data._id });
 

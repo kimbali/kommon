@@ -10,6 +10,7 @@ import {
 } from '../slices/planningsApiSlice';
 import { useCreateDayMutation } from '../slices/daysApiSlice';
 import MarathonWorkouts from '../components/marathon/MarathonWorkouts';
+import MarathonTasks from '../components/marathon/MarathonTasks';
 
 function Planning() {
   const [currentMarathon, setCurrentMarathon] = useState();
@@ -74,7 +75,10 @@ function Planning() {
 
       <Space medium />
 
-      <MarathonSelector setMarathon={setCurrentMarathon} />
+      <MarathonSelector
+        setMarathon={setCurrentMarathon}
+        planName={planData?.name}
+      />
 
       <Space medium />
 
@@ -106,6 +110,16 @@ function Planning() {
       {currentMarathon && currentDay && (
         <MarathonWorkouts
           workoutsData={day?.workouts}
+          dayId={day?._id}
+          onSave={onEditSection}
+        />
+      )}
+
+      <Space big />
+
+      {currentMarathon && currentDay && (
+        <MarathonTasks
+          tasksData={day?.tasks}
           dayId={day?._id}
           onSave={onEditSection}
         />

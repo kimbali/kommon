@@ -16,7 +16,7 @@
 
     .meal {
       font-size: 14px;
-      color: #afb2c2;
+      color: $grey-decolored;
       text-align: left;
       margin: 0 14px 0;
     }
@@ -36,7 +36,7 @@
 
     .recipe-card-data {
       margin: 0 14px 14px;
-      color: #afb2c2;
+      color: $grey-decolored;
       font-size: 12px;
 
       span {

@@ -23,7 +23,11 @@ function LogoutButton() {
     }
   };
   return (
-    <Button onClick={handleLogout} iconRight={faArrowRightFromBracket}>
+    <Button
+      className='logout-button'
+      onClick={handleLogout}
+      iconRight={faArrowRightFromBracket}
+    >
       Log out
     </Button>
   );

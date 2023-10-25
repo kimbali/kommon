@@ -73,7 +73,7 @@
   &:disabled {
     background-color: transparent;
     cursor: default;
-    color: $grey-decolored;
+    color: $disabled;
 
     p {
       color: inherit;
@@ -114,6 +114,17 @@ button.link,
     p,
     svg {
       color: $primary-color;
+    }
+  }
+}
+
+.logout-button {
+  box-shadow: none;
+
+  &:hover {
+    p,
+    svg {
+      color: $secondary-color-decolored;
     }
   }
 }

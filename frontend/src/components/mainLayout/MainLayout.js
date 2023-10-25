@@ -9,14 +9,12 @@ function MainLayout() {
     <div className='main-wrapper'>
       <MainNavBar />
 
-      <div>
+      <div className='main-content'>
         <div className='content-on-the-right'>
           <LogoutButton />
         </div>
 
-        <div className='main-content'>
-          <Outlet />
-        </div>
+        <Outlet />
       </div>
     </div>
   );

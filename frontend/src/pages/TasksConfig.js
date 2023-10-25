@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import TaskItem from '../components/tasks/TaskItem';
 import Button from '../components/button/Button';
 import {
   faEdit,
@@ -80,6 +79,7 @@ function TasksConfig() {
           {data.tasks.map((task, i) => (
             <tr key={`task-item-${i}`}>
               <td>{task.title}</td>
+
               <td className='only-icon'>
                 <Button
                   onlyIcon
@@ -87,6 +87,7 @@ function TasksConfig() {
                   onClick={() => handleEdit(task)}
                 />
               </td>
+
               <td className='only-icon'>
                 <Button
                   onlyIcon

@@ -14,7 +14,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import Space from '../space/Space';
 
-function MarathonSelector({ setMarathon }) {
+function MarathonSelector({ setMarathon, planName }) {
   const [marathonOptions, setmarathonOptions] = useState([]);
   const [marathonSelected, setMarathonSelected] = useState(null);
   const [showNewMarathonModal, setShowNewMarathonModal] = useState(false);
@@ -83,11 +83,21 @@ function MarathonSelector({ setMarathon }) {
           )}
 
           {marathonSelected && (
-            <div className='start-end-dates content-on-the-right'>
-              <FontAwesomeIcon icon={faCalendarDays} />
-              <Text>{formatDate(marathonSelected?.value.startDate)}</Text>
-              <Text>-</Text>
-              <Text>{formatDate(marathonSelected?.value.endDate)}</Text>
+            <div className='marathon-details'>
+              <div>
+                <Text>
+                  <span>Marathon plan:</span> {planName}
+                </Text>
+              </div>
+
+              <div className='start-end-date'>
+                <span>
+                  <FontAwesomeIcon icon={faCalendarDays} />
+                </span>
+                <Text>{formatDate(marathonSelected?.value.startDate)}</Text>
+                <Text>-</Text>
+                <Text>{formatDate(marathonSelected?.value.endDate)}</Text>
+              </div>
             </div>
           )}
         </div>

@@ -6,34 +6,33 @@ import Modal from '../modal/Modal';
 import { useUpdateDayMutation } from '../../slices/daysApiSlice';
 import toast from 'react-hot-toast';
 import Input from '../input/Input';
-import { useGetWorkoutsQuery } from '../../slices/workoutsApiSlice';
+import { useGetTasksQuery } from '../../slices/tasksApiSlice';
 import Button from '../button/Button';
-import WorkoutCard from '../workouts/WorkoutCard';
 
-function MarathonWorkouts({ workoutsData, dayId, onSave }) {
+function MarathonTasks({ tasksData, dayId, onSave }) {
   const [formData, setFormData] = useState();
-  const [showWorkoutModal, setShowWorkoutModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
   const [options, setOptions] = useState([]);
 
-  const { data: workoutsList } = useGetWorkoutsQuery({});
+  const { data: tasksList } = useGetTasksQuery({});
   const [updateDay] = useUpdateDayMutation();
 
   useEffect(() => {
-    if (workoutsData) {
-      const workoutsIds = workoutsData.map(ele => ele._id);
-      setFormData([...workoutsIds, '']);
+    if (tasksData) {
+      const tasksIds = tasksData.map(ele => ele._id);
+      setFormData([...tasksIds, '']);
     }
-  }, [workoutsData]);
+  }, [tasksData]);
 
   useEffect(() => {
-    if (workoutsList?.workouts) {
-      const options = workoutsList.workouts.map(ele => {
+    if (tasksList?.tasks) {
+      const options = tasksList.tasks.map(ele => {
         return { label: ele.title, value: ele._id };
       });
 
       setOptions(options);
     }
-  }, [workoutsList]);
+  }, [tasksList]);
 
   const handleOnChange = ({ name, value }, index) => {
     const modifiedArray = [...formData];
@@ -65,15 +64,16 @@ function MarathonWorkouts({ workoutsData, dayId, onSave }) {
       modifiedArr.pop();
 
       await updateDay({
-        data: { workouts: [...modifiedArr] },
+        data: { tasks: [...modifiedArr] },
         dayId,
       });
-      setShowWorkoutModal(false);
-      toast.success('Workouts updated');
+      setShowEditModal(false);
+      toast.success('Tasks updated');
 
       onSave();
     } catch (err) {
       console.error(err.message);
+      toast.error('Error updating tasks');
     }
   };
 
@@ -82,26 +82,26 @@ function MarathonWorkouts({ workoutsData, dayId, onSave }) {
       <Text
         isSectionTitle
         sectionIcon={faEdit}
-        sectionIconClick={() => setShowWorkoutModal(true)}
+        sectionIconClick={() => setShowEditModal(true)}
       >
-        Workouts
+        To do list
       </Text>
 
       <Space small />
 
-      <div className='marathon-config-scrollx no-fix-content'>
-        {workoutsData?.length > 0 &&
-          workoutsData.map((ele, index) => (
-            <div className='single-workout' key={`config-workouts-${index}`}>
-              <WorkoutCard data={ele} />
-            </div>
+      <div className='marathon-tasks'>
+        {tasksData?.length > 0 &&
+          tasksData.map((ele, index) => (
+            <Text className='single-task' key={`config-tasks-${index}`}>
+              {ele.title}
+            </Text>
           ))}
       </div>
 
-      {showWorkoutModal && (
-        <Modal scroll onClose={setShowWorkoutModal} isSecondary>
+      {showEditModal && (
+        <Modal scroll onClose={setShowEditModal} isSecondary>
           <form onSubmit={handleOnSubmit}>
-            <Text isTitle>Update workouts</Text>
+            <Text isTitle>Update tasks</Text>
 
             <Space medium />
 
@@ -109,16 +109,15 @@ function MarathonWorkouts({ workoutsData, dayId, onSave }) {
               formData.map((ele, index) => (
                 <div
                   className={`input-with-trash ${ele ? '' : 'no-data'}`}
-                  key={`input-workout${index}`}
+                  key={`input-task${index}`}
                 >
                   <Input
-                    key={`marathon-workout-${index}`}
-                    label={`Workout ${index + 1}`}
-                    placeholder='Select workout'
+                    label={`Task ${index + 1}`}
+                    placeholder='Select task'
                     options={options}
                     onChange={value => handleOnChange(value, index)}
                     selectedOption={ele && handleSelectOption(ele)}
-                    name={'workout'}
+                    name='task'
                     isSingleSelect
                   />
 
@@ -130,7 +129,7 @@ function MarathonWorkouts({ workoutsData, dayId, onSave }) {
                     />
                   )}
 
-                  <Space small />
+                  <Space extraSmall />
                 </div>
               ))}
 
@@ -138,7 +137,7 @@ function MarathonWorkouts({ workoutsData, dayId, onSave }) {
 
             <div className='content-on-the-right'>
               <Button type='submit' isPrimary iconLeft={faDumbbell}>
-                Save workouts
+                Save tasks
               </Button>
             </div>
           </form>
@@ -148,4 +147,4 @@ function MarathonWorkouts({ workoutsData, dayId, onSave }) {
   );
 }
 
-export default MarathonWorkouts;
+export default MarathonTasks;

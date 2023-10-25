@@ -1,8 +1,19 @@
-.start-end-dates {
-  text-transform: uppercase;
+.marathon-details {
   display: flex;
-  .text {
-    margin-left: 16px;
+  flex-direction: column;
+  justify-content: space-between;
+
+  span {
+    color: $grey-decolored;
+  }
+
+  .start-end-date {
+    text-transform: uppercase;
+    display: flex;
+
+    .text {
+      margin-left: 16px;
+    }
   }
 }
 
@@ -79,7 +90,7 @@
   }
 }
 
-.workout-input {
+.input-with-trash {
   display: grid;
   grid-template-columns: 85% 1fr;
 
@@ -95,5 +106,15 @@
     &:hover {
       color: $primary-color;
     }
+  }
+}
+
+.marathon-tasks {
+  background-color: $background-2;
+  padding: 24px;
+  border-radius: $border-radius-wrapper;
+
+  .single-task {
+    margin-bottom: 12px;
   }
 }

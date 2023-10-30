@@ -106,7 +106,7 @@ function MarathonSelector({ setMarathon, planName }) {
       <Space medium />
 
       {showNewMarathonModal && (
-        <Modal onClose={setShowNewMarathonModal}>
+        <Modal onClose={setShowNewMarathonModal} isSecondary>
           <MarathonForm
             onSucces={handleOnConfirmMarathon}
             onCancel={() => setShowNewMarathonModal(false)}

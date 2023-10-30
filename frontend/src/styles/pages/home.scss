@@ -1,0 +1,702 @@
+@font-face {
+  font-family: 'AvenirBlack';
+  src: url('../fonts/AvenirBlack.eot');
+  src: url('../fonts/AvenirBlack.eot') format('embedded-opentype'),
+       url('../fonts/AvenirBlack.woff2') format('woff2'),
+       url('../fonts/AvenirBlack.woff') format('woff'),
+       url('../fonts/AvenirBlack.ttf') format('truetype'),
+       url('../fonts/AvenirBlack.svg#AvenirBlack') format('svg');
+}
+@font-face {
+  font-family: 'AvenirBook';
+  src: url('../fonts/AvenirBook.eot');
+  src: url('../fonts/AvenirBook.eot') format('embedded-opentype'),
+       url('../fonts/AvenirBook.woff2') format('woff2'),
+       url('../fonts/AvenirBook.woff') format('woff'),
+       url('../fonts/AvenirBook.ttf') format('truetype'),
+       url('../fonts/AvenirBook.svg#AvenirBook') format('svg');
+}
+@font-face {
+  font-family: 'AvenirHeavy';
+  src: url('../fonts/AvenirHeavy.eot');
+  src: url('../fonts/AvenirHeavy.eot') format('embedded-opentype'),
+       url('../fonts/AvenirHeavy.woff2') format('woff2'),
+       url('../fonts/AvenirHeavy.woff') format('woff'),
+       url('../fonts/AvenirHeavy.ttf') format('truetype'),
+       url('../fonts/AvenirHeavy.svg#AvenirHeavy') format('svg');
+}
+@font-face {
+  font-family: 'AvenirMedium';
+  src: url('../fonts/AvenirMedium.eot');
+  src: url('../fonts/AvenirMedium.eot') format('embedded-opentype'),
+       url('../fonts/AvenirMedium.woff2') format('woff2'),
+       url('../fonts/AvenirMedium.woff') format('woff'),
+       url('../fonts/AvenirMedium.ttf') format('truetype'),
+       url('../fonts/AvenirMedium.svg#AvenirMedium') format('svg');
+}
+
+
+// /* Eric Meyer's CSS Reset */
+// html, body, div, span, applet, object, iframe,
+// h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+// a, abbr, acronym, address, big, cite, code,
+// del, dfn, em, img, ins, kbd, q, s, samp,
+// small, strike, strong, sub, sup, tt, var,
+// b, u, i, center,
+// dl, dt, dd, ol, ul, li,
+// fieldset, form, label, legend,
+// table, caption, tbody, tfoot, thead, tr, th, td,
+// article, aside, canvas, details, embed,
+// figure, figcaption, footer, header, hgroup,
+// menu, nav, output, ruby, section, summary,
+// time, mark, audio, video {
+// margin: 0;
+// padding: 0;
+// border: 0;
+// font-size: 100%;
+// font: inherit;
+// vertical-align: baseline;
+// }
+// /* HTML5 display-role reset for older browsers */
+// article, aside, details, figcaption, figure,
+// footer, header, hgroup, menu, nav, section {
+// display: block;
+// }
+// body {
+// line-height: 1;
+// }
+// ol, ul {
+// list-style: none;
+// }
+// blockquote, q {
+// quotes: none;
+// }
+// blockquote:before, blockquote:after,
+// q:before, q:after {
+// content: '';
+// content: none;
+// }
+// table {
+// border-collapse: collapse;
+// border-spacing: 0;
+// }
+// /* End of Eric Meyer's CSS Reset */
+
+// html {
+// height: 100%;
+// }
+// article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
+// display: block;
+// }
+// body {
+// background:#1f1d2b;
+//   font-family: 'AvenirBook';
+//   font-size:14px;
+// height: 100%;
+// }
+// body.promo-body {background:#fff;}
+// .wrapper {
+// min-width: 320px;
+// margin: 0 auto;
+// min-height: 100%;
+// height: auto !important;
+// height: 100%;
+// }
+
+
+/* Header
+-----------------------------------------------------------------------------*/
+
+.promo-header {position:absolute; left:0px; top:0px; width:100%;}
+.promo-header-left {float:left; margin:40px 0px 0px 40px;}
+.promo-header-right {float:right;}
+.main-menu li {float:left; margin-right:65px;}
+.main-menu li a {color:#fff; border-bottom:3px solid transparent; padding-bottom:2px; text-decoration:none; font-size:17px; font-family: 'AvenirHeavy';}
+.main-menu li a:hover {border-color:#f30c88;}
+.header-login {float:right; color:#fff; margin:40px 0px 0px 0px; background:url(../img/login.png) left top no-repeat; padding:0px 0px 0px 24px; background-size:14px; background-position:left 1px; font-size:17px;font-family: 'AvenirHeavy'; text-decoration:none;}
+
+.clear {clear:both;}
+.content-wrapper {max-width:1300px; padding-left:20px; padding-right:20px; margin:0 auto;}
+.page-left {width: 18%; float: left;}
+.page-right {width:82%; float:right;}
+
+.header-social {float:left;}
+.header-lk {float:right; padding-bottom:32px; margin:0px 17px 0px 0px; position:relative;}
+.header-lk-img {float:left; width:33px;}
+.header-lk-img img {width:100%; display:block; border-radius:90px;}
+.header-lk-lbl {float:left; cursor:pointer; position:relative; margin:8px 0px 0px 10px; color:#fff;font-family: 'AvenirHeavy'; font-size:16px;}
+.lk-drop {display:block; position:absolute; top:6px; right:-17px; background:url(../img/lk-drop.png) left top no-repeat; background-size:10px; width:10px; height:10px;}
+.lk-menu-drop {width:230px; z-index:99; display:none; box-sizing: border-box;-moz-box-sizing: border-box;-webkit-box-sizing: border-box; height:auto; background:#363441; position:absolute; top:50px; right:-20px; border-radius:10px; padding:20px 20px 20px 20px;}
+.header-lk:hover .lk-menu-drop {display:block;}
+.lk-menu-drop ul {margin-bottom:22px;}
+.lk-menu-drop ul li {margin-bottom:17px;}
+.lk-menu-drop ul li:last-child {margin:0px;}
+.lk-menu-drop ul li a {color:#fff; font-size:15px;font-family: 'AvenirHeavy'; text-decoration:none;}
+.lk-menu-drop ul li a:hover {color:#dedddf;}
+.lk-logout {color:#fff; display:inline-block; font-family: 'AvenirHeavy'; background:#f40384; text-decoration:none; text-align:center; font-size:15px; border-radius:8px; padding:10px 40px 12px 40px;}
+
+.header {height:80px; padding-top:30px;}
+.header-logo a {font-size:21px; color:#fff; font-family: 'AvenirBlack'; text-decoration:none;}
+.header-logo a span {color:#f70386;}
+.social-tg {display:inline-block; color:#fff; margin-right:20px; min-height:23px; font-size:16px; background:url(../img/telegram.png) left top no-repeat; background-size:23px; background-position:left 1px; padding:3px 0px 0px 32px; text-decoration:none;}
+.social-ins {display:inline-block; color:#fff; min-height:23px; font-size:16px; background:url(../img/instagram.png) left top no-repeat; background-size:22px; padding:3px 0px 0px 32px; text-decoration:none;}
+
+.workout-text ul.marked {margin-bottom:35px;}
+.workout-video iframe {width:100%; height:550px; margin-bottom:40px;}
+.workout-text p {font-size:16px; color:#fff; line-height:26px; margin-bottom:22px;}
+.workout-text p a {color:#f70386;}
+.week-ctrls-a {display:block; float:left; margin-right:15px; width:77px; text-align:center; text-decoration:none;}
+.week-ctrls-date {display:inline-block; margin-bottom:8px; font-size:12px; color:#838190;}
+.week-ctrls-day {display:inline-block; box-sizing: border-box;-moz-box-sizing: border-box;-webkit-box-sizing: border-box; padding-top:15px; font-family: 'AvenirBlack'; border-radius:10px; background:#363441; font-size:16px; color:#fff; width:100%; height:46px;}
+.week-ctrls-a.active .week-ctrls-day,.week-ctrls-a:hover .week-ctrls-day {background:#f50385;}
+
+.aside-menu-item-h {margin-bottom:25px;}
+.aside-menu-item {color:#838190; display:inline-block; text-decoration:none; font-size:15px;}
+.aside-menu-i-left {display:inline-block; background:#363441; border-radius:10px; width:37px; height:37px; vertical-align: middle;}
+.aside-menu-i-left-a {display:table; width:37px; height:37px;}
+.aside-menu-i-left-b {display:table-cell; text-align:center; vertical-align:middle; line-height:0px; width:37px; height:37px;}
+
+.aside-menu-item:hover {color:#fff;}
+.aside-menu-i-right {display:inline-block; margin:0px 0px 0px 10px; font-family: 'AvenirHeavy'; vertical-align: middle;}
+.aside-menu-i-left img {width:16px; display:inline; margin:0px; opacity:0.5;}
+.aside-menu-item-h.active .aside-menu-i-left {background:#ef0482;}
+.aside-menu-item-h.active .aside-menu-i-left img {opacity:1;}
+.aside-menu-item:hover .aside-menu-i-left img {opacity:1;}
+.aside-menu-item-h.active .aside-menu-item {color:#fff;}
+
+.app-content h1 {font-size:33px; margin-bottom:23px; color:#fff;font-family: 'AvenirBlack';}
+.app-content h2 {font-size:26px; margin-bottom:20px; color:#fff;font-family: 'AvenirBlack';}
+.one-coll {padding-bottom:60px;}
+.one-coll h1 {font-size:33px; margin-bottom:15px; color:#fff;font-family: 'AvenirBlack';}
+.one-coll p {font-size:18px; color:#fff; margin-bottom:32px;} 
+
+.activity-calendar {padding:18px 0px 0px 0px;}
+table.cal-head {width:100%;}
+table.cal-head td {text-align:center;padding:5px 0px 10px 0px; width:14%; font-size:16px; color:#7e8295;}
+table.cal-mes {width:100%;}
+table.cal-mes td {text-align:center; cursor:pointer; padding:0px 0px 18px 0px; width:14%; font-size:16px; color:#fff;}
+table.cal-mes .cal-select {display:block; cursor:pointer; width:32px; height:32px; margin:0 auto; border-radius:90px; background:#5a5861;}
+table.cal-mes .active .cal-select {background:#f10483;}
+table.cal-mes .cal-day {margin-bottom:6px; display:inline-block;}
+.cal-m-lbl {font-size:20px; margin:10px 0px 27px 10px; color:#ffffff;font-family: 'AvenirBlack';}
+
+
+.workouts {margin-bottom:38px;}
+.workout-item {height:345px;  overflow:hidden; color:#fff; border-radius:10px; background:#242736; -webkit-box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.14); -moz-box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.14); box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.14);}
+.workout-item-a {width:100%; height:100%; padding:20px; box-sizing: border-box;-moz-box-sizing: border-box;-webkit-box-sizing: border-box; background: rgb(28,31,43); background: linear-gradient(0deg, rgba(28,31,43,1) 0%, rgba(0,0,0,0) 100%);}
+.workout-item.item-s1 {width:33.3%; float:left;}
+.workout-item.item-s2 {width:64.7%; float:right}
+.workout-play {display:inline-block; width:63px; height:63px;}
+.workout-play img {width:100%;}
+
+.workout-item-b {height:185px; padding-top:68px;box-sizing: border-box;-moz-box-sizing: border-box;-webkit-box-sizing: border-box; text-align:center;}
+.workout-lbl {margin-bottom:6px;}
+.workout-lbl a {font-size:28px; color:#ffffff; text-decoration:none;font-family: 'AvenirMedium';}
+.workout-lead {font-size:15px; margin-bottom:14px; line-height:21px; color:#adadad;}
+.workout-time {float:left; margin-top:6px; font-size:16px; color:#f40384;}
+.workout-time span {color:#fff;}
+.workout-lvl {float:right; border-radius:90px; background:#414149; font-size:12px; padding:6px 12px 6px 12px;}
+
+.select2-search--dropdown {display:none !important;}
+.select2-container--default .select2-selection--single {border:0px; border-radius:8px;  background:#363441;}
+.select2-container--default .select2-selection--single .select2-selection__rendered {font-size:16px; color:#fff; font-family: 'AvenirBlack';}
+.select2-container .select2-selection--single {height:45px;}
+.select2-container--default .select2-selection--single .select2-selection__rendered {line-height:45px;}
+.select2-container .select2-selection--single .select2-selection__rendered {padding-left:18px;}
+.select2-container--default .select2-selection--single .select2-selection__arrow {background:url(../img/lk-drop.png) left top no-repeat; background-size:13px; position:absolute; top:19px; right:12px;}
+.select2-container--default .select2-selection--single .select2-selection__arrow b {display:none;}
+
+.page-ctrls {margin-bottom:30px;}
+.week-ctrls {margin-bottom:35px;}
+
+.page-ctrls .select {width:240px; float:left; margin-right:15px;}
+.shop-list-btn {float:left; margin-top:12px; cursor:pointer; color:#fff; font-size:16px; border-bottom:1px dashed #fff; padding-bottom:2px;}
+
+.c-coll-left {width:49%;float:left;}
+.c-coll-right {width:49%; float:right;}
+.p-item {width:100%; padding:22px 25px 20px 25px; float:left; min-height:32px; border-radius:10px; box-sizing: border-box;-moz-box-sizing: border-box;-webkit-box-sizing: border-box; background:#242736; -webkit-box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.14); -moz-box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.14); box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.14);}
+.p-item.progress {margin-bottom:30px;}
+.add-parameters {display:inline-block; color:#fff; text-decoration:none; font-size:16px; font-family:'AvenirBlack'; border-radius:8px; padding:14px 29px 15px 29px;/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#f90387+0,eb047f+100 */
+background: #f90387; /* Old browsers */
+background: -moz-linear-gradient(top,  #f90387 0%, #eb047f 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #f90387 0%,#eb047f 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #f90387 0%,#eb047f 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f90387', endColorstr='#eb047f',GradientType=0 ); /* IE6-9 */
+}
+.p-item.image {padding:0px; line-height:0px; margin-bottom:22px;}
+.p-item.image img {width:100%;}
+.recipe-desc h2 {margin-bottom:15px;}
+.recipe-desc p {color:#fff; font-size:16px; line-height:24px; margin-bottom:15px;}
+ul.marked {margin-bottom:22px; padding-left:14px;}
+ul.marked li {color:#fff; line-height:23px; font-size:16px; position:relative; margin-bottom:11px;}
+ul.marked li::before {width:6px; height:6px; border-radius:90px; background:#f70386; position:absolute; top:8px; left:-14px;content:"";}
+.kcal-i {display:inline-block; vertical-align:top; width:24%; text-align:center; color:#fff;}
+.kcal-i b {font-size:32px;font-family:'AvenirBlack'; margin-bottom:5px; display:block;}
+.kcal-i span {display:block; font-size:16px;}
+.p-item.kcal-row {padding-top:25px; padding-bottom:25px;}
+
+.for-who {
+
+padding:30px 0px 0px 0px;
+background: #1f2126; /* Old browsers */
+background: -moz-linear-gradient(45deg,  #1f2126 0%, #292c33 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(45deg,  #1f2126 0%,#292c33 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(45deg,  #1f2126 0%,#292c33 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1f2126', endColorstr='#292c33',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+.for-who-left {margin-left:110px; float:left; width:330px; line-height:0px;}
+.for-who-right {float:right; margin:55px 180px 0px 0px;}
+.for-who-left img {width:100%;}
+.for-who-lbl {font-size:42px; line-height:47px; margin-bottom:24px; color:#ffffff;font-family:'AvenirBlack'; color:#121316; text-transform:uppercase; color:#fff;}
+.promo-list {margin-bottom:40px;}
+.promo-list li {font-size:21px; position:relative; color:#fff; margin-bottom:21px; margin-left:25px;}
+.promo-list li::before {content:''; position:absolute; left:-28px; top:0px; width:18px; height:18px; background:url(../img/list_check.png) left top no-repeat; background-size:100%;}
+
+.results {padding:70px 0px 70px 0px; text-align:center; background:#f7f7f7;}
+.results-lbl {font-size:42px; line-height:47px; margin-bottom:34px; color:#ffffff;font-family:'AvenirBlack'; color:#121316; text-transform:uppercase; }
+.results-slider {padding:0px 100px 0px 100px;}
+.result-slider-item {padding:20px; background:#fff; border-radius:7px;-webkit-box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1); -moz-box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1); box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);}
+.result-slider-left {float:left; padding:20px 20px 20px 20px; box-sizing: border-box;-moz-box-sizing: border-box;-webkit-box-sizing: border-box; text-align:left; width:48%;}
+.result-slider-right {float:right; width:48%;}
+.result-slider-right img {width:100%;}
+.result-slider-lbl {font-size:32px; margin-bottom:14px; font-family:'AvenirBlack'; color:#121316;}
+.result-slider-txt {font-size:18px; line-height:24px;}
+.result-slider-txt p {margin-bottom:21px;}
+.result-slider-txt p:last-child {margin-bottom:0px;}
+.results .owl-carousel .owl-stage-outer {}
+.result-slider-item-a {padding:30px;}
+
+.gift {padding:70px 0px 70px 0px; 
+text-align:center;
+background: #1f2126; /* Old browsers */
+background: -moz-linear-gradient(45deg,  #1f2126 0%, #292c33 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(45deg,  #1f2126 0%,#292c33 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(45deg,  #1f2126 0%,#292c33 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1f2126', endColorstr='#292c33',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+.gift-lbl {font-size:42px; line-height:47px; margin-bottom:12px; color:#fff; font-family:'AvenirBlack'; text-transform:uppercase;}
+.gift-slbl {color:#ee0984; margin-bottom:36px; text-transform:uppercase; font-size:21px;}
+.gift-slider {padding:0px 40px 0px 40px; position:relative;}
+.gift-slider-item {min-height: 540px; background:#fff; border-radius:10px; padding:30px 20px 20px 20px; box-sizing: border-box;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;}
+.gift-slider-cnt {text-align:left; padding:20px 10px 10px 10px;}
+.gift-slider-lbl {font-size:22px; line-height:27px; margin-bottom:4px; color:#121316;font-family:'AvenirBlack';}
+.gift-slider-txt {font-size:18px; line-height:25px;}
+.gift-slider-img {text-align:center;}
+.gift-slider-img img {width:90%;}
+.owl-dots {text-align:center; margin-top:25px; width:100%;}
+.owl-dot {display:inline-block; margin:0px 3px 0px 3px;}
+.owl-dot span {display:inline-block; width:14px; height:14px; border-radius:90px; background:#bdbcbd;}
+.owl-dot.active span {background:#ec0883;} 
+.owl-prev {display:block; width:46px; height:46px; border-radius:90px; position:absolute; left:-65px; top:50%; margin-top:-23px; background:#f10a86 url(../img/slider-left.png) center center no-repeat; background-size:10px;}
+.owl-next {display:block; width:46px; height:46px; border-radius:90px; position:absolute; right:-65px; top:50%; margin-top:-23px; background:#f10a86 url(../img/slider-right.png) center center no-repeat; background-size:10px;}
+
+.form-presents-i {width:32%; position:relative; opacity:0.8; display:block; text-decoration:none; color:#1d1a1a; text-align:center; float:left; margin-right:2%; margin-bottom:12px; box-sizing: border-box;-moz-box-sizing: border-box;-webkit-box-sizing: border-box; padding:20px 10px 20px 10px; height:170px; background:#fff; border-radius:10px;}
+.form-presents-i:hover {opacity:1;}
+
+.form-presents-i:nth-child(3n) {float:right; margin-right:0px;}
+.form-presents {margin-bottom:22px;}
+.form-presents-img {display:block; margin-bottom:5px;}
+.form-presents-img img {width:100%;}
+.form-presents-lbl {font-size:15px; line-height:18px; padding:10px 5px 0px 5px; display:block; text-align:center;}
+.form-present-ok {width:33px; height:33px; opacity:0; border-radius:90px; position:absolute; top:10px; right:10px; background:#f40384 url(../img/check.png) center center no-repeat; background-size:16px;}
+.form-presents-i.active {opacity:1;}
+.form-presents-i.active .form-present-ok {opacity:1;}
+
+.checkbox {margin-bottom:17px;}
+.checkbox:last-child {margin-bottom:7px;}
+.checkbox .jq-checkbox {float: left; border:0px; position: relative; border-radius:none !important; width:21px; height:21px; box-shadow:none !important; margin-right: 13px; background:#515566;}
+.checkbox .jq-checkbox span {display: none; width:14px; height:15px;  position: absolute; border-radius:90px; left:4px; top:5px; background:url(../img/check.png) left top no-repeat; background-size:14px;}
+.checkbox .jq-checkbox.checked {display: block; background:#f00482;}
+.checkbox .jq-checkbox.checked span {display:block;}
+.checkbox .jq-checkbox.checked + span {text-decoration:line-through;}
+.form-conditions .checkbox .jq-checkbox.checked + span {text-decoration:none;}
+.form-conditions .checkbox .check-lbls {font-size:16px; cursor:default; margin-top:2px;}
+.form-conditions .checkbox .check-lbls a {color:#f90387;}
+
+
+
+
+.checkbox .jq-radio {display:inline-block;  vertical-align:middle; border:0px; position: relative; border-radius:none !important; width:35px; height:35px; box-shadow:none !important; margin-right: 16px; background:#515566;}
+.checkbox .jq-radio span {display: none; width:18px; height:18px;  position: absolute; border-radius:90px; left:10px; top:12px; background:url(../img/check.png) left top no-repeat; background-size:14px;}
+.checkbox .jq-radio.checked {display: block; background:#f00482;}
+.checkbox .jq-radio.checked span {display:block;}
+.checkbox .jq-radio.checked + span {}
+.check-more {display:block; max-width:400px; font-family: 'AvenirBook'; font-size:16px; line-height:22px; margin-top:4px;}
+
+.checkbox .check-lbls {float: left; margin:1px 0px 0px 0px; font-size:18px; color:#fff; font-family: 'AvenirHeavy'; cursor: pointer;}
+.checkbox.radio-check .check-lbls {float: none; display:inline-block; margin:0px; vertical-align:middle; font-size:18px; color:#fff; font-family: 'AvenirHeavy'; cursor: pointer;}
+
+.radio-input {margin-top:13px; padding-left:26px;}
+.tasks-lbl {font-size:18px; margin-bottom:21px; color:#7e8295;font-family: 'AvenirMedium';}
+.progress-head {margin-bottom:23px;}
+.progress-head-left {color:#fff; float:left; font-size:18px;font-family: 'AvenirMedium'; }
+.progress-head-right {color:#fff; float:right; font-size:18px;font-family: 'AvenirMedium'; }
+.chart-left {width:5%; float:left;}
+.chart-right {width:95%; float:right;}
+.chart-val-a {height:150px; width:10px; margin-bottom:12px; display:inline-block; border-radius:90px;position:relative;} 
+.chart-val-b {width:100%; height:50%; border-radius:90px; background:#eb047f; position:absolute; left:0px; bottom:0px;}
+.chart-val {text-align:center; width:25%; float:left;}
+.chart-val-lbl {font-size:15px; color:#7e8295;}
+.chart-left ul li {font-size:15px;margin-bottom:19px; color:#7e8295;}
+
+
+.diet {margin-bottom:38px;}
+.diet-item {width:23.5%; margin-right:2%; margin-bottom:20px; float:left; min-height:32px; border-radius:10px;overflow:hidden;background:#242736; -webkit-box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.14); -moz-box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.14); box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.14);}
+.diet-item:nth-child(4n) {float:right; margin-right:0px;}
+.diet-img img {width:100%;}
+.diet-content {padding:20px 20px 22px 20px;}
+.diet-type {font-size:16px; margin-bottom:14px; color:#afb2c2;}
+.diet-lbl {min-height:50px; margin-bottom:12px;}
+.diet-lbl a {font-size:18px; line-height:23px; color:#fff; text-decoration:none;}
+.diet-info {font-size:14px; color:#afb2c2;}
+.diet-info span {color:#fff;}
+
+.service-item {width:23.5%; color:#fff; text-decoration:none; display:table; height:190px; margin-right:2%; margin-bottom:20px; float:left; min-height:32px; border-radius:10px;overflow:hidden;background:#242736; -webkit-box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.14); -moz-box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.14); box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.14);}
+.service-item:nth-child(4n) {float:right; margin-right:0px;}
+.service-item-a {color:#fff; display:table-cell; width:100%; height:100%; text-align:center; vertical-align:middle;}
+.service-img {display:block; height:86px; margin-bottom:14px;}
+.service-img img {height:100%;}
+.service-lbl {display:block; font-size:20px;font-family: 'AvenirBlack';}
+
+.register-form {width:590px; margin:0 auto; float:none; padding:25px 30px 30px 30px;}
+.one-coll {width:590px; margin:0 auto;}
+.register-begin {line-height:24px; margin-bottom:21px; font-size:18px; color:#fff;}
+.register-begin-lbl {font-family:'AvenirBlack';}
+.register-step-item {text-align:center; display:inline-block; width:24%;}
+.register-step-num {width:45px; height:45px;font-size:17px; line-height:46px; color:#fff; font-family: 'AvenirBlack'; background:#333946; display:block; margin:0 auto; border-radius:90px; margin-bottom:11px;}
+.register-step-lbl {font-size:16px; color:#fff;font-family: 'AvenirBlack';}
+.active .register-step-num {background:#f30384;}
+.active .register-step-lbl {color:#f30384;}
+
+.register-steps {padding:20px 0px 44px 0px;}
+
+.form-a {margin-bottom:40px;}
+.form.final {text-align:center;}
+.form-title {font-size:25px; color:#fff; font-family: 'AvenirBlack'; margin-bottom:7px;}
+.form-txt {font-size:18px; margin-bottom:25px; line-height:24px; color:#fff;}
+.form-success-txt {font-size:18px; margin-bottom:5px; line-height:24px; color:#fff;}
+.form label {display:block; font-size:17px; margin-bottom:10px; color:#fff;}
+.form input[type="text"],.form input[type="password"], .form input[type="email"] {width:100%; outline:none; color:#fff; font-size:18px; font-family: 'AvenirBook'; box-sizing: border-box;-moz-box-sizing: border-box;-webkit-box-sizing: border-box; border:1px solid #404350; background:#313444; border-radius:7px; padding:12px 18px 11px 18px;}
+.form-line {margin-bottom:20px;}
+.form-success {text-align:center; padding:0px 0px 25px 0px;}
+.form-success img {width:130px;}
+
+.form-footer {text-align:center; padding:20px 0px 10px 0px;}
+.form-next {border:none; cursor: pointer;display:inline-block; color:#fff; text-decoration:none; font-size:16px; font-family:'AvenirBlack'; border-radius:8px; min-width:180px; padding:16px 29px 17px 29px;/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#f90387+0,eb047f+100 */
+background: #f90387; /* Old browsers */
+background: -moz-linear-gradient(top,  #f90387 0%, #eb047f 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #f90387 0%,#eb047f 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #f90387 0%,#eb047f 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f90387', endColorstr='#eb047f',GradientType=0 ); /* IE6-9 */
+}
+
+
+.promo-main {    
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#1f2126+0,292c33+100 */
+background: #1f2126; /* Old browsers */
+background: -moz-linear-gradient(45deg,  #1f2126 0%, #292c33 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(45deg,  #1f2126 0%,#292c33 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(45deg,  #1f2126 0%,#292c33 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1f2126', endColorstr='#292c33',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+min-height:600px;    
+}
+.promo-main-left {float:left; margin:120px 0px 0px 40px; color:#fff; width:500px;}
+.promo-main-right {float:right; margin-right:120px; height:600px; width:430px; background:url(../img/main-img.png) left bottom no-repeat; background-size:100%;}
+.promo-main-lbl-a {font-size:18px; margin-bottom:15px; color:#ffffff;font-family: 'AvenirMedium';}
+.promo-main-lbl-b {font-size:54px; line-height:58px; margin-bottom:12px; color:#ffffff;font-family:'AvenirBlack';}
+.promo-main-txt {font-size:18px; margin-bottom:32px; color:#fff; line-height:25px;}
+.promo-main-price {margin-bottom:26px; color:#fff;}
+.promo-main-price b {font-size:40px;font-family:'AvenirBlack';}
+.promo-main-price span {font-size:18px;}
+.main-apply {display:inline-block; text-transform:uppercase; font-size:14px; padding:23px 78px 23px 78px; border-radius:90px;
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#f50c89+0,df0078+100 */
+background: #f50c89; /* Old browsers */
+background: -moz-linear-gradient(top,  #f50c89 0%, #df0078 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #f50c89 0%,#df0078 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #f50c89 0%,#df0078 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f50c89', endColorstr='#df0078',GradientType=0 ); /* IE6-9 */
+color:#fff;font-family:'AvenirBlack'; text-decoration:none; -webkit-box-shadow: 0px 0px 30px 0px rgba(247, 3, 134, 0.23); -moz-box-shadow: 0px 0px 30px 0px rgba(247, 3, 134, 0.23); box-shadow: 0px 0px 30px 0px rgba(247, 3, 134, 0.23);
+}
+.survey-line {margin-bottom:35px;}
+.survey-line.last {margin-bottom:0px;}
+.survey-line-lbl {font-size:20px; margin-bottom:25px; color:#fff;font-family:'AvenirBlack'; border-bottom:1px solid #52566c; padding-bottom:18px;}
+.survey-line-lbl span {display:block; font-size:16px;font-family: 'AvenirBook'; margin-top:6px;}
+.radio-check {margin-bottom:22px; border-bottom:1px solid #52566c; padding-bottom:11px;}
+.calc-footer-lbl {color:#fff; font-size:18px; margin-top:32px; margin-bottom:10px;}
+.calc-footer-result {font-size:36px;font-family:'AvenirBlack'; color:#fff;}
+
+
+.main-benefits {background:#f7f7f7; padding:75px 0px 60px 0px;}
+.benefits-lbl {font-size:16px; line-height:22px; text-align:center; color:#101113;font-family:'AvenirBlack';}
+.benefits-item {display:inline-block; margin-bottom:55px; width:25%; float:left; text-align:center;}
+.benefits-icn {height:90px;}
+.benefits-icn img {width:80px;}
+.benefits-icn {margin-bottom:10px;}
+
+.promo-lbl {text-align:center;font-size:42px; line-height:58px; margin-bottom:42px; color:#ffffff;font-family:'AvenirBlack'; color:#121316; text-transform:uppercase;}
+.join-us-lbl {font-size:42px; line-height:47px; margin-bottom:7px; color:#ffffff;font-family:'AvenirBlack'; color:#121316; text-transform:uppercase;}
+.join-us-lbl span {color:#e7057f;}
+.join-us-txt {margin-bottom:35px; width:440px; font-size:16px; line-height:25px;}
+
+.join-us {padding:85px 0px 75px 0px;}
+.join-us-left {float:left; margin:45px 0px 0px 0px; width:55%;}
+.join-us-right {float:right; width:45%;}
+.join-us-right img {width:100%;}
+
+.coach {padding:85px 0px 85px 0px; background:#f7f7f7;}
+.coach-lbl {font-size:42px; text-align:center; line-height:47px; margin-bottom:37px; color:#ffffff;font-family:'AvenirBlack'; color:#121316; text-transform:uppercase;}
+.coach-item {width:47%; float:left;}
+.coach-item:nth-child(2n) {float:right;}
+.coach-item-left {width:30%; text-align:center; float:left;}
+.coach-item-right {width:70%; line-height:25px; box-sizing: border-box;-moz-box-sizing: border-box;-webkit-box-sizing: border-box; padding:0px 0px 0px 40px; font-size:18px; float:right;}
+.coach-img {margin-bottom:8px;}
+.coach-img img {width:100%;}
+.coach-name {font-size:28px; margin-bottom:10px; color:#121316;font-family:'AvenirBlack';}
+.coach-link {background:url(../img/instagram.png) left top no-repeat; background-size:18px; background-position:left 3px; padding:0px 0px 0px 24px; font-size:18px; color:#0b0a0a; text-decoration:none;}
+
+.platform {
+padding:95px 0px 95px 0px; 
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#1f2126+0,292c33+100 */
+background: #1f2126; /* Old browsers */
+background: -moz-linear-gradient(45deg,  #1f2126 0%, #292c33 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(45deg,  #1f2126 0%,#292c33 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(45deg,  #1f2126 0%,#292c33 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1f2126', endColorstr='#292c33',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */   
+}
+.platform-left {float:left; width:48%; text-align:center;}
+.platform-right {float:right; padding-top:35px; width:48%;}
+.platform-left img {width:85%;}
+.platform-lbl {font-size:28px; line-height:35px; margin:30px 0px 30px 0px; font-family:'AvenirBlack'; text-transform:uppercase; color:#fff;}
+.platform-list-lbl {position:relative; margin-left:31px; font-size:22px; color:#fff;font-family:'AvenirBlack'; margin-bottom:10px;}
+.platform-list-lbl::before {display:block; content:''; width:22px; height:22px; background:url(../img/list_check.png) left top no-repeat; background-size:22px; position:absolute; top:-1px; left:-32px;}
+.platform-list-txt {font-size:18px; color:#fff; line-height:25px;}
+.platform-list-item {margin-bottom:37px;}
+
+.options {padding:95px 0px 95px 0px; background:#f7f7f7;}
+.options .content-wrapper {padding-left:100px; padding-right:100px;}
+.options-lbl {font-size:42px; text-align:center; line-height:47px; margin-bottom:37px; color:#121316;font-family:'AvenirBlack'; color:#121316; text-transform:uppercase;}
+.option-item {/*width:33.333%;*/width:50%; min-height:685px; background:#fff; float:left; border-radius:7px;-webkit-box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1); -moz-box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1); box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);}
+.option-head {height:80px; text-align:center; border-radius:7px 7px 0px 0px; /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#bcbcbc+0,959595+100 */
+background: #bcbcbc; /* Old browsers */
+background: -moz-linear-gradient(top,  #bcbcbc 0%, #959595 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #bcbcbc 0%,#959595 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #bcbcbc 0%,#959595 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#bcbcbc', endColorstr='#959595',GradientType=0 ); /* IE6-9 */
+  box-sizing: border-box;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;
+  padding-top:28px;
+  font-size:26px; color:#ffffff; font-family:'AvenirBlack'; text-transform:uppercase;
+}
+.option-body {padding:35px 40px 20px 42px; min-height:397px;}
+.option-benefit {color:#100e0e; margin:0px 0px 0px 25px; display:block; position:relative; font-size:18px; line-height:23px; margin-bottom:18px;}
+.option-benefit::before {display:block; background:url(../img/list_check.png) left top no-repeat; background-size:100%; position:absolute; left:-33px; top:1px; content:''; width:23px; height:23px;}
+.option-benefits-price {text-align:center; padding:0px 20px 40px 20px;}
+.option-price {font-size:40px; color:#1d1717;font-family:'AvenirBlack'; margin-bottom:18px;}
+.option-item.special {z-index:99; position:relative;}
+.option-item.special .option-head {
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#f40c89+0,df0178+100 */
+background: #f40c89; /* Old browsers */
+background: -moz-linear-gradient(top,  #f40c89 0%, #df0178 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  #f40c89 0%,#df0178 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  #f40c89 0%,#df0178 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f40c89', endColorstr='#df0178',GradientType=0 ); /* IE6-9 */
+  
+} 
+
+.faq {padding:56px 0px 56px 0px;}
+.faq-lbl {font-size:42px; text-align:center; line-height:47px; margin-bottom:27px; color:#121316;font-family:'AvenirBlack'; color:#121316; text-transform:uppercase;}
+.faq-row {max-width:700px; margin:0 auto;}
+.faq-item {margin-bottom:21px;}
+.faq-item-q {font-size:18px; cursor:pointer; line-height:26px; position:relative; margin-bottom:6px; color:#100e0e; font-family:'AvenirBlack';}
+.faq-item-a {font-size:18px; display:none; line-height:26px;  color:#6e6e6e; }
+.faq-item-q::before {display:block; position:absolute; top:5px; left:-42px; content:''; background:url(../img/qa.png) left top no-repeat; background-size:28px; width:28px; height:28px;}
+.faq-item.open .faq-item-q::before {background-position:left -28px;}
+.mobile-menu-btn {width:25px; height:25px; margin:3px 0px 0px 22px; float:right; display:none;}
+.mobile-menu-btn img {width:100%;}
+
+/* Middle
+-----------------------------------------------------------------------------*/
+.content {
+padding: 0 0 605px;
+}
+
+.mobile-menu {position:absolute; display:table;  top:-1000px; left:0px; z-index:99; width:100%; height:100%; background:#1f1d2b;}
+.mobile-menu.menu-index {background:#1f2126;} 
+.mobile-menu-a {display:table-cell; position:relatve; text-align:center; vertical-align:middle;}
+.mobile-menu-a ul li {margin:25px 0px 25px 0px;}
+.mobile-menu-a ul li a {color:#fff; font-size:24px; font-family: 'AvenirHeavy'; text-decoration:none;}
+.drop-close {width:20px; height:20px; display:block; position:absolute; top:36px; right:23px;}
+.drop-close img {width:100%;}
+
+.page-holder {max-width:1350px; margin:0 auto; padding-bottom:80px;}
+
+.promo-header .mobile-menu-btn {margin-top:24px; margin-left:0px; float:left;}
+
+/* Footer
+-----------------------------------------------------------------------------*/
+.footer {text-align:center; background:#1f1d2b;padding-bottom:17px; padding-top:23px; border-top:1px solid #7c7a89; font-size:16px; color:#7c7a89;}
+
+
+@media screen and (max-width:1350px) {
+  .page-holder {padding:0px 20px 0px 20px;}
+  .owl-prev,.owl-next {display:none;}
+}
+
+@media screen and (max-width:1250px) {
+  .for-who-left {width:300px; margin-left:40px;}
+  .for-who-right {margin-right:100px;}
+  .results-slider {padding-left:0px; padding-right:0px;}
+  .promo-list li {font-size:20px;}
+  .for-who-lbl,.join-us-lbl,.promo-lbl,.results-lbl,.gift-lbl,.coach-lbl,.options-lbl,.faq-lbl {font-size:40px;}
+  .promo-main-txt {line-height:27px;}
+}
+
+@media screen and (max-width:1200px) {
+  .promo-main-right {margin-right:20px; width:390px;}
+  .promo-main-lbl-b {font-size:50px; line-height:56px;}
+  .promo-main-left {margin-left:0px;}
+  .promo-header-left {margin-left:0px;}
+  .app-content h1 {font-size:30px;}
+  .week-ctrls-day {font-size:15px;}
+  .select2-container--default .select2-selection--single .select2-selection__rendered {font-size:15px;}
+  .workout-lbl a {font-size:26px;}
+  .service-lbl {font-size:18px;}
+  .service-img {margin-bottom:16px;}
+}
+@media screen and (max-width:1100px) {
+  .diet-item {width:48%; float:left;}
+  .diet-item:nth-child(2n) {margin:0px 0px 20px 0px; width:48%; float:right;}   
+  .promo-list li {font-size:18px;}
+  .result-slider-txt p {font-size:18px; line-height:25px;}
+  .gift-slider-txt {font-size:16px; line-height:22px;}
+  .gift-slider-lbl {font-size:18px; line-height:25px;}
+  .coach-item-right,.platform-list-txt,.option-benefit,.faq-item-q,.faq-item-a {font-size:16px; line-height:22px;}
+  .platform-list-lbl {font-size:20px;}
+  .option-head {font-size:22px; padding-top:31px;}
+}
+@media screen and (max-width:1050px) {
+  .for-who-right {margin-right:20px;}
+  .for-who-left {margin-left:0px;}
+}
+@media screen and (max-width:1000px) {
+  .diet {margin-bottom:18px;}
+  .c-coll-left {float:none; margin-bottom:30px; clear:both; width:100%;}
+  .c-coll-right {float:none; width:100%; }    
+  .c-coll-left .p-item,.c-coll-rightt .p-item {float:none;}
+  .workout-lbl a {font-size:22px;}
+  .workout-lead {font-size:14px; line-height:19px;}
+  .workout-time {font-size:14px;}
+  .week-ctrls-day {height:40px; font-size:14px; padding-top:13px;}
+  .select2-container--default .select2-selection--single .select2-selection__rendered {font-size:14px;}
+  .week-ctrls-a {width:65px; margin-right:12px;}
+  .promo-main-right {display:none;}
+  .promo-main-left {float:none; margin:0px; padding-top:120px; text-align:center; width:100%;}
+  .main-menu {display:none;}
+  .result-slider-left {float:none; width:100%; margin-bottom:20px; padding:0px 0px 0px 0px;}
+  .result-slider-right {float:none; width:100%; padding:0px 0px 0px 0px;}
+  .results .content-wrapper {padding:0px;}
+  .gift-slider-cnt {padding:10px 0px 0px 0px;}
+  .gift-slider {padding:0px;}
+  .coach-item {margin-bottom:30px;}
+  .coach-item,.coach-item:nth-child(2n) {width:100%; float:none;}
+  .platform-left {margin-bottom:21px; float:none; width:100%;}
+  .platform-right {float:none; width:100%;}
+  .option-body {padding-left:40px; padding-right:40px;}
+  .options .content-wrapper {padding-left:20px; padding-right:20px;}
+  .join-us-left {text-align:center; width:100%; float:none; margin:0px 0px 0px 0px;}
+  .join-us-right {text-align:center; width:100%;float:none; margin:0px 0px 30px 0px;}
+  .join-us-right img {width:50%;}
+  .join-us-txt {margin:0 auto; margin-bottom:30px;}
+
+}
+@media screen and (max-width:900px) {  
+  .for-who {padding:80px 0px 80px 0px;}
+  .for-who-left {display:none;float:none; margin:0 auto;}
+  .for-who-right {float:none; padding:0px; margin:0px; width:100%;}
+  .workout-item.item-s1,.workout-item.item-s2 {width:100%; float:none; margin:0px 0px 20px 0px;}
+  .workout-item-b {height:150px; padding-top:50px;}
+  .workout-item {height:auto;}
+  .page-content .page-left {display:none;}
+  .page-content .page-right {float:none; width:100%;}
+  .header-social {margin-right:25px; margin-top:4px;}
+  .header .page-right {width:auto;}
+  .header .page-left {width:auto;}
+  .mobile-menu-btn {display:block;}
+  .gift-slider-txt {font-size:14px;}
+  .gift-slider-lbl {font-size:16px; line-height:22px;}
+  .result-slider-txt p {font-size:14px; line-height:22px;}
+  .result-slider-txt p {margin-bottom:12px;}
+}
+
+@media screen and (max-width:800px) {
+  .benefits-item {width:48%; float:left;}
+  .benefits-item:nth-child(2n) {width:48%; float:right;}
+  .option-body {padding-left:20px; padding-right:20px;}
+  .coach-item-right, .platform-list-txt, .option-benefit, .faq-item-q, .faq-item-a {font-size:14px;}
+  .option-price {font-size:32px;}
+  .option-body {padding-bottom:10px;}
+  .option-item .main-apply {padding-left:20px; padding-right:20px; width:100%;box-sizing: border-box;-moz-box-sizing: border-box;-webkit-box-sizing: border-box;}
+  .option-benefit::before {width:20px; height:20px; left:-29px;}
+  .option-head {font-size:17px;}
+  .option-head {height:70px; padding-top:28px;}
+  .for-who-lbl, .join-us-lbl, .promo-lbl, .results-lbl, .gift-lbl, .coach-lbl, .options-lbl, .faq-lbl {font-size:35px;}
+  .options-lbl {margin-bottom:25px;}
+  .gift-slbl {font-size:18px;}
+  .gift-lbl {margin-bottom:8px;}
+  .results-lbl {margin-bottom:5px;}
+}
+
+@media screen and (max-width:750px) {
+  .service-item {width:48.5%; float:left; margin:0px 0px 20px 0px;}
+  .service-item:nth-child(2n) {float:right;}
+  .one-coll,.register-form {width:100%;}
+  .page-content {padding-bottom:40px;}
+  .form-title {font-size:21px;}
+  .one-coll p {font-size:16px; line-height:20px;}
+  .form label {font-size:16px;}
+  .form input[type="text"] {font-size:16px;}
+  .register-form {padding-left:20px; padding-right:20px;}
+  .coach-name {font-size:22px;}
+}
+@media screen and (max-width:700px) {
+  .diet-lbl a {font-size:15px; line-height:20px;}    
+  .diet-type {font-size:15px;}      
+  .header-social {display:none;}
+}
+@media screen and (max-width:600px) {
+  .promo-main-right {display:block; text-align:center;}
+  .promo-main-right {height:460px; width:330px; margin:0 auto; float:none;}
+  .promo-main-lbl-b {font-size:40px; line-height:54px; margin-bottom:9px;}
+  .benefits-icn {margin-bottom:6px;}
+  .benefits-item {margin-bottom:40px;}
+  .coach-img {margin-bottom:12px;}
+  .coach-img img {width:50%;}
+  .coach-item-left {width:100%; margin-bottom:20px; float:none;}
+  .coach-item-right {padding:0px 0px 0px 0px; width:100%; float:none;}
+  .workout-video iframe {height:420px;}
+  .form-presents-i,.form-presents-i:nth-child(3n) {width:48%; height:175px; float:left; margin:0px 0px 20px 0px;}
+  .form-presents-i:nth-child(2n) {float:right;}
+  .diet-item,.diet-item:nth-child(2n) {float:none; width:100%;}
+  .page-ctrls .select {float:none; margin:0px 0px 10px 0px; width:100%;}
+  .week-ctrls-day {font-size:13px;}
+  .week-ctrls-a {margin-bottom:14px;}
+  .week-ctrls {margin-bottom:25px;}
+  .option-item {float:none; width:100%; margin-bottom:20px;}
+  .faq-item {margin-left:40px;}
+  .join-us-txt {width:100%;}
+  .for-who-lbl, .join-us-lbl, .promo-lbl, .results-lbl, .gift-lbl, .coach-lbl, .options-lbl, .faq-lbl {font-size:30px; line-height:38px;}
+  .join-us-right img {width:78%;}
+  .benefits-icn img {width:70px;}
+  .result-slider-lbl {font-size:24px; margin-bottom:11px;}
+  .main-benefits {padding-top:50px; padding-bottom:30px;}
+  .join-us {padding-top:45px; padding-bottom:50px;}
+  .for-who {padding-top:50px; padding-bottom:50px;}
+  .results {padding-top:50px;padding-bottom:50px;}
+  .gift {padding-top:50px;padding-bottom:50px;}
+  .coach {padding-top:50px;padding-bottom:40px;}
+  .platform {padding-top:50px;padding-bottom:30px;}
+  .options {padding-top:50px;padding-bottom:30px;}
+  .faq {padding-top:45px;padding-bottom:30px;}
+  .header-login {font-size:16px;  margin-top:30px;}
+  .promo-main-left {padding-top:110px; padding-bottom:31px;}
+  .promo-main-lbl-a {font-size:20px; margin-bottom:14px;}
+}

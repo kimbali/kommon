@@ -101,13 +101,13 @@ function TasksConfig() {
       </table>
 
       {showFormModal && (
-        <Modal onClose={setShowFormModal}>
+        <Modal onClose={setShowFormModal} isSecondary>
           <TaskForm onSuccess={onSuccessTask} data={currentTask} />
         </Modal>
       )}
 
       {showDeleteModal && (
-        <Modal onClose={setShowDeleteModal}>
+        <Modal onClose={setShowDeleteModal} isSecondary>
           <DeleteTaskForm onClose={handleDelete} task={showDeleteModal} />
         </Modal>
       )}

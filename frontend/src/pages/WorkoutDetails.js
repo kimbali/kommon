@@ -110,7 +110,7 @@ function WorkoutDetails() {
       </div>
 
       {showEditModal && (
-        <Modal scroll onClose={setShowEditModal}>
+        <Modal scroll onClose={setShowEditModal} isSecondary>
           <WorkoutForm isEdit data={workoutDetails} onSuccess={editHandler} />
         </Modal>
       )}

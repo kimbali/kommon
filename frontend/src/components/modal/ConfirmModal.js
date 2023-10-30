@@ -12,7 +12,7 @@ function ConfirmModal({
   confirmLabel = 'Confirm',
 }) {
   return (
-    <Modal onClose={onClose}>
+    <Modal onClose={onClose} isSecondary>
       <Text isTitle>{title}</Text>
 
       <Space extraSmall />

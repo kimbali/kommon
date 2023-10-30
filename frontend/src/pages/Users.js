@@ -19,7 +19,7 @@ function Users() {
       </Button>
 
       {showNewUserModal && (
-        <Modal onClose={setshowNewUserModal}>
+        <Modal onClose={setshowNewUserModal} isSecondary>
           <NewUser
             onCreate={() => setshowNewUserModal(false)}
             onCancel={() => setshowNewUserModal(false)}

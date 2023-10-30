@@ -88,7 +88,7 @@ function Workouts() {
       </ul>
 
       {showFormModal && (
-        <Modal className='recipe-modal' scroll onClose={setShowFormModal}>
+        <Modal scroll onClose={setShowFormModal} isSecondary>
           <WorkoutForm onCreate={handleOnCreate} />
         </Modal>
       )}

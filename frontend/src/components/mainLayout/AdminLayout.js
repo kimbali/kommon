@@ -7,7 +7,6 @@ import RRSS from '../header/RRSS';
 import Button from '../button/Button';
 import Modal from '../modal/Modal';
 import { useState } from 'react';
-import isDesktop from '../../utils/layoutHelpers';
 
 const AdminLayout = () => {
   const [showNav, setShowNav] = useState(false);
@@ -27,7 +26,7 @@ const AdminLayout = () => {
         </Button>
       </header>
 
-      {isDesktop ? (
+      {window.innerWidth > 1023 ? (
         <AdminNavBar />
       ) : (
         <Modal onClose={setShowNav}>
@@ -38,8 +37,6 @@ const AdminLayout = () => {
       <main>
         <Outlet />
       </main>
-
-      <footer>Footer</footer>
     </div>
   ) : (
     <Navigate to='/login' replace />

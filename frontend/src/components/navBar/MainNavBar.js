@@ -25,17 +25,7 @@ function MainNavBar({ showNav, setShowNav }) {
 
   return (
     <nav className={`menu ${showNav ? 'show-nav' : 'hide-nav'}`}>
-      {userInfo?.isAdmin && (
-        <>
-          <Button onClick={handleGoToConfig} isSecondary>
-            Go to configuration
-          </Button>
-
-          <Space medium />
-        </>
-      )}
-
-      <ul className='nav-bar'>
+      <ul className='nav-links'>
         <NavLink icon={faCalendarWeek} label='Main' route={frontRoutes.main} />
 
         <NavLink icon={faPlateWheat} label='Diet' route={frontRoutes.diet} />
@@ -58,6 +48,16 @@ function MainNavBar({ showNav, setShowNav }) {
           route={frontRoutes.progress}
         />
       </ul>
+
+      {userInfo?.isAdmin && (
+        <>
+          <Button onClick={handleGoToConfig} isSecondary>
+            Go to configuration
+          </Button>
+
+          <Space medium />
+        </>
+      )}
     </nav>
   );
 }

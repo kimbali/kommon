@@ -80,6 +80,8 @@ function App() {
 
           <Route path='*' element={<div>Not found</div>} />
         </Routes>
+
+        <footer>marathon.com All rights reserved © 2022</footer>
       </div>
     </Router>
   );

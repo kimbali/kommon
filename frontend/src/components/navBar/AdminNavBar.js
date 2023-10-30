@@ -7,7 +7,6 @@ import {
   faSpa,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
-import Space from '../space/Space';
 import './navBar.scss';
 import frontRoutes from '../../config/frontRoutes';
 import NavLink from './NavLink';
@@ -27,13 +26,7 @@ function AdminNavBar({ setShowNav }) {
 
   return (
     <nav>
-      <Button onClick={handleGoToMarathon} isSecondary>
-        Go to live KIM
-      </Button>
-
-      <Space medium />
-
-      <ul className='nav-bar'>
+      <ul className='nav-links'>
         <NavLink
           onClick={handleHideNav}
           icon={faCalendarDays}
@@ -70,6 +63,10 @@ function AdminNavBar({ setShowNav }) {
 
         <NavLink icon={faUser} label='Users' route={frontRoutes.users} />
       </ul>
+
+      <Button onClick={handleGoToMarathon} isSecondary>
+        Go to live
+      </Button>
     </nav>
   );
 }

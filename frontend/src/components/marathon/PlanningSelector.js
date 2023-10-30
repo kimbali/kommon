@@ -94,7 +94,7 @@ function PlanningSelector({ marathon, setCurrentDiet, setCurrentDay }) {
         />
       </div>
 
-      <Space medium />
+      <Space extraSmall />
 
       <div className='days-selector'>
         {monthArray &&

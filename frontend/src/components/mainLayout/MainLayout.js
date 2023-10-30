@@ -30,7 +30,7 @@ function MainLayout() {
         <Outlet />
       </main>
 
-      <footer>Footer</footer>
+      <footer>marathon.com All rights reserved © 2022</footer>
     </div>
   );
 }

@@ -82,7 +82,7 @@ function Planning() {
 
       <Space medium />
 
-      <Text line />
+      {currentMarathon && <Text line />}
 
       <Space medium />
 

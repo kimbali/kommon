@@ -20,9 +20,7 @@ function ResumeTable({ list = [], withBullets = false }) {
               </th>
 
               <td>
-                <Text isBold={eachItem.isBold} isCurrency={eachItem.isCurrency}>
-                  {eachItem.value}
-                </Text>
+                <Text isBold={eachItem.isBold}>({eachItem.value})</Text>
               </td>
             </tr>
           );

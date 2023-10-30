@@ -100,8 +100,12 @@ a {
 
 .card-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   gap: 22px;
+
+  @media screen and (min-width: 1024px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
 
   .card-item {
     img {
@@ -127,8 +131,25 @@ a {
   }
 }
 
-.wrapper {
+.page-wrapper {
+  width: 100%;
+  min-height: 82vh;
+  width: 100%;
+  max-width: 1350px;
+  padding: 0 24px 0;
+
+  .content-wrapper {
+    margin: 32px auto;
+    background-color: $background-2;
+    padding: 32px;
+    border-radius: $border-radius-wrapper;
+    max-width: 590px;
+  }
+}
+
+.background-2 {
   background-color: $background-2;
-  padding: 32px;
+  padding: 16px;
   border-radius: $border-radius-wrapper;
+  margin: 0 16px;
 }

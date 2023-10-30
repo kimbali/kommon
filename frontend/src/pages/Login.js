@@ -11,6 +11,7 @@ import Input from '../components/input/Input';
 import Text from '../components/text/Text';
 import frontRoutes from '../config/frontRoutes';
 import loginValidator from '../utils/validators/loginValidator';
+import TextedLogo from '../components/header/TextedLogo';
 
 const Login = () => {
   const [formData, setFormData] = useState({});
@@ -55,19 +56,16 @@ const Login = () => {
   };
 
   return (
-    <form className='wrapper' onSubmit={handleSubmit}>
-      <Text isTitle>Marathon</Text>
+    <div className='page-wrapper'>
+      <TextedLogo />
 
-      <Space small />
+      <form className='content-wrapper' onSubmit={handleSubmit}>
+        <Text isTitle>Log In</Text>
 
-      <Text>Sigue tu camino hacia la transformación</Text>
+        <Space medium />
 
-      <Space medium />
-
-      <div className='grid-container'>
         <Input
-          className='cols-2'
-          label='email*'
+          label='email:'
           name='email'
           placeholder='hello@bodymarathon.com'
           onChange={handleOnChange}
@@ -75,27 +73,28 @@ const Login = () => {
           error={{ invalidFields, message: 'Email field required' }}
         />
 
+        <Space medium />
+
         <Input
-          className='cols-2'
-          label='password*'
+          label='password:'
           name='password'
           placeholder='*****'
           onChange={handleOnChange}
           value={formData.password}
           error={{ invalidFields, message: 'Password field required' }}
         />
-      </div>
 
-      <Space big />
+        <Space big />
 
-      <div className='content-on-the-right'>
-        <Link to={frontRoutes.register}>Register</Link>
+        <div className='content-on-the-right'>
+          <Link to={frontRoutes.register}>Register</Link>
 
-        <Button type='submit' isPrimary iconRight={faDumbbell}>
-          Login
-        </Button>
-      </div>
-    </form>
+          <Button type='submit' isPrimary>
+            Continue
+          </Button>
+        </div>
+      </form>
+    </div>
   );
 };
 

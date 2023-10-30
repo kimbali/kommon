@@ -132,7 +132,7 @@ function RecipeDetails() {
           </div>
         </div>
 
-        <div className='recipe-details-content'>
+        <div className='recipe-details-content  background-2'>
           <Text isSectionTitle>Ingredients</Text>
 
           <Space small />
@@ -154,8 +154,7 @@ function RecipeDetails() {
           <Space medium />
 
           <Text className='steps-title' isSectionTitle>
-            <span>Steps</span>
-            <span>{minutes} MIN</span>
+            <span>Instrucción ({minutes} MIN)</span>
           </Text>
 
           <Space small />

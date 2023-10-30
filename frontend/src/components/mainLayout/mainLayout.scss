@@ -1,104 +1,117 @@
 @import '../../styles/shared.scss';
-
-.main-container {
+body {
+  background-color: $background-1;
+  color: $secondary-color;
+  font-family: $text-font;
+  font-size: 14px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  margin: 24px 24px 0;
+}
 
-  .main-wrapper {
-    min-height: 100vh;
+.app-container {
+  .app-wrapper {
+    box-sizing: border-box;
+    height: 100vh;
     max-width: 100vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    width: 98vw;
+    display: grid;
+    gap: 0px 0px;
+    grid-template-columns: 0.7fr 1.9fr 0.4fr;
+    grid-template-rows: 0.3fr 2.5fr 0.2fr;
+    grid-template-areas:
+      'HEADER HEADER HEADER'
+      'MAIN MAIN MAIN'
+      'FOOTER FOOTER FOOTER';
 
-    .main-content {
-      margin: 16px;
-      border-radius: $border-radius-wrapper;
-      width: 738px;
-      height: fit-content;
+    @media screen and (min-width: 1024px) {
+      grid-template-columns: 0.8fr 1.8fr 0.4fr;
+      grid-template-rows: 0.3fr 2.5fr 0.2fr;
+      grid-template-areas:
+        'HEADER HEADER HEADER'
+        'NAV MAIN MAIN'
+        'FOOTER FOOTER FOOTER';
     }
 
-    @media screen and (max-width: 1023px) {
-      .hide-in-mobile {
-        display: none;
+    header {
+      grid-area: HEADER;
+      display: grid;
+      gap: 0px 0px;
+      grid-template-rows: 1fr;
+      grid-template-columns: 0.8fr 1.7fr 0.5fr;
+      grid-template-areas: 'LOGO USER BREADCRUMB';
+      align-items: baseline;
+
+      @media screen and (min-width: 1024px) {
+        grid-template-columns: 0.8fr 1.7fr 0.5fr;
+        grid-template-areas: 'LOGO RRSS USER';
       }
 
-      .main-content {
-        width: auto;
+      .texted-logo {
+        grid-area: LOGO;
       }
 
-      .menu {
+      .rrss {
+        grid-area: RRSS;
+      }
+
+      .user-menu {
+        grid-area: USER;
+      }
+
+      .breadcrumb {
+        grid-area: BREADCRUMB;
+
+        @media screen and (min-width: 1024px) {
+          display: none;
+        }
+      }
+    }
+
+    .rrss {
+      display: none;
+
+      @media screen and (min-width: 1024px) {
         display: flex;
-        flex-direction: column;
-        width: 100vw;
+      }
 
-        .menu-top {
-          display: flex;
-          justify-content: space-around;
+      .text {
+        margin-right: 24px;
 
-          .logo {
-            margin: 0 14px 0 0;
-            height: 32px;
-            width: auto;
-          }
-
-          .title {
-            margin-right: 12px;
-          }
-
-          .business-info {
-            display: none;
-          }
-
-          ul {
-            display: flex;
-
-            li svg {
-              margin: 0;
-            }
-          }
-        }
-
-        .logout {
-          padding: 0;
-          margin: 0;
-        }
-
-        .space.small {
-          margin: 0;
+        svg {
+          margin-right: 8px;
         }
       }
     }
-  }
 
-  @media (min-width: 640px) {
-  }
-  @media screen and (min-width: 768px) {
-  }
-  @media screen and (min-width: 1024px) {
-    .main-wrapper {
-      flex-direction: row;
-      justify-content: space-between;
+    .user-menu {
+      justify-self: flex-end;
+    }
 
-      .menu {
-        width: 250px;
-        flex-direction: column;
+    nav {
+      grid-area: NAV;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      padding: 24px;
+    }
 
-        .menu-top {
-          display: flex;
-          flex-direction: column;
-        }
-      }
+    main {
+      grid-area: MAIN;
+    }
+
+    footer {
+      grid-area: FOOTER;
     }
   }
-  @media screen and (min-width: 1280px) {
-    width: 1022px;
+}
 
-    .menu {
-      width: 300px;
-    }
-  }
-  @media screen and (min-width: 1536px) {
-  }
+@media (min-width: 640px) {
+}
+@media screen and (min-width: 768px) {
+}
+@media screen and (min-width: 1280px) {
+}
+@media screen and (min-width: 1536px) {
 }

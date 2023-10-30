@@ -15,7 +15,7 @@ import { useSelector } from 'react-redux';
 import Button from '../button/Button';
 import { useNavigate } from 'react-router-dom';
 
-function MainNavBar() {
+function MainNavBar({ showNav, setShowNav }) {
   const { userInfo } = useSelector(state => state.auth);
 
   const navigate = useNavigate();
@@ -24,50 +24,40 @@ function MainNavBar() {
   };
 
   return (
-    <nav className='menu'>
-      <div className='menu-top'>
-        <Text isTitle>Body marathon</Text>
+    <nav className={`menu ${showNav ? 'show-nav' : 'hide-nav'}`}>
+      {userInfo?.isAdmin && (
+        <>
+          <Button onClick={handleGoToConfig} isSecondary>
+            Go to configuration
+          </Button>
 
-        <Space small />
+          <Space medium />
+        </>
+      )}
 
-        {userInfo?.isAdmin && (
-          <>
-            <Button onClick={handleGoToConfig} isSecondary>
-              Go to configuration
-            </Button>
+      <ul className='nav-bar'>
+        <NavLink icon={faCalendarWeek} label='Main' route={frontRoutes.main} />
 
-            <Space medium />
-          </>
-        )}
+        <NavLink icon={faPlateWheat} label='Diet' route={frontRoutes.diet} />
 
-        <ul className='nav-bar'>
-          <NavLink
-            icon={faCalendarWeek}
-            label='Main'
-            route={frontRoutes.main}
-          />
+        <NavLink
+          icon={faDumbbell}
+          label='Workouts'
+          route={frontRoutes.workouts}
+        />
 
-          <NavLink icon={faPlateWheat} label='Diet' route={frontRoutes.diet} />
+        <NavLink
+          icon={faSpa}
+          label='Meditations'
+          route={frontRoutes.meditation}
+        />
 
-          <NavLink
-            icon={faDumbbell}
-            label='Workouts'
-            route={frontRoutes.workouts}
-          />
-
-          <NavLink
-            icon={faSpa}
-            label='Meditations'
-            route={frontRoutes.meditation}
-          />
-
-          <NavLink
-            icon={faWeightScale}
-            label='Progress'
-            route={frontRoutes.progress}
-          />
-        </ul>
-      </div>
+        <NavLink
+          icon={faWeightScale}
+          label='Progress'
+          route={frontRoutes.progress}
+        />
+      </ul>
     </nav>
   );
 }

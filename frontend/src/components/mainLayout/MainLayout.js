@@ -1,21 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './mainLayout.scss';
 import { Outlet } from 'react-router-dom';
 import MainNavBar from '../navBar/MainNavBar';
-import LogoutButton from '../button/LogoutButton';
+import TextedLogo from '../header/TextedLogo';
+import UserMenu from '../header/UserMenu';
+import RRSS from '../header/RRSS';
+import Button from '../button/Button';
 
 function MainLayout() {
+  const [showNav, setShowNav] = useState(false);
+
   return (
-    <div className='main-wrapper'>
-      <MainNavBar />
+    <div className='app-wrapper'>
+      <header>
+        <TextedLogo />
 
-      <div className='main-content'>
-        <div className='content-on-the-right'>
-          <LogoutButton />
-        </div>
+        <RRSS />
 
+        <UserMenu />
+
+        <Button onClick={() => setShowNav(!showNav)} className='breadcrumb'>
+          X
+        </Button>
+      </header>
+
+      <MainNavBar showNav={showNav} setShowNav={setShowNav} />
+
+      <main>
         <Outlet />
-      </div>
+      </main>
+
+      <footer>Footer</footer>
     </div>
   );
 }

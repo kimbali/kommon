@@ -7,7 +7,6 @@ import {
   faSpa,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
-import Text from '../text/Text';
 import Space from '../space/Space';
 import './navBar.scss';
 import frontRoutes from '../../config/frontRoutes';
@@ -15,62 +14,62 @@ import NavLink from './NavLink';
 import Button from '../button/Button';
 import { useNavigate } from 'react-router-dom';
 
-function AdminNavBar() {
+function AdminNavBar({ setShowNav }) {
   const navigate = useNavigate();
 
   const handleGoToMarathon = () => {
     navigate(frontRoutes.main);
   };
 
+  const handleHideNav = () => {
+    setShowNav(false);
+  };
+
   return (
-    <nav className='menu'>
-      <div className='menu-top'>
-        <Text isTitle>Body marathon </Text>
-        <Text isSubtitle>configuration</Text>
+    <nav>
+      <Button onClick={handleGoToMarathon} isSecondary>
+        Go to live KIM
+      </Button>
 
-        <Space small />
+      <Space medium />
 
-        <Button onClick={handleGoToMarathon} isSecondary>
-          Go to marathon
-        </Button>
+      <ul className='nav-bar'>
+        <NavLink
+          onClick={handleHideNav}
+          icon={faCalendarDays}
+          label='Planning'
+          route={frontRoutes.planning}
+        />
 
-        <Space medium />
+        <NavLink
+          onClick={handleHideNav}
+          icon={faPlateWheat}
+          label='Recipes'
+          route={frontRoutes.dietsConfig}
+        />
 
-        <ul className='nav-bar'>
-          <NavLink
-            icon={faCalendarDays}
-            label='Planning'
-            route={frontRoutes.planning}
-          />
+        <NavLink
+          onClick={handleHideNav}
+          icon={faDumbbell}
+          label='Workouts'
+          route={frontRoutes.workoutsConfig}
+        />
 
-          <NavLink
-            icon={faPlateWheat}
-            label='Recipes'
-            route={frontRoutes.dietsConfig}
-          />
+        <NavLink
+          onClick={handleHideNav}
+          icon={faSpa}
+          label='Meditations'
+          route={frontRoutes.meditationsConfig}
+        />
 
-          <NavLink
-            icon={faDumbbell}
-            label='Workouts'
-            route={frontRoutes.workoutsConfig}
-          />
+        <NavLink
+          icon={faListCheck}
+          label='Tasks'
+          route={frontRoutes.tasksConfig}
+        />
 
-          <NavLink
-            icon={faSpa}
-            label='Meditations'
-            route={frontRoutes.meditationsConfig}
-          />
-
-          <NavLink
-            icon={faListCheck}
-            label='Tasks'
-            route={frontRoutes.tasksConfig}
-          />
-
-          <NavLink icon={faUser} label='Users' route={frontRoutes.users} />
-        </ul>
-      </div>
-      <Space small />
+        <NavLink icon={faUser} label='Users' route={frontRoutes.users} />
+      </ul>
     </nav>
   );
 }

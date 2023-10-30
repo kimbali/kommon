@@ -1,8 +1,6 @@
 @import '../../styles/shared.scss';
 
-.menu {
-  padding: 0 24px;
-
+nav {
   .text {
     color: $white;
   }
@@ -55,9 +53,5 @@
         }
       }
     }
-  }
-
-  .logout {
-    margin-top: 32px;
   }
 }

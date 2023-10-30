@@ -20,17 +20,6 @@ ol {
   padding: 0;
 }
 
-body {
-  background-color: $background-1;
-  color: $secondary-color;
-  font-family: $text-font;
-  font-size: 14px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 24px 0 42px 0;
-}
-
 form {
   width: 100%;
 }
@@ -68,6 +57,11 @@ a {
   justify-content: space-between;
   align-items: flex-start;
   width: 100%;
+  flex-direction: column;
+
+  @media screen and (min-width: 1024px) {
+    flex-direction: row;
+  }
 
   .content-on-the-right {
     width: fit-content;
@@ -77,10 +71,16 @@ a {
 .buttons-container {
   display: flex;
   justify-content: flex-start;
+  flex-direction: column;
+
+  @media screen and (min-width: 1024px) {
+    flex-direction: row;
+  }
 
   button,
   .multi-select {
     margin-right: 16px;
+    margin-bottom: 16px;
 
     svg {
       margin-right: 8px;

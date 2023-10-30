@@ -14,6 +14,11 @@ h3 {
   font-size: 26px;
   color: $secondary-color;
 
+  &.primary,
+  span.primary {
+    color: $primary-color;
+  }
+
   .secondary,
   span.secondary {
     color: $secondary-color;

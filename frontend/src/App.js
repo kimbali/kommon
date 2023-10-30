@@ -6,7 +6,7 @@ import { Toaster } from 'react-hot-toast';
 import frontRoutes from './config/frontRoutes';
 import MainLayout from './components/mainLayout/MainLayout';
 import ScrollToTop from './components/scrollToTop/ScrollToTop';
-import AdminRoute from './components/adminRoute/AdminRoute';
+import AdminLayout from './components/mainLayout/AdminLayout';
 import RecipeDetails from './pages/RecipeDetails';
 import Recipes from './pages/Recipes';
 import Users from './pages/Users';
@@ -39,7 +39,7 @@ function App() {
 
   return (
     <Router>
-      <div className='main-container'>
+      <div className='app-container'>
         <Toaster />
         <ScrollToTop />
 
@@ -55,7 +55,7 @@ function App() {
             <Route path={frontRoutes.progress} element={<Progress />} />
           </Route>
 
-          <Route path='' element={<AdminRoute />}>
+          <Route path='' element={<AdminLayout />}>
             <Route path={frontRoutes.planning} element={<Planning />} />
             <Route path={frontRoutes.users} element={<Users />} />
             <Route path={frontRoutes.dietsConfig} element={<Recipes />} />

@@ -15,6 +15,7 @@ const frontRoutes = {
   progress: '/progress',
   todoList: '/todolist',
   main: '/main',
+  home: '/home',
 };
 
 export default frontRoutes;

@@ -22,6 +22,7 @@ import MeditationsConfig from './pages/MeditationsConfig';
 import TasksConfig from './pages/TasksConfig';
 import WorkoutDetails from './pages/WorkoutDetails';
 import Planning from './pages/Planning';
+import Home from './pages/Home';
 
 function App() {
   const dispatch = useDispatch();
@@ -46,6 +47,7 @@ function App() {
         <Routes>
           <Route path={frontRoutes.register} element={<Register />} />
           <Route path={frontRoutes.login} element={<Login />} />
+          <Route path={frontRoutes.home} element={<Home />} />
 
           <Route element={<MainLayout />}>
             <Route path={frontRoutes.main} element={<Main />} />

@@ -10,7 +10,7 @@ h3 {
 
 .title,
 h3 {
-  font-family: $title-font;
+  font-family: $avenirBlack;
   font-size: 26px;
   color: $secondary-color;
 
@@ -31,7 +31,7 @@ h3 {
 
 .subtitle {
   font-size: 16px;
-  font-family: $subtitle-font;
+  font-family: $avenirHeavy;
 
   span {
     font-size: 16px;
@@ -67,7 +67,7 @@ h3 {
 }
 
 .text {
-  font-family: $text-font;
+  font-family: $avenirBook;
   font-size: 14px;
   color: $secondary-color;
 
@@ -77,8 +77,12 @@ h3 {
 
   &.cta {
     text-transform: uppercase;
-    font-family: $subtitle-font;
-    font-size: 12px;
+    font-family: $avenirHeavy;
+    font-size: 14px;
+
+    @media screen and (min-width: 1024px) {
+      font-size: 12px;
+    }
   }
 
   &.decolored {

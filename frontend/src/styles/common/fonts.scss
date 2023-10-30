@@ -1,20 +1,37 @@
+// FONTS
 @font-face {
   font-family: 'AvenirBlack';
-  src: url('../fonts/AvenirLTStd-Black.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
+  src: url('../fonts/AvenirBlack.eot');
+  src: url('../fonts/AvenirBlack.eot') format('embedded-opentype'),
+    url('../fonts/AvenirBlack.woff2') format('woff2'),
+    url('../fonts/AvenirBlack.woff') format('woff'),
+    url('../fonts/AvenirBlack.ttf') format('truetype'),
+    url('../fonts/AvenirBlack.svg#AvenirBlack') format('svg');
 }
-
 @font-face {
   font-family: 'AvenirBook';
-  src: url('../fonts/AvenirLTStd-Book.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
+  src: url('../fonts/AvenirBook.eot');
+  src: url('../fonts/AvenirBook.eot') format('embedded-opentype'),
+    url('../fonts/AvenirBook.woff2') format('woff2'),
+    url('../fonts/AvenirBook.woff') format('woff'),
+    url('../fonts/AvenirBook.ttf') format('truetype'),
+    url('../fonts/AvenirBook.svg#AvenirBook') format('svg');
 }
-
 @font-face {
-  font-family: 'AvenirHevy';
-  src: url('../fonts/AvenirHeavy.ttf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
+  font-family: 'AvenirHeavy';
+  src: url('../fonts/AvenirHeavy.eot');
+  src: url('../fonts/AvenirHeavy.eot') format('embedded-opentype'),
+    url('../fonts/AvenirHeavy.woff2') format('woff2'),
+    url('../fonts/AvenirHeavy.woff') format('woff'),
+    url('../fonts/AvenirHeavy.ttf') format('truetype'),
+    url('../fonts/AvenirHeavy.svg#AvenirHeavy') format('svg');
+}
+@font-face {
+  font-family: 'AvenirMedium';
+  src: url('../fonts/AvenirMedium.eot');
+  src: url('../fonts/AvenirMedium.eot') format('embedded-opentype'),
+    url('../fonts/AvenirMedium.woff2') format('woff2'),
+    url('../fonts/AvenirMedium.woff') format('woff'),
+    url('../fonts/AvenirMedium.ttf') format('truetype'),
+    url('../fonts/AvenirMedium.svg#AvenirMedium') format('svg');
 }

@@ -2,7 +2,7 @@
 body {
   background-color: $background-1;
   color: $secondary-color;
-  font-family: $text-font;
+  font-family: $avenirBook;
   font-size: 14px;
   display: flex;
   justify-content: center;
@@ -121,7 +121,6 @@ body {
     grid-area: FOOTER;
     color: $grey-footer;
     border-top: thin solid $grey-footer;
-    margin-top: 32px;
     width: 100%;
     text-align: center;
     padding: 24px 12px 24px;

@@ -29,8 +29,6 @@ function MainLayout() {
       <main>
         <Outlet />
       </main>
-
-      <footer>marathon.com All rights reserved © 2022</footer>
     </div>
   );
 }

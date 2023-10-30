@@ -113,50 +113,47 @@ function MarathonForm({ onSucces, onCancel, marathon }) {
       </Text>
 
       <Space medium />
-      <div className='grid-container'>
-        <Input
-          className='cols-2'
-          label='Marathon name'
-          placeholder='A name for this new marahton'
-          name='name'
-          onChange={handleOnChange}
-          value={formData?.name}
-        />
 
-        <Input
-          className='cols-2'
-          label='Marathon plan'
-          placeholder='Select a plan or introduce a new name'
-          options={planningsOptions}
-          onChange={handleSelectPlan}
-          selectedOption={selectedPlan}
-          name='planning'
-          selectCreatable
-          onCreateOption={handleCreatePlanning}
-        />
-      </div>
+      <Input
+        label='Marathon name'
+        placeholder='A name for this new marahton'
+        name='name'
+        onChange={handleOnChange}
+        value={formData?.name}
+      />
 
       <Space small />
 
-      <div className='grid-container'>
-        <Input
-          className='cols-2'
-          label='start date'
-          name='startDate'
-          type='date'
-          onChange={handleOnChange}
-          value={formData?.startDate}
-        />
+      <Input
+        label='Marathon plan'
+        placeholder='Select a plan or introduce a new name'
+        options={planningsOptions}
+        onChange={handleSelectPlan}
+        selectedOption={selectedPlan}
+        name='planning'
+        selectCreatable
+        onCreateOption={handleCreatePlanning}
+      />
 
-        <Input
-          className='cols-2'
-          label='end date'
-          name='endDate'
-          type='date'
-          onChange={handleOnChange}
-          value={formData?.endDate}
-        />
-      </div>
+      <Space small />
+
+      <Input
+        label='start date'
+        name='startDate'
+        type='date'
+        onChange={handleOnChange}
+        value={formData?.startDate}
+      />
+
+      <Space small />
+
+      <Input
+        label='end date'
+        name='endDate'
+        type='date'
+        onChange={handleOnChange}
+        value={formData?.endDate}
+      />
 
       <Space medium />
 

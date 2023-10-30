@@ -139,11 +139,16 @@ a {
   padding: 0 24px 0;
 
   .content-wrapper {
-    margin: 32px auto;
     background-color: $background-2;
-    padding: 32px;
+    margin: 32px auto;
+    padding: 24px 16px;
     border-radius: $border-radius-wrapper;
     max-width: 590px;
+
+    @media screen and (min-width: 1024px) {
+      margin: 32px auto;
+      padding: 32px;
+    }
   }
 }
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import BENEFIT_1 from '../styles/img/benefit-01.png';
@@ -27,6 +28,8 @@ import LYMPHATIC_DRAINAGE from '../styles/img/Lymphatic_Drainage_small.png';
 import COACH_1 from '../styles/img/coach-01.png';
 import COACH_2 from '../styles/img/coach-02.png';
 import PLATAFORMA from '../styles/img/platform_img2.png';
+import MENU from '../styles/img/menu.png';
+import frontRoutes from '../config/frontRoutes';
 
 function Home() {
   return (
@@ -59,7 +62,7 @@ function Home() {
       <div className='promo-header'>
         <div className='content-wrapper'>
           <a href='#' className='mobile-menu-btn'>
-            <img src='img/menu.png' />
+            <img src={MENU} alt='Breadcrumb menu' />
           </a>
           <div className='promo-header-left'>
             <ul className='main-menu'>
@@ -82,9 +85,9 @@ function Home() {
           </div>
 
           <div className='promo-header-right'>
-            <a href='login' className='header-login'>
+            <Link to={frontRoutes.login} className='header-login'>
               INICIAR SESIÓN
-            </a>
+            </Link>
           </div>
           <div className='clear'></div>
         </div>
@@ -103,17 +106,16 @@ function Home() {
             <div className='promo-main-price'>
               <b>29,90 €</b> <span>+ regalo gratis</span>
             </div>
-            <a href='promo/con-regalo/' className='main-apply'>
+            <Link to={frontRoutes.register} className='main-apply'>
               APÚNTATE YA
-            </a>
+            </Link>
           </div>
           <div className='promo-main-right'></div>
           <div className='clear'></div>
         </div>
       </div>
 
-      <a id='goals'></a>
-      <div className='main-benefits'>
+      <div id='goals' className='main-benefits'>
         <div className='content-wrapper'>
           <div className='promo-lbl'>¿QUE OBTENDRÁS?</div>
           <div className='benefits-row'>
@@ -156,8 +158,7 @@ function Home() {
         </div>
       </div>
 
-      <a id='awards'></a>
-      <div className='join-us'>
+      <div id='awards' className='join-us'>
         <div className='content-wrapper'>
           <div className='join-us-right'>
             <img src={IPHONE} alt='' />
@@ -171,9 +172,9 @@ function Home() {
               kilos que te sobran, obtener un regalo y ganar el premio
               principal!
             </div>
-            <a href='promo/con-regalo/' className='main-apply'>
+            <Link to={frontRoutes.register} className='main-apply'>
               APÚNTATE YA
-            </a>
+            </Link>
           </div>
           <div className='clear'></div>
         </div>
@@ -197,19 +198,18 @@ function Home() {
             <div className='promo-main-price'>
               <b>29,90 €</b> <span>+ regalo gratis</span>
             </div>
-            <a href='promo/con-regalo/' className='main-apply'>
+            <Link to={frontRoutes.register} className='main-apply'>
               APÚNTATE YA
-            </a>
+            </Link>
           </div>
           <div className='for-who-left'>
-            <img src={FOR_WHO} />
+            <img src={FOR_WHO} alt='for who is this marathon' />
           </div>
           <div className='clear'></div>
         </div>
       </div>
 
-      <a id='results'></a>
-      <div className='results'>
+      <div id='results' className='results'>
         <div className='content-wrapper'>
           <div className='results-lbl'>
             RESULTADOS DE NUESTRAS PARTICIPANTES
@@ -607,15 +607,14 @@ function Home() {
         </div>
       </div>
 
-      <a id='marathon'></a>
-      <div className='platform'>
+      <div id='marathon' className='platform'>
         <div className='content-wrapper'>
           <div className='platform-left'>
             <img src={PLATAFORMA} alt='' />
             <div className='platform-lbl'>plataforma moderna y cómoda</div>
-            <a href='promo/con-regalo/' className='main-apply'>
+            <Link to={frontRoutes.register} className='main-apply'>
               APÚNTATE YA
-            </a>
+            </Link>
           </div>
           <div className='platform-right'>
             <div className='platform-list'>
@@ -657,8 +656,7 @@ function Home() {
         </div>
       </div>
 
-      <a id='shedule'></a>
-      <div className='options'>
+      <div id='shedule' className='options'>
         <div className='content-wrapper'>
           <div className='options-lbl'>elige una opción</div>
           <div className='options-row'>
@@ -696,9 +694,9 @@ function Home() {
               </div>
               <div className='option-benefits-price'>
                 <div className='option-price'>29,90 €</div>
-                <a href='promo/basico/' className='main-apply'>
+                <Link to={frontRoutes.register} className='main-apply'>
                   APÚNTATE YA
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -741,9 +739,9 @@ function Home() {
               </div>
               <div className='option-benefits-price'>
                 <div className='option-price'>29,90 €</div>
-                <a href='promo/con-regalo/' className='main-apply'>
+                <Link to={frontRoutes.register} className='main-apply'>
                   APÚNTATE YA
-                </a>
+                </Link>
               </div>
             </div>
 

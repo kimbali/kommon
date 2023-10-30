@@ -6,7 +6,6 @@ import { setCredentials } from '../slices/authSlice';
 import toast from 'react-hot-toast';
 import Space from '../components/space/Space';
 import Button from '../components/button/Button';
-import { faDumbbell } from '@fortawesome/free-solid-svg-icons';
 import Input from '../components/input/Input';
 import Text from '../components/text/Text';
 import frontRoutes from '../config/frontRoutes';
@@ -57,6 +56,8 @@ const Login = () => {
 
   return (
     <div className='page-wrapper'>
+      <Space medium />
+
       <TextedLogo />
 
       <form className='content-wrapper' onSubmit={handleSubmit}>

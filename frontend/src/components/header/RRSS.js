@@ -1,18 +1,22 @@
 import React from 'react';
 import Text from '../text/Text';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCamera, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import TELEGRAM from '../../styles/img/telegram.png';
+import INSTAGRAM from '../../styles/img/instagram.png';
 
 function RRSS() {
   return (
     <div className='rrss'>
-      <Text>
-        <FontAwesomeIcon icon={faPaperPlane} /> Telegram
-      </Text>
+      <a href=''>
+        <Text>
+          <img src={TELEGRAM} alt='telegram' /> Telegram
+        </Text>
+      </a>
 
-      <Text>
-        <FontAwesomeIcon icon={faCamera} /> Instagram
-      </Text>
+      <a href=''>
+        <Text>
+          <img src={INSTAGRAM} alt='telegram' /> Instagram
+        </Text>
+      </a>
     </div>
   );
 }

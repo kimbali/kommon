@@ -2,7 +2,7 @@ form {
   .subtitle,
   label {
     color: $secondary-color;
-    font-size: 14px;
+    font-size: 16px;
     margin: 8px 0 6px 0;
     cursor: pointer;
     font-family: $avenirBook;
@@ -21,7 +21,7 @@ form {
   cursor: pointer;
 
   .input-file p {
-    height: 42px;
+    height: 50px;
     display: flex;
     align-items: center;
   }
@@ -41,9 +41,9 @@ form {
     background-color: $background-4;
     padding: 12px 18px;
     font-family: $avenirBook;
-    font-size: 14px;
+    font-size: 16px;
     width: 100%;
-    height: 42px;
+    height: 50px;
     box-shadow: $box-shadow-element;
     border: 1px solid #404350;
     cursor: pointer;
@@ -62,8 +62,8 @@ form {
     }
 
     &.has-error {
-      background-color: rgba($color: $white, $alpha: 0.22);
-      border: thin solid $danger-decolored;
+      background-color: rgba($color: $primary-color-decolored, $alpha: 0.1);
+      border: thin solid $primary-color-decolored;
     }
 
     &::-webkit-calendar-picker-indicator {
@@ -119,9 +119,80 @@ form {
     }
   }
 
+  &.radio {
+    label {
+      margin: 0;
+    }
+
+    .main-label {
+      font-size: 20px;
+      padding-bottom: 22px;
+      font-family: $avenirBlack;
+      border-bottom: 1px solid #52566c;
+    }
+
+    .radio-label {
+      padding: 22px 0;
+      border-bottom: 1px solid #52566c;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+
+      input {
+        width: 35px;
+        height: 35px;
+        margin: 0;
+        margin-right: 16px;
+        box-shadow: none;
+        position: relative;
+
+        &::after {
+          content: '';
+          width: 35px;
+          height: 35px;
+          border-radius: 100%;
+          top: 0px;
+          left: 0px;
+          position: relative;
+          background-color: #515566;
+          display: inline-block;
+          visibility: visible;
+          border: none;
+        }
+
+        &:checked:after {
+          background-color: $primary-color;
+          content: '';
+          color: $white;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-image: url('../../styles/img/check.png'); // Ruta a tu ícono de tick SVG
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: 14px;
+        }
+      }
+
+      .text {
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: center;
+        font-size: 16px;
+        letter-spacing: 0;
+
+        span {
+          font-family: $avenirBook;
+        }
+      }
+    }
+  }
+
   .multi-select {
     color: $grey-dark;
-    font-size: 14px;
+    font-size: 16px;
 
     input {
       box-shadow: none;
@@ -152,7 +223,7 @@ form {
     .multi-prefix__input-container,
     .multi-prefix__value-container,
     input {
-      height: 42px;
+      height: 50px;
     }
 
     .multi-prefix__input-container {
@@ -167,7 +238,7 @@ form {
 
     input::placeholder {
       color: $disabled;
-      font-size: 14px;
+      font-size: 16px;
     }
 
     svg {

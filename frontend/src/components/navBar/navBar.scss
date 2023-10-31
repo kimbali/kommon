@@ -26,13 +26,26 @@ nav {
         color: $disabled;
         text-decoration: none;
 
-        svg {
+        .nav-icon {
           margin-right: 16px;
           background-color: $background-2;
           padding: 12px;
           border-radius: $border-radius-element;
-          color: inherit;
-          font-size: 16px;
+          height: 36px;
+          width: 36px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          svg {
+            color: inherit;
+            font-size: 16px;
+          }
+
+          img {
+            filter: opacity(0.3);
+            width: 20px;
+          }
         }
 
         .subtitle {
@@ -43,13 +56,25 @@ nav {
 
         &:hover {
           color: $secondary-color;
+
+          img {
+            filter: opacity(1);
+          }
         }
       }
 
       &.active {
-        svg {
+        .nav-icon {
           background-color: $primary-color;
-          color: $secondary-color;
+
+          svg {
+            background-color: $primary-color;
+            color: $secondary-color;
+          }
+
+          img {
+            filter: opacity(1);
+          }
         }
 
         .subtitle {

@@ -13,43 +13,35 @@ import NavLink from './NavLink';
 import Button from '../button/Button';
 import { useNavigate } from 'react-router-dom';
 
-function AdminNavBar({ setShowNav }) {
+function AdminNavBar() {
   const navigate = useNavigate();
 
   const handleGoToMarathon = () => {
     navigate(frontRoutes.main);
   };
 
-  const handleHideNav = () => {
-    setShowNav(false);
-  };
-
   return (
     <nav>
       <ul className='nav-links'>
         <NavLink
-          onClick={handleHideNav}
           icon={faCalendarDays}
           label='Planning'
           route={frontRoutes.planning}
         />
 
         <NavLink
-          onClick={handleHideNav}
           icon={faPlateWheat}
           label='Recipes'
           route={frontRoutes.dietsConfig}
         />
 
         <NavLink
-          onClick={handleHideNav}
           icon={faDumbbell}
           label='Workouts'
           route={frontRoutes.workoutsConfig}
         />
 
         <NavLink
-          onClick={handleHideNav}
           icon={faSpa}
           label='Meditations'
           route={frontRoutes.meditationsConfig}

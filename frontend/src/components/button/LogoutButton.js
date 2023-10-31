@@ -24,7 +24,7 @@ function LogoutButton() {
   };
   return (
     <Button
-      className='logout-button'
+      className='logout-cta'
       onClick={handleLogout}
       iconRight={faArrowRightFromBracket}
     >

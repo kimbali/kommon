@@ -20,6 +20,8 @@ function Text({
   className = '',
   color = '',
   line = false,
+  fontSize = '',
+  error,
 }) {
   if (isTitle) {
     return (
@@ -62,8 +64,10 @@ function Text({
       className={`text ${className} ${isBold ? 'bold' : ''} ${
         isCTA ? 'cta' : ''
       } ${isPlaceholder ? 'decolored' : ''} ${danger ? 'danger' : ''} ${
-        small ? 'small' : ''
-      } ${isCurrency ? 'align-right' : ''} ${center ? 'center' : ''} ${color}`}
+        error ? 'error' : ''
+      } ${small ? 'small' : ''} ${isCurrency ? 'align-right' : ''} ${
+        center ? 'center' : ''
+      } ${color} ${`font-${fontSize}`}`}
     >
       {children}
     </p>

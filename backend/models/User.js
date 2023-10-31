@@ -29,6 +29,12 @@ const userSchema = new Schema(
     chest: Number,
     waist: Number,
     buttocks: Number,
+    activity: String,
+    porpuse: String,
+    smoke: String,
+    alcohol: String,
+    problems: String,
+    patologies: [String],
   },
   {
     timestamps: true,

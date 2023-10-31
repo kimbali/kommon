@@ -98,11 +98,25 @@ const getUserProfile = asyncHandler(async (req, res) => {
 // @route   PUT /api/users/profile
 // @access  Private
 const updateUserProfile = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.user._id);
+  const user = await User.findById(req.user._id).select('-password');
 
   if (user) {
     user.name = req.body.name || user.name;
     user.email = req.body.email || user.email;
+
+    user.age = req.body.age || user.age;
+    user.weight = req.body.weight || user.weight;
+    user.height = req.body.height || user.height;
+    user.chest = req.body.chest || user.chest;
+    user.waist = req.body.waist || user.waist;
+    user.buttocks = req.body.buttocks || user.buttocks;
+
+    user.activity = req.body.activity || user.activity;
+    user.porpuse = req.body.porpuse || user.porpuse;
+    user.smoke = req.body.smoke || user.smoke;
+    user.alcohol = req.body.alcohol || user.alcohol;
+    user.problems = req.body.problems || user.problems;
+    user.patologies = req.body.patologies || user.patologies;
 
     if (req.body.password) {
       user.password = req.body.password;
@@ -110,12 +124,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 
     const updatedUser = await user.save();
 
-    res.json({
-      _id: updatedUser._id,
-      name: updatedUser.name,
-      email: updatedUser.email,
-      isAdmin: updatedUser.isAdmin,
-    });
+    res.json(updatedUser);
   } else {
     res.status(404);
     throw new Error('User not found');

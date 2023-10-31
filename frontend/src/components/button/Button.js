@@ -18,6 +18,7 @@ function Button({
   disabled,
   onlyIcon = false,
   small = false,
+  big = false,
 }) {
   return (
     <button
@@ -30,7 +31,7 @@ function Button({
         isActive ? 'active' : ''
       } ${center ? 'center' : ''} ${onlyIcon ? 'only-icon' : ''} ${
         small ? 'small' : ''
-      }`}
+      } ${big ? 'big' : ''}`}
     >
       {iconLeft && <FontAwesomeIcon icon={iconLeft} className='left' />}
 

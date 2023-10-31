@@ -1,25 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import Button from '../components/button/Button';
-import Text from '../components/text/Text';
 import Space from '../components/space/Space';
-import Input from '../components/input/Input';
-import { useRegisterMutation } from '../slices/usersApiSlices';
-import { setCredentials } from '../slices/authSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { faDumbbell } from '@fortawesome/free-solid-svg-icons';
+import { useSelector } from 'react-redux';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import toast from 'react-hot-toast';
-import registerValidator from '../utils/validators/registerValidator';
 import frontRoutes from '../config/frontRoutes';
+import TextedLogo from '../components/header/TextedLogo';
+import { registerRedirectValidator } from '../utils/validators/registerValidator';
+import RegisterFormOne from '../components/register/RegisterFormOne';
+import RegisterFormTwo from '../components/register/RegisterFormTwo';
+import RegisterFormThree from '../components/register/RegisterFormThree';
+import RegisterFormFour from '../components/register/RegisterFormFour';
+import Text from '../components/text/Text';
+import Button from '../components/button/Button';
 
 function Register() {
-  const [formData, setFormData] = useState({});
-  const [invalidFields, setInvalidFields] = useState('');
-
-  const dispatch = useDispatch();
+  const [currentForm, setcurrentForm] = useState();
   const navigate = useNavigate();
-
-  const [register] = useRegisterMutation();
 
   const { userInfo } = useSelector(state => state.auth);
 
@@ -28,127 +23,94 @@ function Register() {
   const redirect = sp.get('redirect') || frontRoutes.main;
 
   useEffect(() => {
+    const redirectTo = registerRedirectValidator(userInfo);
+
+    if (redirectTo) {
+      setcurrentForm(redirectTo);
+      return;
+    }
+
     if (userInfo) {
       navigate(redirect);
     }
   }, [navigate, redirect, userInfo]);
 
-  const handleOnChange = ({ name, value }) => {
-    setFormData({ ...formData, [name]: value });
+  const handleStep = nextStep => {
+    setcurrentForm(nextStep);
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleSubmit = async e => {
-    e.preventDefault();
-
-    const errors = registerValidator(formData);
-    setInvalidFields(errors);
-
-    if (errors) {
-      return;
-    }
-
-    const { password, confirmPassword, name, email, city, phone } = formData;
-
-    if (password !== confirmPassword) {
-      toast.error('Passwords do not match');
-    } else {
-      try {
-        const res = await register({
-          name,
-          email,
-          password,
-          city,
-          phone,
-        }).unwrap();
-        dispatch(setCredentials({ ...res }));
-        navigate(redirect);
-      } catch (err) {
-        toast.error(err?.data?.message || err.error);
-      }
-    }
-  };
+  const registerSteps = [
+    {
+      label: 'Info',
+      step: 1,
+    },
+    {
+      label: 'Measuring',
+      step: 2,
+    },
+    {
+      label: 'Survey',
+      step: 3,
+    },
+    {
+      label: 'Done',
+      step: 4,
+    },
+  ];
 
   return (
-    <form className='wrapper' onSubmit={handleSubmit}>
-      <Text isTitle>Registro marathon</Text>
-
-      <Space small />
-
-      <Text isBold>Rellenar el formulario</Text>
-      <Text>Comienza tu camino hacia la transformación</Text>
-
+    <div className='page-wrapper'>
       <Space medium />
+      <div className='content-left-and-right'>
+        <TextedLogo />
 
-      <div className='grid-container'>
-        <Input
-          className='cols-2'
-          label='email*'
-          name='email'
-          placeholder='hello@bodymarathon.com'
-          onChange={handleOnChange}
-          value={formData.email}
-          error={{ invalidFields, message: 'Email field required' }}
-        />
-
-        <Input
-          className='cols-2'
-          label='name*'
-          name='name'
-          placeholder='Full name'
-          onChange={handleOnChange}
-          value={formData.name}
-          error={{ invalidFields, message: 'Name field required' }}
-        />
-
-        <Input
-          className='cols-2'
-          label='Phone number'
-          name='phone'
-          placeholder='+34 000 000 000'
-          onChange={handleOnChange}
-          value={formData.phone}
-        />
-
-        <Input
-          className='cols-2'
-          label='Ciudad'
-          name='city'
-          placeholder='Barcelona'
-          onChange={handleOnChange}
-          value={formData.city}
-        />
-
-        <Input
-          className='cols-2'
-          label='password*'
-          name='password'
-          placeholder='*****'
-          onChange={handleOnChange}
-          value={formData.password}
-          error={{ invalidFields, message: 'Password field required' }}
-        />
-
-        <Input
-          className='cols-2'
-          label='Confirm password*'
-          name='confirmPassword'
-          placeholder='*****'
-          onChange={handleOnChange}
-          value={formData.confirmPassword}
-          error={{ invalidFields, message: 'Confirm password field required' }}
-        />
+        {currentForm === 1 && (
+          <Link className='login-cta' to={frontRoutes.login}>
+            Login
+          </Link>
+        )}
       </div>
 
-      <Space big />
+      <div className='content-wrapper'>
+        <Text isBold fontSize='18'>
+          Rellenar el formulario
+        </Text>
+        <Text fontSize='18'>Comienza tu camino hacia la transformación</Text>
 
-      <div className='content-on-the-right'>
-        <Link to={frontRoutes.login}>Login</Link>
+        <Space medium />
 
-        <Button type='submit' isPrimary iconLeft={faDumbbell}>
-          Register
-        </Button>
+        <div className='register-steps'>
+          {registerSteps.map((ele, i) => (
+            <div
+              className={`single-step ${i < currentForm ? 'active' : ''}`}
+              key={`register-step${i}`}
+            >
+              <Button onClick={() => handleStep(i + 1)} isPrimary>
+                {ele.step}
+              </Button>
+
+              <Text className='step-label'>{ele.label}</Text>
+            </div>
+          ))}
+        </div>
+
+        <Space medium />
+
+        {currentForm === 1 && <RegisterFormOne onSuccess={handleStep} />}
+
+        {currentForm === 2 && (
+          <RegisterFormTwo onSuccess={handleStep} userInfo={userInfo} />
+        )}
+
+        {currentForm === 3 && (
+          <RegisterFormThree onSuccess={handleStep} userInfo={userInfo} />
+        )}
+
+        {currentForm === 4 && <RegisterFormFour userInfo={userInfo} />}
       </div>
-    </form>
+    </div>
   );
 }
 

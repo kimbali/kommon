@@ -72,10 +72,15 @@ function Input({
 
   return (
     <div className={`field ${className} ${name} ${type}`}>
-      {label && <label htmlFor={name}>{label}</label>}
+      {label && (
+        <label className='main-label' htmlFor={name}>
+          {label}
+        </label>
+      )}
 
       {type !== 'select' &&
         type !== 'textarea' &&
+        type !== 'radio' &&
         !isMultiSelect &&
         !isSingleSelect &&
         !selectCreatable && (
@@ -176,6 +181,28 @@ function Input({
         />
       )}
 
+      {type === 'radio' &&
+        options.map(option => (
+          <label
+            className='radio-label'
+            key={`${option.value}-${name}`}
+            htmlFor={`${option.value}-${name}`}
+          >
+            <input
+              name={name}
+              id={`${option.value}-${name}`}
+              type='radio'
+              value={option.value}
+              onChange={handleOnChange}
+              checked={selectedOption === option.value}
+            />
+            <Text isBold>
+              {option.label}
+              {option.sublabel && <span>{option.sublabel}</span>}
+            </Text>
+          </label>
+        ))}
+
       {type === 'file' && (
         <div className='input-file'>
           <Text className={value ? 'has-value' : 'placeholder'}>
@@ -187,7 +214,7 @@ function Input({
         </div>
       )}
 
-      {hasError && <Text danger>{error?.message}</Text>}
+      {hasError && <Text error>{error?.message}</Text>}
     </div>
   );
 }

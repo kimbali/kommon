@@ -54,9 +54,9 @@ body {
       display: grid;
       gap: 0px 0px;
       grid-template-rows: 1fr;
-      grid-template-columns: 1fr 2fr 2fr;
+      grid-template-columns: 3fr 1fr 1fr;
       grid-template-areas: 'LOGO USER BREADCRUMB';
-      align-items: baseline;
+      align-items: center;
 
       @media screen and (min-width: 1024px) {
         gap: 24px;
@@ -66,6 +66,11 @@ body {
 
       .texted-logo {
         grid-area: LOGO;
+        font-size: 22px;
+
+        @media screen and (min-width: 1024px) {
+          font-size: 26px;
+        }
       }
 
       .rrss {
@@ -78,6 +83,13 @@ body {
 
       .breadcrumb {
         grid-area: BREADCRUMB;
+        padding: 0;
+        box-shadow: none;
+        justify-self: end;
+
+        img {
+          height: 24px;
+        }
 
         @media screen and (min-width: 1024px) {
           display: none;

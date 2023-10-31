@@ -7,6 +7,7 @@ import UserMenu from '../header/UserMenu';
 import RRSS from '../header/RRSS';
 import Button from '../button/Button';
 import Modal from '../modal/Modal';
+import MENU from '../../styles/img/menu.png';
 
 const AdminLayout = () => {
   const [showNav, setShowNav] = useState(false);
@@ -28,16 +29,18 @@ const AdminLayout = () => {
         <UserMenu />
 
         <Button onClick={() => setShowNav(!showNav)} className='breadcrumb'>
-          X
+          <img src={MENU} />
         </Button>
       </header>
 
       {window.innerWidth > 1023 ? (
         <AdminNavBar />
       ) : (
-        <Modal onClose={setShowNav}>
-          <AdminNavBar />
-        </Modal>
+        showNav && (
+          <Modal onClose={setShowNav}>
+            <AdminNavBar />
+          </Modal>
+        )
       )}
 
       <main>

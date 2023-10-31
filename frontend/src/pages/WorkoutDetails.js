@@ -61,37 +61,39 @@ function WorkoutDetails() {
 
   return (
     <div className='workout-details'>
-      <div className='content-on-the-right'>
-        <Button
-          onClick={() => setShowEditModal(true)}
-          iconLeft={faEdit}
-          isPrimary
-        >
-          Edit workout
-        </Button>
+      <div className='content-left-and-right'>
+        <Text isTitle>{title}</Text>
 
-        <Button
-          onClick={() => setShowDeleteModal(true)}
-          iconLeft={faTrash}
-          isSecondary
-        >
-          Delete workout
-        </Button>
+        <Space small />
 
-        {showDeleteModal && (
-          <ConfirmModal
-            onConfirm={deleteHandler}
-            onClose={setShowDeleteModal}
-            title='Delete workout'
-            text={`Are you sure you whant to delete: ${title}`}
-            confirmLabel='Delete'
-          />
-        )}
+        <div className='content-on-the-right'>
+          <Button
+            onClick={() => setShowEditModal(true)}
+            iconLeft={faEdit}
+            isPrimary
+          >
+            Edit workout
+          </Button>
+
+          <Button
+            onClick={() => setShowDeleteModal(true)}
+            iconLeft={faTrash}
+            isSecondary
+          >
+            Delete workout
+          </Button>
+        </div>
       </div>
 
-      <Space medium />
-
-      <Text isTitle>{title}</Text>
+      {showDeleteModal && (
+        <ConfirmModal
+          onConfirm={deleteHandler}
+          onClose={setShowDeleteModal}
+          title='Delete workout'
+          text={`Are you sure you whant to delete: ${title}`}
+          confirmLabel='Delete'
+        />
+      )}
 
       <Space small />
 

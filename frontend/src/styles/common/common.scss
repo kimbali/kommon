@@ -52,6 +52,18 @@ a {
   }
 }
 
+.content-on-the-left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+
+  button,
+  .text {
+    margin-left: 12px;
+  }
+}
+
 .content-left-and-right {
   display: flex;
   justify-content: space-between;

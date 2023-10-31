@@ -45,7 +45,7 @@ function WorkoutForm({ data, onSuccess, isEdit }) {
   };
 
   return (
-    <div className=''>
+    <div className='workout-form'>
       <Text isTitle>{isEdit ? 'Edit workout' : 'Create workout'}</Text>
 
       <Space small />
@@ -65,7 +65,7 @@ function WorkoutForm({ data, onSuccess, isEdit }) {
             className='cols-4'
             type='textarea'
             label='description'
-            placeholder='Brief description of the video'
+            placeholder='Utiliza un guión "-" seguido de un salto de linea para crear listas'
             name='description'
             onChange={handleOnChange}
             value={formData.description}

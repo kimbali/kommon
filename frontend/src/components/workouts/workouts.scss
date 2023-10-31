@@ -100,3 +100,39 @@
   font-size: 12px;
   width: fit-content;
 }
+
+.workout-form {
+  textarea {
+    height: 200px;
+    font-family: 13px;
+  }
+}
+
+.workout-details {
+  .description {
+    p {
+      font-family: $avenirBlack;
+      margin-bottom: 16px;
+    }
+
+    ul {
+      margin-bottom: 24px;
+
+      li {
+        position: relative;
+        padding-left: 18px;
+
+        &::before {
+          width: 6px;
+          height: 6px;
+          border-radius: 90px;
+          background: #f70386;
+          position: absolute;
+          top: 6px;
+          left: 0;
+          content: '';
+        }
+      }
+    }
+  }
+}

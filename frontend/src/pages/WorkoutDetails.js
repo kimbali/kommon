@@ -13,9 +13,11 @@ import Button from '../components/button/Button';
 import frontRoutes from '../config/frontRoutes';
 import ConfirmModal from '../components/modal/ConfirmModal';
 import Modal from '../components/modal/Modal';
-
 import WorkoutForm from '../components/workouts/WorkoutForm';
 import { getLevelLabel } from '../config/enums/levelsEnum';
+import VideoPlayer from '../components/video/VideoPlayer';
+import Markdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 function WorkoutDetails() {
   const { id } = useParams();
@@ -58,7 +60,7 @@ function WorkoutDetails() {
   const { title, description, minutes, image, video, level } = workoutDetails;
 
   return (
-    <>
+    <div className='workout-details'>
       <div className='content-on-the-right'>
         <Button
           onClick={() => setShowEditModal(true)}
@@ -93,15 +95,7 @@ function WorkoutDetails() {
 
       <Space small />
 
-      <Text>{description}</Text>
-
-      <Space medium />
-
-      {image && <img alt={title} src={`${image}`} />}
-
-      <Space small />
-
-      <div className='content-left-and-right'>
+      <div className='content-on-the-left'>
         <Text>
           <span className='primary'>{minutes}</span> min
         </Text>
@@ -109,12 +103,22 @@ function WorkoutDetails() {
         <Text className='pill'>{getLevelLabel(level)}</Text>
       </div>
 
+      <Space medium />
+
+      <VideoPlayer url={'https://vimeo.com/718780725/6da8ad7304'} />
+
+      <Space small />
+
+      <Markdown className='description' remarkPlugins={[remarkGfm]}>
+        {description}
+      </Markdown>
+
       {showEditModal && (
         <Modal scroll onClose={setShowEditModal} isSecondary>
           <WorkoutForm isEdit data={workoutDetails} onSuccess={editHandler} />
         </Modal>
       )}
-    </>
+    </div>
   );
 }
 

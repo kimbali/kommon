@@ -25,7 +25,7 @@ const Login = () => {
 
   useEffect(() => {
     if (userInfo) {
-      navigate(userInfo.isAdmin ? frontRoutes.dietsConfig : frontRoutes.main);
+      navigate(userInfo.isAdmin ? frontRoutes.planning : frontRoutes.main);
     }
   }, [navigate, userInfo]);
 
@@ -48,7 +48,7 @@ const Login = () => {
     try {
       const res = await login({ email, password }).unwrap();
       dispatch(setCredentials({ ...res }));
-      navigate(res.isAdmin ? frontRoutes.dietsConfig : frontRoutes.main);
+      navigate(res.isAdmin ? frontRoutes.planning : frontRoutes.main);
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }
@@ -87,7 +87,7 @@ const Login = () => {
 
         <Space big />
 
-        <div className='content-on-the-right'>
+        <div className='content-on-the-right allways'>
           <Link to={frontRoutes.register}>Register</Link>
 
           <Button type='submit' isPrimary>

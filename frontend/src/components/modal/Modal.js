@@ -9,6 +9,7 @@ function Modal({
   scroll = false,
   className = '',
   isSecondary = false,
+  fullWidth = false,
 }) {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -22,7 +23,9 @@ function Modal({
 
   return createPortal(
     <div
-      className={`modal ${className}${isSecondary ? ' secondary-modal' : ''}`}
+      className={`modal ${className}${isSecondary ? ' secondary-modal' : ''} ${
+        fullWidth ? 'full-width' : ''
+      }`}
     >
       <div className={`modal-content ${scroll ? 'scroll' : ''}`}>
         <button className='close-icon' onClick={() => onClose(false)}>

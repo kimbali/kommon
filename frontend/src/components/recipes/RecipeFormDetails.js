@@ -91,22 +91,22 @@ function RecipeFormDetails({
 
       <div className='propiedades'>
         <div className='propiedad'>
-          <Text isSubtitle>kcal</Text>
+          <Text>KCAL</Text>
           <Text>{calories || '0'}</Text>
         </div>
 
         <div className='propiedad'>
-          <Text isSubtitle>prot</Text>
+          <Text>PROT</Text>
           <Text>{proteins || '0'}</Text>
         </div>
 
         <div className='propiedad'>
-          <Text isSubtitle>Fats</Text>
+          <Text>FATS</Text>
           <Text>{fats || '0'}</Text>
         </div>
 
         <div className='propiedad'>
-          <Text isSubtitle>carbh</Text>
+          <Text>CARBH</Text>
           <Text>{carbohydrates || '0'}</Text>
         </div>
       </div>

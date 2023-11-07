@@ -4,9 +4,9 @@ import { useDispatch } from 'react-redux';
 import { logout } from './slices/authSlice';
 import { Toaster } from 'react-hot-toast';
 import frontRoutes from './config/frontRoutes';
-import MainLayout from './components/mainLayout/MainLayout';
+import MainLayout from './components/layout/MainLayout';
 import ScrollToTop from './components/scrollToTop/ScrollToTop';
-import AdminLayout from './components/mainLayout/AdminLayout';
+import AdminLayout from './components/layout/AdminLayout';
 import RecipeDetails from './pages/RecipeDetails';
 import Recipes from './pages/Recipes';
 import Users from './pages/Users';
@@ -23,6 +23,11 @@ import TasksConfig from './pages/TasksConfig';
 import WorkoutDetails from './pages/WorkoutDetails';
 import Planning from './pages/Planning';
 import Home from './pages/Home';
+import Footer from './components/footer/Footer';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsAndConditions from './pages/TermsAndConditions';
+import CookiesFiles from './pages/CookiesFiles';
+import PlainLayout from './components/layout/PlainLayout';
 
 function App() {
   const dispatch = useDispatch();
@@ -48,6 +53,15 @@ function App() {
           <Route path={frontRoutes.register} element={<Register />} />
           <Route path={frontRoutes.login} element={<Login />} />
           <Route path={frontRoutes.home} element={<Home />} />
+
+          <Route element={<PlainLayout />}>
+            <Route
+              path={frontRoutes.privacyPolicy}
+              element={<PrivacyPolicy />}
+            />
+            <Route path={frontRoutes.terms} element={<TermsAndConditions />} />
+            <Route path={frontRoutes.cookies} element={<CookiesFiles />} />
+          </Route>
 
           <Route element={<MainLayout />}>
             <Route path={frontRoutes.main} element={<Main />} />
@@ -83,7 +97,7 @@ function App() {
           <Route path='*' element={<div>Not found</div>} />
         </Routes>
 
-        <footer>marathon.com All rights reserved © 2022</footer>
+        <Footer />
       </div>
     </Router>
   );

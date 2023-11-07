@@ -103,8 +103,6 @@ function MarathonSelector({ setMarathon, planName }) {
         </div>
       </div>
 
-      <Space medium />
-
       {showNewMarathonModal && (
         <Modal onClose={setShowNewMarathonModal} isSecondary>
           <MarathonForm

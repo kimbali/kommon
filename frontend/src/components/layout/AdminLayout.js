@@ -29,7 +29,7 @@ const AdminLayout = () => {
         <UserMenu />
 
         <Button onClick={() => setShowNav(!showNav)} className='breadcrumb'>
-          <img src={MENU} />
+          <img src={MENU} alt='menu button' />
         </Button>
       </header>
 
@@ -37,7 +37,7 @@ const AdminLayout = () => {
         <AdminNavBar />
       ) : (
         showNav && (
-          <Modal onClose={setShowNav}>
+          <Modal onClose={setShowNav} fullWidth>
             <AdminNavBar />
           </Modal>
         )

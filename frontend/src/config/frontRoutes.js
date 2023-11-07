@@ -16,6 +16,9 @@ const frontRoutes = {
   todoList: '/todolist',
   main: '/main',
   home: '/home',
+  privacyPolicy: '/privacy-policy',
+  terms: '/terms-and-conditions',
+  cookies: '/cookies',
 };
 
 export default frontRoutes;

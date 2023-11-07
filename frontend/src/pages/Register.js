@@ -63,7 +63,8 @@ function Register() {
   return (
     <div className='page-wrapper'>
       <Space medium />
-      <div className='content-left-and-right'>
+
+      <header>
         <TextedLogo />
 
         {currentForm === 1 && (
@@ -71,7 +72,7 @@ function Register() {
             Login
           </Link>
         )}
-      </div>
+      </header>
 
       <div className='content-wrapper'>
         <Text isBold fontSize='18'>

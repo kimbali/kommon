@@ -80,11 +80,9 @@ function Planning() {
         planName={planData?.name}
       />
 
-      <Space medium />
-
       {currentMarathon && <Text line />}
 
-      <Space medium />
+      <Space small />
 
       {currentMarathon && (
         <PlanningSelector

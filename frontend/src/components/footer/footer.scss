@@ -1,0 +1,30 @@
+footer {
+  background-color: $background-1;
+  border-top: thin solid $grey-footer;
+  width: 100%;
+  padding: 0 32px;
+  display: flex;
+  flex-direction: column-reverse;
+  text-align: center;
+
+  .copyright {
+    padding: 20px 0;
+    color: $grey-footer;
+    font-size: 12px;
+  }
+
+  .footer-links {
+    padding: 20px 0;
+    p,
+    a {
+      display: inline;
+      font-size: 12px;
+      text-decoration: none;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}

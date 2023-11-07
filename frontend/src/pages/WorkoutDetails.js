@@ -107,7 +107,7 @@ function WorkoutDetails() {
 
       <Space medium />
 
-      <VideoPlayer url={'https://vimeo.com/718780725/6da8ad7304'} />
+      <VideoPlayer url={video} />
 
       <Space small />
 

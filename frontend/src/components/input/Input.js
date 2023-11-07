@@ -34,6 +34,7 @@ function Input({
   const hasError = error?.invalidFields?.includes(name);
   const [uploadRecipeImage] = useUploadRecipeImageMutation();
   const [fileName, setFileName] = useState('');
+  const [currentValue, setCurrentValue] = useState(value);
 
   const handleOnChange = event => {
     onChange({

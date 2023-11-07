@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGetWorkoutsQuery } from '../slices/workoutsApiSlice';
 import Button from '../components/button/Button';
@@ -21,10 +21,14 @@ function Workouts() {
     data,
     isLoading,
     isError,
-    refetch: refetchRecipes,
+    refetch: refetchWorkouts,
   } = useGetWorkoutsQuery({
     keyword: keywordValue,
   });
+
+  useEffect(() => {
+    refetchWorkouts();
+  }, []);
 
   const handleSearchValueChange = ({ value }) => {
     setSearchValue(value);
@@ -46,7 +50,7 @@ function Workouts() {
 
   const handleOnCreate = () => {
     setShowFormModal(false);
-    refetchRecipes();
+    refetchWorkouts();
   };
 
   if (isLoading || isError) {
@@ -89,7 +93,7 @@ function Workouts() {
 
       {showFormModal && (
         <Modal scroll onClose={setShowFormModal} isSecondary>
-          <WorkoutForm onCreate={handleOnCreate} />
+          <WorkoutForm onCreate={handleOnCreate} onSuccess={handleOnCreate} />
         </Modal>
       )}
     </div>

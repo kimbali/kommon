@@ -3,6 +3,7 @@ const measuresEnum = [
   { label: 'milliliters', diminutive: 'ml', value: 'ML' },
   { label: 'units', diminutive: 'units', value: 'UNIT' },
   { label: 'spoon', diminutive: 'spoon', value: 'SPOON' },
+  { label: 'al gusto', diminutive: 'al gusto', value: 'AL_GUSTO' },
 ];
 
 export const getMeasureLabel = value => {

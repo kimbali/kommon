@@ -12,3 +12,4 @@ export const TASKS_URL = '/api/tasks';
 export const MARATHON_URL = '/api/marathons';
 export const PLANNINGS_URL = '/api/plannings';
 export const DAYS_URL = '/api/days';
+export const LEGALS_URL = '/api/legals';

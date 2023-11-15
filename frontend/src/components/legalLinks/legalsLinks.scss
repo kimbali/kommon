@@ -1,0 +1,43 @@
+.markdown-text {
+  color: $black;
+  font-size: 16px;
+  margin-bottom: 32px;
+
+  h3 {
+    color: inherit;
+    font-size: 24px;
+    font-family: $avenirBlack;
+    padding-bottom: 16px;
+    margin: 42px 0 16px 0;
+    border-bottom: thin solid $primary-color;
+  }
+
+  h4 {
+    margin: 0 0 24px 0;
+    color: inherit;
+    font-size: 24px;
+    font-family: $avenirBook;
+  }
+
+  ol {
+    li {
+      list-style-type: decimal;
+      margin: 0 0 12px 18px;
+      color: inherit;
+    }
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.legal-page {
+  margin-bottom: 82px;
+}
+
+.legal-form {
+  textarea {
+    height: 20vw;
+  }
+}

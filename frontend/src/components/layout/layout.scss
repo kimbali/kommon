@@ -12,6 +12,7 @@ body {
     width: 100%;
 
     .app-container {
+      background-color: $background-1;
       width: 100%;
       min-height: 100vh;
       display: flex;
@@ -24,7 +25,6 @@ body {
 
 .app-container {
   .app-wrapper {
-    background-color: $background-1;
     flex-grow: 1;
     padding: 24px 12px 24px;
     box-sizing: border-box;
@@ -134,9 +134,9 @@ body {
 }
 
 .plain-layout {
+  background-color: $white;
   width: 100%;
   flex-grow: 1;
-  color: green($color: #000000);
 
   header {
     padding: 36px;
@@ -150,7 +150,11 @@ body {
   }
 
   main {
-    padding: 0 40px;
+    padding: 0 24px;
+
+    @media screen and (min-width: 1024px) {
+      padding: 0 40px;
+    }
 
     .edit-button {
       margin-top: 32px;
@@ -160,8 +164,12 @@ body {
       font-size: 36px;
       color: $primary-color;
       text-align: center;
-      padding: 64px;
       text-transform: uppercase;
+      padding: 32px 0 0;
+
+      @media screen and (min-width: 1024px) {
+        padding: 64px 32px 0;
+      }
     }
   }
 }

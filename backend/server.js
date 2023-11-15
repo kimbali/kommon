@@ -17,6 +17,7 @@ import tasksRoutes from './routes/tasksRoutes.js';
 import marathonesRoutes from './routes/marathonRoutes.js';
 import planningsRoutes from './routes/planningsRoutes.js';
 import daysRoutes from './routes/daysRoutes.js';
+import legalsRoutes from './routes/legalsRoutes.js';
 
 dotenv.config();
 
@@ -43,6 +44,7 @@ app.use('/api/tasks', tasksRoutes);
 app.use('/api/marathons', marathonesRoutes);
 app.use('/api/plannings', planningsRoutes);
 app.use('/api/days', daysRoutes);
+app.use('/api/legals', legalsRoutes);
 
 // app.get('/api/config/paypal', (req, res) =>
 //   res.send(process.env.PAYPAL_CLIENT_ID)

@@ -1,23 +1,62 @@
-import React from 'react';
-import Text from '../components/text/Text';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import Markdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import toast from 'react-hot-toast';
+import Text from '../components/text/Text';
 import Button from '../components/button/Button';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { useGetLegalsQuery } from '../slices/legalsApiSlice';
+import TermsAndConditionsForm from '../components/legalLinks/TermsAndConditionsForm';
+import Space from '../components/space/Space';
 
 function TermsAndConditions() {
   const { userInfo } = useSelector(state => state.auth);
+  const [showEditForm, setShowEditForm] = useState(false);
+
+  const { data: legalsData, refetch: refetchLegals } = useGetLegalsQuery({});
+
+  const handleEditForm = async () => {
+    setShowEditForm(false);
+
+    try {
+      await refetchLegals();
+    } catch (err) {
+      toast.error('Error fetching terms');
+    }
+  };
 
   return (
-    <div className='absolute-right'>
-      <Text isTitle>Terms and conditions</Text>
+    <div className='absolute-right legal-page'>
+      <Text isTitle>Términos y condiciones</Text>
 
-      {userInfo.isAdmin && (
+      <Space small />
+
+      {userInfo?.isAdmin && (
         <div className='absolute-right-element'>
-          <Button isPrimary iconLeft={faEdit} className='edit-button'>
+          <Button
+            isPrimary
+            iconLeft={faEdit}
+            className='edit-button'
+            onClick={() => setShowEditForm(true)}
+          >
             Modificar texto
           </Button>
         </div>
       )}
+
+      {showEditForm && <TermsAndConditionsForm onSuccess={handleEditForm} />}
+
+      <Markdown
+        className='markdown-text'
+        remarkPlugins={[remarkGfm]}
+        components={{
+          h1: 'h3',
+          h2: 'h4',
+        }}
+      >
+        {legalsData?.legals[0].termsAndConditions}
+      </Markdown>
     </div>
   );
 }

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logout } from './slices/authSlice';
-import { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import frontRoutes from './config/frontRoutes';
 import MainLayout from './components/layout/MainLayout';
 import ScrollToTop from './components/scrollToTop/ScrollToTop';
@@ -28,9 +28,23 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsAndConditions from './pages/TermsAndConditions';
 import CookiesFiles from './pages/CookiesFiles';
 import PlainLayout from './components/layout/PlainLayout';
+import {
+  useCreateLegalMutation,
+  useGetLegalsQuery,
+} from './slices/legalsApiSlice';
 
 function App() {
   const dispatch = useDispatch();
+  const { data: legalsData } = useGetLegalsQuery({});
+  const [createLegalDoc] = useCreateLegalMutation();
+
+  const createLegals = async () => {
+    try {
+      await createLegalDoc();
+    } catch (err) {
+      toast.error('No terms and conditions');
+    }
+  };
 
   useEffect(() => {
     const expirationTime = localStorage.getItem('expirationTime');
@@ -42,6 +56,14 @@ function App() {
       }
     }
   }, [dispatch]);
+
+  console.log('app', legalsData);
+
+  useEffect(() => {
+    if (legalsData?.legals.length === 0) {
+      createLegals();
+    }
+  }, [legalsData]);
 
   return (
     <Router>

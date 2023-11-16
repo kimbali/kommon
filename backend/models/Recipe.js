@@ -34,8 +34,10 @@ const recipeSchema = new Schema(
       default: 0,
     },
     image: {
+      originalName: String,
+      size: String,
       type: String,
-      default: '',
+      url: String,
     },
     calories: {
       type: Number,

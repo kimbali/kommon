@@ -9,7 +9,6 @@ import connectDB from './config/db.js';
 import recipesRoutes from './routes/recipesRoutes.js';
 import ingredientsRoutes from './routes/ingredientsRoutes.js';
 import measuresRoutes from './routes/measuresRoutes.js';
-import uploadRoutes from './routes/uploadsRoutes.js';
 import usersRoutes from './routes/usersRoutes.js';
 import workoutsRoutes from './routes/workoutsRoutes.js';
 import meditationsRoutes from './routes/meditationsRoutes.js';
@@ -18,6 +17,7 @@ import marathonesRoutes from './routes/marathonRoutes.js';
 import planningsRoutes from './routes/planningsRoutes.js';
 import daysRoutes from './routes/daysRoutes.js';
 import legalsRoutes from './routes/legalsRoutes.js';
+import uploadS3 from './routes/uploadS3.js';
 
 dotenv.config();
 
@@ -36,7 +36,6 @@ app.use(cookieParser());
 app.use('/api/recipes', recipesRoutes);
 app.use('/api/ingredients', ingredientsRoutes);
 app.use('/api/measures', measuresRoutes);
-app.use('/api/upload', uploadRoutes);
 app.use('/api/users', usersRoutes);
 app.use('/api/workouts', workoutsRoutes);
 app.use('/api/meditations', meditationsRoutes);
@@ -45,6 +44,7 @@ app.use('/api/marathons', marathonesRoutes);
 app.use('/api/plannings', planningsRoutes);
 app.use('/api/days', daysRoutes);
 app.use('/api/legals', legalsRoutes);
+app.use('/api/upload', uploadS3);
 
 // app.get('/api/config/paypal', (req, res) =>
 //   res.send(process.env.PAYPAL_CLIENT_ID)

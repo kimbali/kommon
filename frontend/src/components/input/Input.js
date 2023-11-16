@@ -33,9 +33,7 @@ function Input({
 }) {
   const hasError = error?.invalidFields?.includes(name);
   const [uploadRecipeImage] = useUploadRecipeImageMutation();
-  const [fileName, setFileName] = useState('');
-  const [currentValue, setCurrentValue] = useState(value);
-
+  const [fileName, setFileName] = useState(value?.originalname);
   const handleOnChange = event => {
     onChange({
       name: event.target.name,
@@ -57,7 +55,6 @@ function Input({
   };
 
   const handleUploadImage = async event => {
-    const fileName = event.target.files[0]?.name;
     const formData = new FormData();
     formData.append('image', event.target.files[0]);
     try {
@@ -65,7 +62,7 @@ function Input({
       toast.success(res.message);
 
       onChange({ name, value: res.image });
-      setFileName(fileName);
+      setFileName(res.image.originalname);
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }
@@ -207,7 +204,7 @@ function Input({
       {type === 'file' && (
         <div className='input-file'>
           <Text className={value ? 'has-value' : 'placeholder'}>
-            {fileName ? fileName : value ? 'Change file' : 'Upload an image...'}
+            {fileName || 'Upload an image...'}
           </Text>
           <Text>
             <FontAwesomeIcon icon={faPlus} />

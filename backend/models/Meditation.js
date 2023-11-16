@@ -5,7 +5,12 @@ const meditationSchema = new Schema(
     title: String,
     description: String,
     minutes: Number,
-    image: String,
+    image: {
+      originalName: String,
+      size: String,
+      type: String,
+      url: String,
+    },
     link: String,
     level: String,
   },

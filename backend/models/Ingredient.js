@@ -19,8 +19,10 @@ const ingredientsSchema = new Schema(
       type: Number,
     },
     image: {
+      originalName: String,
+      size: String,
       type: String,
-      default: '',
+      url: String,
     },
     allergy: String,
     measure: String,

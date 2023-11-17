@@ -8,7 +8,7 @@ const workoutSchema = new Schema(
     image: {
       originalName: String,
       size: String,
-      type: String,
+      format: String,
       url: String,
     },
     video: String,

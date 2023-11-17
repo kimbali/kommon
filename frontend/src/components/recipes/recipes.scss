@@ -201,3 +201,10 @@
   width: 100%;
   background-color: $white;
 }
+
+.image-loader-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 16px;
+}

@@ -47,6 +47,14 @@ export const recipesApiSlice = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
+    getImageUrl: builder.query({
+      query: ({ url }) => ({
+        url: `/api/upload`,
+        params: { url },
+      }),
+      keepUnusedDataFor: 5,
+      providesTags: ['Recipes'],
+    }),
   }),
 });
 
@@ -57,4 +65,5 @@ export const {
   useUpdateRecipeMutation,
   useDeleteRecipeMutation,
   useUploadRecipeImageMutation,
+  useGetImageUrlQuery,
 } = recipesApiSlice;

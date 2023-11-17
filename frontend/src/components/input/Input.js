@@ -6,6 +6,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import Select from 'react-select';
 import toast from 'react-hot-toast';
 import { useUploadRecipeImageMutation } from '../../slices/recipesApiSlice';
+import Spinner from '../spinner/Spinner';
 
 function Input({
   label,
@@ -30,10 +31,12 @@ function Input({
   isSingleSelect = false,
   defaultValue,
   keyValue = '',
+  imageIsLoading = false,
 }) {
   const hasError = error?.invalidFields?.includes(name);
-  const [uploadRecipeImage] = useUploadRecipeImageMutation();
+  const [uploadRecipeImage, { isLoading }] = useUploadRecipeImageMutation();
   const [fileName, setFileName] = useState(value?.originalname);
+
   const handleOnChange = event => {
     onChange({
       name: event.target.name,
@@ -59,11 +62,13 @@ function Input({
     formData.append('image', event.target.files[0]);
     try {
       const res = await uploadRecipeImage(formData).unwrap();
+
       toast.success(res.message);
 
       onChange({ name, value: res.image });
       setFileName(res.image.originalname);
     } catch (err) {
+      console.error(err);
       toast.error(err?.data?.message || err.error);
     }
   };
@@ -201,16 +206,23 @@ function Input({
           </label>
         ))}
 
-      {type === 'file' && (
-        <div className='input-file'>
-          <Text className={value ? 'has-value' : 'placeholder'}>
-            {fileName || 'Upload an image...'}
-          </Text>
-          <Text>
-            <FontAwesomeIcon icon={faPlus} />
-          </Text>
-        </div>
-      )}
+      {type === 'file' &&
+        (isLoading ? (
+          <Spinner type='dots' />
+        ) : (
+          <div className='input-file'>
+            <Text className={value ? 'has-value' : 'placeholder'}>
+              {isLoading
+                ? 'Cargando...'
+                : fileName
+                ? fileName
+                : 'Upload an image...'}
+            </Text>
+            <Text>
+              <FontAwesomeIcon icon={faPlus} />
+            </Text>
+          </div>
+        ))}
 
       {hasError && <Text error>{error?.message}</Text>}
     </div>

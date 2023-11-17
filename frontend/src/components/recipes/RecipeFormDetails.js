@@ -1,16 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { getMeasureDiminutive } from '../../config/enums/measuresEnum';
 import Text from '../text/Text';
 import Space from '../space/Space';
 import ResumeTable from '../resumeTable/ResumeTable';
 import Button from '../button/Button';
-import {
-  faEdit,
-  faFolderPlus,
-  faSave,
-} from '@fortawesome/free-solid-svg-icons';
+import { faFolderPlus, faSave } from '@fortawesome/free-solid-svg-icons';
 import mealsEnum from '../../config/enums/mealsEnum';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useGetImageUrlQuery } from '../../slices/recipesApiSlice';
 
 function RecipeFormDetails({
   data: recipeDetails,
@@ -30,6 +27,12 @@ function RecipeFormDetails({
     carbohydrates,
     meals,
   } = recipeDetails;
+  const { data: imageS3 } = useGetImageUrlQuery(
+    {
+      url: image?.url,
+    },
+    { skip: !image?.url }
+  );
 
   return (
     <div className='recipe-form-details'>
@@ -39,7 +42,7 @@ function RecipeFormDetails({
 
       <div
         className='food-image'
-        style={{ backgroundImage: `url(${image})` }}
+        style={{ backgroundImage: `url(${imageS3?.signedUrl})` }}
       ></div>
 
       <Space medium />

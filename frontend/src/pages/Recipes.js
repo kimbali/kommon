@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGetRecipesQuery } from '../slices/recipesApiSlice';
 import Button from '../components/button/Button';
@@ -10,6 +10,7 @@ import Modal from '../components/modal/Modal';
 import RecipeForm from '../components/recipes/RecipeForm';
 import frontRoutes from '../config/frontRoutes';
 import LoadingError from '../components/loadingError/LoadingError';
+import toast from 'react-hot-toast';
 
 function Recipes() {
   const [searchValue, setSearchValue] = useState('');
@@ -25,6 +26,18 @@ function Recipes() {
   } = useGetRecipesQuery({
     keyword: keywordValue,
   });
+
+  const fetchData = async () => {
+    try {
+      await refetchRecipes();
+    } catch (err) {
+      toast.error('Refresh page');
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const handleSearchValueChange = ({ value }) => {
     setSearchValue(value);

@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import {
   useDeleteRecipeMutation,
+  useGetImageUrlQuery,
   useGetRecipeDetailsQuery,
 } from '../slices/recipesApiSlice';
 import LoadingError from '../components/loadingError/LoadingError';
@@ -29,6 +30,13 @@ function RecipeDetails() {
     isError,
     refetch,
   } = useGetRecipeDetailsQuery(id);
+
+  const { data: imageS3 } = useGetImageUrlQuery(
+    {
+      url: recipeDetails?.image?.url,
+    },
+    { skip: !recipeDetails?.image?.url }
+  );
 
   const [deleteRecipe] = useDeleteRecipeMutation();
 
@@ -60,7 +68,6 @@ function RecipeDetails() {
     steps,
     ingredients,
     minutes,
-    image,
     calories,
     proteins,
     fats,
@@ -104,7 +111,10 @@ function RecipeDetails() {
 
       <div className='recipe-details'>
         <div className='recipe-details-content'>
-          {image && <img alt={title} src={`${image}`} />}
+          <div
+            className='food-image'
+            style={{ backgroundImage: `url(${imageS3?.signedUrl})` }}
+          ></div>
 
           <Space medium />
 

@@ -57,8 +57,6 @@ function App() {
     }
   }, [dispatch]);
 
-  console.log('app', legalsData);
-
   useEffect(() => {
     if (legalsData?.legals.length === 0) {
       createLegals();

@@ -3,13 +3,21 @@ import Text from '../text/Text';
 import DEFAULT_IMG from '../../styles/assets/workout-01.png';
 import { getLevelLabel } from '../../config/enums/levelsEnum';
 import PlayButton from './PlayButton';
+import { useGetImageUrlQuery } from '../../slices/imagesApiSlice';
 
 function WorkoutCard({ data, onClick }) {
+  const { data: imageS3 } = useGetImageUrlQuery(
+    {
+      url: data?.image?.url,
+    },
+    { skip: !data?.image?.url }
+  );
+
   return (
     <button onClick={onClick} className='workout-card-container'>
       <div
         className='workout-card'
-        style={{ backgroundImage: `url(${data.image || DEFAULT_IMG})` }}
+        style={{ backgroundImage: `url(${imageS3?.signedUrl})` }}
       >
         <div className='workout-card-content'>
           <Text isTitle>{data.title}</Text>

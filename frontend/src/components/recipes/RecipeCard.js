@@ -2,7 +2,7 @@ import React from 'react';
 import Text from '../text/Text';
 import FOOD_IMG from '../../styles/assets/food.png';
 import Space from '../space/Space';
-import { useGetImageUrlQuery } from '../../slices/recipesApiSlice';
+import { useGetImageUrlQuery } from '../../slices/imagesApiSlice';
 import Spinner from '../spinner/Spinner';
 
 function RecipeCard({ recipe, meal = '', onClick }) {

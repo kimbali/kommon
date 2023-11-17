@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { getMeasureDiminutive } from '../../config/enums/measuresEnum';
 import Text from '../text/Text';
 import Space from '../space/Space';
@@ -7,7 +7,7 @@ import Button from '../button/Button';
 import { faFolderPlus, faSave } from '@fortawesome/free-solid-svg-icons';
 import mealsEnum from '../../config/enums/mealsEnum';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useGetImageUrlQuery } from '../../slices/recipesApiSlice';
+import { useGetImageUrlQuery } from '../../slices/imagesApiSlice';
 
 function RecipeFormDetails({
   data: recipeDetails,

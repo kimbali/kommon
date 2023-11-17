@@ -17,7 +17,8 @@ import marathonesRoutes from './routes/marathonRoutes.js';
 import planningsRoutes from './routes/planningsRoutes.js';
 import daysRoutes from './routes/daysRoutes.js';
 import legalsRoutes from './routes/legalsRoutes.js';
-import uploadS3 from './routes/uploadS3.js';
+// import uploadS3 from './routes/uploadS3.js';
+import uploadS3 from './routes/imagesRoutes.js';
 
 dotenv.config();
 

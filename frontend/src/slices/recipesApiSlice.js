@@ -40,21 +40,6 @@ export const recipesApiSlice = apiSlice.injectEndpoints({
       }),
       providesTags: ['Recipe'],
     }),
-    uploadRecipeImage: builder.mutation({
-      query: data => ({
-        url: `/api/upload`,
-        method: 'POST',
-        body: data,
-      }),
-    }),
-    getImageUrl: builder.query({
-      query: ({ url }) => ({
-        url: `/api/upload`,
-        params: { url },
-      }),
-      keepUnusedDataFor: 5,
-      providesTags: ['Recipes'],
-    }),
   }),
 });
 
@@ -64,6 +49,4 @@ export const {
   useCreateRecipeMutation,
   useUpdateRecipeMutation,
   useDeleteRecipeMutation,
-  useUploadRecipeImageMutation,
-  useGetImageUrlQuery,
 } = recipesApiSlice;

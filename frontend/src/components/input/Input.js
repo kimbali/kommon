@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import Select from 'react-select';
 import toast from 'react-hot-toast';
-import { useUploadRecipeImageMutation } from '../../slices/recipesApiSlice';
+import { useUploadRecipeImageMutation } from '../../slices/imagesApiSlice';
 import Spinner from '../spinner/Spinner';
 
 function Input({

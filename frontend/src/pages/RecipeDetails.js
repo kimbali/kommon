@@ -3,9 +3,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import {
   useDeleteRecipeMutation,
-  useGetImageUrlQuery,
   useGetRecipeDetailsQuery,
 } from '../slices/recipesApiSlice';
+import { useGetImageUrlQuery } from '../slices/imagesApiSlice';
 import LoadingError from '../components/loadingError/LoadingError';
 import Text from '../components/text/Text';
 import Space from '../components/space/Space';

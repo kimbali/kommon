@@ -42,8 +42,8 @@ export const upload = multer({
 
 const router = express.Router();
 
-export const getImage = asyncHandler(async (req, res) => {
-  const url = req.query.url;
+export const getImage = async (req, res) => {
+  const url = req.params.url;
 
   if (!url) {
     res.status(404);
@@ -68,9 +68,9 @@ export const getImage = asyncHandler(async (req, res) => {
     res.status(404);
     throw new Error('Image not found');
   }
-});
+};
 
-export const uploadImage = asyncHandler(async (req, res) => {
+export const uploadImage = async (req, res) => {
   const params = {
     Bucket: process.env.S3_BUCKET,
     Key: req.file.originalname,
@@ -90,6 +90,6 @@ export const uploadImage = asyncHandler(async (req, res) => {
       size: req.file.size,
     },
   });
-});
+};
 
 export default router;

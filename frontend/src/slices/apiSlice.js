@@ -12,6 +12,7 @@ export const apiSlice = createApi({
     'Workout',
     'Meditation',
     'Task',
+    'Image',
   ],
   endpoints: builder => ({}),
 });

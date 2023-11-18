@@ -21,7 +21,8 @@ function Planning() {
   const [day, setDay] = useState();
 
   const { data: planData, refetch: refetchPlan } = useGetPlanningDetailsQuery(
-    currentMarathon?.planning?._id
+    currentMarathon?.planning?._id,
+    { skip: !currentMarathon?.planning?._id }
   );
 
   const [createDay] = useCreateDayMutation();

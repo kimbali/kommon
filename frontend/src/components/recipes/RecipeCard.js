@@ -1,17 +1,36 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Text from '../text/Text';
 import FOOD_IMG from '../../styles/assets/food.png';
 import Space from '../space/Space';
 import { useGetImageUrlQuery } from '../../slices/imagesApiSlice';
 import Spinner from '../spinner/Spinner';
+import toast from 'react-hot-toast';
 
 function RecipeCard({ recipe, meal = '', onClick }) {
-  const { data: imageS3, isLoading } = useGetImageUrlQuery(
+  const {
+    data: imageS3,
+    isLoading,
+    refetch,
+  } = useGetImageUrlQuery(
     {
       url: recipe?.image?.url,
     },
     { skip: !recipe?.image?.url }
   );
+
+  const refetchImage = async () => {
+    try {
+      await refetch(recipe?.image?.url);
+    } catch (err) {
+      toast.error('Error fetchin image');
+    }
+  };
+
+  useEffect(() => {
+    if (recipe?.image?.url) {
+      refetchImage();
+    }
+  }, [recipe?.image?.url]);
 
   return (
     <button onClick={onClick} className='recipe-card-cta'>

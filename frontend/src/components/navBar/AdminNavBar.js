@@ -2,6 +2,7 @@ import React from 'react';
 import {
   faCalendarDays,
   faDumbbell,
+  faFlagCheckered,
   faListCheck,
   faPlateWheat,
   faSpa,
@@ -23,6 +24,12 @@ function AdminNavBar() {
   return (
     <nav>
       <ul className='nav-links'>
+        <NavLink
+          icon={faFlagCheckered}
+          label='Marathons'
+          route={frontRoutes.marathonList}
+        />
+
         <NavLink
           icon={faCalendarDays}
           label='Planning'

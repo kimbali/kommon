@@ -32,6 +32,7 @@ import {
   useCreateLegalMutation,
   useGetLegalsQuery,
 } from './slices/legalsApiSlice';
+import MarathonsList from './pages/MarathonsList';
 
 function App() {
   const dispatch = useDispatch();
@@ -92,7 +93,14 @@ function App() {
           </Route>
 
           <Route path='' element={<AdminLayout />}>
-            <Route path={frontRoutes.planning} element={<Planning />} />
+            <Route
+              path={frontRoutes.marathonList}
+              element={<MarathonsList />}
+            />
+            <Route
+              path={`${frontRoutes.planning}/:id?`}
+              element={<Planning />}
+            />
             <Route path={frontRoutes.users} element={<Users />} />
             <Route path={frontRoutes.dietsConfig} element={<Recipes />} />
             <Route

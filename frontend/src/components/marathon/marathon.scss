@@ -124,3 +124,54 @@
     margin-bottom: 12px;
   }
 }
+
+.marathons-list {
+  table {
+    border-collapse: collapse;
+
+    th,
+    td {
+      border: 1px solid $background-4;
+      padding: 8px;
+      text-align: left;
+    }
+
+    tr {
+      &:nth-child(even) {
+        background-color: $background-2;
+      }
+
+      &:hover {
+        background-color: $background-3;
+      }
+
+      .only-icon {
+        margin: 0 auto;
+
+        svg {
+          font-size: 14px;
+        }
+      }
+
+      button {
+        margin: 0 auto;
+        padding: 8px;
+        background-color: $background-4;
+      }
+    }
+
+    th {
+      font-family: $avenirBlack;
+      background-color: $disabled;
+      text-align: center;
+      font-size: 16px;
+      padding: 0;
+
+      button {
+        background-color: $disabled;
+        font-size: 16px;
+        font-family: $avenirBlack;
+      }
+    }
+  }
+}

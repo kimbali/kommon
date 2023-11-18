@@ -42,10 +42,10 @@ function MarathonForm({ onSucces, onCancel, marathon }) {
 
       if (marathon) {
         const currentPlan = plansData.plannings.find(
-          ele => ele._id === marathon.planning
+          ele => ele._id === marathon.planning._id
         );
 
-        setSelectedPlan({ label: currentPlan.name, value: marathon.planning });
+        setSelectedPlan({ label: currentPlan?.name, value: marathon.planning });
       }
     }
   }, [plansData, marathon]);

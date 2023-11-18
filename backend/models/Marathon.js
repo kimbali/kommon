@@ -5,6 +5,7 @@ const MarathonsSchema = new Schema(
     startDate: Date,
     endDate: Date,
     name: String,
+    active: Boolean,
     planning: {
       type: Schema.Types.ObjectId,
       ref: 'Planning',

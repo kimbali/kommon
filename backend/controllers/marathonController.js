@@ -14,7 +14,10 @@ export const getMarathons = asyncHandler(async (req, res) => {
       }
     : {};
 
-  const marathons = await Marathon.find({ ...keyword });
+  const marathons = await Marathon.find({ ...keyword }).populate(
+    'planning',
+    'name'
+  );
 
   res.json({ marathons });
 });
@@ -41,7 +44,12 @@ export const createMarathon = asyncHandler(async (req, res) => {
   const newMarathon = new Marathon({ startDate, endDate, name, planning });
 
   const createdMarathon = await newMarathon.save();
-  res.status(201).json(createdMarathon);
+
+  const marathon = await Marathon.findById(createdMarathon._id).populate(
+    'planning',
+    'name'
+  );
+  res.status(201).json(marathon);
 });
 
 // @desc    Update a marathon
@@ -59,7 +67,11 @@ export const updateMarathon = asyncHandler(async (req, res) => {
     marathon.planning = planning || marathon.planning;
 
     const updatedMarathon = await marathon.save();
-    res.json(updatedMarathon);
+    const marathonUpdated = await Marathon.findById(req.params.id).populate(
+      'planning',
+      'name'
+    );
+    res.json(marathonUpdated);
   } else {
     res.status(404);
     throw new Error('Marathon not found');

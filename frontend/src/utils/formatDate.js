@@ -1,4 +1,4 @@
-const formatDate = date => {
+export const formatDate = date => {
   if (!date) return;
 
   const options = {

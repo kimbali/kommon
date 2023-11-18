@@ -12,15 +12,21 @@ import {
   faEdit,
   faPlus,
 } from '@fortawesome/free-solid-svg-icons';
-import Space from '../space/Space';
 
-function MarathonSelector({ setMarathon, planName }) {
+function MarathonSelector({ setMarathon, currentMarathonID }) {
   const [marathonOptions, setmarathonOptions] = useState([]);
   const [marathonSelected, setMarathonSelected] = useState(null);
   const [showNewMarathonModal, setShowNewMarathonModal] = useState(false);
 
+  console.log('MARATHON SELECTOR: ', marathonSelected);
+
   const { data: marathonsData, refetch: refetchMarathons } =
     useGetMarathonsQuery({});
+
+  const handleMarathonChange = ({ value }) => {
+    setMarathonSelected({ label: value.name || value.startDate, value });
+    setMarathon(value);
+  };
 
   useEffect(() => {
     const options = marathonsData?.marathons.map((ele, index) => {
@@ -28,12 +34,15 @@ function MarathonSelector({ setMarathon, planName }) {
     });
 
     setmarathonOptions(options);
-  }, [marathonsData]);
 
-  const handleMarathonChange = ({ value }) => {
-    setMarathonSelected({ label: value.name || value.startDate, value });
-    setMarathon(value);
-  };
+    const selectMarathonById = options?.find(
+      ele => ele.value._id === currentMarathonID
+    );
+
+    if (selectMarathonById) {
+      handleMarathonChange(selectMarathonById);
+    }
+  }, [marathonsData]);
 
   const handleOnConfirmMarathon = marathon => {
     const currentMarathon = marathon
@@ -86,7 +95,8 @@ function MarathonSelector({ setMarathon, planName }) {
             <div className='marathon-details'>
               <div>
                 <Text>
-                  <span>Marathon plan:</span> {planName}
+                  <span>Marathon plan: </span>
+                  {marathonSelected.value.planning?.name}
                 </Text>
               </div>
 

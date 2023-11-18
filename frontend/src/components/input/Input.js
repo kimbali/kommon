@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
+import Select from 'react-select';
 import CreatableSelect from 'react-select/creatable';
-import Text from '../text/Text';
+import { useUploadRecipeImageMutation } from '../../slices/imagesApiSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import Select from 'react-select';
-import toast from 'react-hot-toast';
-import { useUploadRecipeImageMutation } from '../../slices/imagesApiSlice';
+import Text from '../text/Text';
 import Spinner from '../spinner/Spinner';
 
 function Input({
@@ -77,7 +77,7 @@ function Input({
     <div className={`field ${className} ${name} ${type}`}>
       {label && (
         <label className='main-label' htmlFor={name}>
-          {label}
+          {label} {selectCreatable ? '(Escribir nombre para crear nuevo)' : ''}
         </label>
       )}
 

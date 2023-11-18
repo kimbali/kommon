@@ -11,16 +11,19 @@ import {
 import { useCreateDayMutation } from '../slices/daysApiSlice';
 import MarathonWorkouts from '../components/marathon/MarathonWorkouts';
 import MarathonTasks from '../components/marathon/MarathonTasks';
+import { useParams } from 'react-router-dom';
 
 function Planning() {
+  const { id } = useParams();
   const [currentMarathon, setCurrentMarathon] = useState();
   const [currentDiet, setCurrentDiet] = useState();
   const [currentDay, setCurrentDay] = useState();
   const [day, setDay] = useState();
 
   const { data: planData, refetch: refetchPlan } = useGetPlanningDetailsQuery(
-    currentMarathon?.planning
+    currentMarathon?.planning?._id
   );
+
   const [createDay] = useCreateDayMutation();
   const [updatePlanning] = useUpdatePlanningMutation();
 
@@ -71,11 +74,12 @@ function Planning() {
 
   return (
     <div>
-      <Text isTitle>Marathons configuration</Text>
+      <Text isTitle>Plannings configuration</Text>
 
       <Space medium />
 
       <MarathonSelector
+        currentMarathonID={id}
         setMarathon={setCurrentMarathon}
         planName={planData?.name}
       />

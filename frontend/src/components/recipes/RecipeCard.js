@@ -11,12 +11,9 @@ function RecipeCard({ recipe, meal = '', onClick }) {
     data: imageS3,
     isLoading,
     refetch,
-  } = useGetImageUrlQuery(
-    {
-      url: recipe?.image?.url,
-    },
-    { skip: !recipe?.image?.url }
-  );
+  } = useGetImageUrlQuery({
+    url: recipe?.image?.url,
+  });
 
   const refetchImage = async () => {
     try {

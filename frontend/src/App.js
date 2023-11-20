@@ -98,7 +98,7 @@ function App() {
               element={<MarathonsList />}
             />
             <Route
-              path={`${frontRoutes.planning}/:id?`}
+              path={`${frontRoutes.planning}/:marathonId?/:day?`}
               element={<Planning />}
             />
             <Route path={frontRoutes.users} element={<Users />} />

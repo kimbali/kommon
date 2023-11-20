@@ -7,7 +7,7 @@ import {
   useDeleteMarathonMutation,
   useGetMarathonsQuery,
 } from '../slices/marathonApiSlice';
-import { formatDate } from '../utils/formatDate';
+import { formatDate, formatDateHyphens } from '../utils/formatDate';
 import ConfirmModal from '../components/modal/ConfirmModal';
 import toast from 'react-hot-toast';
 import frontRoutes from '../config/frontRoutes';
@@ -40,7 +40,11 @@ function MarathonsList() {
   };
 
   const handleEditButton = eachMarathon => {
-    navigate(`${frontRoutes.planning}/${eachMarathon._id}`);
+    navigate(
+      `${frontRoutes.planning}/${eachMarathon._id}/${formatDateHyphens(
+        eachMarathon.startDate
+      )}`
+    );
   };
 
   const sortByStartDate = () => {
@@ -66,14 +70,14 @@ function MarathonsList() {
       <table border='1'>
         <thead>
           <tr>
-            <th>Name</th>
+            <th>Marathon</th>
             <th>Plan</th>
             <th>
               <button onClick={sortByStartDate}>
-                Start Date <FontAwesomeIcon icon={faSort} />
+                Start date <FontAwesomeIcon icon={faSort} />
               </button>
             </th>
-            <th>End Date</th>
+            <th>End date</th>
             <th>Trash</th>
             <th>Edit</th>
             <th>Activate</th>

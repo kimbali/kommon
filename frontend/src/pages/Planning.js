@@ -11,22 +11,36 @@ import {
 import { useCreateDayMutation } from '../slices/daysApiSlice';
 import MarathonWorkouts from '../components/marathon/MarathonWorkouts';
 import MarathonTasks from '../components/marathon/MarathonTasks';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useMarathon } from '../context/marathonContext';
+import frontRoutes from '../config/frontRoutes';
 
 function Planning() {
-  const { id } = useParams();
+  const navigate = useNavigate();
+  const { marathonId: marathonIdParams } = useParams();
+  const { marathonId, setMarathonId } = useMarathon();
+
   const [currentMarathon, setCurrentMarathon] = useState();
   const [currentDiet, setCurrentDiet] = useState();
   const [currentDay, setCurrentDay] = useState();
   const [day, setDay] = useState();
 
+  const [createDay] = useCreateDayMutation();
+  const [updatePlanning] = useUpdatePlanningMutation();
   const { data: planData, refetch: refetchPlan } = useGetPlanningDetailsQuery(
     currentMarathon?.planning?._id,
     { skip: !currentMarathon?.planning?._id }
   );
 
-  const [createDay] = useCreateDayMutation();
-  const [updatePlanning] = useUpdatePlanningMutation();
+  useEffect(() => {
+    if (!marathonIdParams && marathonId) {
+      navigate(`${frontRoutes.planning}/${marathonId}`, {
+        replace: true,
+      });
+    } else {
+      setMarathonId(marathonIdParams);
+    }
+  }, [marathonIdParams]);
 
   const handleNewDay = async () => {
     try {
@@ -80,7 +94,6 @@ function Planning() {
       <Space medium />
 
       <MarathonSelector
-        currentMarathonID={id}
         setMarathon={setCurrentMarathon}
         planName={planData?.name}
       />

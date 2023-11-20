@@ -1,37 +1,62 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Input from '../input/Input';
 import {
   calculateDays,
   formatDateShort,
   formatWeekDayShort,
+  getDatePositionInMonthArray,
   getWeeksArray,
+  formatDateHyphens,
 } from '../../utils/formatDate';
 import dietsEnum from '../../config/enums/dietsEnum';
 import Space from '../space/Space';
 import Button from '../button/Button';
 import Text from '../text/Text';
+import { useParams, useNavigate } from 'react-router-dom';
+import frontRoutes from '../../config/frontRoutes';
 
 function PlanningSelector({ marathon, setCurrentDiet, setCurrentDay }) {
+  const { marathonId, day: dayParams } = useParams();
+  const navigate = useNavigate();
+
   const [monthArray, setMonthArray] = useState();
   const [weekOptions, setWeekOptions] = useState([]);
   const [selectedWeek, setSelectedWeek] = useState();
   const [selectedDate, setSelectedDate] = useState();
 
-  const handleSelectDay = date => {
-    const dateStringToFind = date.toISOString();
-    const weekDay =
-      date &&
-      monthArray &&
-      selectedWeek?.value &&
-      monthArray[selectedWeek?.value - 1].findIndex(
-        date => date.toISOString() === dateStringToFind
-      ) + 1;
+  const handleSelectDay = (date, month, optionsWeeks) => {
+    let week;
+    let weekDay;
+    let dateFormatted;
 
-    setSelectedDate(date);
+    if (month && date) {
+      const {
+        row,
+        column,
+        date: dateInAraay,
+      } = getDatePositionInMonthArray(month, date);
+      week = row;
+      weekDay = column;
+      dateFormatted = dateInAraay;
+    }
+
+    setSelectedDate(dateFormatted);
     setCurrentDay({
-      week: selectedWeek?.value || 1,
-      weekDay: weekDay || 1,
+      week: week || 1,
+      weekDay: weekDay,
     });
+
+    if (optionsWeeks) {
+      setSelectedWeek(optionsWeeks?.find(ele => ele.value === week));
+    }
+
+    const stringDate = formatDateHyphens(date);
+
+    if (date && dayParams !== stringDate) {
+      navigate(`${frontRoutes.planning}/${marathonId}/${stringDate}`, {
+        replace: true,
+      });
+    }
   };
 
   useEffect(() => {
@@ -48,27 +73,37 @@ function PlanningSelector({ marathon, setCurrentDiet, setCurrentDay }) {
     });
 
     setWeekOptions(optionsWeeks);
-    setSelectedWeek(optionsWeeks[0]);
+
+    if (marathon && !dayParams) {
+      navigate(
+        `${frontRoutes.planning}/${marathonId}/${formatDateHyphens(startDate)}`,
+        {
+          replace: true,
+        }
+      );
+    }
 
     if (marathon) {
       const month = getWeeksArray(startDate, endDate);
       setMonthArray(month);
-      handleSelectDay(month[0][0]);
+
+      handleSelectDay(dayParams || month[0][0], month, optionsWeeks);
     } else {
       setMonthArray();
       setWeekOptions([]);
+
       handleSelectDay();
-      // setSelectedWeek();
     }
-  }, [marathon]);
+  }, [marathonId, marathon.startDate]);
 
   const handleWeekChange = ({ value, label }) => {
     setSelectedWeek({ label, value });
-    setSelectedDate(monthArray[value - 1][0]);
-    setCurrentDay({
-      week: value,
-      weekDay: 1,
-    });
+
+    handleSelectDay(monthArray[value - 1][0], monthArray);
+    // setCurrentDay({
+    //   week: value,
+    //   weekDay: 1,
+    // });
   };
 
   return (
@@ -104,9 +139,9 @@ function PlanningSelector({ marathon, setCurrentDiet, setCurrentDay }) {
               <Text className='date'>{formatDateShort(day)}</Text>
 
               <Button
-                isPrimary={day === selectedDate}
-                isThird={day !== selectedDate}
-                onClick={() => handleSelectDay(day)}
+                isPrimary={day.getTime() === selectedDate.getTime()}
+                isThird={day.getTime() !== selectedDate.getTime()}
+                onClick={() => handleSelectDay(day, monthArray)}
               >
                 {formatWeekDayShort(day)}
               </Button>

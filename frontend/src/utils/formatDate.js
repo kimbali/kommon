@@ -52,11 +52,23 @@ export function addOneMonth(startDate, weeksToAdd = 4) {
   return newDate;
 }
 
-export const calculateDays = (startDate, endDate) => {
-  const start = new Date(startDate).getTime();
-  const end = new Date(endDate).getTime();
+export const calculateWeeks = (startDate, endDate) => {
+  const start = new Date(startDate);
+  const end = new Date(endDate);
 
-  return Math.floor((end - start) / (1000 * 60 * 60 * 24)) + 1;
+  const daysDifference = Math.floor((end - start) / (1000 * 60 * 60 * 24));
+
+  const fullWeeks = Math.floor(daysDifference / 7);
+  const partialWeekAtStart = start.getDay();
+  const partialWeekAtEnd = 6 - end.getDay();
+
+  const totalWeeks =
+    fullWeeks +
+    (partialWeekAtStart !== 1 ? 1 : 0) +
+    (partialWeekAtEnd !== 1 ? 1 : 0);
+
+  console.log(totalWeeks);
+  return totalWeeks;
 };
 
 export function getWeeksArray(startDate, endDate) {

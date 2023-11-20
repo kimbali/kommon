@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Input from '../input/Input';
 import {
-  calculateDays,
+  calculateWeeks,
   formatDateShort,
   formatWeekDayShort,
   getDatePositionInMonthArray,
@@ -61,9 +61,7 @@ function PlanningSelector({ marathon, setCurrentDiet, setCurrentDay }) {
 
   useEffect(() => {
     const { startDate, endDate } = marathon;
-
-    const totalMarathonDays = calculateDays(startDate, endDate);
-    const totalWeeks = Math.ceil(totalMarathonDays / 7);
+    const totalWeeks = calculateWeeks(startDate, endDate);
 
     const optionsWeeks = [...Array(totalWeeks).keys()].map((ele, index) => {
       return {
@@ -71,7 +69,6 @@ function PlanningSelector({ marathon, setCurrentDiet, setCurrentDay }) {
         value: index + 1,
       };
     });
-
     setWeekOptions(optionsWeeks);
 
     if (marathon && !dayParams) {
@@ -94,7 +91,7 @@ function PlanningSelector({ marathon, setCurrentDiet, setCurrentDay }) {
 
       handleSelectDay();
     }
-  }, [marathonId, marathon.startDate]);
+  }, [marathon]);
 
   const handleWeekChange = ({ value, label }) => {
     setSelectedWeek({ label, value });

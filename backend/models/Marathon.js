@@ -2,6 +2,7 @@ import { model, Schema } from 'mongoose';
 
 const MarathonsSchema = new Schema(
   {
+    isActive: Boolean,
     startDate: Date,
     endDate: Date,
     name: String,

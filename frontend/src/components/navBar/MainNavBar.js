@@ -18,7 +18,7 @@ function MainNavBar({ showNav }) {
   const navigate = useNavigate();
 
   const handleGoToConfig = () => {
-    navigate(frontRoutes.planning);
+    navigate(frontRoutes.marathonList);
   };
 
   return (

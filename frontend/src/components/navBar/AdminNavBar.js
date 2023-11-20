@@ -11,16 +11,8 @@ import {
 import './navBar.scss';
 import frontRoutes from '../../config/frontRoutes';
 import NavLink from './NavLink';
-import Button from '../button/Button';
-import { useNavigate } from 'react-router-dom';
 
 function AdminNavBar() {
-  const navigate = useNavigate();
-
-  const handleGoToMarathon = () => {
-    navigate(frontRoutes.main);
-  };
-
   return (
     <nav>
       <ul className='nav-links'>
@@ -62,10 +54,6 @@ function AdminNavBar() {
 
         <NavLink icon={faUser} label='Users' route={frontRoutes.users} />
       </ul>
-
-      <Button onClick={handleGoToMarathon} isSecondary>
-        Go to live
-      </Button>
     </nav>
   );
 }

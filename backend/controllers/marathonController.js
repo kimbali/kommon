@@ -56,7 +56,7 @@ export const createMarathon = asyncHandler(async (req, res) => {
 // @route   PUT /api/marathons/:id
 // @access  Private/Admin
 export const updateMarathon = asyncHandler(async (req, res) => {
-  const { startDate, endDate, name, planning } = req.body;
+  const { startDate, endDate, name, planning, isActive } = req.body;
 
   const marathon = await Marathon.findById(req.params.id);
 
@@ -65,6 +65,7 @@ export const updateMarathon = asyncHandler(async (req, res) => {
     marathon.endDate = endDate || marathon.endDate;
     marathon.name = name || marathon.name;
     marathon.planning = planning || marathon.planning;
+    marathon.isActive = isActive || marathon.isActive;
 
     const updatedMarathon = await marathon.save();
     const marathonUpdated = await Marathon.findById(req.params.id).populate(

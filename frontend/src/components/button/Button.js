@@ -3,22 +3,22 @@ import Text from '../text/Text';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function Button({
-  className = '',
+  big = false,
+  center = false,
   children,
-  onClick,
+  className = '',
+  disabled,
+  iconLeft,
+  iconRight,
+  isActive = false,
+  isLink = false,
   isPrimary = false,
   isSecondary = false,
   isThird = false,
-  isLink = false,
-  isActive = false,
-  iconRight,
-  iconLeft,
-  type = 'button',
-  center = false,
-  disabled,
+  onClick,
   onlyIcon = false,
   small = false,
-  big = false,
+  type = 'button',
 }) {
   return (
     <button

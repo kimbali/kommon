@@ -6,6 +6,7 @@ import { faEdit, faSort, faTrash } from '@fortawesome/free-solid-svg-icons';
 import {
   useDeleteMarathonMutation,
   useGetMarathonsQuery,
+  useUpdateMarathonMutation,
 } from '../slices/marathonApiSlice';
 import { formatDate, formatDateHyphens } from '../utils/formatDate';
 import ConfirmModal from '../components/modal/ConfirmModal';
@@ -21,7 +22,9 @@ function MarathonsList() {
   const [sortOrder, setSortOrder] = useState('asc');
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showActivateModal, setShowActivateModal] = useState(false);
   const [marathons, setMarathons] = useState(marathonsData?.marathons);
+  const [updateMarathon] = useUpdateMarathonMutation();
 
   useEffect(() => {
     setMarathons(marathonsData?.marathons);
@@ -65,6 +68,32 @@ function MarathonsList() {
     setMarathons(marathonsSorted);
   };
 
+  const handleActivate = async () => {
+    try {
+      const res = await updateMarathon({
+        ...showActivateModal,
+        isActive: true,
+      }).unwrap();
+
+      if (res) {
+        toast.success('Marathon activated');
+        await refetchMarathons();
+      } else {
+        toast.error('Error');
+      }
+    } catch (err) {
+      toast.error('Error');
+    }
+
+    setShowActivateModal(false);
+  };
+
+  const handleGoToLiveMarathon = marahton => {
+    navigate(`${frontRoutes.main}/${marahton._id}`, {
+      replace: true,
+    });
+  };
+
   return (
     <div className='marathons-list'>
       <table border='1'>
@@ -81,6 +110,7 @@ function MarathonsList() {
             <th>Trash</th>
             <th>Edit</th>
             <th>Activate</th>
+            <th>Go to live</th>
           </tr>
         </thead>
 
@@ -111,7 +141,22 @@ function MarathonsList() {
                   </Button>
                 </td>
                 <td>
-                  <Button isPrimary>Activate</Button>
+                  <Button
+                    onClick={() => setShowActivateModal(eachMarathon)}
+                    isPrimary
+                    disabled={eachMarathon.isActive}
+                  >
+                    {eachMarathon.isActive ? 'Active' : 'Activate'}
+                  </Button>
+                </td>
+                <td>
+                  <Button
+                    onClick={() => handleGoToLiveMarathon(eachMarathon)}
+                    isSecondary
+                    disabled={!eachMarathon.isActive}
+                  >
+                    Go to live
+                  </Button>
                 </td>
               </tr>
             ))}
@@ -124,6 +169,15 @@ function MarathonsList() {
           onClose={setShowDeleteModal}
           title='Delete marathon'
           text={`Are you sure you whant to delete: ${showDeleteModal.name}`}
+        />
+      )}
+
+      {showActivateModal && (
+        <ConfirmModal
+          onConfirm={handleActivate}
+          onClose={setShowActivateModal}
+          title='Activate marathon'
+          text={`Are you sure you whant to activate: ${showActivateModal.name}`}
         />
       )}
     </div>

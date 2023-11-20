@@ -85,7 +85,10 @@ function App() {
           </Route>
 
           <Route element={<MainLayout />}>
-            <Route path={frontRoutes.main} element={<Main />} />
+            <Route
+              path={`${frontRoutes.main}/:marathonId?`}
+              element={<Main />}
+            />
             <Route path={frontRoutes.diet} element={<Diet />} />
             <Route path={frontRoutes.workouts} element={<Workouts />} />
             <Route path={frontRoutes.meditation} element={<Meditations />} />

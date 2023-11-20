@@ -6,7 +6,6 @@ form {
     margin: 8px 0 6px 0;
     cursor: pointer;
     font-family: $avenirBook;
-    letter-spacing: 1px;
     margin-bottom: 6px;
     display: block;
 
@@ -101,21 +100,71 @@ form {
     justify-content: flex-start;
     align-items: center;
     width: fit-content;
+    margin-bottom: 12px;
+
+    &.checked {
+      label {
+        text-decoration: line-through;
+      }
+    }
 
     input {
-      width: fit-content;
-      margin-right: 8px;
       cursor: pointer;
+      padding: 0;
+      margin: 0;
+      margin-right: 14px;
+      border: none;
+      -webkit-appearance: none;
+      appearance: none;
+      width: 22px;
+      height: 22px;
+
+      &::after {
+        content: '';
+        background-color: $grey-input;
+        width: 22px;
+        height: 22px;
+        border-radius: 4px;
+        top: 0px;
+        left: 0px;
+        position: relative;
+        display: inline-block;
+        visibility: visible;
+        border: none;
+      }
+
+      &:checked:after {
+        content: '';
+        background-color: $primary-color;
+        color: $white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-image: url('../../styles/img/check.png'); // Ruta a tu ícono de tick SVG
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 14px;
+      }
     }
 
     label {
       margin: 0;
       color: $secondary-color;
       cursor: pointer;
+      font-family: $avenirHeavy;
+      font-size: 18px;
 
       &::first-letter {
         text-transform: capitalize;
       }
+    }
+
+    &:after {
+      top: -5px;
+      width: 5px;
+      height: 10px;
+      left: 2px;
+      color: white;
     }
   }
 
@@ -154,7 +203,7 @@ form {
           top: 0px;
           left: 0px;
           position: relative;
-          background-color: #515566;
+          background-color: $grey-input;
           display: inline-block;
           visibility: visible;
           border: none;
@@ -181,7 +230,6 @@ form {
         align-items: start;
         justify-content: center;
         font-size: 16px;
-        letter-spacing: 0;
 
         span {
           font-family: $avenirBook;

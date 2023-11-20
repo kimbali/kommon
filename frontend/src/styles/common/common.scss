@@ -92,6 +92,7 @@ a {
   align-items: flex-start;
   width: 100%;
   flex-direction: column;
+  column-gap: 12px;
 
   & > button {
     margin-bottom: 16px;

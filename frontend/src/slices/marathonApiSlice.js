@@ -42,6 +42,12 @@ export const marathonsApiSlice = apiSlice.injectEndpoints({
       }),
       providesTags: ['Marathon'],
     }),
+    getMarathonDetailsForClient: builder.query({
+      query: marathonId => ({
+        url: `${MARATHON_URL}/client/${marathonId}`,
+      }),
+      keepUnusedDataFor: 5,
+    }),
   }),
 });
 
@@ -51,4 +57,5 @@ export const {
   useCreateMarathonMutation,
   useUpdateMarathonMutation,
   useDeleteMarathonMutation,
+  useGetMarathonDetailsForClientQuery,
 } = marathonsApiSlice;

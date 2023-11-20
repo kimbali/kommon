@@ -1,0 +1,42 @@
+.main-tab {
+  .subtitle {
+    font-size: 26px;
+  }
+
+  .marathon-config-scrollx .single-workout {
+    width: 362px;
+
+    &.even {
+      width: 500px;
+    }
+
+    .workout-card {
+      height: 345px;
+    }
+  }
+
+  .single-recipe {
+    width: 200px;
+  }
+
+  .content {
+    flex-grow: 1;
+  }
+
+  .container {
+    background-color: $background-2;
+    border-radius: $border-radius-wrapper;
+    padding: 22px;
+
+    .decolored-title {
+      font-size: 18px;
+      color: $grey-title;
+      font-family: $avenirHeavy;
+    }
+
+    .weigth-title {
+      font-size: 18px;
+      font-family: $avenirBook;
+    }
+  }
+}

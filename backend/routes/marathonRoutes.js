@@ -5,6 +5,7 @@ import {
   createMarathon,
   deleteMarathon,
   getMarathonById,
+  getMarathonClientById,
   getMarathons,
   updateMarathon,
 } from '../controllers/marathonController.js';
@@ -17,5 +18,6 @@ router
   .get(checkObjectId, getMarathonById)
   .put(checkObjectId, updateMarathon)
   .delete(checkObjectId, deleteMarathon);
+router.route('/client/:id').get(checkObjectId, getMarathonClientById);
 
 export default router;

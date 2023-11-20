@@ -333,7 +333,7 @@
     padding: 5px 0px 10px 0px;
     width: 14%;
     font-size: 16px;
-    color: #7e8295;
+    color: $grey-title;
   }
   table.cal-mes {
     width: 100%;
@@ -946,7 +946,7 @@
     height: 21px;
     box-shadow: none !important;
     margin-right: 13px;
-    background: #515566;
+    background: $grey-input;
   }
   .checkbox .jq-checkbox span {
     display: none;
@@ -991,7 +991,7 @@
     height: 35px;
     box-shadow: none !important;
     margin-right: 16px;
-    background: #515566;
+    background: $grey-input;
   }
   .checkbox .jq-radio span {
     display: none;
@@ -1048,7 +1048,7 @@
   .tasks-lbl {
     font-size: 18px;
     margin-bottom: 21px;
-    color: #7e8295;
+    color: $grey-title;
     font-family: 'AvenirMedium';
   }
   .progress-head {
@@ -1098,12 +1098,12 @@
   }
   .chart-val-lbl {
     font-size: 15px;
-    color: #7e8295;
+    color: $grey-title;
   }
   .chart-left ul li {
     font-size: 15px;
     margin-bottom: 19px;
-    color: #7e8295;
+    color: $grey-title;
   }
 
   .diet {

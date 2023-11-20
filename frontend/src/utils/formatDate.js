@@ -67,7 +67,6 @@ export const calculateWeeks = (startDate, endDate) => {
     (partialWeekAtStart !== 1 ? 1 : 0) +
     (partialWeekAtEnd !== 1 ? 1 : 0);
 
-  console.log(totalWeeks);
   return totalWeeks;
 };
 

@@ -105,6 +105,7 @@ function Input({
             className={`${value ? 'has-value' : 'no-value'} ${
               hasError ? 'has-error' : ''
             }`}
+            checked={!!value}
           />
         )}
 

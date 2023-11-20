@@ -25,7 +25,7 @@ const Login = () => {
 
   useEffect(() => {
     if (userInfo) {
-      navigate(userInfo.isAdmin ? frontRoutes.planning : frontRoutes.main);
+      navigate(userInfo.isAdmin ? frontRoutes.marathonList : frontRoutes.main);
     }
   }, [navigate, userInfo]);
 

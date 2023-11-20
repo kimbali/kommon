@@ -36,6 +36,20 @@ export const getMarathonById = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc    Fetch single marathon
+// @route   GET /api/marathons/:id
+// @access  Public
+export const getMarathonClientById = asyncHandler(async (req, res) => {
+  const marathon = await Marathon.findById(req.params.id).populate('planning');
+
+  if (marathon) {
+    return res.json(marathon);
+  } else {
+    res.status(404);
+    throw new Error('Marathon not found');
+  }
+});
+
 // @desc    Create a marathon
 // @route   POST /api/marathons
 // @access  Private/Admin

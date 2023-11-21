@@ -12,6 +12,7 @@ import { formatDate, formatDateHyphens } from '../utils/formatDate';
 import ConfirmModal from '../components/modal/ConfirmModal';
 import toast from 'react-hot-toast';
 import frontRoutes from '../config/frontRoutes';
+import { MARATHON_ID } from '../config/constants';
 
 function MarathonsList() {
   const navigate = useNavigate();
@@ -89,7 +90,7 @@ function MarathonsList() {
   };
 
   const handleGoToLiveMarathon = marahton => {
-    navigate(`${frontRoutes.main}/${marahton._id}`, {
+    navigate(`${frontRoutes.main}?${MARATHON_ID}=${marahton._id}`, {
       replace: true,
     });
   };

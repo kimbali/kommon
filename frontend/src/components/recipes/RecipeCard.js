@@ -29,6 +29,10 @@ function RecipeCard({ recipe, meal = '', onClick }) {
     }
   }, [recipe?.image?.url]);
 
+  if (!recipe) {
+    return null;
+  }
+
   return (
     <button onClick={onClick} className='recipe-card-cta'>
       <div className='recipe-card'>

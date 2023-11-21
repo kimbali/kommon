@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { useGetMarathonDetailsForClientQuery } from '../slices/marathonApiSlice';
 import { useGetDayDetailsQuery } from '../slices/daysApiSlice';
 import Text from '../components/text/Text';
@@ -16,8 +15,7 @@ import RecipeDetails from './RecipeDetails';
 // Hay dos opciones, que la misma llamada de fetchMarathon, popule los dias que queremos mostrar. O que por cada dia se hace una llamada fetchDay
 
 function Main() {
-  const { marathonId: marathonIdParams } = useParams();
-  const { setMarathonId, marathonId } = useMarathon();
+  const { marathonId } = useMarathon();
   const [currentDay, setCurrentDay] = useState();
   const [showRecipe, setShowRecipe] = useState();
 
@@ -31,10 +29,6 @@ function Main() {
   useEffect(() => {
     if (marathonData) {
       setCurrentDay(marathonData?.planning?.month[0]);
-    }
-
-    if (marathonIdParams) {
-      setMarathonId(marathonIdParams);
     }
   }, [marathonData]);
 
@@ -74,10 +68,10 @@ function Main() {
                 recipe={eachMeal.recipe}
                 onClick={() => setShowRecipe(eachMeal.recipe)}
               />
+
+              <Space small />
             </div>
           ))}
-
-        <Space extraSmall />
       </div>
 
       <Space medium />

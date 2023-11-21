@@ -1,6 +1,13 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import {
+  Route,
+  Routes,
+  useSearchParams,
+  useNavigate,
+  useLocation,
+} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { useMarathon } from './context/marathonContext';
 import { logout } from './slices/authSlice';
 import toast, { Toaster } from 'react-hot-toast';
 import frontRoutes from './config/frontRoutes';
@@ -33,9 +40,13 @@ import {
   useGetLegalsQuery,
 } from './slices/legalsApiSlice';
 import MarathonsList from './pages/MarathonsList';
+import { EXPIRATION_TIME, MARATHON_ID } from './config/constants';
 
 function App() {
   const dispatch = useDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const { setMarathonId } = useMarathon();
+
   const { data: legalsData } = useGetLegalsQuery({});
   const [createLegalDoc] = useCreateLegalMutation();
 
@@ -48,7 +59,13 @@ function App() {
   };
 
   useEffect(() => {
-    const expirationTime = localStorage.getItem('expirationTime');
+    if (legalsData?.legals.length === 0) {
+      createLegals();
+    }
+  }, [legalsData]);
+
+  useEffect(() => {
+    const expirationTime = localStorage.getItem(EXPIRATION_TIME);
     if (expirationTime) {
       const currentTime = new Date().getTime();
 
@@ -58,79 +75,78 @@ function App() {
     }
   }, [dispatch]);
 
-  useEffect(() => {
-    if (legalsData?.legals.length === 0) {
-      createLegals();
+  const handleMarathonId = () => {
+    const storageId = localStorage.getItem(MARATHON_ID);
+    const urlId = searchParams.get(MARATHON_ID);
+
+    if (urlId && storageId !== urlId) {
+      localStorage.setItem(MARATHON_ID, urlId);
+      setMarathonId(urlId);
+    } else {
+      setMarathonId(storageId);
     }
-  }, [legalsData]);
+
+    searchParams.delete(MARATHON_ID);
+    setSearchParams(searchParams);
+  };
+
+  useEffect(() => {
+    handleMarathonId();
+  }, [searchParams]);
 
   return (
-    <Router>
-      <div className='app-container'>
-        <Toaster />
-        <ScrollToTop />
+    <div className='app-container'>
+      <Toaster />
+      <ScrollToTop />
 
-        <Routes>
-          <Route path={frontRoutes.register} element={<Register />} />
-          <Route path={frontRoutes.login} element={<Login />} />
-          <Route path={frontRoutes.home} element={<Home />} />
+      <Routes>
+        <Route path={frontRoutes.register} element={<Register />} />
+        <Route path={frontRoutes.login} element={<Login />} />
+        <Route path={frontRoutes.home} element={<Home />} />
 
-          <Route element={<PlainLayout />}>
-            <Route
-              path={frontRoutes.privacyPolicy}
-              element={<PrivacyPolicy />}
-            />
-            <Route path={frontRoutes.terms} element={<TermsAndConditions />} />
-            <Route path={frontRoutes.cookies} element={<CookiesFiles />} />
-          </Route>
+        <Route element={<PlainLayout />}>
+          <Route path={frontRoutes.privacyPolicy} element={<PrivacyPolicy />} />
+          <Route path={frontRoutes.terms} element={<TermsAndConditions />} />
+          <Route path={frontRoutes.cookies} element={<CookiesFiles />} />
+        </Route>
 
-          <Route element={<MainLayout />}>
-            <Route
-              path={`${frontRoutes.main}/:marathonId?`}
-              element={<Main />}
-            />
-            <Route path={frontRoutes.diet} element={<Diet />} />
-            <Route path={frontRoutes.workouts} element={<Workouts />} />
-            <Route path={frontRoutes.meditation} element={<Meditations />} />
-            <Route path={frontRoutes.progress} element={<Progress />} />
-          </Route>
+        <Route element={<MainLayout />}>
+          <Route path={`${frontRoutes.main}`} element={<Main />} />
+          <Route path={frontRoutes.diet} element={<Diet />} />
+          <Route path={frontRoutes.workouts} element={<Workouts />} />
+          <Route path={frontRoutes.meditation} element={<Meditations />} />
+          <Route path={frontRoutes.progress} element={<Progress />} />
+        </Route>
 
-          <Route path='' element={<AdminLayout />}>
-            <Route
-              path={frontRoutes.marathonList}
-              element={<MarathonsList />}
-            />
-            <Route
-              path={`${frontRoutes.planning}/:marathonId?/:day?`}
-              element={<Planning />}
-            />
-            <Route path={frontRoutes.users} element={<Users />} />
-            <Route path={frontRoutes.dietsConfig} element={<Recipes />} />
-            <Route
-              path={frontRoutes.recipeDetails}
-              element={<RecipeDetails />}
-            />
-            <Route
-              path={frontRoutes.workoutsConfig}
-              element={<WorkoutsConfig />}
-            />
-            <Route
-              path={frontRoutes.workoutDetails}
-              element={<WorkoutDetails />}
-            />
-            <Route
-              path={frontRoutes.meditationsConfig}
-              element={<MeditationsConfig />}
-            />
-            <Route path={frontRoutes.tasksConfig} element={<TasksConfig />} />
-          </Route>
+        <Route path='' element={<AdminLayout />}>
+          <Route path={frontRoutes.marathonList} element={<MarathonsList />} />
+          <Route
+            path={`${frontRoutes.planning}/:marathonId?/:day?`}
+            element={<Planning />}
+          />
+          <Route path={frontRoutes.users} element={<Users />} />
+          <Route path={frontRoutes.dietsConfig} element={<Recipes />} />
+          <Route path={frontRoutes.recipeDetails} element={<RecipeDetails />} />
+          <Route
+            path={frontRoutes.workoutsConfig}
+            element={<WorkoutsConfig />}
+          />
+          <Route
+            path={frontRoutes.workoutDetails}
+            element={<WorkoutDetails />}
+          />
+          <Route
+            path={frontRoutes.meditationsConfig}
+            element={<MeditationsConfig />}
+          />
+          <Route path={frontRoutes.tasksConfig} element={<TasksConfig />} />
+        </Route>
 
-          <Route path='*' element={<div>Not found</div>} />
-        </Routes>
+        <Route path='*' element={<div>Not found</div>} />
+      </Routes>
 
-        <Footer />
-      </div>
-    </Router>
+      <Footer />
+    </div>
   );
 }
 

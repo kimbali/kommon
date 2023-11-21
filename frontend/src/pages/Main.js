@@ -7,26 +7,34 @@ import Space from '../components/space/Space';
 import WorkoutCard from '../components/workouts/WorkoutCard';
 import RecipeCard from '../components/recipes/RecipeCard';
 import Input from '../components/input/Input';
+import { useMarathon } from '../context/marathonContext';
+import Modal from '../components/modal/Modal';
+import RecipeDetails from './RecipeDetails';
 
 // TODO: El dia de mañana, cuando se logee un usuario que no es admin, guardar en el progresso, por qué dia de la marathon va.
 // Mas que por que dia va, seria ver qué marathon esta haciendo, qué dia era el "startDate", y que dia es hoy
 // Hay dos opciones, que la misma llamada de fetchMarathon, popule los dias que queremos mostrar. O que por cada dia se hace una llamada fetchDay
 
 function Main() {
-  const { marathonId } = useParams();
+  const { marathonId: marathonIdParams } = useParams();
+  const { setMarathonId, marathonId } = useMarathon();
   const [currentDay, setCurrentDay] = useState();
+  const [showRecipe, setShowRecipe] = useState();
 
-  const { data: marathonData, refetch: refetchMarathon } =
+  const { data: marathonData } =
     useGetMarathonDetailsForClientQuery(marathonId);
 
-  const { data: dayData, refetch: refetchDay } = useGetDayDetailsQuery(
-    currentDay,
-    { skip: !currentDay }
-  );
-  console.log(dayData);
+  const { data: dayData } = useGetDayDetailsQuery(currentDay, {
+    skip: !currentDay,
+  });
+
   useEffect(() => {
     if (marathonData) {
       setCurrentDay(marathonData?.planning?.month[0]);
+    }
+
+    if (marathonIdParams) {
+      setMarathonId(marathonIdParams);
     }
   }, [marathonData]);
 
@@ -62,7 +70,10 @@ function Main() {
         {dayData?.meals.length > 0 &&
           dayData.meals.map((eachMeal, i) => (
             <div className='single-recipe' key={`${i}-recipe`}>
-              <RecipeCard recipe={eachMeal.recipe} />
+              <RecipeCard
+                recipe={eachMeal.recipe}
+                onClick={() => setShowRecipe(eachMeal.recipe)}
+              />
             </div>
           ))}
 
@@ -116,6 +127,12 @@ function Main() {
           </div>
         </div>
       </div>
+
+      {showRecipe && (
+        <Modal scroll onClose={setShowRecipe}>
+          <RecipeDetails recipe={showRecipe} />
+        </Modal>
+      )}
     </div>
   );
 }

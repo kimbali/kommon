@@ -27,6 +27,10 @@ export const getDayById = asyncHandler(async (req, res) => {
     .populate({
       path: 'meals.recipe',
       model: 'Recipe',
+      populate: {
+        path: 'ingredients.ingredient',
+        model: 'Ingredient',
+      },
     })
     .populate('workouts')
     .populate('meditations')

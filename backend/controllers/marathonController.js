@@ -37,7 +37,7 @@ export const getMarathonById = asyncHandler(async (req, res) => {
 });
 
 // @desc    Fetch single marathon
-// @route   GET /api/marathons/:id
+// @route   GET /api/marathons/client/:id
 // @access  Public
 export const getMarathonClientById = asyncHandler(async (req, res) => {
   const marathon = await Marathon.findById(req.params.id).populate('planning');

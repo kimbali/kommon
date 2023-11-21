@@ -128,7 +128,7 @@ function MarathonDiet({ currentDiet, mealsData, dayId, onSave }) {
       )}
 
       {showDietModal && (
-        <Modal onClose={setShowDietModal} isSecondary>
+        <Modal scroll onClose={setShowDietModal} isSecondary>
           <form onSubmit={handleOnSubmit}>
             <Text isTitle>Update diet</Text>
 

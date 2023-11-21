@@ -6,21 +6,17 @@ function ResumeTable({ list = [], withBullets = false }) {
     <table className='resume-table'>
       <tbody>
         {list.map((eachItem, index) => {
-          if (!eachItem.name && !eachItem.value) {
-            return;
-          }
-
           return (
             <tr
               key={`table-${index}`}
               className={withBullets ? 'with-bullets' : ''}
             >
               <th>
-                <Text isBold>{eachItem.name}</Text>
+                <Text isBold>{eachItem.name || ''}</Text>
               </th>
 
               <td>
-                <Text isBold={eachItem.isBold}>({eachItem.value})</Text>
+                <Text isBold={eachItem.isBold}>{eachItem.value || ''}</Text>
               </td>
             </tr>
           );

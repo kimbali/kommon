@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import {
@@ -6,7 +6,6 @@ import {
   useGetRecipeDetailsQuery,
 } from '../slices/recipesApiSlice';
 import { useGetImageUrlQuery } from '../slices/imagesApiSlice';
-import LoadingError from '../components/loadingError/LoadingError';
 import Text from '../components/text/Text';
 import Space from '../components/space/Space';
 import ResumeTable from '../components/resumeTable/ResumeTable';
@@ -18,18 +17,19 @@ import Modal from '../components/modal/Modal';
 import RecipeForm from '../components/recipes/RecipeForm';
 import { getMeasureDiminutive } from '../config/enums/measuresEnum';
 
-function RecipeDetails() {
+function RecipeDetails({ recipe }) {
   const { id } = useParams();
   const navigate = useNavigate();
+
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
+  const [recipeDetails, setRecipeDetails] = useState();
 
-  const {
-    data: recipeDetails,
-    isLoading,
-    isError,
-    refetch,
-  } = useGetRecipeDetailsQuery(id);
+  const { data, refetch } = useGetRecipeDetailsQuery(id, { skip: !!recipe });
+
+  useEffect(() => {
+    setRecipeDetails(recipe || data);
+  }, [data, recipe]);
 
   const { data: imageS3 } = useGetImageUrlQuery(
     {
@@ -55,10 +55,6 @@ function RecipeDetails() {
     await refetch();
   };
 
-  if (isLoading || isError) {
-    return <LoadingError isLoading={isLoading} isError={isError} />;
-  }
-
   if (!recipeDetails) {
     return <Text>Recipe not found</Text>;
   }
@@ -76,32 +72,34 @@ function RecipeDetails() {
 
   return (
     <>
-      <div className='content-on-the-right'>
-        <Button
-          onClick={() => setShowEditModal(true)}
-          iconLeft={faEdit}
-          isPrimary
-        >
-          Edit recipe
-        </Button>
+      {!recipe && (
+        <div className='content-on-the-right'>
+          <Button
+            onClick={() => setShowEditModal(true)}
+            iconLeft={faEdit}
+            isPrimary
+          >
+            Edit recipe
+          </Button>
 
-        <Button
-          onClick={() => setShowDeleteModal(true)}
-          iconLeft={faTrash}
-          isSecondary
-        >
-          Delete recipe
-        </Button>
+          <Button
+            onClick={() => setShowDeleteModal(true)}
+            iconLeft={faTrash}
+            isSecondary
+          >
+            Delete recipe
+          </Button>
 
-        {showDeleteModal && (
-          <ConfirmModal
-            onConfirm={deleteHandler}
-            onClose={setShowDeleteModal}
-            title='Delete recipe'
-            text={`Are you sure you whant to delete: ${title}`}
-          />
-        )}
-      </div>
+          {showDeleteModal && (
+            <ConfirmModal
+              onConfirm={deleteHandler}
+              onClose={setShowDeleteModal}
+              title='Delete recipe'
+              text={`Are you sure you whant to delete: ${title}`}
+            />
+          )}
+        </div>
+      )}
 
       <Space small />
 
@@ -151,8 +149,8 @@ function RecipeDetails() {
               withBullets
               list={ingredients.map(ele => {
                 return {
-                  name: ele.ingredient?.name,
-                  value: `${ele.quantity} ${getMeasureDiminutive(
+                  name: ele.ingredient?.name || '',
+                  value: `${ele.quantity || ''} ${getMeasureDiminutive(
                     ele.ingredient?.measure
                   )}`,
                 };

@@ -10,7 +10,7 @@ export const MarathonProvider = ({ children }) => {
   const updateMarathon = newMarathonId => {
     setMarathon(newMarathonId);
   };
-  console.log(dayDetails);
+
   return (
     <MarathonContext.Provider
       value={{

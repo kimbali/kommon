@@ -9,6 +9,7 @@ import RecipeDetails from './RecipeDetails';
 import frontRoutes from '../config/frontRoutes';
 import { useNavigate } from 'react-router-dom';
 import { useMarathon } from '../context/marathonContext';
+import dietsEnum from '../config/enums/dietsEnum';
 
 // TODO: El dia de mañana, cuando se logee un usuario que no es admin, guardar en el progresso, por qué dia de la marathon va.
 // Mas que por que dia va, seria ver qué marathon esta haciendo, qué dia era el "startDate", y que dia es hoy
@@ -53,16 +54,18 @@ function Main() {
 
       <div className='marathon-config-scrollx'>
         {dayDetails?.meals.length > 0 &&
-          dayDetails.meals.map((eachMeal, i) => (
-            <div className='single-recipe' key={`${i}-recipe`}>
-              <RecipeCard
-                recipe={eachMeal.recipe}
-                onClick={() => setShowRecipe(eachMeal.recipe)}
-              />
+          dayDetails.meals
+            .filter(ele => ele.diet === dietsEnum[0].value)
+            .map((eachMeal, i) => (
+              <div className='single-recipe' key={`${i}-recipe`}>
+                <RecipeCard
+                  recipe={eachMeal.recipe}
+                  onClick={() => setShowRecipe(eachMeal.recipe)}
+                />
 
-              <Space small />
-            </div>
-          ))}
+                <Space small />
+              </div>
+            ))}
       </div>
 
       <Space medium />

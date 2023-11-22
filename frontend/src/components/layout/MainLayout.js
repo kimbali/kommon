@@ -30,21 +30,24 @@ function MainLayout() {
     skip: !currentDay,
   });
 
-  useEffect(() => {
-    if (marathonData) {
-      updateMarathon(marathonData);
-    }
-  }, [marathonData]);
-
   const handleSelectDay = day => {
-    setCurrentDay({
-      ...day,
-      planningId: marathonData.planning._id,
-    });
+    setCurrentDay({ ...day, planningId: marathonData?.planning._id });
   };
 
   useEffect(() => {
-    if (dayData && !isError) {
+    if (marathonData) {
+      updateMarathon(marathonData);
+
+      handleSelectDay({
+        week: 1,
+        weekDay: 0,
+        planningId: marathonData.planning._id,
+      });
+    }
+  }, [marathonData]);
+
+  useEffect(() => {
+    if (dayData) {
       setDayDetails(dayData);
     }
     if (isError) {

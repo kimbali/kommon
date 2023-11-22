@@ -144,6 +144,16 @@ function Input({
           classNamePrefix='multi-prefix'
           defaultValue={defaultValue}
           value={selectedOption}
+          menuPortalTarget={document.body}
+          menuPosition={'fixed'}
+          styles={{
+            menuPortal: provided => ({ ...provided, zIndex: 9999 }),
+            menu: provided => ({
+              ...provided,
+              zIndex: 9999,
+              color: '#464545',
+            }),
+          }}
         />
       )}
 

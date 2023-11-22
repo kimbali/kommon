@@ -208,3 +208,18 @@
   align-items: center;
   padding-top: 16px;
 }
+
+.diet-tab {
+  .recipes-list {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 280px));
+    grid-template-rows: auto;
+    gap: 18px;
+    justify-content: center;
+
+    @media screen and (min-width: 1024px) {
+      justify-content: flex-start;
+    }
+  }
+}

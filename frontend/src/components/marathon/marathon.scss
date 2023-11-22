@@ -26,8 +26,11 @@
 .days-selector {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  row-gap: 16px;
 
   @media screen and (min-width: 1024px) {
+    justify-content: flex-start;
     flex-wrap: nowrap;
   }
 

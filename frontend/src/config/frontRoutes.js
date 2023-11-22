@@ -1,6 +1,7 @@
 const frontRoutes = {
   cookies: '/cookies',
   diet: '/diet',
+  dietDetailsMain: '/diet/:id',
   dietsConfig: '/config/diets',
   home: '/home',
   login: '/login',

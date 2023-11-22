@@ -122,8 +122,12 @@ a {
 
   button,
   .multi-select {
-    margin-right: 16px;
+    margin-right: 0;
     margin-bottom: 16px;
+
+    @media screen and (min-width: 1024px) {
+      margin-right: 16px;
+    }
 
     svg {
       margin-right: 8px;

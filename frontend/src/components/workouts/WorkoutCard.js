@@ -1,6 +1,5 @@
 import React from 'react';
 import Text from '../text/Text';
-import DEFAULT_IMG from '../../styles/assets/workout-01.png';
 import { getLevelLabel } from '../../config/enums/levelsEnum';
 import PlayButton from './PlayButton';
 import { useGetImageUrlQuery } from '../../slices/imagesApiSlice';

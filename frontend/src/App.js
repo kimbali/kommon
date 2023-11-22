@@ -1,11 +1,5 @@
 import React, { useEffect } from 'react';
-import {
-  Route,
-  Routes,
-  useSearchParams,
-  useNavigate,
-  useLocation,
-} from 'react-router-dom';
+import { Route, Routes, useSearchParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useMarathon } from './context/marathonContext';
 import { logout } from './slices/authSlice';
@@ -41,6 +35,7 @@ import {
 } from './slices/legalsApiSlice';
 import MarathonsList from './pages/MarathonsList';
 import { EXPIRATION_TIME, MARATHON_ID } from './config/constants';
+import WorkoutDetailsMain from './pages/WorkoutDetailsMain';
 
 function App() {
   const dispatch = useDispatch();
@@ -79,7 +74,7 @@ function App() {
     const storageId = localStorage.getItem(MARATHON_ID);
     const urlId = searchParams.get(MARATHON_ID);
 
-    if (urlId && storageId !== urlId) {
+    if (urlId && storageId && storageId !== urlId) {
       localStorage.setItem(MARATHON_ID, urlId);
       setMarathonId(urlId);
     } else {
@@ -114,6 +109,10 @@ function App() {
           <Route path={`${frontRoutes.main}`} element={<Main />} />
           <Route path={frontRoutes.diet} element={<Diet />} />
           <Route path={frontRoutes.workouts} element={<Workouts />} />
+          <Route
+            path={`${frontRoutes.workouts}/:id`}
+            element={<WorkoutDetailsMain />}
+          />
           <Route path={frontRoutes.meditation} element={<Meditations />} />
           <Route path={frontRoutes.progress} element={<Progress />} />
         </Route>

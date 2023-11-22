@@ -1,21 +1,29 @@
-import React, { useEffect, useRef, useState } from 'react';
-import Input from '../input/Input';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import dietsEnum from '../../config/enums/dietsEnum';
 import {
-  calculateWeeks,
+  formatDateHyphens,
   formatDateShort,
   formatWeekDayShort,
   getDatePositionInMonthArray,
   getWeeksArray,
-  formatDateHyphens,
+  weeksOptionsList,
 } from '../../utils/formatDate';
-import dietsEnum from '../../config/enums/dietsEnum';
-import Space from '../space/Space';
 import Button from '../button/Button';
+import Input from '../input/Input';
+import Space from '../space/Space';
 import Text from '../text/Text';
-import { useParams, useNavigate } from 'react-router-dom';
-import frontRoutes from '../../config/frontRoutes';
+import { DATE, MARATHON_ID } from '../../config/constants';
+import levelsEnum from '../../config/enums/levelsEnum';
 
-function PlanningSelector({ marathon, setCurrentDiet, setCurrentDay }) {
+function PlanningSelector({
+  marathon,
+  setCurrentDiet,
+  setCurrentLevel,
+  setCurrentDay,
+  baseUrl,
+  isFrontoffice,
+}) {
   const { marathonId, day: dayParams } = useParams();
   const navigate = useNavigate();
 
@@ -33,11 +41,11 @@ function PlanningSelector({ marathon, setCurrentDiet, setCurrentDay }) {
       const {
         row,
         column,
-        date: dateInAraay,
+        date: dateInArray,
       } = getDatePositionInMonthArray(month, date);
       week = row;
       weekDay = column;
-      dateFormatted = dateInAraay;
+      dateFormatted = dateInArray;
     }
 
     setSelectedDate(dateFormatted);
@@ -53,7 +61,11 @@ function PlanningSelector({ marathon, setCurrentDiet, setCurrentDay }) {
     const stringDate = formatDateHyphens(date);
 
     if (date && dayParams !== stringDate) {
-      navigate(`${frontRoutes.planning}/${marathonId}/${stringDate}`, {
+      const url = isFrontoffice
+        ? `${baseUrl}?${MARATHON_ID}=${marathon._id}&${DATE}=${stringDate}`
+        : `${baseUrl}/${marathonId}/${stringDate}`;
+
+      navigate(url, {
         replace: true,
       });
     }
@@ -61,23 +73,20 @@ function PlanningSelector({ marathon, setCurrentDiet, setCurrentDay }) {
 
   useEffect(() => {
     const { startDate, endDate } = marathon;
-    const totalWeeks = calculateWeeks(startDate, endDate);
 
-    const optionsWeeks = [...Array(totalWeeks).keys()].map((ele, index) => {
-      return {
-        label: `Week ${index + 1}`,
-        value: index + 1,
-      };
-    });
+    const optionsWeeks = weeksOptionsList(startDate, endDate);
     setWeekOptions(optionsWeeks);
 
     if (marathon && !dayParams) {
-      navigate(
-        `${frontRoutes.planning}/${marathonId}/${formatDateHyphens(startDate)}`,
-        {
-          replace: true,
-        }
-      );
+      const url = isFrontoffice
+        ? `${baseUrl}?${MARATHON_ID}=${
+            marathon._id
+          }&${DATE}=${formatDateHyphens(startDate)}`
+        : `${baseUrl}/${marathonId}/${formatDateHyphens(startDate)}`;
+
+      navigate(url, {
+        replace: true,
+      });
     }
 
     if (marathon) {
@@ -97,10 +106,6 @@ function PlanningSelector({ marathon, setCurrentDiet, setCurrentDay }) {
     setSelectedWeek({ label, value });
 
     handleSelectDay(monthArray[value - 1][0], monthArray);
-    // setCurrentDay({
-    //   week: value,
-    //   weekDay: 1,
-    // });
   };
 
   return (
@@ -116,14 +121,27 @@ function PlanningSelector({ marathon, setCurrentDiet, setCurrentDay }) {
           name='week'
         />
 
-        <Input
-          className='selector-fix-width'
-          placeholder='Select diet'
-          isSingleSelect
-          options={dietsEnum}
-          onChange={({ value }) => setCurrentDiet(value)}
-          name='diet'
-        />
+        {setCurrentDiet && (
+          <Input
+            className='selector-fix-width'
+            placeholder='Select diet'
+            isSingleSelect
+            options={dietsEnum}
+            onChange={({ value }) => setCurrentDiet(value)}
+            name='diet'
+          />
+        )}
+
+        {setCurrentLevel && (
+          <Input
+            className='selector-fix-width'
+            placeholder='Select workout level'
+            isSingleSelect
+            options={[{ label: 'All levels', value: null }].concat(levelsEnum)}
+            onChange={({ value }) => setCurrentLevel(value)}
+            name='diet'
+          />
+        )}
       </div>
 
       <Space extraSmall />

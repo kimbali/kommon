@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import MarathonSelector from '../components/marathon/MarathonSelector';
-import Text from '../components/text/Text';
-import Space from '../components/space/Space';
-import PlanningSelector from '../components/marathon/PlanningSelector';
+import { useNavigate, useParams } from 'react-router-dom';
 import MarathonDiets from '../components/marathon/MarathonDiets';
+import MarathonSelector from '../components/marathon/MarathonSelector';
+import MarathonTasks from '../components/marathon/MarathonTasks';
+import MarathonWorkouts from '../components/marathon/MarathonWorkouts';
+import PlanningSelector from '../components/marathon/PlanningSelector';
+import Space from '../components/space/Space';
+import Text from '../components/text/Text';
+import frontRoutes from '../config/frontRoutes';
+import { useMarathon } from '../context/marathonContext';
+import { useCreateDayMutation } from '../slices/daysApiSlice';
 import {
   useGetPlanningDetailsQuery,
   useUpdatePlanningMutation,
 } from '../slices/planningsApiSlice';
-import { useCreateDayMutation } from '../slices/daysApiSlice';
-import MarathonWorkouts from '../components/marathon/MarathonWorkouts';
-import MarathonTasks from '../components/marathon/MarathonTasks';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useMarathon } from '../context/marathonContext';
-import frontRoutes from '../config/frontRoutes';
 
 function Planning() {
   const navigate = useNavigate();
@@ -107,6 +107,7 @@ function Planning() {
           marathon={currentMarathon}
           setCurrentDiet={setCurrentDiet}
           setCurrentDay={setCurrentDay}
+          baseUrl={frontRoutes.planning}
         />
       )}
 

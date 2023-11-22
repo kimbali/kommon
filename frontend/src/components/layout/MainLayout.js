@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './layout.scss';
 import { Outlet, useLocation } from 'react-router-dom';
+import { useGetMarathonDetailsForClientQuery } from '../../slices/marathonApiSlice';
+import { useGetMonthDayDetailsQuery } from '../../slices/daysApiSlice';
+import { useMarathon } from '../../context/marathonContext';
 import MainNavBar from '../navBar/MainNavBar';
 import TextedLogo from '../header/TextedLogo';
 import UserMenu from '../header/UserMenu';
@@ -8,10 +11,46 @@ import RRSS from '../header/RRSS';
 import Button from '../button/Button';
 import MENU from '../../styles/img/menu.png';
 import Modal from '../modal/Modal';
+import Space from '../space/Space';
 
 function MainLayout() {
-  const [showNav, setShowNav] = useState(false);
   const location = useLocation();
+  const { marathonId, setDayDetails, updateMarathon } = useMarathon();
+  const [currentDay, setCurrentDay] = useState();
+  const [showNav, setShowNav] = useState(false);
+
+  const { data: marathonData } = useGetMarathonDetailsForClientQuery(
+    marathonId,
+    {
+      skip: !marathonId,
+    }
+  );
+
+  const { data: dayData, isError } = useGetMonthDayDetailsQuery(currentDay, {
+    skip: !currentDay,
+  });
+
+  useEffect(() => {
+    if (marathonData) {
+      updateMarathon(marathonData);
+    }
+  }, [marathonData]);
+
+  const handleSelectDay = day => {
+    setCurrentDay({
+      ...day,
+      planningId: marathonData.planning._id,
+    });
+  };
+
+  useEffect(() => {
+    if (dayData && !isError) {
+      setDayDetails(dayData);
+    }
+    if (isError) {
+      setDayDetails(null);
+    }
+  }, [dayData, isError]);
 
   useEffect(() => {
     setShowNav(false);
@@ -42,8 +81,10 @@ function MainLayout() {
       )}
 
       <main>
-        <Outlet />
+        <Outlet context={[handleSelectDay, isError]} />
       </main>
+
+      <Space big />
     </div>
   );
 }

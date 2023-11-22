@@ -9,29 +9,29 @@ import Text from '../text/Text';
 import Spinner from '../spinner/Spinner';
 
 function Input({
-  label,
-  placeholder,
-  onChange,
-  icon,
-  value = '',
-  options = [],
-  selectOption = 'select one',
-  selectedOption,
-  noValueOption = '',
-  selectCreatable = false,
-  onCreateOption,
-  id = '',
-  name = '',
-  required,
-  type = '',
-  maxLength,
-  error,
   className = '',
+  defaultValue,
+  error,
+  icon,
+  id = '',
+  imageIsLoading = false,
   isMultiSelect = false,
   isSingleSelect = false,
-  defaultValue,
   keyValue = '',
-  imageIsLoading = false,
+  label,
+  maxLength,
+  name = '',
+  noValueOption = '',
+  onChange,
+  onCreateOption,
+  options = [],
+  placeholder,
+  required,
+  selectCreatable = false,
+  selectedOption,
+  selectOption = 'select one',
+  type = '',
+  value = '',
 }) {
   const hasError = error?.invalidFields?.includes(name);
   const [uploadRecipeImage, { isLoading }] = useUploadRecipeImageMutation();
@@ -134,19 +134,6 @@ function Input({
         </select>
       )}
 
-      {isMultiSelect && (
-        <Select
-          className='multi-select'
-          closeMenuOnSelect={false}
-          isMulti
-          options={options}
-          onChange={handleMultiSelectChange}
-          placeholder={placeholder}
-          classNamePrefix='multi-prefix'
-          defaultValue={defaultValue}
-        />
-      )}
-
       {isSingleSelect && (
         <Select
           className={`multi-select ${defaultValue ? 'has-value' : 'no-value'}`}
@@ -157,6 +144,19 @@ function Input({
           classNamePrefix='multi-prefix'
           defaultValue={defaultValue}
           value={selectedOption}
+        />
+      )}
+
+      {isMultiSelect && (
+        <Select
+          className='multi-select'
+          closeMenuOnSelect={false}
+          isMulti
+          options={options}
+          onChange={handleMultiSelectChange}
+          placeholder={placeholder}
+          classNamePrefix='multi-prefix'
+          defaultValue={defaultValue}
         />
       )}
 

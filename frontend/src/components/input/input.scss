@@ -241,6 +241,7 @@ form {
   .multi-select {
     color: $grey-dark;
     font-size: 16px;
+    z-index: 6;
 
     input {
       box-shadow: none;
@@ -257,6 +258,7 @@ form {
 
       .multi-prefix__single-value {
         color: $secondary-color;
+        font-family: $avenirBlack;
       }
 
       .multi-prefix__placeholder {
@@ -271,7 +273,7 @@ form {
     .multi-prefix__input-container,
     .multi-prefix__value-container,
     input {
-      height: 50px;
+      height: 45px;
     }
 
     .multi-prefix__input-container {
@@ -279,9 +281,22 @@ form {
       padding: 0;
     }
 
+    .multi-prefix__indicator-separator {
+      display: none;
+    }
+
     div[role='button'],
     .multi-prefix__indicator {
       cursor: pointer;
+    }
+
+    .multi-prefix__indicator {
+      padding-right: 16px;
+
+      svg {
+        height: 22px;
+        width: 22px;
+      }
     }
 
     input::placeholder {

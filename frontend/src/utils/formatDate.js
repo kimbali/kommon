@@ -70,6 +70,19 @@ export const calculateWeeks = (startDate, endDate) => {
   return totalWeeks;
 };
 
+export const weeksOptionsList = (startDate, endDate) => {
+  const totalWeeks = calculateWeeks(startDate, endDate);
+
+  const optionsWeeks = [...Array(totalWeeks).keys()].map((ele, index) => {
+    return {
+      label: `Week ${index + 1}`,
+      value: index + 1,
+    };
+  });
+
+  return optionsWeeks;
+};
+
 export function getWeeksArray(startDate, endDate) {
   const weeksArray = [];
 

@@ -9,6 +9,7 @@ import {
   updateDay,
   getDayByMarathonDiet,
   deleteAllDayInstances,
+  getMonthDayByWeekAndWeekDay,
 } from '../controllers/dayController.js';
 
 const router = express.Router();
@@ -20,5 +21,8 @@ router
   .put(checkObjectId, updateDay)
   .delete(checkObjectId, deleteDay);
 router.route('/diet').get(getDayByMarathonDiet);
+router
+  .route('/month/:planningId/:week/:weekDay')
+  .get(getMonthDayByWeekAndWeekDay);
 
 export default router;

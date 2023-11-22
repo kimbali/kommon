@@ -1,5 +1,5 @@
 import asyncHandler from '../middleware/asyncHandler.js';
-import { Day } from '../models/Planning.js';
+import Planning, { Day } from '../models/Planning.js';
 
 // @desc    Fetch all days
 // @route   GET /api/days
@@ -134,5 +134,53 @@ export const deleteAllDayInstances = asyncHandler(async (req, res) => {
   } catch (error) {
     res.status(404);
     throw new Error(error);
+  }
+});
+
+// @desc    Fetch single day by week and weekDay inside a month
+// @route   GET /api/days/:id
+// @access  Public
+export const getMonthDayByWeekAndWeekDay = asyncHandler(async (req, res) => {
+  const { planningId, week, weekDay } = req.params;
+
+  const planning = await Planning.findById(planningId).populate('month');
+
+  if (planning) {
+    const dayInMonth = planning.month.find(
+      ele => ele.week == week && ele.weekDay == weekDay
+    );
+
+    if (!dayInMonth) {
+      res.status(404);
+      throw new Error('Day not found in month');
+      return;
+    }
+
+    const day = await Day.findById(dayInMonth._id)
+      .populate({
+        path: 'meals.recipe',
+        model: 'Recipe',
+        populate: {
+          path: 'ingredients.ingredient',
+          model: 'Ingredient',
+        },
+      })
+      .populate('workouts')
+      .populate('meditations')
+      .populate('tasks');
+
+    res.status(200);
+    res.json(day);
+  } else {
+    res.status(404);
+    throw new Error('Planning not found');
+  }
+
+  if (true) {
+    return res.status(200);
+    // return res.json();
+  } else {
+    res.status(404);
+    throw new Error('Day not found');
   }
 });

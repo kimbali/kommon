@@ -48,6 +48,12 @@ export const daysApiSlice = apiSlice.injectEndpoints({
       }),
       keepUnusedDataFor: 5,
     }),
+    getMonthDayDetails: builder.query({
+      query: ({ planningId, week, weekDay }) => ({
+        url: `${DAYS_URL}/month/${planningId}/${week}/${weekDay}`,
+      }),
+      keepUnusedDataFor: 5,
+    }),
   }),
 });
 
@@ -58,4 +64,5 @@ export const {
   useUpdateDayMutation,
   useDeleteDayMutation,
   useGetDayDietDetailsQuery,
+  useGetMonthDayDetailsQuery,
 } = daysApiSlice;

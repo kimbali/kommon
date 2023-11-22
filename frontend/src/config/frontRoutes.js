@@ -19,6 +19,7 @@ const frontRoutes = {
   users: '/users',
   workoutDetails: '/config/workout/:id',
   workouts: '/workouts',
+  workoutDetailsMain: '/workouts/:id',
   workoutsConfig: '/config/workouts',
 };
 

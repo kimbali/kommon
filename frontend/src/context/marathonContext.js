@@ -3,20 +3,23 @@ import React, { createContext, useContext, useState } from 'react';
 const MarathonContext = createContext();
 
 export const MarathonProvider = ({ children }) => {
-  const [marathonContext, setMarathonContext] = useState(null);
+  const [marathon, setMarathon] = useState(null);
   const [marathonId, setMarathonId] = useState(null);
+  const [dayDetails, setDayDetails] = useState(null);
 
-  const updateMarathonContext = newMarathonId => {
-    setMarathonContext(newMarathonId);
+  const updateMarathon = newMarathonId => {
+    setMarathon(newMarathonId);
   };
-
+  console.log(dayDetails);
   return (
     <MarathonContext.Provider
       value={{
-        marathonContext,
-        updateMarathonContext,
+        marathon,
+        updateMarathon,
         marathonId,
         setMarathonId,
+        dayDetails,
+        setDayDetails,
       }}
     >
       {children}

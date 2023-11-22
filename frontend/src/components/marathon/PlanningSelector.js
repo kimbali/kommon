@@ -23,6 +23,7 @@ function PlanningSelector({
   setCurrentDay,
   baseUrl,
   isFrontoffice,
+  defaultDiet,
 }) {
   const { marathonId, day: dayParams } = useParams();
   const navigate = useNavigate();
@@ -129,6 +130,7 @@ function PlanningSelector({
             options={dietsEnum}
             onChange={({ value }) => setCurrentDiet(value)}
             name='diet'
+            defaultValue={dietsEnum.find(ele => ele.value === defaultDiet)}
           />
         )}
 

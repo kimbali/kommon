@@ -36,6 +36,7 @@ import {
 import MarathonsList from './pages/MarathonsList';
 import { EXPIRATION_TIME, MARATHON_ID } from './config/constants';
 import WorkoutDetailsMain from './pages/WorkoutDetailsMain';
+import DietDetailsMain from './pages/DietDetailsMain';
 
 function App() {
   const dispatch = useDispatch();
@@ -108,6 +109,10 @@ function App() {
         <Route element={<MainLayout />}>
           <Route path={`${frontRoutes.main}`} element={<Main />} />
           <Route path={frontRoutes.diet} element={<Diet />} />
+          <Route
+            path={`${frontRoutes.diet}/:id`}
+            element={<DietDetailsMain />}
+          />
           <Route path={frontRoutes.workouts} element={<Workouts />} />
           <Route
             path={`${frontRoutes.workouts}/:id`}

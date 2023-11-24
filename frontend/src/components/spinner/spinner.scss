@@ -56,6 +56,13 @@
   }
 }
 
+.dots-spinner-wrapper {
+  height: 50px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
 .dots {
   $base-color: $primary-color;
 

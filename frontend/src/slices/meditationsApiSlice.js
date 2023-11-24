@@ -27,7 +27,7 @@ export const meditationsApiSlice = apiSlice.injectEndpoints({
     }),
     updateMeditation: builder.mutation({
       query: data => ({
-        url: `${MEDITATIONS_URL}/${data.meditationId}`,
+        url: `${MEDITATIONS_URL}/${data._id}`,
         method: 'PUT',
         body: data,
       }),

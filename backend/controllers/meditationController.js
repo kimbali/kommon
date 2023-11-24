@@ -7,7 +7,7 @@ import Meditation from '../models/Meditation.js';
 export const getMeditations = asyncHandler(async (req, res) => {
   const keyword = req.query.keyword
     ? {
-        name: {
+        title: {
           $regex: req.query.keyword,
           $options: 'i', // insensible mayus-minusculas
         },
@@ -37,15 +37,14 @@ export const getMeditationById = asyncHandler(async (req, res) => {
 // @route   POST /api/meditations
 // @access  Private/Admin
 export const createMeditation = asyncHandler(async (req, res) => {
-  const { title, description, minutes, image, link, level } = req.body;
+  const { title, description, minutes, image, audio } = req.body;
 
   const newMeditation = new Meditation({
     title,
     description,
     minutes,
     image,
-    link,
-    level,
+    audio,
   });
 
   const createdMeditation = await newMeditation.save();
@@ -56,7 +55,7 @@ export const createMeditation = asyncHandler(async (req, res) => {
 // @route   PUT /api/meditations/:id
 // @access  Private/Admin
 export const updateMeditation = asyncHandler(async (req, res) => {
-  const { title, description, minutes, image, link, level } = req.body;
+  const { title, description, minutes, image, audio } = req.body;
 
   const meditation = await Meditation.findById(req.params.id);
 
@@ -65,8 +64,7 @@ export const updateMeditation = asyncHandler(async (req, res) => {
     meditation.description = description || meditation.description;
     meditation.minutes = minutes || meditation.minutes;
     meditation.image = image || meditation.image;
-    meditation.link = link || meditation.link;
-    meditation.level = level || meditation.level;
+    meditation.audio = audio || meditation.audio;
 
     const updatedMeditation = await meditation.save();
     res.json(updatedMeditation);

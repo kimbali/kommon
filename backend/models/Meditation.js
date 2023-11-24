@@ -11,8 +11,7 @@ const meditationSchema = new Schema(
       format: String,
       url: String,
     },
-    link: String,
-    level: String,
+    audio: String,
   },
   {
     timestamps: true,

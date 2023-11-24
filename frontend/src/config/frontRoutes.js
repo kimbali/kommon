@@ -8,6 +8,7 @@ const frontRoutes = {
   main: '/main',
   marathonList: '/marathons',
   meditation: '/meditation',
+  meditationDetails: '/config/meditation/:id',
   meditationsConfig: '/config/meditations',
   planning: '/config/planning',
   privacyPolicy: '/privacy-policy',

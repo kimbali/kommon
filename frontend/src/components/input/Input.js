@@ -219,7 +219,9 @@ function Input({
 
       {type === 'file' &&
         (isLoading ? (
-          <Spinner type='dots' />
+          <div className='dots-spinner-wrapper'>
+            <Spinner type='dots' />
+          </div>
         ) : (
           <div className='input-file'>
             <Text className={value ? 'has-value' : 'placeholder'}>

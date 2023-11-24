@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactPlayer from 'react-player/lazy';
 
-function VideoPlayer({ url, autoPlay = false }) {
+// https://vimeo.com/718780725/6da8ad7304
+
+function VideoPlayer({ url, autoPlay = false, height = '100%' }) {
   return (
     <div className='video-player'>
       <ReactPlayer
-        url={url || 'https://vimeo.com/718780725/6da8ad7304'}
+        url={url || ''}
         width='100%'
-        height='100%'
+        height={height}
         controls
         playing={autoPlay}
       />

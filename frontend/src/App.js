@@ -39,6 +39,7 @@ import WorkoutDetailsMain from './pages/WorkoutDetailsMain';
 import DietDetailsMain from './pages/DietDetailsMain';
 import MeditationDetails from './pages/MeditationDetails';
 import MeditationDetailsMain from './pages/MeditationDetailsMain';
+import AvisoLegal from './pages/AvisoLegal';
 
 function App() {
   const dispatch = useDispatch();
@@ -106,6 +107,7 @@ function App() {
           <Route path={frontRoutes.privacyPolicy} element={<PrivacyPolicy />} />
           <Route path={frontRoutes.terms} element={<TermsAndConditions />} />
           <Route path={frontRoutes.cookies} element={<CookiesFiles />} />
+          <Route path={frontRoutes.avisoLegal} element={<AvisoLegal />} />
         </Route>
 
         <Route element={<MainLayout />}>

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import toast from 'react-hot-toast';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import toast from 'react-hot-toast';
+import { useSelector } from 'react-redux';
 import Text from '../components/text/Text';
 import Button from '../components/button/Button';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
@@ -10,7 +10,7 @@ import { useGetLegalsQuery } from '../slices/legalsApiSlice';
 import Space from '../components/space/Space';
 import LegalForm from '../components/legalLinks/LegalForm';
 
-function TermsAndConditions() {
+function AvisoLegal() {
   const { userInfo } = useSelector(state => state.auth);
   const [showEditForm, setShowEditForm] = useState(false);
 
@@ -22,13 +22,13 @@ function TermsAndConditions() {
     try {
       await refetchLegals();
     } catch (err) {
-      toast.error('Error fetching terms');
+      toast.error('Error fetching legal advise');
     }
   };
 
   return (
     <div className='absolute-right legal-page'>
-      <Text isTitle>Términos y condiciones</Text>
+      <Text isTitle>Aviso legal</Text>
 
       <Space small />
 
@@ -48,8 +48,8 @@ function TermsAndConditions() {
       {showEditForm && (
         <LegalForm
           onSuccess={handleEditForm}
-          legalKey='termsAndConditions'
-          label='Términos y condiciones'
+          legalKey='avisoLegal'
+          label='Aviso legal'
         />
       )}
 
@@ -61,10 +61,10 @@ function TermsAndConditions() {
           h2: 'h4',
         }}
       >
-        {legalsData?.legals[0].termsAndConditions}
+        {legalsData?.legals[0].avisoLegal}
       </Markdown>
     </div>
   );
 }
 
-export default TermsAndConditions;
+export default AvisoLegal;

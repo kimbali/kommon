@@ -7,8 +7,8 @@ import Text from '../components/text/Text';
 import Button from '../components/button/Button';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { useGetLegalsQuery } from '../slices/legalsApiSlice';
-import PrivacyPolicyForm from '../components/legalLinks/PrivacyPolicyForm';
 import Space from '../components/space/Space';
+import LegalForm from '../components/legalLinks/LegalForm';
 
 function PrivacyPolicy() {
   const { userInfo } = useSelector(state => state.auth);
@@ -45,7 +45,13 @@ function PrivacyPolicy() {
         </div>
       )}
 
-      {showEditForm && <PrivacyPolicyForm onSuccess={handleEditForm} />}
+      {showEditForm && (
+        <LegalForm
+          onSuccess={handleEditForm}
+          legalKey='privacyPolicy'
+          label='Política de privacidad'
+        />
+      )}
 
       <Markdown
         className='markdown-text'

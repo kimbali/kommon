@@ -64,7 +64,7 @@ function MeditationDetails() {
     return <Text>Meditation not found</Text>;
   }
 
-  const { title, description, minutes, image, audio } = meditationDetails;
+  const { title, description, minutes, audio } = meditationDetails;
 
   return (
     <div className='workout-details meditation'>

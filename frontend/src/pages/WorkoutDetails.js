@@ -57,7 +57,7 @@ function WorkoutDetails() {
     return <Text>Recipe not found</Text>;
   }
 
-  const { title, description, minutes, image, video, level } = workoutDetails;
+  const { title, description, minutes, video, level } = workoutDetails;
 
   return (
     <div className='workout-details'>

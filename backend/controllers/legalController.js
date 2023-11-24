@@ -38,13 +38,15 @@ export const createLegal = asyncHandler(async (req, res) => {
 // @route   PUT /api/legals/:id
 // @access  Private/Admin
 export const updateLegal = asyncHandler(async (req, res) => {
-  const { termsAndConditions, privacyPolicy, cookiesFiles } = req.body;
+  const { termsAndConditions, privacyPolicy, cookiesFiles, avisoLegal } =
+    req.body;
   const legal = await Legal.findById(req.params.id);
 
   if (legal) {
     legal.termsAndConditions = termsAndConditions || legal.termsAndConditions;
     legal.privacyPolicy = privacyPolicy || legal.privacyPolicy;
     legal.cookiesFiles = cookiesFiles || legal.cookiesFiles;
+    legal.avisoLegal = avisoLegal || legal.avisoLegal;
 
     const updatedLegal = await legal.save();
     res.json(updatedLegal);

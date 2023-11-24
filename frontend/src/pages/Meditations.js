@@ -26,16 +26,6 @@ function Meditations({ setCurrentDay }) {
     handleSelectDay(day);
   };
 
-  const handleSelectLevel = level => {
-    let list = dayDetails.meditations;
-
-    if (level) {
-      list = list.filter(ele => ele.level === level);
-    }
-
-    setMeditationsList(list);
-  };
-
   const navigateToDetails = meditation => {
     navigate(frontRoutes.meditationDetailsMain.replace(':id', meditation._id));
   };

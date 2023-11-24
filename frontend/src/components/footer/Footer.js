@@ -11,15 +11,19 @@ function Footer() {
       </Text>
 
       <div className='footer-links'>
-        <Link to={frontRoutes.privacyPolicy}>Privacy policy</Link>
+        <Link to={frontRoutes.terms}>Términos y condiciones</Link>
 
-        <Text> and </Text>
+        <span>|</span>
 
-        <Link to={frontRoutes.terms}>User agreement</Link>
+        <Link to={frontRoutes.privacyPolicy}>Política de privacidad</Link>
 
-        <Text>, agreement to use </Text>
+        <span>|</span>
 
-        <Link to={frontRoutes.cookies}>cookies files</Link>
+        <Link to={frontRoutes.avisoLegal}>Aviso legal</Link>
+
+        <span>|</span>
+
+        <Link to={frontRoutes.cookies}>Política de cookies</Link>
       </div>
     </footer>
   );

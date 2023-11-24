@@ -14,6 +14,7 @@ import {
   useGetPlanningDetailsQuery,
   useUpdatePlanningMutation,
 } from '../slices/planningsApiSlice';
+import MarathonMeditations from '../components/marathon/MarathonMeditations';
 
 function Planning() {
   const navigate = useNavigate();
@@ -127,6 +128,16 @@ function Planning() {
       {currentMarathon && currentDay && (
         <MarathonWorkouts
           workoutsData={day?.workouts}
+          dayId={day?._id}
+          onSave={onEditSection}
+        />
+      )}
+
+      <Space big />
+
+      {currentMarathon && currentDay && (
+        <MarathonMeditations
+          meditationData={day?.meditations}
           dayId={day?._id}
           onSave={onEditSection}
         />

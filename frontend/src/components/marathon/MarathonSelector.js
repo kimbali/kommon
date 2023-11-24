@@ -15,6 +15,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import frontRoutes from '../../config/frontRoutes';
 import { useMarathon } from '../../context/marathonContext';
+import { MARATHON_ID } from '../../config/constants';
 
 function MarathonSelector({ setMarathon }) {
   const { marathonId } = useParams();
@@ -102,6 +103,12 @@ function MarathonSelector({ setMarathon }) {
     setMarathon(null);
   };
 
+  const handleGoToLiveMarathon = marahton => {
+    navigate(`${frontRoutes.main}?${MARATHON_ID}=${marahton._id}`, {
+      replace: true,
+    });
+  };
+
   return (
     <>
       <div className='content-left-and-right'>
@@ -149,6 +156,17 @@ function MarathonSelector({ setMarathon }) {
             </div>
           )}
         </div>
+
+        {marathonSelected?.value && (
+          <div>
+            <Button
+              onClick={() => handleGoToLiveMarathon(marathonSelected?.value)}
+              isSecondary
+            >
+              Go to live
+            </Button>
+          </div>
+        )}
       </div>
 
       {showNewMarathonModal && (

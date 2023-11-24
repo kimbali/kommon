@@ -23,7 +23,7 @@ const DaySchema = new Schema(
     meditations: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Workout',
+        ref: 'Meditation',
       },
     ],
     tasks: [

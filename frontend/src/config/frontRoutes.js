@@ -7,8 +7,9 @@ const frontRoutes = {
   login: '/login',
   main: '/main',
   marathonList: '/marathons',
-  meditation: '/meditation',
   meditationDetails: '/config/meditation/:id',
+  meditationDetailsMain: '/meditations/:id',
+  meditations: '/meditations',
   meditationsConfig: '/config/meditations',
   planning: '/config/planning',
   privacyPolicy: '/privacy-policy',
@@ -20,8 +21,8 @@ const frontRoutes = {
   todoList: '/todolist',
   users: '/users',
   workoutDetails: '/config/workout/:id',
-  workouts: '/workouts',
   workoutDetailsMain: '/workouts/:id',
+  workouts: '/workouts',
   workoutsConfig: '/config/workouts',
 };
 

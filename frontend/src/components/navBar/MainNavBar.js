@@ -18,7 +18,7 @@ function MainNavBar({ showNav }) {
   const navigate = useNavigate();
 
   const handleGoToConfig = () => {
-    navigate(frontRoutes.marathonList);
+    navigate(frontRoutes.planning);
   };
 
   return (
@@ -37,7 +37,7 @@ function MainNavBar({ showNav }) {
         <NavLink
           icon={faSpa}
           label='Meditations'
-          route={frontRoutes.meditation}
+          route={frontRoutes.meditations}
         />
 
         <NavLink image={MORE} label='Progress' route={frontRoutes.progress} />

@@ -9,8 +9,11 @@ import Input from '../input/Input';
 import Button from '../button/Button';
 import MeditationCard from '../meditation/MeditationCard';
 import { useGetMeditationsQuery } from '../../slices/meditationsApiSlice';
+import { useNavigate } from 'react-router-dom';
+import frontRoutes from '../../config/frontRoutes';
 
 function MarathonMeditations({ meditationData, dayId, onSave }) {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState();
   const [showModal, setShowModal] = useState(false);
   const [options, setOptions] = useState([]);
@@ -77,6 +80,10 @@ function MarathonMeditations({ meditationData, dayId, onSave }) {
     }
   };
 
+  const handleCardClick = id => {
+    navigate(frontRoutes.meditationDetails.replace(':id', id));
+  };
+
   return (
     <div>
       <Text
@@ -93,7 +100,10 @@ function MarathonMeditations({ meditationData, dayId, onSave }) {
         {meditationData?.length > 0 &&
           meditationData.map((ele, index) => (
             <div className='single-workout' key={`config-meditations-${index}`}>
-              <MeditationCard data={ele} />
+              <MeditationCard
+                data={ele}
+                onClick={() => handleCardClick(ele._id)}
+              />
             </div>
           ))}
       </div>

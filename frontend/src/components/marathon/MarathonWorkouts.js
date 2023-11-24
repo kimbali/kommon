@@ -9,8 +9,11 @@ import Input from '../input/Input';
 import { useGetWorkoutsQuery } from '../../slices/workoutsApiSlice';
 import Button from '../button/Button';
 import WorkoutCard from '../workouts/WorkoutCard';
+import frontRoutes from '../../config/frontRoutes';
+import { useNavigate } from 'react-router-dom';
 
 function MarathonWorkouts({ workoutsData, dayId, onSave }) {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState();
   const [showWorkoutModal, setShowWorkoutModal] = useState(false);
   const [options, setOptions] = useState([]);
@@ -77,6 +80,10 @@ function MarathonWorkouts({ workoutsData, dayId, onSave }) {
     }
   };
 
+  const navigateToWorkoutDetail = id => {
+    navigate(frontRoutes.workoutDetails.replace(':id', id));
+  };
+
   return (
     <div>
       <Text
@@ -93,7 +100,10 @@ function MarathonWorkouts({ workoutsData, dayId, onSave }) {
         {workoutsData?.length > 0 &&
           workoutsData.map((ele, index) => (
             <div className='single-workout' key={`config-workouts-${index}`}>
-              <WorkoutCard data={ele} />
+              <WorkoutCard
+                data={ele}
+                onClick={() => navigateToWorkoutDetail(ele._id)}
+              />
             </div>
           ))}
       </div>

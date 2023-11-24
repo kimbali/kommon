@@ -38,6 +38,7 @@ import { EXPIRATION_TIME, MARATHON_ID } from './config/constants';
 import WorkoutDetailsMain from './pages/WorkoutDetailsMain';
 import DietDetailsMain from './pages/DietDetailsMain';
 import MeditationDetails from './pages/MeditationDetails';
+import MeditationDetailsMain from './pages/MeditationDetailsMain';
 
 function App() {
   const dispatch = useDispatch();
@@ -116,10 +117,14 @@ function App() {
           />
           <Route path={frontRoutes.workouts} element={<Workouts />} />
           <Route
-            path={`${frontRoutes.workouts}/:id`}
+            path={frontRoutes.workoutDetailsMain}
             element={<WorkoutDetailsMain />}
           />
-          <Route path={frontRoutes.meditation} element={<Meditations />} />
+          <Route path={frontRoutes.meditations} element={<Meditations />} />
+          <Route
+            path={frontRoutes.meditationDetailsMain}
+            element={<MeditationDetailsMain />}
+          />
           <Route path={frontRoutes.progress} element={<Progress />} />
         </Route>
 

@@ -10,6 +10,7 @@ import frontRoutes from '../config/frontRoutes';
 import { useNavigate } from 'react-router-dom';
 import { useMarathon } from '../context/marathonContext';
 import dietsEnum from '../config/enums/dietsEnum';
+import MeditationCard from '../components/meditation/MeditationCard';
 
 // TODO: El dia de mañana, cuando se logee un usuario que no es admin, guardar en el progresso, por qué dia de la marathon va.
 // Mas que por que dia va, seria ver qué marathon esta haciendo, qué dia era el "startDate", y que dia es hoy
@@ -26,6 +27,10 @@ function Main() {
 
   const navigateToWorkouts = () => {
     navigate(frontRoutes.workouts);
+  };
+
+  const navigateToMeditations = () => {
+    navigate(frontRoutes.meditations);
   };
 
   return (
@@ -66,6 +71,21 @@ function Main() {
                 <Space small />
               </div>
             ))}
+      </div>
+
+      <Space medium />
+
+      <Text isTitle>Your meditations for today</Text>
+
+      <Space small />
+
+      <div className='marathon-config-scrollx no-fix-content'>
+        {dayDetails?.meditations.length > 0 &&
+          dayDetails.meditations.map((ele, i) => (
+            <div className='single-workout' key={`${i}-meditation`}>
+              <MeditationCard data={ele} onClick={navigateToMeditations} />
+            </div>
+          ))}
       </div>
 
       <Space medium />

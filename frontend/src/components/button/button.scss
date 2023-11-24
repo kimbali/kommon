@@ -100,6 +100,8 @@
 
   &.only-icon {
     padding: 8px;
+    width: fit-content;
+
     svg {
       font-size: 18px;
       padding: 0;
@@ -109,6 +111,10 @@
 
   &.small {
     padding: 8px;
+  }
+
+  &.background-2 {
+    background-color: $background-2;
   }
 }
 

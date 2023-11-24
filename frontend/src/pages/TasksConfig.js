@@ -82,6 +82,7 @@ function TasksConfig() {
 
               <td className='only-icon'>
                 <Button
+                  className='background-2'
                   onlyIcon
                   iconLeft={faEdit}
                   onClick={() => handleEdit(task)}
@@ -90,6 +91,7 @@ function TasksConfig() {
 
               <td className='only-icon'>
                 <Button
+                  className='background-2'
                   onlyIcon
                   iconLeft={faTrash}
                   onClick={() => setShowDeleteModal(task)}

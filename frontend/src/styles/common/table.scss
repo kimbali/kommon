@@ -14,11 +14,32 @@ table {
     }
   }
 
-  // tr {
-  //   // &:hover {
-  //   //   background-color: $background-4;
-  //   // }
-  // }
+  tr > td {
+    padding-bottom: 10px;
+  }
+
+  tr {
+    .button.only-icon {
+      svg {
+        color: $disabled;
+      }
+
+      &:hover {
+        svg {
+          color: $primary-color;
+        }
+      }
+    }
+    &:hover {
+      background-color: $background-4;
+
+      button.only-icon {
+        svg {
+          color: $white;
+        }
+      }
+    }
+  }
 
   td {
     padding: 4px 12px;

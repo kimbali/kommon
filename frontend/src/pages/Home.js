@@ -261,283 +261,306 @@ function Home() {
             <div id='gift-slider' className='owl-carousel'>
               {
                 <Carousel>
-                  <div className='gift-slider-item'>
-                    <div className='gift-slider-img'>
-                      <img src={MASSAGE_OIL_SMALL} alt='massage oil small' />
-                    </div>
-                    <div className='gift-slider-cnt'>
-                      <div className='gift-slider-lbl'>
-                        MASSAGE OIL GRAPEFRUIT-GINGER-CHILLI
+                  <div className='gift-slider-section'>
+                    <div className='gift-slider-item'>
+                      <div className='gift-slider-img'>
+                        <img src={MASSAGE_OIL_SMALL} alt='massage oil small' />
                       </div>
-                      <div className='gift-slider-txt'>
-                        El aceite esencial de canela estimula los procesos
-                        metabólicos en las células de la piel, los aceites
-                        esenciales de naranja y toronja le dan fuerza y
-                        elasticidad.
+                      <div className='gift-slider-cnt'>
+                        <div className='gift-slider-lbl'>
+                          MASSAGE OIL GRAPEFRUIT-GINGER-CHILLI
+                        </div>
+                        <div className='gift-slider-txt'>
+                          El aceite esencial de canela estimula los procesos
+                          metabólicos en las células de la piel, los aceites
+                          esenciales de naranja y toronja le dan fuerza y
+                          elasticidad.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className='gift-slider-item'>
+                      <div className='gift-slider-img'>
+                        <img src={LIME_GINGER} alt='lime ginger' />
+                      </div>
+                      <div className='gift-slider-cnt'>
+                        <div className='gift-slider-lbl'>
+                          BODY SCRUB LIME-GINGER
+                        </div>
+                        <div className='gift-slider-txt'>
+                          El exfoliante contiene aceite esencial de lima, aceite
+                          esencial de jengibre, aceite de almendras, aceite de
+                          aguacate, aceite esencial de hierba de limón, aceite
+                          esencial de canela. Las sustancias naturales del
+                          exfoliante limpian eficazmente los poros actuando de
+                          manera suave y delicada.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className='gift-slider-item'>
+                      <div className='gift-slider-img'>
+                        <img src={FR_CUT} alt='' />
+                      </div>
+                      <div className='gift-slider-cnt'>
+                        <div className='gift-slider-lbl'>
+                          BODY SCRUB FRANGIPANI-MONOI
+                        </div>
+                        <div className='gift-slider-txt'>
+                          El exfoliante contiene aceite esencial de frangipani,
+                          aceite de monoi, aceite de semilla de uva, aceite de
+                          almendra, aceite de jojoba, vitamina E. El exfoliante
+                          con un agradable aroma exótico no solo elimina
+                          eficazmente las partículas muertas de la epidermis y
+                          limpia la piel, sino que también la cuida
+                          intensamente.
+                        </div>
                       </div>
                     </div>
                   </div>
 
-                  <div className='gift-slider-item'>
-                    <div className='gift-slider-img'>
-                      <img src={LIME_GINGER} alt='lime ginger' />
-                    </div>
-                    <div className='gift-slider-cnt'>
-                      <div className='gift-slider-lbl'>
-                        BODY SCRUB LIME-GINGER
+                  <div className='gift-slider-section'>
+                    <div className='gift-slider-item'>
+                      <div className='gift-slider-img'>
+                        <img src={CHOCOLATE_ALMOND} alt='' />
                       </div>
-                      <div className='gift-slider-txt'>
-                        El exfoliante contiene aceite esencial de lima, aceite
-                        esencial de jengibre, aceite de almendras, aceite de
-                        aguacate, aceite esencial de hierba de limón, aceite
-                        esencial de canela. Las sustancias naturales del
-                        exfoliante limpian eficazmente los poros actuando de
-                        manera suave y delicada.
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className='gift-slider-item'>
-                    <div className='gift-slider-img'>
-                      <img src={FR_CUT} alt='' />
-                    </div>
-                    <div className='gift-slider-cnt'>
-                      <div className='gift-slider-lbl'>
-                        BODY SCRUB FRANGIPANI-MONOI
-                      </div>
-                      <div className='gift-slider-txt'>
-                        El exfoliante contiene aceite esencial de frangipani,
-                        aceite de monoi, aceite de semilla de uva, aceite de
-                        almendra, aceite de jojoba, vitamina E. El exfoliante
-                        con un agradable aroma exótico no solo elimina
-                        eficazmente las partículas muertas de la epidermis y
-                        limpia la piel, sino que también la cuida intensamente.
+                      <div className='gift-slider-cnt'>
+                        <div className='gift-slider-lbl'>
+                          BODY SCRUB CHOCOLATE-ALMOND
+                        </div>
+                        <div className='gift-slider-txt'>
+                          El exfoliante actúa delicadamente, eliminando
+                          suavemente las partículas muertas de la piel. Al mismo
+                          tiempo, las sustancias útiles en su composición
+                          penetran profundamente en las células, las alimentan
+                          desde el interior y estimulan los procesos de
+                          regeneración natural a nivel celular. La piel se
+                          vuelve suave, elástica y tensa.
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className='gift-slider-item'>
-                    <div className='gift-slider-img'>
-                      <img src={CHOCOLATE_ALMOND} alt='' />
-                    </div>
-                    <div className='gift-slider-cnt'>
-                      <div className='gift-slider-lbl'>
-                        BODY SCRUB CHOCOLATE-ALMOND
+                    <div className='gift-slider-item'>
+                      <div className='gift-slider-img'>
+                        <img src={CHERRY} alt='' />
                       </div>
-                      <div className='gift-slider-txt'>
-                        El exfoliante actúa delicadamente, eliminando suavemente
-                        las partículas muertas de la piel. Al mismo tiempo, las
-                        sustancias útiles en su composición penetran
-                        profundamente en las células, las alimentan desde el
-                        interior y estimulan los procesos de regeneración
-                        natural a nivel celular. La piel se vuelve suave,
-                        elástica y tensa.
+                      <div className='gift-slider-cnt'>
+                        <div className='gift-slider-lbl'>BODY SCRUB CHERRY</div>
+                        <div className='gift-slider-txt'>
+                          El exfoliante contiene aceite de semilla de cereza,
+                          brotes de brezo rosa, aceite de almendras, vitamina E,
+                          manteca de karité. El exfoliante no solo limpia
+                          eficazmente la piel, sino que también le da un aspecto
+                          hermoso y radiante debido al contenido de partículas
+                          reflectantes.
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className='gift-slider-item'>
-                    <div className='gift-slider-img'>
-                      <img src={CHERRY} alt='' />
-                    </div>
-                    <div className='gift-slider-cnt'>
-                      <div className='gift-slider-lbl'>BODY SCRUB CHERRY</div>
-                      <div className='gift-slider-txt'>
-                        El exfoliante contiene aceite de semilla de cereza,
-                        brotes de brezo rosa, aceite de almendras, vitamina E,
-                        manteca de karité. El exfoliante no solo limpia
-                        eficazmente la piel, sino que también le da un aspecto
-                        hermoso y radiante debido al contenido de partículas
-                        reflectantes.{' '}
+                    <div className='gift-slider-item'>
+                      <div className='gift-slider-img'>
+                        <img src={COFFEE} alt='' />
                       </div>
-                    </div>
-                  </div>
-                  <div className='gift-slider-item'>
-                    <div className='gift-slider-img'>
-                      <img src={COFFEE} alt='' />
-                    </div>
-                    <div className='gift-slider-cnt'>
-                      <div className='gift-slider-lbl'>COFFEE BODY SCRUB</div>
-                      <div className='gift-slider-txt'>
-                        El exfoliante de café actúa eficazmente sobre la piel,
-                        eliminando las células muertas de la epidermis, estimula
-                        la circulación sanguínea y el drenaje linfático. Elimina
-                        toxinas, combate la celulitis, incluso en casos graves.{' '}
-                      </div>
-                    </div>
-                  </div>
-                  <div className='gift-slider-item'>
-                    <div className='gift-slider-img'>
-                      <img src={LYMPHATIC_DRAINAGE} alt='Lymphatic drainage' />
-                    </div>
-                    <div className='gift-slider-cnt'>
-                      <div className='gift-slider-lbl'>
-                        LYMPHATIC DRAINAGE BODY WRAP GEL
-                      </div>
-                      <div className='gift-slider-txt'>
-                        La envoltura contiene cafeína, aceite esencial de
-                        salvia, aceite esencial de romero, aceite esencial de
-                        canela, aceite de jojoba, alcanfor, mentol. La envoltura
-                        produce un pronunciado efecto de drenaje linfático,
-                        contribuye activamente a reducir el volumen no deseado y
-                        obtener una figura más delgada.
-                      </div>
-                    </div>
-                  </div>
-                  <div className='gift-slider-item'>
-                    <div className='gift-slider-img'>
-                      <img src={HOT_COLD} alt='Hot cold contrast cream' />
-                    </div>
-                    <div className='gift-slider-cnt'>
-                      <div className='gift-slider-lbl'>
-                        HOT/COLD CONTRAST BODY WRAP GEL
-                      </div>
-                      <div className='gift-slider-txt'>
-                        La combinación única de efecto "caliente" y "frío" de la
-                        envoltura ayuda a mejorar su efecto en la piel. Se
-                        vuelve más suave y tensa, desaparecen la celulitis y la
-                        flacidez. La envoltura inicia los procesos de quemar
-                        grasa y tonifica la piel, la hidrata intensamente y
-                        nutre con sustancias beneficiosas.
-                      </div>
-                    </div>
-                  </div>
-                  <div className='gift-slider-item'>
-                    <div className='gift-slider-img'>
-                      <img src={SUPER_FLAME} alt='Super flame body wrap gel' />
-                    </div>
-                    <div className='gift-slider-cnt'>
-                      <div className='gift-slider-lbl'>
-                        SUPREME FLAME BODY WRAP GEL
-                      </div>
-                      <div className='gift-slider-txt'>
-                        Gracias a la composición rica, la envoltura modela
-                        efectivamente la figura después de la primera
-                        aplicación. Penetra en las capas profundas de la piel y
-                        elimina las células grasas desde el interior. Las
-                        sustancias activas descomponen la grasa corporal y
-                        aumentan el metabolismo celular.
-                      </div>
-                    </div>
-                  </div>
-                  <div className='gift-slider-item'>
-                    <div className='gift-slider-img'>
-                      <img src={KELP} alt='Kelp mint cold body wrap gel' />
-                    </div>
-                    <div className='gift-slider-cnt'>
-                      <div className='gift-slider-lbl'>
-                        KELP–MINT COLD BODY WRAP GEL
-                      </div>
-                      <div className='gift-slider-txt'>
-                        Las algas marinas mejoran el metabolismo, aumentan el
-                        flujo de exceso de líquido y reducen la grasa corporal,
-                        mientras que la menta reduce la fatiga y mejora la
-                        circulación sanguínea. El uso regular de la envoltura
-                        ayudará a eliminar las estrías y la celulitis de su
-                        piel, haciéndola suave y flexible.
-                      </div>
-                    </div>
-                  </div>
-                  <div className='gift-slider-item'>
-                    <div className='gift-slider-img'>
-                      <img
-                        src={BATTER1}
-                        alt='Body cream butter jasmine-wild strawberry'
-                      />
-                    </div>
-                    <div className='gift-slider-cnt'>
-                      <div className='gift-slider-lbl'>
-                        BODY CREAM BUTTER JASMINE-WILD STRAWBERRY
-                      </div>
-                      <div className='gift-slider-txt'>
-                        La manteca corporal contiene aceite de almendras, aceite
-                        de aguacate, aceite de pistacho, aceite de jojoba,
-                        extracto de jazmín, extracto de fresa, alantoína. Las
-                        sustancias activas actúan en las células de la
-                        epidermis, hidratan, nutren y protegen la piel de
-                        influencias externas.
+                      <div className='gift-slider-cnt'>
+                        <div className='gift-slider-lbl'>COFFEE BODY SCRUB</div>
+                        <div className='gift-slider-txt'>
+                          El exfoliante de café actúa eficazmente sobre la piel,
+                          eliminando las células muertas de la epidermis,
+                          estimula la circulación sanguínea y el drenaje
+                          linfático. Elimina toxinas, combate la celulitis,
+                          incluso en casos graves.{' '}
+                        </div>
                       </div>
                     </div>
                   </div>
 
-                  <div className='gift-slider-item'>
-                    <div className='gift-slider-img'>
-                      <img src={ELASTIC} alt='Elastic skin body wrap gel' />
-                    </div>
-                    <div className='gift-slider-cnt'>
-                      <div className='gift-slider-lbl'>
-                        ELASTIC SKIN BODY WRAP GEL
+                  <div className='gift-slider-section'>
+                    <div className='gift-slider-item'>
+                      <div className='gift-slider-img'>
+                        <img
+                          src={LYMPHATIC_DRAINAGE}
+                          alt='Lymphatic drainage'
+                        />
                       </div>
-                      <div className='gift-slider-txt'>
-                        La envoltura contiene extracto de orégano, extracto de
-                        castaña, extracto de fucus, aceite esencial de naranja,
-                        extracto de plancton, aceite de jojoba. La envoltura
-                        actúa intensamente sobre la piel, devuelve a la piel su
-                        elasticidad y firmeza.
+                      <div className='gift-slider-cnt'>
+                        <div className='gift-slider-lbl'>
+                          LYMPHATIC DRAINAGE BODY WRAP GEL
+                        </div>
+                        <div className='gift-slider-txt'>
+                          La envoltura contiene cafeína, aceite esencial de
+                          salvia, aceite esencial de romero, aceite esencial de
+                          canela, aceite de jojoba, alcanfor, mentol. La
+                          envoltura produce un pronunciado efecto de drenaje
+                          linfático, contribuye activamente a reducir el volumen
+                          no deseado y obtener una figura más delgada.
+                        </div>
+                      </div>
+                    </div>
+                    <div className='gift-slider-item'>
+                      <div className='gift-slider-img'>
+                        <img src={HOT_COLD} alt='Hot cold contrast cream' />
+                      </div>
+                      <div className='gift-slider-cnt'>
+                        <div className='gift-slider-lbl'>
+                          HOT/COLD CONTRAST BODY WRAP GEL
+                        </div>
+                        <div className='gift-slider-txt'>
+                          La combinación única de efecto "caliente" y "frío" de
+                          la envoltura ayuda a mejorar su efecto en la piel. Se
+                          vuelve más suave y tensa, desaparecen la celulitis y
+                          la flacidez. La envoltura inicia los procesos de
+                          quemar grasa y tonifica la piel, la hidrata
+                          intensamente y nutre con sustancias beneficiosas.
+                        </div>
+                      </div>
+                    </div>
+                    <div className='gift-slider-item'>
+                      <div className='gift-slider-img'>
+                        <img
+                          src={SUPER_FLAME}
+                          alt='Super flame body wrap gel'
+                        />
+                      </div>
+                      <div className='gift-slider-cnt'>
+                        <div className='gift-slider-lbl'>
+                          SUPREME FLAME BODY WRAP GEL
+                        </div>
+                        <div className='gift-slider-txt'>
+                          Gracias a la composición rica, la envoltura modela
+                          efectivamente la figura después de la primera
+                          aplicación. Penetra en las capas profundas de la piel
+                          y elimina las células grasas desde el interior. Las
+                          sustancias activas descomponen la grasa corporal y
+                          aumentan el metabolismo celular.
+                        </div>
                       </div>
                     </div>
                   </div>
 
-                  <div className='gift-slider-item'>
-                    <div className='gift-slider-img'>
-                      <img src={ALGAE_SCRUB} alt='Body scrub algae' />
+                  <div className='gift-slider-section'>
+                    <div className='gift-slider-item'>
+                      <div className='gift-slider-img'>
+                        <img src={KELP} alt='Kelp mint cold body wrap gel' />
+                      </div>
+                      <div className='gift-slider-cnt'>
+                        <div className='gift-slider-lbl'>
+                          KELP–MINT COLD BODY WRAP GEL
+                        </div>
+                        <div className='gift-slider-txt'>
+                          Las algas marinas mejoran el metabolismo, aumentan el
+                          flujo de exceso de líquido y reducen la grasa
+                          corporal, mientras que la menta reduce la fatiga y
+                          mejora la circulación sanguínea. El uso regular de la
+                          envoltura ayudará a eliminar las estrías y la
+                          celulitis de su piel, haciéndola suave y flexible.
+                        </div>
+                      </div>
                     </div>
-                    <div className='gift-slider-cnt'>
-                      <div className='gift-slider-lbl'>BODY SCRUB ALGAE</div>
-                      <div className='gift-slider-txt'>
-                        Exfoliante corporal con sal marina, trocitos de algas y
-                        polvo de concha de ostras proporciona una limpieza
-                        eficaz y elimina las células muertas de la piel.
+                    <div className='gift-slider-item'>
+                      <div className='gift-slider-img'>
+                        <img
+                          src={BATTER1}
+                          alt='Body cream butter jasmine-wild strawberry'
+                        />
+                      </div>
+                      <div className='gift-slider-cnt'>
+                        <div className='gift-slider-lbl'>
+                          BODY CREAM BUTTER JASMINE-WILD STRAWBERRY
+                        </div>
+                        <div className='gift-slider-txt'>
+                          La manteca corporal contiene aceite de almendras,
+                          aceite de aguacate, aceite de pistacho, aceite de
+                          jojoba, extracto de jazmín, extracto de fresa,
+                          alantoína. Las sustancias activas actúan en las
+                          células de la epidermis, hidratan, nutren y protegen
+                          la piel de influencias externas.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className='gift-slider-item'>
+                      <div className='gift-slider-img'>
+                        <img src={ELASTIC} alt='Elastic skin body wrap gel' />
+                      </div>
+                      <div className='gift-slider-cnt'>
+                        <div className='gift-slider-lbl'>
+                          ELASTIC SKIN BODY WRAP GEL
+                        </div>
+                        <div className='gift-slider-txt'>
+                          La envoltura contiene extracto de orégano, extracto de
+                          castaña, extracto de fucus, aceite esencial de
+                          naranja, extracto de plancton, aceite de jojoba. La
+                          envoltura actúa intensamente sobre la piel, devuelve a
+                          la piel su elasticidad y firmeza.
+                        </div>
                       </div>
                     </div>
                   </div>
 
-                  <div className='gift-slider-item'>
-                    <div className='gift-slider-img'>
-                      <img src={ALGAE_DET} alt='Body wrap algae detox' />
-                    </div>
-                    <div className='gift-slider-cnt'>
-                      <div className='gift-slider-lbl'>
-                        BODY WRAP ALGAE DETOX
+                  <div className='gift-slider-section'>
+                    <div className='gift-slider-item'>
+                      <div className='gift-slider-img'>
+                        <img src={ALGAE_SCRUB} alt='Body scrub algae' />
                       </div>
-                      <div className='gift-slider-txt'>
-                        La envoltura de algas elimina las toxinas y el exceso de
-                        líquido en el cuerpo, y también nutre la piel de
-                        microelementos y vitaminas.{' '}
+                      <div className='gift-slider-cnt'>
+                        <div className='gift-slider-lbl'>BODY SCRUB ALGAE</div>
+                        <div className='gift-slider-txt'>
+                          Exfoliante corporal con sal marina, trocitos de algas
+                          y polvo de concha de ostras proporciona una limpieza
+                          eficaz y elimina las células muertas de la piel.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className='gift-slider-item'>
+                      <div className='gift-slider-img'>
+                        <img src={ALGAE_DET} alt='Body wrap algae detox' />
+                      </div>
+                      <div className='gift-slider-cnt'>
+                        <div className='gift-slider-lbl'>
+                          BODY WRAP ALGAE DETOX
+                        </div>
+                        <div className='gift-slider-txt'>
+                          La envoltura de algas elimina las toxinas y el exceso
+                          de líquido en el cuerpo, y también nutre la piel de
+                          microelementos y vitaminas.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className='gift-slider-item'>
+                      <div className='gift-slider-img'>
+                        <img src={BATTER2} alt='Body cream mango papaya' />
+                      </div>
+                      <div className='gift-slider-cnt'>
+                        <div className='gift-slider-lbl'>
+                          BODY CREAM BUTTER MANGO-PAPAYA
+                        </div>
+                        <div className='gift-slider-txt'>
+                          La manteca corporal contiene aceite de almendras,
+                          aceite de oliva, aceite de nuez, aceite de aguacate,
+                          extracto de mango, extracto de papaya, alantoína.
+                        </div>
                       </div>
                     </div>
                   </div>
 
-                  <div className='gift-slider-item'>
-                    <div className='gift-slider-img'>
-                      <img src={BATTER2} alt='Body cream mango papaya' />
-                    </div>
-                    <div className='gift-slider-cnt'>
-                      <div className='gift-slider-lbl'>
-                        BODY CREAM BUTTER MANGO-PAPAYA
+                  <div className='gift-slider-section'>
+                    <div className='gift-slider-item'>
+                      <div className='gift-slider-img'>
+                        <img
+                          src={CINNAMON}
+                          alt='CINNAMON-ORANGE HOT BODY WRAP GEL'
+                        />
                       </div>
-                      <div className='gift-slider-txt'>
-                        La manteca corporal contiene aceite de almendras, aceite
-                        de oliva, aceite de nuez, aceite de aguacate, extracto
-                        de mango, extracto de papaya, alantoína.
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className='gift-slider-item'>
-                    <div className='gift-slider-img'>
-                      <img
-                        src={CINNAMON}
-                        alt='CINNAMON-ORANGE HOT BODY WRAP GEL'
-                      />
-                    </div>
-                    <div className='gift-slider-cnt'>
-                      <div className='gift-slider-lbl'>
-                        CINNAMON-ORANGE HOT BODY WRAP GEL
-                      </div>
-                      <div className='gift-slider-txt'>
-                        La envoltura caliente combate eficazmente las estrías y
-                        la celulitis, elimina la celulitis visible, incluso en
-                        las últimas etapas. Activa la circulación sanguínea,
-                        elimina los desechos y toxinas del cuerpo.
+                      <div className='gift-slider-cnt'>
+                        <div className='gift-slider-lbl'>
+                          CINNAMON-ORANGE HOT BODY WRAP GEL
+                        </div>
+                        <div className='gift-slider-txt'>
+                          La envoltura caliente combate eficazmente las estrías
+                          y la celulitis, elimina la celulitis visible, incluso
+                          en las últimas etapas. Activa la circulación
+                          sanguínea, elimina los desechos y toxinas del cuerpo.
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -739,13 +762,14 @@ function Home() {
               </div>
               <div className='option-benefits-price'>
                 <div className='option-price'>29,90 €</div>
-                <Link to={frontRoutes.register} className='main-apply'>
+                <Link
+                  to={`${frontRoutes.register}/regalo`}
+                  className='main-apply'
+                >
                   APÚNTATE YA
                 </Link>
               </div>
             </div>
-
-            <div className='clear'></div>
           </div>
         </div>
       </div>

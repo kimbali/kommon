@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Space from '../components/space/Space';
 import { useSelector } from 'react-redux';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import frontRoutes from '../config/frontRoutes';
 import TextedLogo from '../components/header/TextedLogo';
 import { registerRedirectValidator } from '../utils/validators/registerValidator';
@@ -11,9 +11,12 @@ import RegisterFormThree from '../components/register/RegisterFormThree';
 import RegisterFormFour from '../components/register/RegisterFormFour';
 import Text from '../components/text/Text';
 import Button from '../components/button/Button';
+import RegisterGiftSelect from '../components/register/RegisterGiftSelect';
 
 function Register() {
+  const { regalo } = useParams();
   const [currentForm, setcurrentForm] = useState();
+  const [giftSelected, setGiftSelected] = useState();
   const navigate = useNavigate();
 
   const { userInfo } = useSelector(state => state.auth);
@@ -39,6 +42,10 @@ function Register() {
     setcurrentForm(nextStep);
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleGift = gift => {
+    setGiftSelected(gift);
   };
 
   const registerSteps = [
@@ -98,6 +105,14 @@ function Register() {
         </div>
 
         <Space medium />
+
+        <RegisterGiftSelect
+          withPresent={!!regalo}
+          handleGift={setGiftSelected}
+          giftSelected={giftSelected}
+        />
+
+        <Space big />
 
         {currentForm === 1 && <RegisterFormOne onSuccess={handleStep} />}
 

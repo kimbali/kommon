@@ -52,3 +52,143 @@
     text-decoration: none;
   }
 }
+
+.gift-selector {
+  .buttons {
+    background-color: $background-3;
+    border-radius: $border-radius-wrapper;
+    position: relative;
+    height: 32px;
+
+    &::after {
+      content: '';
+      transition: left 0.27s ease-out;
+      position: absolute;
+      width: 50%;
+      top: 0;
+      left: 0;
+      height: 100%;
+      background-color: $primary-color;
+      border-radius: $border-radius-wrapper;
+      z-index: 3;
+    }
+
+    &.without-gift {
+      &::after {
+        left: 50%;
+      }
+    }
+
+    button {
+      z-index: 4;
+      position: absolute;
+      background-color: transparent;
+      height: 32px;
+      width: 50%;
+      font-size: 14px;
+
+      &:last-of-type {
+        right: 0;
+      }
+    }
+  }
+
+  .carousel.carousel-slider {
+    overflow: visible;
+
+    .control-arrow {
+      background-color: $primary-color;
+      border-radius: 100%;
+      opacity: 1;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      top: 45%;
+      left: -22px;
+
+      &.control-next {
+        left: unset;
+        right: -22px;
+      }
+
+      &:hover {
+        background-color: $primary-color-decolored;
+      }
+    }
+  }
+
+  .carousel-status {
+    display: none;
+  }
+
+  .carousel .control-dots {
+    bottom: -36px;
+  }
+
+  .gift-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 16px;
+
+    @media screen and (min-width: 1024px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
+
+.gift-item {
+  cursor: pointer;
+  background-color: #dedfe1;
+  padding: 1rem;
+  border-radius: 1rem;
+  height: 168px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+
+  &:hover {
+    background-color: $white;
+  }
+
+  &.selected  {
+    background-color: $white;
+
+    &::after {
+      content: '✓';
+      position: absolute;
+      height: 22px;
+      width: 22px;
+      background-color: $primary-color;
+      top: 16px;
+      right: 16px;
+      border-radius: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  img {
+    height: auto;
+    width: 100%;
+  }
+
+  .text {
+    display: block;
+    text-align: center;
+    width: 100%;
+    padding: 0.25rem;
+    color: #1c1a1b;
+    font-size: 12px;
+    text-transform: lowercase;
+    height: 44px;
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+}

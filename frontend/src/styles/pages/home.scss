@@ -749,8 +749,6 @@
   .result-slider-txt p:last-child {
     margin-bottom: 0px;
   }
-  .results .owl-carousel .owl-stage-outer {
-  }
   .result-slider-item-a {
     padding: 30px;
   }
@@ -793,16 +791,55 @@
   .gift-slider {
     padding: 0px 40px 0px 40px;
     position: relative;
+
+    .carousel.carousel-slider .control-arrow {
+      background-color: $primary-color;
+      border-radius: 100%;
+      opacity: 1;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      top: 50%;
+    }
+
+    .carousel .control-dots {
+      bottom: -14px;
+    }
   }
   .gift-slider-item {
-    min-height: 540px;
-    width: 390px;
+    width: 90%;
     background: #fff;
     border-radius: 10px;
-    padding: 30px 20px 20px 20px;
+    padding: 16px 22px;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
+    margin-bottom: 16px;
+  }
+  .gift-slider-section {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+
+    .gift-slider-img img {
+      width: 70%;
+    }
+
+    @media screen and (min-width: 1024px) {
+      flex-direction: row;
+
+      .gift-slider-item {
+        width: 32%;
+        min-height: 540px;
+      }
+
+      .gift-slider-img img {
+        width: 100%;
+      }
+    }
   }
   .gift-slider-cnt {
     text-align: left;
@@ -821,9 +858,6 @@
   }
   .gift-slider-img {
     text-align: center;
-  }
-  .gift-slider-img img {
-    width: 90%;
   }
   .owl-dots {
     text-align: center;
@@ -1691,9 +1725,21 @@
     color: #121316;
     text-transform: uppercase;
   }
+  .options-row {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    @media screen and (min-width: 1024px) {
+      flex-direction: row;
+
+      .option-item {
+        width: 45%;
+      }
+    }
+  }
   .option-item {
-    /*width:33.333%;*/
-    width: 50%;
+    width: 100%;
     min-height: 685px;
     background: #fff;
     float: left;
@@ -1824,7 +1870,7 @@
     &::before {
       display: block;
       position: absolute;
-      top: 5px;
+      top: 0;
       left: -42px;
       content: '';
       background: url(../img/qa.png) left top no-repeat;

@@ -100,7 +100,10 @@ function App() {
       <ScrollToTop />
 
       <Routes>
-        <Route path={frontRoutes.register} element={<Register />} />
+        <Route
+          path={`${frontRoutes.register}/:regalo?`}
+          element={<Register />}
+        />
         <Route path={frontRoutes.login} element={<Login />} />
         <Route path={frontRoutes.home} element={<Home />} />
 

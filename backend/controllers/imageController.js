@@ -1,4 +1,3 @@
-import AWS from 'aws-sdk';
 import {
   S3Client,
   PutObjectCommand,

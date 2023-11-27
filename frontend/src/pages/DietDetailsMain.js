@@ -90,9 +90,9 @@ function DietDetailsMain() {
               list={ingredients.map(ele => {
                 return {
                   name: ele.ingredient?.name || '',
-                  value: `${ele.quantity || ''} ${getMeasureDiminutive(
+                  value: `(${ele.quantity || ''} ${getMeasureDiminutive(
                     ele.ingredient?.measure
-                  )}`,
+                  )})`,
                 };
               })}
             />

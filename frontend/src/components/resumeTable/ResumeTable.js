@@ -6,6 +6,10 @@ function ResumeTable({ list = [], withBullets = false }) {
     <table className='resume-table'>
       <tbody>
         {list.map((eachItem, index) => {
+          if (Object.keys(eachItem).length === 0) {
+            return null;
+          }
+
           return (
             <tr
               key={`table-${index}`}

@@ -8,6 +8,11 @@ table {
   th {
     padding: 12px;
     text-align: left;
+    font-family: $avenirBlack;
+
+    button {
+      font-family: $avenirBlack;
+    }
 
     svg {
       margin-left: 8px;

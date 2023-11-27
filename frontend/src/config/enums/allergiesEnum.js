@@ -15,4 +15,13 @@ const allergiesEnum = [
   { label: 'Sulphites', value: 'SULFITOS' },
 ];
 
+export const getAllergyLabel = allergy => {
+  const allergyFound = allergiesEnum.find(ele => ele.value === allergy);
+  if (allergyFound) {
+    return allergyFound.label;
+  }
+
+  return allergy;
+};
+
 export default allergiesEnum;

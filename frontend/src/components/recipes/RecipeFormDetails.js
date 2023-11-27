@@ -60,9 +60,9 @@ function RecipeFormDetails({
             }
             return {
               name: ele.ingredient?.name,
-              value: `${ele.quantity || 0} ${getMeasureDiminutive(
+              value: `(${ele.quantity || 0} ${getMeasureDiminutive(
                 ele.ingredient?.measure
-              )}`,
+              )})`,
             };
           })}
         />

@@ -7,6 +7,7 @@ import {
   faPlateWheat,
   faSpa,
   faUser,
+  faWheatAwn,
 } from '@fortawesome/free-solid-svg-icons';
 import './navBar.scss';
 import frontRoutes from '../../config/frontRoutes';
@@ -32,6 +33,12 @@ function AdminNavBar() {
           icon={faPlateWheat}
           label='Recipes'
           route={frontRoutes.dietsConfig}
+        />
+
+        <NavLink
+          icon={faWheatAwn}
+          label='Ingredients'
+          route={frontRoutes.ingredients}
         />
 
         <NavLink

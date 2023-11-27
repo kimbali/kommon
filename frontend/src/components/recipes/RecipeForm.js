@@ -14,6 +14,7 @@ import {
 } from '../../slices/recipesApiSlice';
 import IngredientForm from '../ingredients/IngredientForm';
 import RecipeFormDetails from './RecipeFormDetails';
+import sortBy from '../../utils/sortBy';
 
 function RecipeForm({ recipe, onCreate, isEdit }) {
   const [showCreateIngredient, setShowCreateIngredient] = useState(false);
@@ -61,7 +62,7 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
   };
 
   const handleAddIngredient = () => {
-    const ingredients = formData.ingredients;
+    let ingredients = [...formData.ingredients];
     ingredients.push({});
 
     setFormData({ ...formData, ingredients });
@@ -105,7 +106,9 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
         })
         .filter(option => !!option) || [];
 
-    setIngredientsOptions(options);
+    const sortedOptions = sortBy(options, 'label');
+    console.log(sortedOptions);
+    setIngredientsOptions(sortedOptions);
   }, [ingredientsData?.ingredients, formData.ingredients]);
 
   const [createRecipe] = useCreateRecipeMutation();
@@ -186,8 +189,11 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
             <Space extraSmall />
 
             {showCreateIngredient && (
-              <Modal isSecondary onClose={setShowCreateIngredient}>
-                <IngredientForm onCreate={onCreateIngredient} />
+              <Modal scroll isSecondary onClose={setShowCreateIngredient}>
+                <IngredientForm
+                  onCreate={onCreateIngredient}
+                  onCancel={() => setShowCreateIngredient(false)}
+                />
               </Modal>
             )}
 
@@ -199,10 +205,10 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
 
               return (
                 <React.Fragment key={`ingredient-measure-${index}`}>
-                  <div className='grid-container'>
+                  <div className='grid-container ingredients'>
                     <Input
                       key={`ingredient-option-${ingredientOption?.value.ingredient._id}`}
-                      className='cols-2'
+                      className='cols-1'
                       name={`ingredient-${index}`}
                       isSingleSelect
                       options={ingredientsOptions}
@@ -300,58 +306,6 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
             >
               Add step
             </Button>
-
-            <Space small />
-          </div>
-
-          <Space medium />
-
-          <div className='section'>
-            <div className='grid-container'>
-              <div className='cols-1'>
-                <Input
-                  label='calories'
-                  name='calories'
-                  placeholder='0'
-                  onChange={handleOnChange}
-                  value={formData.calories}
-                  type='number'
-                />
-              </div>
-
-              <div className='cols-1'>
-                <Input
-                  label='proteins'
-                  name='proteins'
-                  placeholder='0'
-                  onChange={handleOnChange}
-                  value={formData.proteins}
-                  type='number'
-                />
-              </div>
-
-              <div className='cols-1'>
-                <Input
-                  label='fats'
-                  name='fats'
-                  placeholder='0'
-                  onChange={handleOnChange}
-                  value={formData.fats}
-                  type='number'
-                />
-              </div>
-
-              <div className='cols-1'>
-                <Input
-                  label='carbohydrates'
-                  name='carbohydrates'
-                  placeholder='0'
-                  onChange={handleOnChange}
-                  value={formData.carbohydrates}
-                  type='number'
-                />
-              </div>
-            </div>
 
             <Space small />
           </div>

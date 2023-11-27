@@ -5,6 +5,7 @@ const frontRoutes = {
   dietDetailsMain: '/diet/:id',
   dietsConfig: '/config/diets',
   home: '/home',
+  ingredients: '/config/ingredients',
   login: '/login',
   main: '/main',
   marathonList: '/marathons',

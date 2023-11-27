@@ -44,18 +44,7 @@ export const getRecipeById = asyncHandler(async (req, res) => {
 // @route   POST /api/recipes
 // @access  Private/Admin
 export const createRecipe = asyncHandler(async (req, res) => {
-  const {
-    title,
-    steps,
-    ingredients,
-    minutes,
-    image,
-    calories,
-    proteins,
-    fats,
-    carbohydrates,
-    meals,
-  } = req.body;
+  const { title, steps, ingredients, minutes, image, meals } = req.body;
 
   const recipe = new Recipe({
     title,
@@ -63,10 +52,6 @@ export const createRecipe = asyncHandler(async (req, res) => {
     ingredients,
     minutes,
     image,
-    calories,
-    proteins,
-    fats,
-    carbohydrates,
     meals,
   });
 
@@ -83,18 +68,7 @@ export const createRecipe = asyncHandler(async (req, res) => {
 // @route   PUT /api/recipes/:id
 // @access  Private/Admin
 export const updateRecipe = asyncHandler(async (req, res) => {
-  const {
-    title,
-    steps,
-    ingredients,
-    minutes,
-    image,
-    calories,
-    proteins,
-    fats,
-    carbohydrates,
-    meals,
-  } = req.body;
+  const { title, steps, ingredients, minutes, image, meals } = req.body;
 
   const recipe = await Recipe.findById(req.params.id);
 
@@ -104,10 +78,6 @@ export const updateRecipe = asyncHandler(async (req, res) => {
     recipe.ingredients = ingredients || recipe.ingredients;
     recipe.minutes = minutes || recipe.minutes;
     recipe.image = image || recipe.image;
-    recipe.calories = calories || recipe.calories;
-    recipe.proteins = proteins || recipe.proteins;
-    recipe.fats = fats || recipe.fats;
-    recipe.carbohydrates = carbohydrates || recipe.carbohydrates;
     recipe.meals = meals || recipe.meals;
 
     const updatedRecipe = await recipe.save();

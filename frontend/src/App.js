@@ -40,6 +40,7 @@ import DietDetailsMain from './pages/DietDetailsMain';
 import MeditationDetails from './pages/MeditationDetails';
 import MeditationDetailsMain from './pages/MeditationDetailsMain';
 import AvisoLegal from './pages/AvisoLegal';
+import IngredientsConfig from './pages/IngredientsConfig';
 
 function App() {
   const dispatch = useDispatch();
@@ -139,6 +140,10 @@ function App() {
           <Route path={frontRoutes.users} element={<Users />} />
           <Route path={frontRoutes.dietsConfig} element={<Recipes />} />
           <Route path={frontRoutes.recipeDetails} element={<RecipeDetails />} />
+          <Route
+            path={frontRoutes.ingredients}
+            element={<IngredientsConfig />}
+          />
           <Route
             path={frontRoutes.workoutsConfig}
             element={<WorkoutsConfig />}

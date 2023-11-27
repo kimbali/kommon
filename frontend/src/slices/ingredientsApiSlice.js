@@ -27,7 +27,7 @@ export const ingredientsApiSlice = apiSlice.injectEndpoints({
     }),
     updateIngredient: builder.mutation({
       query: data => ({
-        url: `${INGREDIENTS_URL}/${data.ingredientId}`,
+        url: `${INGREDIENTS_URL}/${data._id}`,
         method: 'PUT',
         body: data,
       }),

@@ -39,22 +39,6 @@ const recipeSchema = new Schema(
       format: String,
       url: String,
     },
-    calories: {
-      type: Number,
-      default: 0,
-    },
-    proteins: {
-      type: Number,
-      default: 0,
-    },
-    fats: {
-      type: Number,
-      default: 0,
-    },
-    carbohydrates: {
-      type: Number,
-      default: 0,
-    },
     meals: [String],
   },
   {

@@ -32,6 +32,7 @@ function Input({
   selectOption = 'select one',
   type = '',
   value = '',
+  labelLink = '',
 }) {
   const hasError = error?.invalidFields?.includes(name);
   const [uploadRecipeImage, { isLoading }] = useUploadRecipeImageMutation();
@@ -76,9 +77,13 @@ function Input({
   return (
     <div className={`field ${className} ${name} ${type}`}>
       {label && (
-        <label className='main-label' htmlFor={name}>
-          {label} {selectCreatable ? '(Escribir nombre para crear nuevo)' : ''}
-        </label>
+        <div>
+          <label className='main-label' htmlFor={name}>
+            {label}{' '}
+            {selectCreatable ? '(Escribir nombre para crear nuevo)' : ''}
+          </label>
+          {labelLink && labelLink}
+        </div>
       )}
 
       {type !== 'select' &&

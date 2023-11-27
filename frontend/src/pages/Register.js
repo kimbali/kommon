@@ -44,10 +44,6 @@ function Register() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleGift = gift => {
-    setGiftSelected(gift);
-  };
-
   const registerSteps = [
     {
       label: 'Info',
@@ -106,11 +102,13 @@ function Register() {
 
         <Space medium />
 
-        <RegisterGiftSelect
-          withPresent={!!regalo}
-          handleGift={setGiftSelected}
-          giftSelected={giftSelected}
-        />
+        {currentForm === 1 && (
+          <RegisterGiftSelect
+            withPresent={!!regalo}
+            handleGift={setGiftSelected}
+            giftSelected={giftSelected}
+          />
+        )}
 
         <Space big />
 

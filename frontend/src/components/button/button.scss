@@ -85,7 +85,7 @@
   }
 
   &:disabled {
-    background-color: transparent;
+    background-color: $background-3;
     cursor: default;
     color: $disabled;
 

@@ -53,6 +53,19 @@
   }
 }
 
+.personal-info-form {
+  .field.checkbox {
+    label {
+      font-size: 16px;
+      font-family: $avenirBook;
+    }
+
+    &.checked label {
+      text-decoration: none;
+    }
+  }
+}
+
 .gift-selector {
   .buttons {
     background-color: $background-3;

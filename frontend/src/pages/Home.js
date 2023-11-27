@@ -260,7 +260,7 @@ function Home() {
           <div className='gift-slider'>
             <div id='gift-slider' className='owl-carousel'>
               {
-                <Carousel>
+                <Carousel showThumbs={false}>
                   <div className='gift-slider-section'>
                     <div className='gift-slider-item'>
                       <div className='gift-slider-img'>

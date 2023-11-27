@@ -23,6 +23,9 @@ function RegisterGiftSelect({ withPresent, handleGift, giftSelected = '' }) {
   const [withGift, setWithGift] = useState(withPresent);
 
   const handleYesNoGift = () => {
+    if (withGift) {
+      handleGift();
+    }
     setWithGift(prev => !prev);
   };
 

@@ -8,6 +8,8 @@ import { useRegisterMutation } from '../../slices/usersApiSlices';
 import toast from 'react-hot-toast';
 import { setCredentials } from '../../slices/authSlice';
 import Button from '../button/Button';
+import { Link } from 'react-router-dom';
+import frontRoutes from '../../config/frontRoutes';
 
 function RegisterFormOne({ onSuccess }) {
   const [formData, setFormData] = useState({});
@@ -54,7 +56,7 @@ function RegisterFormOne({ onSuccess }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='personal-info-form'>
       <Text isTitle>Información general:</Text>
       <Text fontSize='18'>¡Explícanos más sobre ti, antes de empezar!</Text>
 
@@ -129,10 +131,49 @@ function RegisterFormOne({ onSuccess }) {
         value={formData.city}
       />
 
+      <Space medium />
+
+      <Input
+        name='termsAndConditions'
+        type='checkbox'
+        className={formData.termsAndConditions ? 'checked' : ''}
+        label={
+          <Text>
+            He leído y acepto los{' '}
+            <Link target='is_blank' to={frontRoutes.terms}>
+              términos y condiciones
+            </Link>
+          </Text>
+        }
+        value={formData.termsAndConditions}
+        onChange={handleOnChange}
+      />
+
+      <Input
+        name='privacyPolicy'
+        type='checkbox'
+        className={formData.privacyPolicy ? 'checked' : ''}
+        label={
+          <Text>
+            He leído y acepto la{' '}
+            <Link target='is_blank' to={frontRoutes.privacyPolicy}>
+              política de privacidad
+            </Link>
+          </Text>
+        }
+        value={formData.privacyPolicy}
+        onChange={handleOnChange}
+      />
       <Space big />
 
-      <Button type='submit' isPrimary big center>
-        Register
+      <Button
+        type='submit'
+        isPrimary
+        big
+        center
+        disabled={!formData.termsAndConditions || !formData.privacyPolicy}
+      >
+        Pagar ahora
       </Button>
 
       <Space medium />

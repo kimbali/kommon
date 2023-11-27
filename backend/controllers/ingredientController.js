@@ -47,6 +47,7 @@ export const createIngredient = asyncHandler(async (req, res) => {
     allergy,
     measure,
     benefits,
+    supermarket,
   } = req.body;
 
   const newIngredient = new Ingredient({
@@ -59,6 +60,7 @@ export const createIngredient = asyncHandler(async (req, res) => {
     allergy,
     measure,
     benefits,
+    supermarket,
   });
 
   const createdIngredient = await newIngredient.save();
@@ -79,6 +81,7 @@ export const updateIngredient = asyncHandler(async (req, res) => {
     allergy,
     measure,
     benefits,
+    supermarket,
   } = req.body;
 
   const ingredient = await Ingredient.findById(req.params.id);
@@ -93,6 +96,7 @@ export const updateIngredient = asyncHandler(async (req, res) => {
     ingredient.allergy = allergy || ingredient.allergy;
     ingredient.measure = measure || ingredient.measure;
     ingredient.benefits = benefits || ingredient.benefits;
+    ingredient.supermarket = supermarket || ingredient.supermarket;
 
     const updatedIngredient = await ingredient.save();
     res.json(updatedIngredient);

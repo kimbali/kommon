@@ -20,6 +20,7 @@ import { getMeasureDiminutive } from '../config/enums/measuresEnum';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getAllergyLabel } from '../config/enums/allergiesEnum';
 import sortBy from '../utils/sortBy';
+import { getSupermarketLabel } from '../config/enums/supermarketEnum';
 
 function IngredientsConfig() {
   const [searchValue, setSearchValue] = useState('');
@@ -109,10 +110,11 @@ function IngredientsConfig() {
             </th>
             <th>Measure</th>
             <th>Allergies</th>
-            <th>Calories</th>
-            <th>Carbohydrates</th>
-            <th>Proteins</th>
+            <th>Supermarket</th>
+            <th>Kcal</th>
+            <th>Prot</th>
             <th>Fats</th>
+            <th>Carbh</th>
             <th>Edit</th>
             <th>Trash</th>
           </tr>
@@ -123,12 +125,13 @@ function IngredientsConfig() {
               <td>{ingredient.name}</td>
 
               <td>{getMeasureDiminutive(ingredient.measure)}</td>
-
               <td>{getAllergyLabel(ingredient.allergy)}</td>
-              <td>{ingredient.calories}</td>
-              <td>{ingredient.carbohydrates}</td>
-              <td>{ingredient.proteins}</td>
-              <td>{ingredient.fats}</td>
+              <td>{getSupermarketLabel(ingredient.supermarket)}</td>
+
+              <td className='center-text'>{ingredient.calories}</td>
+              <td className='center-text'>{ingredient.proteins}</td>
+              <td className='center-text'>{ingredient.fats}</td>
+              <td className='center-text'>{ingredient.carbohydrates}</td>
 
               <td className='only-icon'>
                 <Button

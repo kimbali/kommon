@@ -27,6 +27,7 @@ const ingredientsSchema = new Schema(
     allergy: String,
     measure: String,
     benefits: String,
+    supermarket: String,
   },
   {
     timestamps: true,

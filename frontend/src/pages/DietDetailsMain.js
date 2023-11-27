@@ -58,12 +58,12 @@ function DietDetailsMain() {
 
           <div className='propiedades'>
             <div className='propiedad'>
-              <Text isSubtitle>kcal</Text>
+              <Text isSubtitle>Kcal</Text>
               <Text>{calories}</Text>
             </div>
 
             <div className='propiedad'>
-              <Text isSubtitle>prot</Text>
+              <Text isSubtitle>Prot</Text>
               <Text>{proteins}</Text>
             </div>
 
@@ -73,7 +73,7 @@ function DietDetailsMain() {
             </div>
 
             <div className='propiedad'>
-              <Text isSubtitle>carbh</Text>
+              <Text isSubtitle>Carbh</Text>
               <Text>{carbohydrates}</Text>
             </div>
           </div>

@@ -17,10 +17,16 @@ const supermarketEnum = [
 // Legumbres
 // Despensa
 
-export const getDietEnumLabel = value => {
+// Frescos:
+// Carnicería
+// Charcutería
+// Pescadería
+// Frutas y verduras
+
+export const getSupermarketLabel = value => {
   const element = supermarketEnum.find(each => each.value === value);
 
-  return element ? { label: element?.label, svg: element.svg } : value;
+  return element ? element?.label : value;
 };
 
 export default supermarketEnum;

@@ -9,8 +9,8 @@ import {
   useUpdateIngredientMutation,
 } from '../../slices/ingredientsApiSlice';
 import Button from '../button/Button';
-import { faAdd } from '@fortawesome/free-solid-svg-icons';
 import Text from '../text/Text';
+import supermarketEnum from '../../config/enums/supermarketEnum';
 
 function IngredientForm({ onSuccess, data, onCancel }) {
   const [formData, setFormData] = useState(data || {});
@@ -76,6 +76,19 @@ function IngredientForm({ onSuccess, data, onCancel }) {
         selectOption='Select allergy'
         options={allergiesEnum}
         noValueOption='No allergies'
+        onChange={handleOnChange}
+      />
+
+      <Space small />
+
+      <Input
+        label='supermarket section'
+        name='supermarket'
+        value={formData?.supermarket}
+        type='select'
+        selectOption='Select section'
+        options={supermarketEnum}
+        noValueOption='Otra'
         onChange={handleOnChange}
       />
 

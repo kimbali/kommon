@@ -57,18 +57,6 @@ function IngredientForm({ onSuccess, data, onCancel }) {
       <Space small />
 
       <Input
-        label='measure'
-        name='measure'
-        value={formData?.measure}
-        type='select'
-        selectOption='Select measure'
-        options={measuresEnum}
-        onChange={handleOnChange}
-      />
-
-      <Space small />
-
-      <Input
         label='allergy'
         name='allergy'
         value={formData?.allergy}
@@ -93,6 +81,20 @@ function IngredientForm({ onSuccess, data, onCancel }) {
       />
 
       <Space small />
+
+      <Input
+        label='measure'
+        name='measure'
+        value={formData?.measure}
+        type='select'
+        selectOption='Select measure'
+        options={measuresEnum}
+        onChange={handleOnChange}
+      />
+
+      <Space small />
+      <Text>Por cada unidad (1) de medida seleccionada:</Text>
+      <Space extraSmall />
 
       <div className='section'>
         <div className='grid-container'>

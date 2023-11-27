@@ -8,6 +8,7 @@ import { faFolderPlus, faSave } from '@fortawesome/free-solid-svg-icons';
 import mealsEnum from '../../config/enums/mealsEnum';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useGetImageUrlQuery } from '../../slices/imagesApiSlice';
+import calculateEnergy from '../../utils/calculateEnergy';
 
 function RecipeFormDetails({
   data: recipeDetails,
@@ -15,18 +16,8 @@ function RecipeFormDetails({
   handleCreateRecipe,
   isEdit,
 }) {
-  const {
-    title,
-    steps,
-    ingredients,
-    minutes,
-    image,
-    calories,
-    proteins,
-    fats,
-    carbohydrates,
-    meals,
-  } = recipeDetails;
+  const { title, steps, ingredients, minutes, image, meals } = recipeDetails;
+
   const { data: imageS3 } = useGetImageUrlQuery(
     {
       url: image?.url,
@@ -94,23 +85,23 @@ function RecipeFormDetails({
 
       <div className='propiedades'>
         <div className='propiedad'>
-          <Text>KCAL</Text>
-          <Text>{calories || '0'}</Text>
+          <Text isBold>KCAL</Text>
+          <Text>{calculateEnergy('calories', ingredients)}</Text>
         </div>
 
         <div className='propiedad'>
-          <Text>PROT</Text>
-          <Text>{proteins || '0'}</Text>
+          <Text isBold>PROT</Text>
+          <Text>{calculateEnergy('proteins', ingredients)}</Text>
         </div>
 
         <div className='propiedad'>
-          <Text>FATS</Text>
-          <Text>{fats || '0'}</Text>
+          <Text isBold>FATS</Text>
+          <Text>{calculateEnergy('fats', ingredients)}</Text>
         </div>
 
         <div className='propiedad'>
-          <Text>CARBH</Text>
-          <Text>{carbohydrates || '0'}</Text>
+          <Text isBold>CARBH</Text>
+          <Text>{calculateEnergy('carbohydrates', ingredients)}</Text>
         </div>
       </div>
 

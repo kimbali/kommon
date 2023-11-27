@@ -107,7 +107,7 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
         .filter(option => !!option) || [];
 
     const sortedOptions = sortBy(options, 'label');
-    console.log(sortedOptions);
+
     setIngredientsOptions(sortedOptions);
   }, [ingredientsData?.ingredients, formData.ingredients]);
 

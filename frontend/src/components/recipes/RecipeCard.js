@@ -5,6 +5,7 @@ import Space from '../space/Space';
 import { useGetImageUrlQuery } from '../../slices/imagesApiSlice';
 import Spinner from '../spinner/Spinner';
 import toast from 'react-hot-toast';
+import calculateEnergy from '../../utils/calculateEnergy';
 
 function RecipeCard({ recipe, meal = '', onClick }) {
   const {
@@ -63,8 +64,8 @@ function RecipeCard({ recipe, meal = '', onClick }) {
           </div>
 
           <Text className='recipe-card-data'>
-            {recipe.minutes} <span>min</span> | {recipe.calories}{' '}
-            <span>kcal</span>
+            {recipe.minutes} <span>min</span> |{' '}
+            {calculateEnergy('calories', recipe.ingredients)} <span>kcal</span>
           </Text>
         </div>
       </div>

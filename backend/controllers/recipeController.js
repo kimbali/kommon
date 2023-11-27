@@ -15,7 +15,13 @@ export const getRecipes = asyncHandler(async (req, res) => {
       }
     : {};
 
-  const recipes = await Recipe.find({ ...keyword });
+  const recipes = await Recipe.find({ ...keyword }).populate({
+    path: 'ingredients',
+    populate: {
+      path: 'ingredient',
+      model: 'Ingredient',
+    },
+  });
 
   res.json({ recipes });
 });

@@ -16,6 +16,7 @@ import ConfirmModal from '../components/modal/ConfirmModal';
 import Modal from '../components/modal/Modal';
 import RecipeForm from '../components/recipes/RecipeForm';
 import { getMeasureDiminutive } from '../config/enums/measuresEnum';
+import calculateEnergy from '../utils/calculateEnergy';
 
 function RecipeDetails({ recipe }) {
   const { id } = useParams();
@@ -119,22 +120,22 @@ function RecipeDetails({ recipe }) {
           <div className='propiedades'>
             <div className='propiedad'>
               <Text isSubtitle>Kcal</Text>
-              <Text>{calories}</Text>
+              <Text>{calculateEnergy('calories', ingredients)}</Text>
             </div>
 
             <div className='propiedad'>
               <Text isSubtitle>Prot</Text>
-              <Text>{proteins}</Text>
+              <Text>{calculateEnergy('proteins', ingredients)}</Text>
             </div>
 
             <div className='propiedad'>
               <Text isSubtitle>Fats</Text>
-              <Text>{fats}</Text>
+              <Text>{calculateEnergy('fats', ingredients)}</Text>
             </div>
 
             <div className='propiedad'>
               <Text isSubtitle>Carbh</Text>
-              <Text>{carbohydrates}</Text>
+              <Text>{calculateEnergy('carbohydrates', ingredients)}</Text>
             </div>
           </div>
         </div>

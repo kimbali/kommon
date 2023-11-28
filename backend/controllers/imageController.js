@@ -8,6 +8,7 @@ import multer from 'multer';
 import multerS3 from 'multer-s3';
 import express from 'express';
 import dotenv from 'dotenv';
+import asyncHandler from '../middleware/asyncHandler.js';
 
 dotenv.config();
 
@@ -35,13 +36,13 @@ const s3Storage = multerS3({
 export const upload = multer({
   storage: s3Storage,
   limits: {
-    fileSize: 5 * 1024 * 1024, // limit file size to 5MB
+    fileSize: 1 * 1024 * 1024,
   },
 });
 
 const router = express.Router();
 
-export const getImage = async (req, res) => {
+export const getImage = asyncHandler(async (req, res) => {
   const url = req.params.url;
 
   if (!url) {
@@ -67,14 +68,18 @@ export const getImage = async (req, res) => {
     res.status(404);
     throw new Error('Image not found');
   }
-};
+});
 
-export const uploadImage = async (req, res) => {
+export const uploadImage = asyncHandler(async (req, res) => {
   const params = {
     Bucket: process.env.S3_BUCKET,
     Key: req.file.originalname,
     Body: req.file.buffer,
     ContentType: req.file.mimetype,
+    resize: {
+      width: 400,
+      height: 400,
+    },
   };
 
   const command = new PutObjectCommand(params);
@@ -86,9 +91,8 @@ export const uploadImage = async (req, res) => {
       url: req.file.key,
       originalname: req.file.originalname,
       format: req.file.mimetype,
-      size: req.file.size,
     },
   });
-};
+});
 
 export default router;

@@ -191,7 +191,7 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
             {showCreateIngredient && (
               <Modal scroll isSecondary onClose={setShowCreateIngredient}>
                 <IngredientForm
-                  onCreate={onCreateIngredient}
+                  onSuccess={onCreateIngredient}
                   onCancel={() => setShowCreateIngredient(false)}
                 />
               </Modal>

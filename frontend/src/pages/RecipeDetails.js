@@ -60,16 +60,7 @@ function RecipeDetails({ recipe }) {
     return <Text>Recipe not found</Text>;
   }
 
-  const {
-    title,
-    steps,
-    ingredients,
-    minutes,
-    calories,
-    proteins,
-    fats,
-    carbohydrates,
-  } = recipeDetails;
+  const { title, steps, ingredients, minutes } = recipeDetails;
 
   return (
     <>

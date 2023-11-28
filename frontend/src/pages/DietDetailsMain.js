@@ -31,16 +31,7 @@ function DietDetailsMain() {
     return null;
   }
 
-  const {
-    title,
-    steps,
-    ingredients,
-    minutes,
-    calories,
-    proteins,
-    fats,
-    carbohydrates,
-  } = meal?.recipe;
+  const { title, steps, ingredients, minutes, carbohydrates } = meal?.recipe;
 
   return (
     <div>

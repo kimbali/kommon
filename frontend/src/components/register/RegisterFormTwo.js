@@ -1,21 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Text from '../text/Text';
 import Space from '../space/Space';
 import Input from '../input/Input';
-import { useDispatch } from 'react-redux';
 import registerValidator from '../../utils/validators/registerValidator';
 import { useProfileMutation } from '../../slices/usersApiSlices';
 import toast from 'react-hot-toast';
-import { setCredentials } from '../../slices/authSlice';
 import Button from '../button/Button';
 
-function RegisterFormTwo({ onSuccess, userInfo }) {
-  const [formData, setFormData] = useState({});
+function RegisterFormTwo({ onSuccess, userData }) {
+  const [formData, setFormData] = useState({ ...userData });
   const [invalidFields, setInvalidFields] = useState('');
 
-  const dispatch = useDispatch();
-
   const [updateProfile] = useProfileMutation();
+
+  useEffect(() => {
+    if (userData) {
+      setFormData(userData);
+    }
+  }, [userData]);
 
   const handleOnChange = ({ name, value }) => {
     setFormData({ ...formData, [name]: value });
@@ -27,14 +29,12 @@ function RegisterFormTwo({ onSuccess, userInfo }) {
     const errors = registerValidator(2, formData);
     setInvalidFields(errors);
 
-    if (errors) {
+    if (errors.length > 0) {
       return;
     }
 
     try {
-      const res = await updateProfile({ ...formData, ...userInfo }).unwrap();
-
-      dispatch(setCredentials({ ...res }));
+      await updateProfile({ ...formData }).unwrap();
 
       onSuccess(3);
     } catch (err) {

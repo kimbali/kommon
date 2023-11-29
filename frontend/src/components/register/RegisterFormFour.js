@@ -25,15 +25,13 @@ function RegisterFormFour() {
 
       <img src={PRESENT} alt='success present' />
 
-      <Space small />
-
-      <Text fontSize='18'>Has completado satisfactoriamente el formulario</Text>
-
       <Space big />
 
       <Button big center isPrimary onClick={handleClick}>
         marathon
       </Button>
+
+      <Space medium />
     </div>
   );
 }

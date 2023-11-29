@@ -23,6 +23,7 @@ const userSchema = new Schema(
     },
     phone: String,
     city: String,
+    address: String,
     age: Number,
     weight: Number,
     height: Number,

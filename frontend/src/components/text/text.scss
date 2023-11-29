@@ -99,6 +99,10 @@ h3 {
     font-size: 12px;
   }
 
+  &.disabled {
+    color: $disabled;
+  }
+
   &.small {
     font-size: 12px;
   }
@@ -120,6 +124,14 @@ h3 {
     height: 1px;
     width: 100%;
     background-color: $grey-footer;
+  }
+
+  &.font-18 {
+    font-size: 18px;
+  }
+
+  &.font-16 {
+    font-size: 16px;
   }
 }
 

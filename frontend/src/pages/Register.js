@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Space from '../components/space/Space';
 import { useSelector } from 'react-redux';
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import frontRoutes from '../config/frontRoutes';
 import TextedLogo from '../components/header/TextedLogo';
 import { registerRedirectValidator } from '../utils/validators/registerValidator';
@@ -12,36 +12,35 @@ import RegisterFormFour from '../components/register/RegisterFormFour';
 import Text from '../components/text/Text';
 import Button from '../components/button/Button';
 import RegisterGiftSelect from '../components/register/RegisterGiftSelect';
+import { useGetUserProfileQuery } from '../slices/usersApiSlices';
+import { scrollToTop } from '../utils/layoutHelpers';
 
 function Register() {
-  const { regalo } = useParams();
-  const [currentForm, setcurrentForm] = useState();
-  const [giftSelected, setGiftSelected] = useState();
-  const navigate = useNavigate();
-
   const { userInfo } = useSelector(state => state.auth);
 
-  const { search } = useLocation();
-  const sp = new URLSearchParams(search);
-  const redirect = sp.get('redirect') || frontRoutes.main;
+  const [currentForm, setcurrentForm] = useState();
+  const [giftSelected, setGiftSelected] = useState();
+
+  const { data: userData, refetch: refetchUser } = useGetUserProfileQuery(
+    userInfo?.user,
+    {
+      skip: !userInfo?.user,
+    }
+  );
 
   useEffect(() => {
-    const redirectTo = registerRedirectValidator(userInfo);
+    const redirectTo = registerRedirectValidator(userData);
 
     if (redirectTo) {
       setcurrentForm(redirectTo);
-      return;
     }
+  }, [userData]);
 
-    if (userInfo) {
-      navigate(redirect);
-    }
-  }, [navigate, redirect, userInfo]);
+  const handleStep = async nextStep => {
+    await refetchUser();
 
-  const handleStep = nextStep => {
     setcurrentForm(nextStep);
-
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    scrollToTop();
   };
 
   const registerSteps = [
@@ -102,9 +101,8 @@ function Register() {
 
         <Space medium />
 
-        {currentForm === 1 && (
+        {!userData && currentForm === 1 && (
           <RegisterGiftSelect
-            withPresent={!!regalo}
             handleGift={setGiftSelected}
             giftSelected={giftSelected}
           />
@@ -112,17 +110,23 @@ function Register() {
 
         <Space big />
 
-        {currentForm === 1 && <RegisterFormOne onSuccess={handleStep} />}
+        {currentForm === 1 && (
+          <RegisterFormOne
+            onSuccess={handleStep}
+            giftSelected={giftSelected}
+            userData={userData}
+          />
+        )}
 
         {currentForm === 2 && (
-          <RegisterFormTwo onSuccess={handleStep} userInfo={userInfo} />
+          <RegisterFormTwo onSuccess={handleStep} userData={userData} />
         )}
 
         {currentForm === 3 && (
-          <RegisterFormThree onSuccess={handleStep} userInfo={userInfo} />
+          <RegisterFormThree onSuccess={handleStep} userData={userData} />
         )}
 
-        {currentForm === 4 && <RegisterFormFour userInfo={userInfo} />}
+        {currentForm === 4 && <RegisterFormFour userData={userData} />}
       </div>
     </div>
   );

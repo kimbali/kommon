@@ -7,10 +7,6 @@ const patologyEnum = [
     label: 'Cancer',
     value: 'CANCER',
   },
-  {
-    label: 'No',
-    value: 'NO',
-  },
 ];
 
 export default patologyEnum;

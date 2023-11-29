@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { createPortal } from 'react-dom';
+import { scrollToTop } from '../../utils/layoutHelpers';
 
 function Modal({
   onClose,
@@ -12,7 +13,7 @@ function Modal({
   fullWidth = false,
 }) {
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    scrollToTop();
 
     document.body.style.overflowY = 'hidden';
 

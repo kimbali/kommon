@@ -33,6 +33,7 @@ function Input({
   type = '',
   value = '',
   labelLink = '',
+  disabled = false,
 }) {
   const hasError = error?.invalidFields?.includes(name);
   const [uploadRecipeImage, { isLoading }] = useUploadRecipeImageMutation();
@@ -111,6 +112,7 @@ function Input({
               hasError ? 'has-error' : ''
             }`}
             checked={!!value}
+            disabled={disabled}
           />
         )}
 

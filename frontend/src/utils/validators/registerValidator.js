@@ -7,6 +7,7 @@ const registerValidator = (
     password,
     name,
     city,
+    address,
     confirmPassword,
     phone,
     age,
@@ -27,10 +28,17 @@ const registerValidator = (
 
   if (formNumber === 1) {
     if (!email) errors.push('email');
-    if (!password) errors.push('password');
-    if (!confirmPassword) errors.push('confirmPassword');
     if (!name) errors.push('name');
     if (!phone) errors.push('phone');
+  }
+
+  if (formNumber === 11) {
+    if (!password) errors.push('password');
+    if (!confirmPassword) errors.push('confirmPassword');
+  }
+
+  if (formNumber === 12) {
+    if (!address) errors.push('address');
   }
 
   if (formNumber === 2) {
@@ -48,18 +56,17 @@ const registerValidator = (
     if (!smoke) errors.push('smoke');
     if (!alcohol) errors.push('alcohol');
     if (!problems) errors.push('problems');
-    if (!patologies) errors.push('patologies');
   }
 
   if (errors.length > 0) {
-    toast.error('Missing fields');
+    toast.error('Rellena los espacios marcados');
   }
 
-  return errors.length > 0 ? errors : null;
+  return errors;
 };
 
-export const registerRedirectValidator = userInfo => {
-  if (!userInfo) {
+export const registerRedirectValidator = user => {
+  if (!user) {
     return 1;
   }
 
@@ -79,7 +86,7 @@ export const registerRedirectValidator = userInfo => {
     alcohol,
     problems,
     patologies,
-  } = userInfo;
+  } = user;
 
   if (!email || !name || !city) {
     return 1;

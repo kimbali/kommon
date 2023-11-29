@@ -88,6 +88,11 @@ form {
       width: auto;
       height: auto;
     }
+
+    &:disabled {
+      color: $disabled;
+      cursor: not-allowed;
+    }
   }
 
   textarea {
@@ -168,7 +173,24 @@ form {
     }
   }
 
+  &.register {
+    label {
+      font-size: 20px;
+      padding-bottom: 22px;
+      font-family: $avenirBlack;
+    }
+  }
+
   &.radio {
+    &:focus {
+      background-color: transparent;
+      outline: none;
+      box-shadow: none;
+      outline: 0 !important;
+      outline: none !important;
+      -webkit-tap-highlight-color: transparent !important;
+    }
+
     label {
       margin: 0;
     }

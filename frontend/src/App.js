@@ -41,6 +41,7 @@ import MeditationDetails from './pages/MeditationDetails';
 import MeditationDetailsMain from './pages/MeditationDetailsMain';
 import AvisoLegal from './pages/AvisoLegal';
 import IngredientsConfig from './pages/IngredientsConfig';
+import Payment from './pages/Payment';
 
 function App() {
   const dispatch = useDispatch();
@@ -100,12 +101,13 @@ function App() {
       <ScrollToTop />
 
       <Routes>
+        <Route path={frontRoutes.home} element={<Home />} />
         <Route
           path={`${frontRoutes.register}/:regalo?`}
           element={<Register />}
         />
         <Route path={frontRoutes.login} element={<Login />} />
-        <Route path={frontRoutes.home} element={<Home />} />
+        <Route path={frontRoutes.payment} element={<Payment />} />
 
         <Route element={<PlainLayout />}>
           <Route path={frontRoutes.privacyPolicy} element={<PrivacyPolicy />} />

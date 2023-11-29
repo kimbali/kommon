@@ -18,15 +18,21 @@ import LYMPHATIC_DRAINAGE from '../../styles/img/Lymphatic_Drainage_small.png';
 import GiftItem from './GiftItem';
 import Space from '../space/Space';
 import { Carousel } from 'react-responsive-carousel';
+import { useNavigate, useParams } from 'react-router-dom';
+import frontRoutes from '../../config/frontRoutes';
 
-function RegisterGiftSelect({ withPresent, handleGift, giftSelected = '' }) {
-  const [withGift, setWithGift] = useState(withPresent);
+function RegisterGiftSelect({ handleGift, giftSelected = '' }) {
+  const { regalo } = useParams();
+  const [withGift, setWithGift] = useState(!!regalo);
+  const navigate = useNavigate();
 
   const handleYesNoGift = () => {
     if (withGift) {
       handleGift();
     }
+
     setWithGift(prev => !prev);
+    navigate(`${frontRoutes.register}${!withGift ? '/regalo' : ''}`);
   };
 
   return (

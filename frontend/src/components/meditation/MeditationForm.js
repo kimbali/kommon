@@ -17,7 +17,6 @@ function MeditationForm({ data, onSuccess, isEdit }) {
   const handleOnChange = ({ name, value }) => {
     setFormData({ ...formData, [name]: value });
   };
-  console.log(data);
 
   const handleCreateMeditation = async e => {
     e.preventDefault();

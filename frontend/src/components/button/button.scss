@@ -86,7 +86,7 @@
 
   &:disabled {
     background-color: $background-3;
-    cursor: default;
+    cursor: not-allowed;
     color: $disabled;
 
     p {

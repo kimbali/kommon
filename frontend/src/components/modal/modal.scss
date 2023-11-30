@@ -74,4 +74,30 @@
       width: 70%;
     }
   }
+
+  &.user-menu-modal {
+    .modal-content {
+      width: 100%;
+      max-height: 100vh;
+      height: 100%;
+      border-radius: 0;
+    }
+
+    .close-icon {
+      display: none;
+    }
+
+    @media screen and (min-width: 1024px) {
+      height: fit-content;
+      width: 200px;
+      top: 0;
+      right: 0;
+      left: unset;
+
+      .modal-content {
+        height: fit-content;
+        width: 200px;
+      }
+    }
+  }
 }

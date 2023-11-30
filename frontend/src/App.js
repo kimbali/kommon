@@ -44,6 +44,8 @@ import {
 } from './slices/legalsApiSlice';
 import { useGetUserProfileQuery } from './slices/usersApiSlices';
 import { useUser } from './context/userContext';
+import UserMarathons from './pages/UserMarathons';
+import UserProfile from './pages/UserProfile';
 
 function App() {
   const dispatch = useDispatch();
@@ -144,6 +146,11 @@ function App() {
             element={<MeditationDetailsMain />}
           />
           <Route path={frontRoutes.progress} element={<Progress />} />
+          <Route path={frontRoutes.profile} element={<UserProfile />} />
+          <Route
+            path={frontRoutes.profileMarathons}
+            element={<UserMarathons />}
+          />
         </Route>
 
         <Route path='' element={<AdminLayout />}>

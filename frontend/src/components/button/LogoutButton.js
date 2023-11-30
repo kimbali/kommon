@@ -26,9 +26,11 @@ function LogoutButton() {
       console.error(err);
     }
   };
+
   return (
     <Button
-      className='logout-cta'
+      isPrimary
+      small
       onClick={handleLogout}
       iconRight={faArrowRightFromBracket}
     >

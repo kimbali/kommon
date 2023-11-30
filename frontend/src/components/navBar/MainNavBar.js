@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import CALENDAR from '../../styles/img/calendar.png';
 import DIET from '../../styles/img/diet.png';
 import DUMBBELL from '../../styles/img/dumbbell.png';
+import PROGRESS from '../../styles/img/weighing-scale.png';
 import MORE from '../../styles/img/more.png';
 import { useUser } from '../../context/userContext';
 
@@ -50,7 +51,13 @@ function MainNavBar({ showNav }) {
           route={frontRoutes.meditations}
         />
 
-        <NavLink image={MORE} label='Progress' route={frontRoutes.progress} />
+        <NavLink
+          image={PROGRESS}
+          label='Progress'
+          route={frontRoutes.progress}
+        />
+
+        <NavLink image={MORE} label='More' route={frontRoutes.more} />
       </ul>
     </nav>
   );

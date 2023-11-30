@@ -138,18 +138,6 @@ button.link,
   }
 }
 
-.logout-cta {
-  box-shadow: none;
-  padding: 0;
-
-  &:hover {
-    p,
-    svg {
-      color: $secondary-color-decolored;
-    }
-  }
-}
-
 .login-cta {
   font-size: 16px;
 }

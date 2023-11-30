@@ -14,10 +14,17 @@ export const getMarathons = asyncHandler(async (req, res) => {
       }
     : {};
 
-  const marathons = await Marathon.find({ ...keyword }).populate(
-    'planning',
-    'name'
-  );
+  const isActive =
+    req.query.isActive === 'true'
+      ? {
+          isActive: true,
+        }
+      : {};
+
+  const marathons = await Marathon.find({
+    ...keyword,
+    ...isActive,
+  }).populate('planning', 'name');
 
   res.json({ marathons });
 });

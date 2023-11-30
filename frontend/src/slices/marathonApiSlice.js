@@ -4,9 +4,9 @@ import { apiSlice } from './apiSlice';
 export const marathonsApiSlice = apiSlice.injectEndpoints({
   endpoints: builder => ({
     getMarathons: builder.query({
-      query: ({ keyword }) => ({
+      query: params => ({
         url: MARATHON_URL,
-        params: keyword ? { keyword } : null,
+        params,
       }),
       keepUnusedDataFor: 5,
       providesTags: ['Marathons'],

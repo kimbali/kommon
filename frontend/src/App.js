@@ -46,6 +46,7 @@ import { useGetUserProfileQuery } from './slices/usersApiSlices';
 import { useUser } from './context/userContext';
 import UserMarathons from './pages/UserMarathons';
 import UserProfile from './pages/UserProfile';
+import UserMore from './pages/UserMore';
 
 function App() {
   const dispatch = useDispatch();
@@ -92,7 +93,7 @@ function App() {
     const storageId = localStorage.getItem(MARATHON_ID);
     const urlId = searchParams.get(MARATHON_ID);
 
-    if (urlId && storageId && storageId !== urlId) {
+    if (urlId && storageId !== urlId) {
       localStorage.setItem(MARATHON_ID, urlId);
       setMarathonId(urlId);
     } else {
@@ -147,6 +148,7 @@ function App() {
           />
           <Route path={frontRoutes.progress} element={<Progress />} />
           <Route path={frontRoutes.profile} element={<UserProfile />} />
+          <Route path={frontRoutes.more} element={<UserMore />} />
           <Route
             path={frontRoutes.profileMarathons}
             element={<UserMarathons />}

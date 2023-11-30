@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import AdminNavBar from '../navBar/AdminNavBar';
 import TextedLogo from '../header/TextedLogo';
 import UserMenu from '../header/UserMenu';

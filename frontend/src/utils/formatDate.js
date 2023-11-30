@@ -10,6 +10,16 @@ export const formatDate = date => {
   return new Date(date).toLocaleDateString('gb-GB', options); // mar, 13 nov
 };
 
+export const formatDateDayMonth = date => {
+  if (!date) return;
+
+  const options = {
+    day: 'numeric',
+    month: 'short',
+  };
+  return new Date(date).toLocaleDateString('gb-GB', options); // 13 nov
+};
+
 function isValidHyphenFormat(dateString) {
   const dateFormatRegex = /^(0?[1-9]|[12][0-9]|3[01])-(0?[1-9]|1[0-2])-\d{4}$/;
   return dateFormatRegex.test(dateString);

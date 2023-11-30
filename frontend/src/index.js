@@ -8,15 +8,18 @@ import './traducciones/i18n';
 import { Provider } from 'react-redux';
 import store from './store';
 import { MarathonProvider } from './context/marathonContext';
+import { UserProvider } from './context/userContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
       <Router>
-        <MarathonProvider>
-          <App />
-        </MarathonProvider>
+        <UserProvider>
+          <MarathonProvider>
+            <App />
+          </MarathonProvider>
+        </UserProvider>
       </Router>
     </Provider>
   </React.StrictMode>

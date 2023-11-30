@@ -88,8 +88,6 @@ const Login = () => {
         <Space big />
 
         <div className='content-on-the-right allways'>
-          <Link to={frontRoutes.register}>Register</Link>
-
           <Button type='submit' isPrimary>
             Continue
           </Button>

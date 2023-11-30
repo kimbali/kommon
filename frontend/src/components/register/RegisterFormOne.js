@@ -233,7 +233,7 @@ function RegisterFormOne({ onSuccess, giftSelected, userData }) {
             (!userData && regalo && !giftSelected)
           }
         >
-          Pagar ahora
+          {userData ? 'Continuar' : 'Pagar 29,90€'}
         </Button>
 
         <Space medium />

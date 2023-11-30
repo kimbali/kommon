@@ -80,24 +80,29 @@ function Register() {
         <Text isBold fontSize='18'>
           Rellenar el formulario
         </Text>
+
         <Text fontSize='18'>Comienza tu camino hacia la transformación</Text>
 
-        <Space medium />
+        {userData && (
+          <>
+            <Space medium />
 
-        <div className='register-steps'>
-          {registerSteps.map((ele, i) => (
-            <div
-              className={`single-step ${i < currentForm ? 'active' : ''}`}
-              key={`register-step${i}`}
-            >
-              <Button onClick={() => handleStep(i + 1)} isPrimary>
-                {ele.step}
-              </Button>
+            <div className='register-steps'>
+              {registerSteps.map((ele, i) => (
+                <div
+                  className={`single-step ${i < currentForm ? 'active' : ''}`}
+                  key={`register-step${i}`}
+                >
+                  <Button onClick={() => handleStep(i + 1)} isPrimary>
+                    {ele.step}
+                  </Button>
 
-              <Text className='step-label'>{ele.label}</Text>
+                  <Text className='step-label'>{ele.label}</Text>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </>
+        )}
 
         <Space medium />
 

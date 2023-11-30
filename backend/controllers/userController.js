@@ -81,7 +81,7 @@ const logoutUser = (req, res) => {
 // @route   GET /api/users/profile/:id
 // @access  Private
 const getUserProfile = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.params.id).select('-password');
+  const user = await User.findById(req.user?._id).select('-password');
 
   if (user) {
     res.json(user);
@@ -140,7 +140,7 @@ const getUsers = asyncHandler(async (req, res) => {
 // @route   DELETE /api/users/:id
 // @access  Private/Admin
 const deleteUser = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.params.id);
+  const user = await User.findById(req.params.id).select('-password');
 
   if (user) {
     if (user.isAdmin) {
@@ -172,7 +172,7 @@ const getUserById = asyncHandler(async (req, res) => {
 // @route   PUT /api/users/:id
 // @access  Private/Admin
 const updateUser = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.params.id);
+  const user = await User.findById(req.params.id).select('-password');
 
   if (user) {
     user.name = req.body.name || user.name;

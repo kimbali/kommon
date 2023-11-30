@@ -42,14 +42,24 @@ import {
   useCreateLegalMutation,
   useGetLegalsQuery,
 } from './slices/legalsApiSlice';
+import { useGetUserProfileQuery } from './slices/usersApiSlices';
+import { useUser } from './context/userContext';
 
 function App() {
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
+  const { updateUser } = useUser();
   const { setMarathonId } = useMarathon();
 
-  const { data: legalsData } = useGetLegalsQuery({});
+  const { data: userData } = useGetUserProfileQuery();
+  const { data: legalsData } = useGetLegalsQuery();
   const [createLegalDoc] = useCreateLegalMutation();
+
+  useEffect(() => {
+    if (userData) {
+      updateUser(userData);
+    }
+  }, [userData]);
 
   const createLegals = async () => {
     try {

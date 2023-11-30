@@ -11,11 +11,14 @@ import {
 
 const router = express.Router();
 
-router.route('/').get(getMeditations).post(createMeditation);
+router
+  .route('/')
+  .get(protect, getMeditations)
+  .post(protect, admin, createMeditation);
 router
   .route('/:id')
   .get(checkObjectId, getMeditationById)
-  .put(checkObjectId, updateMeditation)
-  .delete(checkObjectId, deleteMeditation);
+  .put(checkObjectId, protect, admin, updateMeditation)
+  .delete(checkObjectId, protect, admin, deleteMeditation);
 
 export default router;

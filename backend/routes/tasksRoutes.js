@@ -11,11 +11,11 @@ import {
 
 const router = express.Router();
 
-router.route('/').get(getTasks).post(createTask);
+router.route('/').get(protect, getTasks).post(protect, admin, createTask);
 router
   .route('/:id')
-  .get(checkObjectId, getTaskById)
-  .put(checkObjectId, updateTask)
-  .delete(checkObjectId, deleteTask);
+  .get(checkObjectId, protect, getTaskById)
+  .put(checkObjectId, protect, admin, updateTask)
+  .delete(checkObjectId, protect, admin, deleteTask);
 
 export default router;

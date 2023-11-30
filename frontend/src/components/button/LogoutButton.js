@@ -5,10 +5,13 @@ import { useLogoutMutation } from '../../slices/usersApiSlices';
 import { logout } from '../../slices/authSlice';
 import Button from './Button';
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import frontRoutes from '../../config/frontRoutes';
+import { useUser } from '../../context/userContext';
 
 function LogoutButton() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { updateUser } = useUser();
 
   const [logoutApiCall] = useLogoutMutation();
 
@@ -17,7 +20,8 @@ function LogoutButton() {
       await logoutApiCall().unwrap();
       dispatch(logout());
 
-      navigate('/login');
+      updateUser(null);
+      navigate(frontRoutes.login);
     } catch (err) {
       console.error(err);
     }

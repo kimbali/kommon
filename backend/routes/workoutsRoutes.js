@@ -11,11 +11,11 @@ import {
 
 const router = express.Router();
 
-router.route('/').get(getWorkouts).post(createWorkout);
+router.route('/').get(protect, getWorkouts).post(protect, admin, createWorkout);
 router
   .route('/:id')
-  .get(checkObjectId, getWorkoutById)
-  .put(checkObjectId, updateWorkout)
-  .delete(checkObjectId, deleteWorkout);
+  .get(checkObjectId, protect, getWorkoutById)
+  .put(checkObjectId, protect, admin, updateWorkout)
+  .delete(checkObjectId, protect, admin, deleteWorkout);
 
 export default router;

@@ -14,13 +14,13 @@ const router = express.Router();
 
 router
   .route('/')
-  .get(getPlannings)
-  .post(createPlanning)
-  .delete(deleteAllPlannings);
+  .get(protect, admin, getPlannings)
+  .post(protect, admin, createPlanning)
+  .delete(protect, admin, deleteAllPlannings);
 router
   .route('/:id')
-  .get(checkObjectId, getPlanningById)
-  .put(checkObjectId, updatePlanning)
-  .delete(checkObjectId, deletePlanning);
+  .get(checkObjectId, protect, admin, getPlanningById)
+  .put(checkObjectId, protect, admin, updatePlanning)
+  .delete(checkObjectId, protect, admin, deletePlanning);
 
 export default router;

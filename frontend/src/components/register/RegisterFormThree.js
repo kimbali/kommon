@@ -123,7 +123,7 @@ function RegisterFormThree({ onSuccess, userData }) {
       <Input
         className='register'
         label='¿Patologías previas?'
-        placeholder='Selecciona una o varias'
+        placeholder='Selecciona ninguna o varias'
         isMultiSelect
         onChange={handleOnChange}
         name='patologies'

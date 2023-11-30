@@ -3,16 +3,15 @@ import { useNavigate, useOutletContext } from 'react-router-dom';
 import PlanningSelector from '../components/marathon/PlanningSelector';
 import Space from '../components/space/Space';
 import Text from '../components/text/Text';
-
 import frontRoutes from '../config/frontRoutes';
 import { useMarathon } from '../context/marathonContext';
-import { useSelector } from 'react-redux';
 import RecipeCard from '../components/recipes/RecipeCard';
 import dietsEnum from '../config/enums/dietsEnum';
+import { useUser } from '../context/userContext';
 
 function Diet({ setCurrentDay }) {
   const [handleSelectDay, isError] = useOutletContext();
-  const { userInfo } = useSelector(state => state.auth);
+  const { user } = useUser();
   const navigate = useNavigate();
   const { dayDetails, marathon } = useMarathon();
   const [mealsList, setMealsList] = useState([]);
@@ -60,7 +59,7 @@ function Diet({ setCurrentDay }) {
 
       <Space big />
 
-      {isError && userInfo.isAdmin && (
+      {isError && user.isAdmin && (
         <div>You should configure this day on the backoffice</div>
       )}
 

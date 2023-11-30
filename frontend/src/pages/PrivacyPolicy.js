@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { useSelector } from 'react-redux';
 import Text from '../components/text/Text';
 import Button from '../components/button/Button';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { useGetLegalsQuery } from '../slices/legalsApiSlice';
 import Space from '../components/space/Space';
 import LegalForm from '../components/legalLinks/LegalForm';
+import { useUser } from '../context/userContext';
 
 function PrivacyPolicy() {
-  const { userInfo } = useSelector(state => state.auth);
+  const { user } = useUser();
   const [showEditForm, setShowEditForm] = useState(false);
 
   const { data: legalsData, refetch: refetchLegals } = useGetLegalsQuery({});
@@ -32,7 +32,7 @@ function PrivacyPolicy() {
 
       <Space small />
 
-      {userInfo?.isAdmin && (
+      {user?.isAdmin && (
         <div className='absolute-right-element'>
           <Button
             isPrimary

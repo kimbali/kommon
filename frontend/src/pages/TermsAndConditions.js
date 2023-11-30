@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import toast from 'react-hot-toast';
@@ -9,9 +8,10 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { useGetLegalsQuery } from '../slices/legalsApiSlice';
 import Space from '../components/space/Space';
 import LegalForm from '../components/legalLinks/LegalForm';
+import { useUser } from '../context/userContext';
 
 function TermsAndConditions() {
-  const { userInfo } = useSelector(state => state.auth);
+  const { user } = useUser();
   const [showEditForm, setShowEditForm] = useState(false);
 
   const { data: legalsData, refetch: refetchLegals } = useGetLegalsQuery({});
@@ -32,7 +32,7 @@ function TermsAndConditions() {
 
       <Space small />
 
-      {userInfo?.isAdmin && (
+      {user?.isAdmin && (
         <div className='absolute-right-element'>
           <Button
             isPrimary

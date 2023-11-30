@@ -12,12 +12,12 @@ import {
 
 const router = express.Router();
 
-router.route('/').get(getMarathons).post(createMarathon);
+router.route('/').get(getMarathons).post(protect, admin, createMarathon);
 router
   .route('/:id')
-  .get(checkObjectId, getMarathonById)
-  .put(checkObjectId, updateMarathon)
-  .delete(checkObjectId, deleteMarathon);
-router.route('/client/:id').get(checkObjectId, getMarathonClientById);
+  .get(checkObjectId, protect, getMarathonById)
+  .put(checkObjectId, protect, admin, updateMarathon)
+  .delete(checkObjectId, protect, admin, deleteMarathon);
+router.route('/client/:id').get(checkObjectId, protect, getMarathonClientById);
 
 export default router;

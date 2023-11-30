@@ -63,7 +63,7 @@ function RegisterFormOne({ onSuccess, giftSelected, userData }) {
     }
   };
 
-  // Esto se ajecutara cuando haya pagado
+  // Esto se ejecutaria una vez haya realizado el pago
   const handleCreateUser = async () => {
     const { password, confirmPassword } = formData;
 
@@ -73,7 +73,7 @@ function RegisterFormOne({ onSuccess, giftSelected, userData }) {
       try {
         const res = await register({ ...formData }).unwrap();
 
-        dispatch(setCredentials({ user: res._id }));
+        dispatch(setCredentials({ email: res.email }));
       } catch (err) {
         toast.error(err?.data?.message || err.error);
       }

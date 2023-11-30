@@ -1,4 +1,6 @@
 import express from 'express';
+import { protect, admin } from '../middleware/authMiddleware.js';
+import checkObjectId from '../middleware/checkObjectId.js';
 import {
   authUser,
   registerUser,
@@ -10,19 +12,20 @@ import {
   getUserById,
   updateUser,
 } from '../controllers/userController.js';
-import { protect, admin } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
 router.route('/').post(registerUser).get(protect, admin, getUsers);
 router.post('/auth', authUser);
 router.post('/logout', logoutUser);
-router.route('/profile').put(protect, updateUserProfile);
-router.route('/profile/:id').get(protect, getUserProfile);
+router
+  .route('/profile')
+  .get(protect, getUserProfile)
+  .put(protect, updateUserProfile);
 router
   .route('/:id')
-  .delete(protect, admin, deleteUser)
-  .get(protect, admin, getUserById)
-  .put(protect, admin, updateUser);
+  .delete(checkObjectId, protect, admin, deleteUser)
+  .get(checkObjectId, protect, admin, getUserById)
+  .put(checkObjectId, protect, admin, updateUser);
 
 export default router;

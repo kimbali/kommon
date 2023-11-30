@@ -8,10 +8,11 @@ import RRSS from '../header/RRSS';
 import Button from '../button/Button';
 import Modal from '../modal/Modal';
 import MENU from '../../styles/img/menu.png';
+import { useUser } from '../../context/userContext';
 
 const AdminLayout = () => {
   const [showNav, setShowNav] = useState(false);
-  const { userInfo } = useSelector(state => state.auth);
+  const { user } = useUser();
 
   const location = useLocation();
 
@@ -19,7 +20,7 @@ const AdminLayout = () => {
     setShowNav(false);
   }, [location.pathname]);
 
-  return userInfo?.isAdmin ? (
+  return user?.isAdmin ? (
     <div className='app-wrapper'>
       <header>
         <TextedLogo />

@@ -6,11 +6,11 @@ import Text from '../components/text/Text';
 import WorkoutCard from '../components/workouts/WorkoutCard';
 import frontRoutes from '../config/frontRoutes';
 import { useMarathon } from '../context/marathonContext';
-import { useSelector } from 'react-redux';
+import { useUser } from '../context/userContext';
 
 function Workouts({ setCurrentDay }) {
   const [handleSelectDay, isError] = useOutletContext();
-  const { userInfo } = useSelector(state => state.auth);
+  const { user } = useUser();
 
   const navigate = useNavigate();
   const { dayDetails, marathon } = useMarathon();
@@ -60,7 +60,7 @@ function Workouts({ setCurrentDay }) {
 
       <Space big />
 
-      {isError && userInfo.isAdmin && (
+      {isError && user.isAdmin && (
         <div>You should configure this day on the backoffice</div>
       )}
 

@@ -24,8 +24,8 @@ export const userApiSlice = apiSlice.injectEndpoints({
       }),
     }),
     getUserProfile: builder.query({
-      query: userId => ({
-        url: `${USERS_URL}/profile/${userId}`,
+      query: () => ({
+        url: `${USERS_URL}/profile`,
       }),
       providesTags: ['User'],
       keepUnusedDataFor: 5,

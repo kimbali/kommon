@@ -11,11 +11,14 @@ import {
 
 const router = express.Router();
 
-router.route('/').get(getIngredients).post(createIngredient);
+router
+  .route('/')
+  .get(protect, getIngredients)
+  .post(protect, admin, createIngredient);
 router
   .route('/:id')
-  .get(checkObjectId, getIngredientById)
-  .put(checkObjectId, updateIngredient)
-  .delete(checkObjectId, deleteIngredient);
+  .get(checkObjectId, protect, getIngredientById)
+  .put(checkObjectId, protect, admin, updateIngredient)
+  .delete(checkObjectId, protect, admin, deleteIngredient);
 
 export default router;

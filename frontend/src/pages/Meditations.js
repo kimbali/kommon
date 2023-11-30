@@ -5,12 +5,12 @@ import Space from '../components/space/Space';
 import Text from '../components/text/Text';
 import frontRoutes from '../config/frontRoutes';
 import { useMarathon } from '../context/marathonContext';
-import { useSelector } from 'react-redux';
 import MeditationCard from '../components/meditation/MeditationCard';
+import { useUser } from '../context/userContext';
 
 function Meditations({ setCurrentDay }) {
   const [handleSelectDay, isError] = useOutletContext();
-  const { userInfo } = useSelector(state => state.auth);
+  const { user } = useUser();
 
   const navigate = useNavigate();
   const { dayDetails, marathon } = useMarathon();
@@ -49,7 +49,7 @@ function Meditations({ setCurrentDay }) {
 
       <Space big />
 
-      {isError && userInfo.isAdmin && (
+      {isError && user.isAdmin && (
         <div>You should configure this day on the backoffice</div>
       )}
 

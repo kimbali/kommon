@@ -12,11 +12,11 @@ import checkObjectId from '../middleware/checkObjectId.js';
 
 const router = express.Router();
 
-router.route('/').get(getRecipes).post(createRecipe);
+router.route('/').get(protect, getRecipes).post(protect, admin, createRecipe);
 router
   .route('/:id')
-  .get(checkObjectId, getRecipeById)
-  .put(checkObjectId, updateRecipe)
-  .delete(checkObjectId, deleteRecipe);
+  .get(checkObjectId, protect, getRecipeById)
+  .put(checkObjectId, protect, admin, updateRecipe)
+  .delete(checkObjectId, protect, admin, deleteRecipe);
 
 export default router;

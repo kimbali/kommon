@@ -14,15 +14,19 @@ import {
 
 const router = express.Router();
 
-router.route('/').get(getDays).post(createDay).delete(deleteAllDayInstances);
+router
+  .route('/')
+  .get(protect, admin, getDays)
+  .post(protect, admin, createDay)
+  .delete(protect, admin, deleteAllDayInstances);
 router
   .route('/:id')
-  .get(checkObjectId, getDayById)
-  .put(checkObjectId, updateDay)
-  .delete(checkObjectId, deleteDay);
+  .get(checkObjectId, protect, getDayById)
+  .put(checkObjectId, protect, admin, updateDay)
+  .delete(checkObjectId, protect, admin, deleteDay);
 router.route('/diet').get(getDayByMarathonDiet);
 router
   .route('/month/:planningId/:week/:weekDay')
-  .get(getMonthDayByWeekAndWeekDay);
+  .get(protect, getMonthDayByWeekAndWeekDay);
 
 export default router;

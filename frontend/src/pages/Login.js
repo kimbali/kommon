@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { useLoginMutation } from '../slices/usersApiSlices';
 import { setCredentials } from '../slices/authSlice';
 import toast from 'react-hot-toast';
@@ -11,8 +11,10 @@ import Text from '../components/text/Text';
 import frontRoutes from '../config/frontRoutes';
 import loginValidator from '../utils/validators/loginValidator';
 import TextedLogo from '../components/header/TextedLogo';
+import { useUser } from '../context/userContext';
 
 const Login = () => {
+  const { user, updateUser } = useUser();
   const [formData, setFormData] = useState({});
   const [invalidFields, setInvalidFields] = useState('');
 
@@ -21,13 +23,11 @@ const Login = () => {
 
   const [login] = useLoginMutation();
 
-  const { userInfo } = useSelector(state => state.auth);
-
   useEffect(() => {
-    if (userInfo) {
-      navigate(userInfo.isAdmin ? frontRoutes.marathonList : frontRoutes.main);
+    if (user) {
+      navigate(user.isAdmin ? frontRoutes.marathonList : frontRoutes.main);
     }
-  }, [navigate, userInfo]);
+  }, [navigate, user]);
 
   const handleOnChange = ({ name, value }) => {
     setFormData({ ...formData, [name]: value });
@@ -47,7 +47,8 @@ const Login = () => {
 
     try {
       const res = await login({ email, password }).unwrap();
-      dispatch(setCredentials({ ...res }));
+      dispatch(setCredentials({ email: res.email }));
+      updateUser(res);
       navigate(res.isAdmin ? frontRoutes.planning : frontRoutes.main);
     } catch (err) {
       toast.error(err?.data?.message || err.error);

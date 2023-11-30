@@ -110,8 +110,8 @@ function MarathonsList() {
             <th>End date</th>
             <th>Trash</th>
             <th>Edit</th>
-            <th>Activate</th>
-            <th>Go to live</th>
+            <th>Public</th>
+            <th>See marathon</th>
           </tr>
         </thead>
 
@@ -147,7 +147,7 @@ function MarathonsList() {
                     isPrimary
                     disabled={eachMarathon.isActive}
                   >
-                    {eachMarathon.isActive ? 'Active' : 'Activate'}
+                    {eachMarathon.isActive ? 'Active' : 'Publish'}
                   </Button>
                 </td>
                 <td>
@@ -177,8 +177,9 @@ function MarathonsList() {
         <ConfirmModal
           onConfirm={handleActivate}
           onClose={setShowActivateModal}
-          title='Activate marathon'
-          text={`Are you sure you whant to activate: ${showActivateModal.name}`}
+          title='Publicar marathon'
+          text={`Estas seguro que quieres publicar: ${showActivateModal.name}`}
+          description='Una vez este activado, los usuarios podran verlo i apuntarse.'
         />
       )}
     </div>

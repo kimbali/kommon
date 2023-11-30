@@ -9,6 +9,7 @@ function ConfirmModal({
   onClose,
   title,
   text,
+  description = '',
   confirmLabel = 'Confirm',
 }) {
   return (
@@ -18,6 +19,13 @@ function ConfirmModal({
       <Space extraSmall />
 
       <Text>{text}</Text>
+
+      {description && (
+        <>
+          <Space small />
+          <Text>{description}</Text>
+        </>
+      )}
 
       <Space medium />
 

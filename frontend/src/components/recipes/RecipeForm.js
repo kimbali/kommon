@@ -272,6 +272,12 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
               </Button>
             </div>
 
+            {ingredientsOptions.length === 0 && (
+              <Text>
+                No hay mas ingredientes en la lista, deberias crear los que te
+                falten
+              </Text>
+            )}
             <Space small />
           </div>
 

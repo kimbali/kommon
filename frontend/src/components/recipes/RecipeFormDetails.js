@@ -51,9 +51,9 @@ function RecipeFormDetails({
             }
             return {
               name: ele.ingredient?.name,
-              value: `(${ele.quantity || 0} ${getMeasureDiminutive(
-                ele.ingredient?.measure
-              )})`,
+              value: `(${
+                ele.quantity.toLocaleString('de-DE') || 0
+              } ${getMeasureDiminutive(ele.ingredient?.measure)})`,
             };
           })}
         />

@@ -7,7 +7,7 @@ const calculateEnergy = (type = '', ingredients = []) => {
     return acc + ele.ingredient[type] * (ele.quantity || 0);
   }, 0);
 
-  return total;
+  return total.toLocaleString('de-DE');
 };
 
 export default calculateEnergy;

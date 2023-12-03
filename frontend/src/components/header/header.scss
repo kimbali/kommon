@@ -18,7 +18,15 @@
 .user-menu {
   position: relative;
 
+  .menu-button {
+    box-shadow: none;
+    .text {
+      text-transform: capitalize;
+    }
+  }
+
   .user-menu-links {
+    z-index: 1;
     position: absolute;
     top: 42px;
     right: 0;
@@ -26,6 +34,7 @@
     background-color: $background-3;
     border-radius: $border-radius-wrapper;
     padding: 24px 20px 24px;
+    box-shadow: $box-shadow-wrapper;
 
     li {
       margin-bottom: 12px;

@@ -4,8 +4,10 @@ import Button from '../button/Button';
 
 import MenuLinks from './MenuLinks';
 import { useLocation } from 'react-router-dom';
+import { useUser } from '../../context/userContext';
 
 function UserMenu() {
+  const { user } = useUser();
   const [showMenu, setShowMenu] = useState(false);
   const location = useLocation();
 
@@ -19,7 +21,13 @@ function UserMenu() {
 
   return (
     <div className='user-menu'>
-      <Button iconLeft={faAngleDown} onClick={handleMenu} />
+      <Button
+        className='menu-button'
+        iconRight={faAngleDown}
+        onClick={handleMenu}
+      >
+        {user?.name}
+      </Button>
 
       {showMenu && <MenuLinks />}
     </div>

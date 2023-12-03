@@ -17,4 +17,10 @@ const problemsEnum = [
   },
 ];
 
+export const getProblemsLabel = value => {
+  const problem = problemsEnum.find(ele => ele.value === value);
+
+  return problem?.label || value;
+};
+
 export default problemsEnum;

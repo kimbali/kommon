@@ -9,4 +9,10 @@ const smokeEnum = [
   },
 ];
 
+export const getSmokeLabel = value => {
+  const smoke = smokeEnum.find(ele => ele.value === value);
+
+  return smoke?.label || value;
+};
+
 export default smokeEnum;

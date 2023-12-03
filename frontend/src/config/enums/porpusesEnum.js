@@ -9,4 +9,10 @@ const porpusesEnum = [
   },
 ];
 
+export const getPorpuseEnum = value => {
+  const porpuse = porpusesEnum.find(ele => ele.value === value);
+
+  return porpuse?.label || value;
+};
+
 export default porpusesEnum;

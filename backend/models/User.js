@@ -3,6 +3,12 @@ import bcrypt from 'bcryptjs';
 
 const userSchema = new Schema(
   {
+    progresses: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Progress',
+      },
+    ],
     isAdmin: {
       type: Boolean,
       required: true,

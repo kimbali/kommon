@@ -18,6 +18,7 @@ import planningsRoutes from './routes/planningsRoutes.js';
 import daysRoutes from './routes/daysRoutes.js';
 import legalsRoutes from './routes/legalsRoutes.js';
 import uploadS3 from './routes/imagesRoutes.js';
+import progressRoutes from './routes/progressRoutes.js';
 
 dotenv.config();
 
@@ -25,9 +26,9 @@ connectDB();
 
 const app = express();
 
-// if (process.env.NODE_ENV === 'development') {
-//   app.use(morgan('dev'));
-// }
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -45,6 +46,7 @@ app.use('/api/plannings', planningsRoutes);
 app.use('/api/days', daysRoutes);
 app.use('/api/legals', legalsRoutes);
 app.use('/api/upload', uploadS3);
+app.use('/api/progress', progressRoutes);
 
 // app.get('/api/config/paypal', (req, res) =>
 //   res.send(process.env.PAYPAL_CLIENT_ID)

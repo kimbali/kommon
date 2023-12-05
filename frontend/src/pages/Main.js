@@ -125,8 +125,8 @@ function Main() {
 
           <div className='container'>
             <div className='content-left-and-right'>
-              <Text className='weigth-title'>88.20 kg > 72.30 kg</Text>
-              <Text className='weigth-title'>- 16.20 kg</Text>
+              <Text className='weigth-title'>XX kg > XX kg</Text>
+              <Text className='weigth-title'>- XX kg</Text>
             </div>
 
             <Space small />

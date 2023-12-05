@@ -7,6 +7,10 @@ const progressSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'Marathon',
     },
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+    },
     payed: Boolean,
     gift: String,
     initialPhoto: String,
@@ -46,6 +50,6 @@ const progressSchema = new Schema(
   }
 );
 
-const User = model('Progress', progressSchema);
+const Progress = model('Progress', progressSchema);
 
-export default User;
+export default Progress;

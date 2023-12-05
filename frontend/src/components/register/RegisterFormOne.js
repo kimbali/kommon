@@ -10,10 +10,12 @@ import toast from 'react-hot-toast';
 import { setCredentials } from '../../slices/authSlice';
 import Button from '../button/Button';
 import frontRoutes from '../../config/frontRoutes';
+import { useUser } from '../../context/userContext';
 
 function RegisterFormOne({ onSuccess, giftSelected, userData }) {
   const navigate = useNavigate();
   const { regalo } = useParams();
+  const { updateUser } = useUser();
 
   const [formData, setFormData] = useState({ ...userData });
   const [invalidFields, setInvalidFields] = useState('');
@@ -72,6 +74,8 @@ function RegisterFormOne({ onSuccess, giftSelected, userData }) {
     } else {
       try {
         const res = await register({ ...formData }).unwrap();
+
+        updateUser(res);
 
         dispatch(setCredentials({ email: res.email }));
       } catch (err) {

@@ -1,0 +1,34 @@
+import React from 'react';
+import Text from '../text/Text';
+import Space from '../space/Space';
+import { formatDateDayMonth } from '../../utils/formatDate';
+import Button from '../button/Button';
+import IMAGE from '../../styles/img/main-img.png';
+
+function MarathonCard({ handleSelectMarathon, marathon }) {
+  return (
+    <div className='marathon-card'>
+      <Text isSubtitle>{marathon.name}</Text>
+
+      <Space extraSmall />
+
+      <div className='image-container'>
+        <img src={IMAGE} alt='body marathon fit girl' />
+        <div className='mask' />
+      </div>
+
+      <div>
+        {formatDateDayMonth(marathon.startDate)} -{' '}
+        {formatDateDayMonth(marathon.endDate)}
+      </div>
+
+      <Space extraSmall />
+
+      <Button onClick={() => handleSelectMarathon(marathon)} isPrimary>
+        Selecciona
+      </Button>
+    </div>
+  );
+}
+
+export default MarathonCard;

@@ -182,7 +182,7 @@
 .user-marathons {
   display: grid;
   width: 100%;
-  grid-template-columns: repeat(5, minmax(220px, 300px));
+  grid-template-columns: repeat(auto-fill, minmax(220px, 300px));
   grid-template-rows: auto;
   gap: 18px;
 

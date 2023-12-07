@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './layout.scss';
-import { Outlet, useLocation, useParams } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { useGetMarathonDetailsForClientQuery } from '../../slices/marathonApiSlice';
 import { useGetMonthDayDetailsQuery } from '../../slices/daysApiSlice';
 import { useMarathon } from '../../context/marathonContext';
@@ -14,19 +14,18 @@ import Modal from '../modal/Modal';
 import Space from '../space/Space';
 
 function MainLayout() {
-  const params = useParams();
   const location = useLocation();
   const { marathonId, setDayDetails, updateMarathon } = useMarathon();
   const [currentDay, setCurrentDay] = useState();
   const [showNav, setShowNav] = useState(false);
-  console.log(1, params);
+
+  // retrieve progress
   const { data: marathonData } = useGetMarathonDetailsForClientQuery(
     marathonId,
     {
       skip: !marathonId,
     }
   );
-  console.log(marathonData, marathonId);
 
   const { data: dayData, isError } = useGetMonthDayDetailsQuery(currentDay, {
     skip: !currentDay,

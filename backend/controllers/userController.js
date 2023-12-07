@@ -99,6 +99,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 
   if (user) {
     user.progresses = req.body.progresses || user.progresses;
+    user.isFullRegistered = req.body.isFullRegistered || user.isFullRegistered;
 
     user.name = req.body.name || user.name;
     user.email = req.body.email || user.email;

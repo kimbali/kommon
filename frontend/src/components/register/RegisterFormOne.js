@@ -1,22 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Text from '../text/Text';
 import Space from '../space/Space';
 import Input from '../input/Input';
-import { useDispatch } from 'react-redux';
 import registerValidator from '../../utils/validators/registerValidator';
-import { useRegisterMutation } from '../../slices/usersApiSlices';
 import toast from 'react-hot-toast';
-import { setCredentials } from '../../slices/authSlice';
 import Button from '../button/Button';
 import frontRoutes from '../../config/frontRoutes';
-import { useUser } from '../../context/userContext';
 
-function RegisterFormOne({ onSuccess, giftSelected, userData }) {
+function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
   const navigate = useNavigate();
-  const { regalo } = useParams();
-  const { updateUser } = useUser();
-
   const [formData, setFormData] = useState({ ...userData });
   const [invalidFields, setInvalidFields] = useState('');
 
@@ -25,9 +18,6 @@ function RegisterFormOne({ onSuccess, giftSelected, userData }) {
       setFormData(userData);
     }
   }, [userData]);
-
-  const dispatch = useDispatch();
-  const [register] = useRegisterMutation();
 
   const handleOnChange = ({ name, value }) => {
     setFormData({ ...formData, [name]: value });
@@ -43,7 +33,7 @@ function RegisterFormOne({ onSuccess, giftSelected, userData }) {
       errors = errors.concat(registerValidator(11, formData));
     }
 
-    if (regalo && !userData) {
+    if (hasGift && !userData) {
       errors = errors.concat(registerValidator(12, formData));
 
       if (!giftSelected) {
@@ -58,29 +48,16 @@ function RegisterFormOne({ onSuccess, giftSelected, userData }) {
     }
 
     if (!userData) {
-      handleCreateUser();
-      navigate(frontRoutes.payment);
+      const { password, confirmPassword } = formData;
+
+      if (password !== confirmPassword) {
+        toast.error('Passwords do not match');
+        return;
+      }
+
+      navigate(frontRoutes.payment, { state: formData });
     } else {
       onSuccess(2);
-    }
-  };
-
-  // Esto se ejecutaria una vez haya realizado el pago
-  const handleCreateUser = async () => {
-    const { password, confirmPassword } = formData;
-
-    if (password !== confirmPassword) {
-      toast.error('Passwords do not match');
-    } else {
-      try {
-        const res = await register({ ...formData }).unwrap();
-
-        updateUser(res);
-
-        dispatch(setCredentials({ email: res.email }));
-      } catch (err) {
-        toast.error(err?.data?.message || err.error);
-      }
     }
   };
 
@@ -137,7 +114,7 @@ function RegisterFormOne({ onSuccess, giftSelected, userData }) {
           value={formData.city}
         />
 
-        {!userData && regalo && (
+        {!userData && hasGift && (
           <>
             <Space small />
 
@@ -234,7 +211,7 @@ function RegisterFormOne({ onSuccess, giftSelected, userData }) {
           disabled={
             (!userData &&
               (!formData.termsAndConditions || !formData.privacyPolicy)) ||
-            (!userData && regalo && !giftSelected)
+            (!userData && hasGift && !giftSelected)
           }
         >
           {userData ? 'Continuar' : 'Pagar 29,90€'}
@@ -242,7 +219,7 @@ function RegisterFormOne({ onSuccess, giftSelected, userData }) {
 
         <Space medium />
 
-        {!userData && regalo && !giftSelected && (
+        {!userData && hasGift && !giftSelected && (
           <>
             <Space medium />
 

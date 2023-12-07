@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Space from '../components/space/Space';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import frontRoutes from '../config/frontRoutes';
 import TextedLogo from '../components/header/TextedLogo';
 import { registerRedirectValidator } from '../utils/validators/registerValidator';
@@ -15,8 +15,10 @@ import { useGetUserProfileQuery } from '../slices/usersApiSlices';
 import { scrollToTop } from '../utils/layoutHelpers';
 
 function Register() {
+  const { state } = useLocation();
   const [currentForm, setcurrentForm] = useState();
   const [giftSelected, setGiftSelected] = useState();
+  const [hasGift, setHasGift] = useState(state?.withGift);
 
   const { data: userData, refetch: refetchUser } = useGetUserProfileQuery();
 
@@ -60,12 +62,6 @@ function Register() {
 
       <header>
         <TextedLogo />
-
-        {currentForm === 1 && (
-          <Link className='login-cta' to={frontRoutes.login}>
-            Login
-          </Link>
-        )}
       </header>
 
       <div className='content-wrapper'>
@@ -100,8 +96,10 @@ function Register() {
 
         {!userData && currentForm === 1 && (
           <RegisterGiftSelect
-            handleGift={setGiftSelected}
+            setGiftSelected={setGiftSelected}
             giftSelected={giftSelected}
+            hasGift={hasGift}
+            setHasGift={setHasGift}
           />
         )}
 
@@ -112,6 +110,7 @@ function Register() {
             onSuccess={handleStep}
             giftSelected={giftSelected}
             userData={userData}
+            hasGift={hasGift}
           />
         )}
 

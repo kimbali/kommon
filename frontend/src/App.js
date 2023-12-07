@@ -7,7 +7,7 @@ import AdminLayout from './components/layout/AdminLayout';
 import MainLayout from './components/layout/MainLayout';
 import PlainLayout from './components/layout/PlainLayout';
 import ScrollToTop from './components/scrollToTop/ScrollToTop';
-import { EXPIRATION_TIME, MARATHON_ID } from './config/constants';
+import { EXPIRATION_TIME, MARATHON_ID, USER_ID } from './config/constants';
 import frontRoutes from './config/frontRoutes';
 import { useMarathon } from './context/marathonContext';
 import AvisoLegal from './pages/AvisoLegal';
@@ -115,10 +115,7 @@ function App() {
 
       <Routes>
         <Route path={frontRoutes.home} element={<Home />} />
-        <Route
-          path={`${frontRoutes.register}/:regalo?`}
-          element={<Register />}
-        />
+        <Route path={frontRoutes.register} element={<Register />} />
         <Route path={frontRoutes.login} element={<Login />} />
         <Route path={frontRoutes.payment} element={<Payment />} />
 

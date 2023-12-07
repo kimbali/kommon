@@ -14,7 +14,7 @@ import TextedLogo from '../components/header/TextedLogo';
 import { useUser } from '../context/userContext';
 
 const Login = () => {
-  const { user, updateUser } = useUser();
+  const { updateUser } = useUser();
   const [formData, setFormData] = useState({});
   const [invalidFields, setInvalidFields] = useState('');
 
@@ -22,12 +22,6 @@ const Login = () => {
   const navigate = useNavigate();
 
   const [login] = useLoginMutation();
-
-  useEffect(() => {
-    if (user) {
-      navigate(user.isAdmin ? frontRoutes.marathonList : frontRoutes.main);
-    }
-  }, [navigate, user]);
 
   const handleOnChange = ({ name, value }) => {
     setFormData({ ...formData, [name]: value });
@@ -48,8 +42,14 @@ const Login = () => {
     try {
       const res = await login({ email, password }).unwrap();
       dispatch(setCredentials({ email: res.email }));
+
       updateUser(res);
-      navigate(res.isAdmin ? frontRoutes.planning : frontRoutes.main);
+
+      if (!res.isAdmin && !res.isFullRegistered) {
+        navigate(frontRoutes.register);
+      } else {
+        navigate(res.isAdmin ? frontRoutes.planning : frontRoutes.main);
+      }
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }

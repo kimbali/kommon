@@ -40,7 +40,7 @@ function RegisterFormThree({ onSuccess, userData }) {
     }
 
     try {
-      await updateProfile({ ...formData }).unwrap();
+      await updateProfile({ ...formData, isFullRegistered: true }).unwrap();
 
       onSuccess(4);
     } catch (err) {

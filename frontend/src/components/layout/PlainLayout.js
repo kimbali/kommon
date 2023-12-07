@@ -6,7 +6,7 @@ const PlainLayout = () => {
   return (
     <div className='plain-layout'>
       <header>
-        <Link to={frontRoutes.login}>
+        <Link to={frontRoutes.home}>
           <TextedLogo />
         </Link>
       </header>

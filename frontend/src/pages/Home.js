@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import BENEFIT_1 from '../styles/img/benefit-01.png';
@@ -30,8 +30,11 @@ import COACH_2 from '../styles/img/coach-02.png';
 import PLATAFORMA from '../styles/img/platform_img2.png';
 import MENU from '../styles/img/menu.png';
 import frontRoutes from '../config/frontRoutes';
+import Button from '../components/button/Button';
 
 function Home() {
+  const navigate = useNavigate();
+
   return (
     <div className='home'>
       {/* <div className='mobile-menu menu-index'>
@@ -762,12 +765,16 @@ function Home() {
               </div>
               <div className='option-benefits-price'>
                 <div className='option-price'>29,90 €</div>
-                <Link
-                  to={`${frontRoutes.register}/regalo`}
+                <Button
+                  onClick={() =>
+                    navigate(frontRoutes.register, {
+                      state: { withGift: true },
+                    })
+                  }
                   className='main-apply'
                 >
                   APÚNTATE YA
-                </Link>
+                </Button>
               </div>
             </div>
           </div>

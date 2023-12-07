@@ -18,36 +18,26 @@ import LYMPHATIC_DRAINAGE from '../../styles/img/Lymphatic_Drainage_small.png';
 import GiftItem from './GiftItem';
 import Space from '../space/Space';
 import { Carousel } from 'react-responsive-carousel';
-import { useNavigate, useParams } from 'react-router-dom';
-import frontRoutes from '../../config/frontRoutes';
 
-function RegisterGiftSelect({ handleGift, giftSelected = '' }) {
-  const { regalo } = useParams();
-  const [withGift, setWithGift] = useState(!!regalo);
-  const navigate = useNavigate();
-
-  const handleYesNoGift = () => {
-    if (withGift) {
-      handleGift();
-    }
-
-    setWithGift(prev => !prev);
-    navigate(`${frontRoutes.register}${!withGift ? '/regalo' : ''}`);
-  };
-
+function RegisterGiftSelect({
+  setGiftSelected,
+  giftSelected = '',
+  hasGift,
+  setHasGift,
+}) {
   return (
-    <div className={`gift-selector ${withGift ? 'show-gifts' : ''}`}>
-      <div className={`buttons ${!withGift ? 'without-gift' : ''}`}>
+    <div className={`gift-selector ${hasGift ? 'show-gifts' : ''}`}>
+      <div className={`buttons ${!hasGift ? 'without-gift' : ''}`}>
         <button
-          className={`${withGift ? 'selected' : ''}`}
-          onClick={handleYesNoGift}
+          className={`${hasGift ? 'selected' : ''}`}
+          onClick={() => setHasGift(true)}
         >
           Pedir con regalo
         </button>
 
         <button
-          className={`${!withGift ? 'selected' : ''}`}
-          onClick={handleYesNoGift}
+          className={`${!hasGift ? 'selected' : ''}`}
+          onClick={() => setHasGift(false)}
         >
           Básico
         </button>
@@ -55,48 +45,48 @@ function RegisterGiftSelect({ handleGift, giftSelected = '' }) {
 
       <Space small />
 
-      {withGift && (
+      {hasGift && (
         <div className='gifts-wrapper'>
           <Carousel showThumbs={false}>
             <div className='gift-section one'>
               <GiftItem
                 giftSelected={giftSelected}
-                selectGift={handleGift}
+                selectGift={setGiftSelected}
                 image={MASSAGE_OIL_SMALL}
                 giftKey={'MASSAGE_OIL_SMALL'}
                 text={'MASSAGE OIL GRAPEFRUIT-GINGER-CHILLI'}
               />
               <GiftItem
                 giftSelected={giftSelected}
-                selectGift={handleGift}
+                selectGift={setGiftSelected}
                 image={LIME_GINGER}
                 giftKey={'LIME_GINGER'}
                 text={'BODY SCRUB LIME-GINGER'}
               />
               <GiftItem
                 giftSelected={giftSelected}
-                selectGift={handleGift}
+                selectGift={setGiftSelected}
                 image={FR_CUT}
                 giftKey={'FR_CUT'}
                 text={'BODY SCRUB FRANGIPANI-MONOI'}
               />
               <GiftItem
                 giftSelected={giftSelected}
-                selectGift={handleGift}
+                selectGift={setGiftSelected}
                 image={CHOCOLATE_ALMOND}
                 giftKey={'CHOCOLATE_ALMOND'}
                 text={'BODY SCRUB CHOCOLATE-ALMOND'}
               />
               <GiftItem
                 giftSelected={giftSelected}
-                selectGift={handleGift}
+                selectGift={setGiftSelected}
                 image={CHERRY}
                 giftKey={'CHERRY'}
                 text={'BODY SCRUB CHERRY'}
               />
               <GiftItem
                 giftSelected={giftSelected}
-                selectGift={handleGift}
+                selectGift={setGiftSelected}
                 image={COFFEE}
                 giftKey={'COFFEE'}
                 text={'COFFEE BODY SCRUB'}
@@ -106,42 +96,42 @@ function RegisterGiftSelect({ handleGift, giftSelected = '' }) {
             <div className='gift-section two'>
               <GiftItem
                 giftSelected={giftSelected}
-                selectGift={handleGift}
+                selectGift={setGiftSelected}
                 image={LYMPHATIC_DRAINAGE}
                 giftKey={'LYMPHATIC_DRAINAGE'}
                 text={'LYMPHATIC DRAINAGE BODY WRAP GEL'}
               />
               <GiftItem
                 giftSelected={giftSelected}
-                selectGift={handleGift}
+                selectGift={setGiftSelected}
                 image={HOT_COLD}
                 giftKey={'HOT_COLD'}
                 text={'HOT/COLD CONTRAST BODY WRAP GEL'}
               />
               <GiftItem
                 giftSelected={giftSelected}
-                selectGift={handleGift}
+                selectGift={setGiftSelected}
                 image={SUPER_FLAME}
                 giftKey={'SUPER_FLAME'}
                 text={'SUPREME FLAME BODY WRAP GEL'}
               />
               <GiftItem
                 giftSelected={giftSelected}
-                selectGift={handleGift}
+                selectGift={setGiftSelected}
                 image={KELP}
                 giftKey={'KELP'}
                 text={'KELP–MINT COLD BODY WRAP GEL'}
               />
               <GiftItem
                 giftSelected={giftSelected}
-                selectGift={handleGift}
+                selectGift={setGiftSelected}
                 image={BATTER1}
                 giftKey={'BATTER1'}
                 text={'BODY CREAM BUTTER JASMINE-WILD STRAWBERRY'}
               />
               <GiftItem
                 giftSelected={giftSelected}
-                selectGift={handleGift}
+                selectGift={setGiftSelected}
                 image={ELASTIC}
                 giftKey={'ELASTIC'}
                 text={'ELASTIC SKIN BODY WRAP GEL'}
@@ -151,28 +141,28 @@ function RegisterGiftSelect({ handleGift, giftSelected = '' }) {
             <div className='gift-section three'>
               <GiftItem
                 giftSelected={giftSelected}
-                selectGift={handleGift}
+                selectGift={setGiftSelected}
                 image={ALGAE_SCRUB}
                 giftKey={'ALGAE_SCRUB'}
                 text={'BODY SCRUB ALGAE'}
               />
               <GiftItem
                 giftSelected={giftSelected}
-                selectGift={handleGift}
+                selectGift={setGiftSelected}
                 image={ALGAE_DET}
                 giftKey={'ALGAE_DET'}
                 text={'BODY WRAP ALGAE DETOX'}
               />
               <GiftItem
                 giftSelected={giftSelected}
-                selectGift={handleGift}
+                selectGift={setGiftSelected}
                 image={BATTER2}
                 giftKey={'BATTER2'}
                 text={'BODY CREAM BUTTER MANGO-PAPAYA'}
               />
               <GiftItem
                 giftSelected={giftSelected}
-                selectGift={handleGift}
+                selectGift={setGiftSelected}
                 image={CINNAMON}
                 giftKey={'CINNAMON'}
                 text={'CINNAMON-ORANGE HOT BODY WRAP GEL'}

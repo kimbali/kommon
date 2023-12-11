@@ -59,6 +59,7 @@ const registerUser = asyncHandler(async (req, res) => {
       city: user.city,
       address: user.address,
       phone: user.phone,
+      progresses: [],
     });
   } else {
     res.status(400);

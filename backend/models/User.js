@@ -4,12 +4,15 @@ import bcrypt from 'bcryptjs';
 const userSchema = new Schema(
   {
     isFullRegistered: Boolean,
-    progresses: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Progress',
-      },
-    ],
+    progresses: {
+      type: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'Progress',
+        },
+      ],
+      default: [],
+    },
     isAdmin: {
       type: Boolean,
       required: true,

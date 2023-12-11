@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import MarathonCard from '../components/marathon/MarathonCard';
 import Space from '../components/space/Space';
 import Text from '../components/text/Text';
@@ -9,14 +9,16 @@ import { useUser } from '../context/userContext';
 import { useGetMarathonsQuery } from '../slices/marathonApiSlice';
 import { useCreateProgressMutation } from '../slices/progressApiSlice';
 import { useMarathon } from '../context/marathonContext';
-import { useRegisterMutation } from '../slices/usersApiSlices';
+import {
+  useProfileMutation,
+  useRegisterMutation,
+} from '../slices/usersApiSlices';
 import { useDispatch } from 'react-redux';
 import { setCredentials } from '../slices/authSlice';
-import { USER_ID } from '../config/constants';
 
 function Payment() {
   const { setMarathonId } = useMarathon();
-  const { user, updateUser } = useUser();
+  const { updateUser } = useUser();
   const { state } = useLocation();
   const dispatch = useDispatch();
   const [showEmailLink, setShowEmailLink] = useState(false);
@@ -24,6 +26,7 @@ function Payment() {
 
   const [register] = useRegisterMutation();
   const [createProgress] = useCreateProgressMutation();
+  const [updateProfile] = useProfileMutation();
 
   const { data: marathonsData } = useGetMarathonsQuery({
     isActive: true,
@@ -46,19 +49,21 @@ function Payment() {
 
   const handleSelectMarathon = async marathon => {
     try {
-      // create user after pay
+      // TODO: create user after pay
       const res = await handleCreateUser();
 
-      // guardar el progress Id en el user
-      await createProgress({
+      const newProgress = await createProgress({
         marathon: marathon._id,
         user: res?._id,
       });
 
+      const progresses = res.progresses.concat(newProgress.data._id);
+      await updateProfile({ progresses });
+
       setMarathonId(marathon._id);
       setShowEmailLink(true);
     } catch (err) {
-      toast.error('Error creating the progress');
+      toast.error(err?.data?.message || err.error);
     }
   };
 
@@ -67,13 +72,6 @@ function Payment() {
       <Space big />
 
       <Text isTitle>Página de pago</Text>
-
-      <Space medium />
-
-      <Text>
-        Aqui se abriria la applicación del banco y mandariamos un email para
-        confirmar el correo electrónico.
-      </Text>
 
       <Space medium />
 
@@ -97,6 +95,13 @@ function Payment() {
       ) : (
         <p>Selecciona la marathon a la que quieres apuntarte</p>
       )}
+
+      <Space medium />
+
+      <Text>
+        Aqui se abriria la applicación del banco y mandariamos un email para
+        confirmar el correo electrónico.
+      </Text>
     </div>
   );
 }

@@ -139,6 +139,7 @@ function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
             <Space small />
 
             <Input
+              type='password'
               label='Contraseña:*'
               name='password'
               placeholder='*******'
@@ -150,6 +151,7 @@ function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
             <Space small />
 
             <Input
+              type='password'
               label='Confirmar contraseña:*'
               name='confirmPassword'
               placeholder='*******'

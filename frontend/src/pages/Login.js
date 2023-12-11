@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useLoginMutation } from '../slices/usersApiSlices';
@@ -15,7 +15,9 @@ import { useUser } from '../context/userContext';
 
 const Login = () => {
   const { updateUser } = useUser();
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    email: JSON.parse(localStorage.getItem('userInfo'))?.email || '',
+  });
   const [invalidFields, setInvalidFields] = useState('');
 
   const dispatch = useDispatch();

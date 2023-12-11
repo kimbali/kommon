@@ -4,9 +4,10 @@ import Select from 'react-select';
 import CreatableSelect from 'react-select/creatable';
 import { useUploadRecipeImageMutation } from '../../slices/imagesApiSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash, faPlus } from '@fortawesome/free-solid-svg-icons';
 import Text from '../text/Text';
 import Spinner from '../spinner/Spinner';
+import Button from '../button/Button';
 
 function Input({
   className = '',
@@ -30,7 +31,7 @@ function Input({
   selectCreatable = false,
   selectedOption,
   selectOption = 'select one',
-  type = '',
+  type: typeParams = '',
   value = '',
   labelLink = '',
   disabled = false,
@@ -38,6 +39,11 @@ function Input({
   const hasError = error?.invalidFields?.includes(name);
   const [uploadRecipeImage, { isLoading }] = useUploadRecipeImageMutation();
   const [fileName, setFileName] = useState(value?.originalname);
+  const [type, setCurrentType] = useState(typeParams);
+
+  const togglePasswordType = () => {
+    setCurrentType(prev => (prev === 'password' ? 'text' : 'password'));
+  };
 
   const handleOnChange = event => {
     onChange({
@@ -104,7 +110,7 @@ function Input({
                 : value
             }
             onChange={type === 'file' ? handleUploadImage : handleOnChange}
-            placeholder={placeholder}
+            placeholder={type === 'number' ? '0' : placeholder}
             required={required}
             type={type || 'text'}
             maxLength={maxLength}
@@ -243,6 +249,14 @@ function Input({
             </Text>
           </div>
         ))}
+
+      {typeParams === 'password' && (
+        <Button
+          className='password-cta'
+          onClick={togglePasswordType}
+          iconLeft={type === 'password' ? faEyeSlash : faEye}
+        />
+      )}
 
       {hasError && <Text error>{error?.message}</Text>}
     </div>

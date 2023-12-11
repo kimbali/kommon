@@ -7,7 +7,7 @@ const frontRoutes = {
   home: '/',
   ingredients: '/config/ingredients',
   login: '/login',
-  main: '/main',
+  main: '/maraton',
   more: '/more',
   marathonList: '/marathons',
   meditationDetails: '/config/meditation/:id',

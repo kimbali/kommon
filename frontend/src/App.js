@@ -7,7 +7,7 @@ import AdminLayout from './components/layout/AdminLayout';
 import MainLayout from './components/layout/MainLayout';
 import PlainLayout from './components/layout/PlainLayout';
 import ScrollToTop from './components/scrollToTop/ScrollToTop';
-import { EXPIRATION_TIME, MARATHON_ID, USER_ID } from './config/constants';
+import { EXPIRATION_TIME, MARATHON_ID } from './config/constants';
 import frontRoutes from './config/frontRoutes';
 import { useMarathon } from './context/marathonContext';
 import AvisoLegal from './pages/AvisoLegal';
@@ -61,6 +61,11 @@ function App() {
   useEffect(() => {
     if (userData) {
       updateUser(userData);
+    }
+
+    if (userData?.progresses.length > 0) {
+      const lastProgress = userData?.progresses[userData.progresses.length - 1];
+      setMarathonId(lastProgress.marathon);
     }
   }, [userData]);
 

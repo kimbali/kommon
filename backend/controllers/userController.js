@@ -82,7 +82,9 @@ const logoutUser = (req, res) => {
 // @route   GET /api/users/profile/:id
 // @access  Private
 const getUserProfile = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.user?._id).select('-password');
+  const user = await User.findById(req.user?._id)
+    .select('-password')
+    .populate('progresses');
 
   if (user) {
     res.json(user);

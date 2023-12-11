@@ -18,7 +18,7 @@ function MainLayout() {
   const { marathonId, setDayDetails, updateMarathon } = useMarathon();
   const [currentDay, setCurrentDay] = useState();
   const [showNav, setShowNav] = useState(false);
-
+  console.log(marathonId);
   // retrieve progress
   const { data: marathonData } = useGetMarathonDetailsForClientQuery(
     marathonId,

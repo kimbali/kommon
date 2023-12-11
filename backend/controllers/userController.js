@@ -84,7 +84,7 @@ const logoutUser = (req, res) => {
 const getUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user?._id)
     .select('-password')
-    .populate('progresses');
+    .populate('progresses', 'marathon');
 
   if (user) {
     res.json(user);

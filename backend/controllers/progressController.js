@@ -64,7 +64,7 @@ export const updateProgress = asyncHandler(async (req, res) => {
     recipes,
     workouts,
     meditations,
-    tasksQuecked,
+    tasksChecked,
   } = req.body;
 
   const progress = await Progress.findById(req.params.id);
@@ -82,7 +82,7 @@ export const updateProgress = asyncHandler(async (req, res) => {
     progress.recipes = recipes || progress.recipes;
     progress.workouts = workouts || progress.workouts;
     progress.meditations = meditations || progress.meditations;
-    progress.tasksQuecked = tasksQuecked || progress.tasksQuecked;
+    progress.tasksChecked = tasksChecked || progress.tasksChecked;
 
     const updatedProgress = await progress.save();
 

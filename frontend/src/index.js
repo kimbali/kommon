@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter as Router } from 'react-router-dom';
-import './index.scss';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import './traducciones/i18n';
 import { Provider } from 'react-redux';
-import store from './store';
+import { BrowserRouter as Router } from 'react-router-dom';
+import App from './App';
 import { MarathonProvider } from './context/marathonContext';
+import { ProgressProvider } from './context/progressContext';
 import { UserProvider } from './context/userContext';
+import './index.scss';
+import reportWebVitals from './reportWebVitals';
+import store from './store';
+import './traducciones/i18n';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,7 +18,9 @@ root.render(
       <Router>
         <UserProvider>
           <MarathonProvider>
-            <App />
+            <ProgressProvider>
+              <App />
+            </ProgressProvider>
           </MarathonProvider>
         </UserProvider>
       </Router>

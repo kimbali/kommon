@@ -11,6 +11,8 @@ import { useNavigate } from 'react-router-dom';
 import { useMarathon } from '../context/marathonContext';
 import dietsEnum from '../config/enums/dietsEnum';
 import MeditationCard from '../components/meditation/MeditationCard';
+import { useUpdateProgressMutation } from '../slices/progressApiSlice';
+import { useProgress } from '../context/progressContext';
 
 // TODO: El dia de mañana, cuando se logee un usuario que no es admin, guardar en el progresso, por qué dia de la marathon va.
 // Mas que por que dia va, seria ver qué marathon esta haciendo, qué dia era el "startDate", y que dia es hoy
@@ -19,10 +21,27 @@ import MeditationCard from '../components/meditation/MeditationCard';
 function Main() {
   const navigate = useNavigate();
   const { dayDetails } = useMarathon();
+  const { userProgress, updateUserProgress } = useProgress();
   const [showRecipe, setShowRecipe] = useState();
 
-  const handleCheckTask = task => {
-    console.log('check on user progress');
+  const [updateProgress] = useUpdateProgressMutation();
+
+  const isCheckedTask = task => {
+    return userProgress.tasksChecked.findIndex(ele => ele === task._id) > -1;
+  };
+
+  const handleCheckTask = async task => {
+    let updatedList;
+
+    if (isCheckedTask(task)) {
+      updatedList = userProgress.tasksChecked.filter(ele => ele !== task._id);
+    } else {
+      updatedList = userProgress.tasksChecked.concat(task._id);
+    }
+
+    await updateProgress({ ...userProgress, tasksChecked: updatedList });
+
+    updateUserProgress({ ...userProgress, tasksChecked: updatedList });
   };
 
   const navigateToWorkouts = () => {
@@ -103,17 +122,21 @@ function Main() {
 
             <form>
               {dayDetails?.tasks.length > 0 &&
-                dayDetails.tasks.map((eachTask, i) => (
-                  <div className='single-task' key={`${i}-task`}>
-                    <Input
-                      type='checkbox'
-                      className={eachTask.checked ? 'checked' : ''}
-                      label={eachTask.title}
-                      value={eachTask.checked}
-                      onChange={() => handleCheckTask(eachTask)}
-                    />
-                  </div>
-                ))}
+                dayDetails.tasks.map((eachTask, i) => {
+                  const isChecked = isCheckedTask(eachTask);
+
+                  return (
+                    <div className='single-task' key={`${i}-task`}>
+                      <Input
+                        type='checkbox'
+                        className={isChecked ? 'checked' : ''}
+                        label={eachTask.title}
+                        value={isChecked}
+                        onChange={() => handleCheckTask(eachTask)}
+                      />
+                    </div>
+                  );
+                })}
             </form>
           </div>
         </div>

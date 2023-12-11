@@ -12,14 +12,20 @@ import Button from '../button/Button';
 import MENU from '../../styles/img/menu.png';
 import Modal from '../modal/Modal';
 import Space from '../space/Space';
+import { useGetProgressDetailsQuery } from '../../slices/progressApiSlice';
+import { useProgress } from '../../context/progressContext';
 
 function MainLayout() {
   const location = useLocation();
   const { marathonId, setDayDetails, updateMarathon } = useMarathon();
+  const { progressId, updateUserProgress } = useProgress();
   const [currentDay, setCurrentDay] = useState();
   const [showNav, setShowNav] = useState(false);
-  console.log(marathonId);
-  // retrieve progress
+
+  const { data: progressData } = useGetProgressDetailsQuery(progressId, {
+    skip: !progressId,
+  });
+
   const { data: marathonData } = useGetMarathonDetailsForClientQuery(
     marathonId,
     {
@@ -34,6 +40,12 @@ function MainLayout() {
   const handleSelectDay = day => {
     setCurrentDay({ ...day, planningId: marathonData?.planning._id });
   };
+
+  useEffect(() => {
+    if (progressData) {
+      updateUserProgress(progressData);
+    }
+  }, [progressData]);
 
   useEffect(() => {
     if (marathonData) {

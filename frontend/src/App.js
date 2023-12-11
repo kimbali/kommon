@@ -47,12 +47,14 @@ import { useUser } from './context/userContext';
 import UserMarathons from './pages/UserMarathons';
 import UserProfile from './pages/UserProfile';
 import UserMore from './pages/UserMore';
+import { useProgress } from './context/progressContext';
 
 function App() {
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
   const { updateUser } = useUser();
   const { setMarathonId } = useMarathon();
+  const { setProgressId } = useProgress();
 
   const { data: userData } = useGetUserProfileQuery();
   const { data: legalsData } = useGetLegalsQuery();
@@ -65,6 +67,8 @@ function App() {
 
     if (userData?.progresses.length > 0) {
       const lastProgress = userData?.progresses[userData.progresses.length - 1];
+
+      setProgressId(lastProgress._id);
       setMarathonId(lastProgress.marathon);
     }
   }, [userData]);

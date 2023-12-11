@@ -18,8 +18,6 @@ const registerValidator = (
     buttocks,
     activity,
     porpuse,
-    smoke,
-    alcohol,
     problems,
     patologies,
   }
@@ -53,8 +51,6 @@ const registerValidator = (
   if (formNumber === 3) {
     if (!activity) errors.push('activity');
     if (!porpuse) errors.push('porpuse');
-    if (!smoke) errors.push('smoke');
-    if (!alcohol) errors.push('alcohol');
     if (!problems) errors.push('problems');
   }
 
@@ -82,8 +78,6 @@ export const registerRedirectValidator = user => {
     buttocks,
     activity,
     porpuse,
-    smoke,
-    alcohol,
     problems,
     patologies,
   } = user;
@@ -96,14 +90,7 @@ export const registerRedirectValidator = user => {
     return 2;
   }
 
-  if (
-    !activity ||
-    !porpuse ||
-    !smoke ||
-    !alcohol ||
-    !problems ||
-    !patologies.length === 0
-  ) {
+  if (!activity || !porpuse || !problems || !patologies.length === 0) {
     return 3;
   }
 

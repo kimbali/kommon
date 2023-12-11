@@ -114,8 +114,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 
     user.activity = req.body.activity || user.activity;
     user.porpuse = req.body.porpuse || user.porpuse;
-    user.smoke = req.body.smoke || user.smoke;
-    user.alcohol = req.body.alcohol || user.alcohol;
+    user.allergies = req.body.allergies || user.allergies;
     user.problems = req.body.problems || user.problems;
     user.patologies = req.body.patologies || user.patologies;
 

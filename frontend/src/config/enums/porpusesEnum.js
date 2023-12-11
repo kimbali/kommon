@@ -7,6 +7,10 @@ const porpusesEnum = [
     label: 'Perder peso (pero estoy dando el pecho)',
     value: 'BREASTFEED',
   },
+  {
+    label: 'Tonificar',
+    value: 'TONIFICAR',
+  },
 ];
 
 export const getPorpuseEnum = value => {

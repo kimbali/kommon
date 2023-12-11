@@ -8,10 +8,9 @@ import toast from 'react-hot-toast';
 import Button from '../button/Button';
 import activityEnum from '../../config/enums/activitiesEnum';
 import porpusesEnum from '../../config/enums/porpusesEnum';
-import smokeEnum from '../../config/enums/smokeEnum';
-import alcoholEnum from '../../config/enums/alcoholsEnum';
 import problemsEnum from '../../config/enums/problemsEnum';
 import patologyEnum from '../../config/enums/patologiesEnum';
+import allergiesEnum from '../../config/enums/allergiesEnum';
 
 function RegisterFormThree({ onSuccess, userData }) {
   const [formData, setFormData] = useState({ ...userData });
@@ -82,27 +81,15 @@ function RegisterFormThree({ onSuccess, userData }) {
       <Space big />
 
       <Input
-        label='¿Fumas?'
-        placeholder=''
-        type='radio'
+        className='register'
+        label='¿Tienes alguna alergia alimentaria?'
+        placeholder='Selecciona ninguna o varias'
+        isMultiSelect
         onChange={handleOnChange}
-        name='smoke'
-        selectedOption={formData.smoke}
-        options={smokeEnum}
-        error={{ invalidFields, message: 'Smoke field required' }}
-      />
-
-      <Space big />
-
-      <Input
-        label='¿Tomas alcohol?'
-        placeholder=''
-        type='radio'
-        onChange={handleOnChange}
-        name='alcohol'
-        selectedOption={formData.alcohol}
-        options={alcoholEnum}
-        error={{ invalidFields, message: 'Alcohol field required' }}
+        name='allergies'
+        selectedOption={formData.allergies}
+        options={allergiesEnum}
+        error={{ invalidFields, message: 'Allergies field required' }}
       />
 
       <Space big />

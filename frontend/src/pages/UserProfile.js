@@ -4,11 +4,10 @@ import Text from '../components/text/Text';
 import Space from '../components/space/Space';
 import ResumeTable from '../components/resumeTable/ResumeTable';
 import { getActivityLabel } from '../config/enums/activitiesEnum';
-import { getAlcoholLabel } from '../config/enums/alcoholsEnum';
 import { getPatologiesLabel } from '../config/enums/patologiesEnum';
 import { getPorpuseEnum } from '../config/enums/porpusesEnum';
 import { getProblemsLabel } from '../config/enums/problemsEnum';
-import { getSmokeLabel } from '../config/enums/smokeEnum';
+import { getAllergiesLabel } from '../config/enums/allergiesEnum';
 
 function UserProfile() {
   const { user } = useUser();
@@ -59,14 +58,16 @@ function UserProfile() {
       <ResumeTable
         list={[
           { name: 'Actividad', value: getActivityLabel(user?.activity) },
-          { name: 'Consumo de alcohol', value: getAlcoholLabel(user?.alcohol) },
+          {
+            name: 'Alergias alimentarias',
+            value: getAllergiesLabel(user?.allergies),
+          },
           { name: 'Patologias', value: getPatologiesLabel(user?.patologies) },
           { name: 'Propósito', value: getPorpuseEnum(user?.porpuse) },
           {
             name: 'Antecedentes',
             value: getProblemsLabel(user?.problem) || '-',
           },
-          { name: 'Fumador', value: getSmokeLabel(user?.smoke) },
         ]}
       />
     </div>

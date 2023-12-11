@@ -42,10 +42,9 @@ const userSchema = new Schema(
     buttocks: Number,
     activity: String,
     porpuse: String,
-    smoke: String,
-    alcohol: String,
     problems: String,
     patologies: [String],
+    allergies: [String],
   },
   {
     timestamps: true,

@@ -1,18 +1,18 @@
 const allergiesEnum = [
-  { label: 'Celery', value: 'APIO' },
-  { label: 'Crustaceans', value: 'CRUSTACEOS' },
+  { label: 'Apio', value: 'APIO' },
+  { label: 'Crustáceos', value: 'CRUSTACEOS' },
   { label: 'Gluten', value: 'GLUTEN' },
-  { label: 'Eggs', value: 'HUEVOS' },
-  { label: 'Fish', value: 'PESCADO' },
-  { label: 'Lupin', value: 'ALTRAMUCES' },
-  { label: 'Milk', value: 'LECHE' },
-  { label: 'Molluscs', value: 'MOLUSCOS' },
-  { label: 'Mustard', value: 'MOSTAZA' },
-  { label: 'Nuts', value: 'FRUTOS_SECOS' },
-  { label: 'Peanuts', value: 'CACAHUETES' },
-  { label: 'Sesame seeds', value: 'SESAMO' },
-  { label: 'Soya', value: 'SOJA' },
-  { label: 'Sulphites', value: 'SULFITOS' },
+  { label: 'Huevos', value: 'HUEVOS' },
+  { label: 'Pescado', value: 'PESCADO' },
+  { label: 'Altramuces', value: 'ALTRAMUCES' },
+  { label: 'Leche', value: 'LECHE' },
+  { label: 'Moluscos', value: 'MOLUSCOS' },
+  { label: 'Mostaza', value: 'MOSTAZA' },
+  { label: 'Frutos Secos', value: 'FRUTOS_SECOS' },
+  { label: 'Cacahuetes', value: 'CACAHUETES' },
+  { label: 'Semillas de Sésamo', value: 'SESAMO' },
+  { label: 'Soja', value: 'SOJA' },
+  { label: 'Sulfitos', value: 'SULFITOS' },
 ];
 
 export const getAllergyLabel = allergy => {
@@ -22,6 +22,14 @@ export const getAllergyLabel = allergy => {
   }
 
   return allergy;
+};
+
+export const getAllergiesLabel = values => {
+  const allergies = values.map(each =>
+    allergiesEnum.find(ele => ele.value === each)
+  );
+
+  return allergies.reduce((acc, ele) => `${acc} ${ele.label}`, '');
 };
 
 export default allergiesEnum;

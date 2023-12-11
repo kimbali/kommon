@@ -16,10 +16,12 @@ import ConfirmModal from '../components/modal/ConfirmModal';
 import Modal from '../components/modal/Modal';
 import RecipeForm from '../components/recipes/RecipeForm';
 import { getMeasureDiminutive } from '../config/enums/measuresEnum';
-import calculateEnergy from '../utils/calculateEnergy';
+import calculateEnergy, { KcalReglaDeTres } from '../utils/calculateEnergy';
+import { useUser } from '../context/userContext';
 
 function RecipeDetails({ recipe }) {
   const { id } = useParams();
+  const { user } = useUser();
   const navigate = useNavigate();
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -111,22 +113,22 @@ function RecipeDetails({ recipe }) {
           <div className='propiedades'>
             <div className='propiedad'>
               <Text isSubtitle>Kcal</Text>
-              <Text>{calculateEnergy('calories', ingredients)}</Text>
+              <Text>{calculateEnergy('calories', ingredients, user)}</Text>
             </div>
 
             <div className='propiedad'>
               <Text isSubtitle>Prot</Text>
-              <Text>{calculateEnergy('proteins', ingredients)}</Text>
+              <Text>{calculateEnergy('proteins', ingredients, user)}</Text>
             </div>
 
             <div className='propiedad'>
               <Text isSubtitle>Fats</Text>
-              <Text>{calculateEnergy('fats', ingredients)}</Text>
+              <Text>{calculateEnergy('fats', ingredients, user)}</Text>
             </div>
 
             <div className='propiedad'>
               <Text isSubtitle>Carbh</Text>
-              <Text>{calculateEnergy('carbohydrates', ingredients)}</Text>
+              <Text>{calculateEnergy('carbohydrates', ingredients, user)}</Text>
             </div>
           </div>
         </div>
@@ -142,9 +144,9 @@ function RecipeDetails({ recipe }) {
               list={ingredients.map(ele => {
                 return {
                   name: ele.ingredient?.name || '',
-                  value: `(${ele.quantity || ''} ${getMeasureDiminutive(
-                    ele.ingredient?.measure
-                  )})`,
+                  value: `(${
+                    KcalReglaDeTres(ele.quantity, user) || ''
+                  } ${getMeasureDiminutive(ele.ingredient?.measure)})`,
                 };
               })}
             />

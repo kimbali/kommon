@@ -6,8 +6,11 @@ import { useGetImageUrlQuery } from '../../slices/imagesApiSlice';
 import Spinner from '../spinner/Spinner';
 import toast from 'react-hot-toast';
 import calculateEnergy from '../../utils/calculateEnergy';
+import { useUser } from '../../context/userContext';
 
 function RecipeCard({ recipe, meal = '', onClick }) {
+  const { user } = useUser();
+
   const {
     data: imageS3,
     isLoading,
@@ -65,7 +68,8 @@ function RecipeCard({ recipe, meal = '', onClick }) {
 
           <Text className='recipe-card-data'>
             {recipe.minutes} <span>min</span> |{' '}
-            {calculateEnergy('calories', recipe.ingredients)} <span>kcal</span>
+            {calculateEnergy('calories', recipe.ingredients, user)}{' '}
+            <span>kcal</span>
           </Text>
         </div>
       </div>

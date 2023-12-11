@@ -20,3 +20,5 @@ export const EXPIRATION_TIME = 'expirationTime';
 export const MARATHON_ID = 'marathonId';
 export const DATE = 'date';
 export const USER_ID = 'userId';
+
+export const BASE_KCAL = 1700;

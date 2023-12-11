@@ -4,16 +4,18 @@ import Text from '../text/Text';
 import Space from '../space/Space';
 import Input from '../input/Input';
 import { useRegisterMutation } from '../../slices/usersApiSlices';
-import { setCredentials } from '../../slices/authSlice';
-import { useDispatch } from 'react-redux';
+import yesNoEnum from '../../config/enums/yesNoEnum';
+import toast from 'react-hot-toast';
 
 function NewUser({ onCreate, onCancel }) {
-  const dispatch = useDispatch();
+  const [formData, setFormData] = useState({ password: 'maraton' });
+  const [invalidFields, setInvalidFields] = useState([]);
 
-  const [formData, setFormData] = useState({});
-  const [error, setError] = useState('');
-
-  const handleOnChange = ({ name, value }) => {
+  const handleOnChange = ({ name, value: valueProp }) => {
+    let value = valueProp;
+    if (name === 'isAdmin' || name === 'hasPaid') {
+      value = valueProp === 'NO' ? false : true;
+    }
     setFormData({ ...formData, [name]: value });
   };
 
@@ -21,49 +23,86 @@ function NewUser({ onCreate, onCancel }) {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    setError(false);
+    setInvalidFields([]);
 
-    if (!formData.email || !formData.password) {
-      return setError(true);
+    if (!formData.email) {
+      return setInvalidFields(['email']);
     }
 
-    const res = await register({
-      email: formData.email,
-      password: formData.password,
-    }).unwrap();
+    if (!formData.password) {
+      return setInvalidFields(['password']);
+    }
 
-    dispatch(setCredentials({ ...res }));
-    // navigate(redirect);
+    try {
+      await register({ ...formData }).unwrap();
+
+      toast.success('Usuario creado con exito');
+    } catch (err) {
+      toast.error(err.message);
+    }
+
     onCreate();
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='new-user-form'>
       <Text isTitle>Create new user</Text>
 
       <Space small />
 
-      <div className='grid-container'>
-        <Input
-          className='cols-2'
-          label='email'
-          name='email'
-          placeholder='hello@bodymarathon.com'
-          onChange={handleOnChange}
-          value={formData.email}
-        />
+      <Input
+        label='email'
+        name='email'
+        placeholder='hola@bodymaraton.com'
+        onChange={handleOnChange}
+        value={formData.email}
+        error={{ invalidFields, message: 'Email field required' }}
+      />
 
-        <Input
-          className='cols-2'
-          label='password'
-          name='password'
-          placeholder='*****'
-          onChange={handleOnChange}
-          value={formData.password}
-        />
-      </div>
+      <Space small />
 
-      {error && <Text danger>Email and password requireds</Text>}
+      <Input
+        label='nombre'
+        name='name'
+        placeholder='nombre usuario'
+        onChange={handleOnChange}
+        value={formData.name}
+      />
+
+      <Space small />
+
+      <Input
+        label='password'
+        name='password'
+        placeholder='*****'
+        onChange={handleOnChange}
+        value={formData.password}
+        error={{ invalidFields, message: 'Password field required' }}
+      />
+
+      <Space small />
+
+      <Input
+        label='¿Usuario administrador?'
+        placeholder=''
+        type='radio'
+        onChange={handleOnChange}
+        name='isAdmin'
+        selectedOption={formData.isAdmin ? 'YES' : 'NO'}
+        options={yesNoEnum}
+      />
+
+      <Space small />
+
+      <Input
+        label='¿Ha pagado?'
+        placeholder=''
+        type='radio'
+        onChange={handleOnChange}
+        name='hasPaid'
+        selectedOption={formData.hasPaid ? 'YES' : 'NO'}
+        options={yesNoEnum}
+      />
 
       <Space big />
 

@@ -1,0 +1,35 @@
+.new-user-form {
+  .field {
+    label.main-label {
+      font-size: 16px;
+      font-family: $avenirBlack;
+      padding: 0 0 8px;
+      margin: 0;
+    }
+
+    .radio-label {
+      padding: 10px 0;
+
+      .text {
+        font-family: $avenirBook;
+      }
+
+      input {
+        width: 20px;
+        height: 20px;
+
+        &::after {
+          width: 22px;
+          height: 22px;
+          left: -1px;
+        }
+
+        &:checked {
+          &::after {
+            background-size: 10px;
+          }
+        }
+      }
+    }
+  }
+}

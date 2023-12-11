@@ -71,7 +71,7 @@ const Login = () => {
         <Input
           label='email:'
           name='email'
-          placeholder='hello@bodymarathon.com'
+          placeholder='hola@bodymaraton.com'
           onChange={handleOnChange}
           value={formData.email}
           error={{ invalidFields, message: 'Email field required' }}

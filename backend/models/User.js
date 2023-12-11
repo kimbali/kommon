@@ -4,6 +4,12 @@ import bcrypt from 'bcryptjs';
 const userSchema = new Schema(
   {
     isFullRegistered: Boolean,
+    hasPaid: Boolean,
+    isAdmin: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
     progresses: {
       type: [
         {
@@ -13,24 +19,13 @@ const userSchema = new Schema(
       ],
       default: [],
     },
-    isAdmin: {
-      type: Boolean,
-      required: true,
-      default: false,
-    },
-    name: {
-      type: String,
-      required: true,
-    },
+    name: String,
     email: {
       type: String,
       required: true,
       unique: true,
     },
-    password: {
-      type: String,
-      required: true,
-    },
+    password: String,
     phone: String,
     city: String,
     address: String,

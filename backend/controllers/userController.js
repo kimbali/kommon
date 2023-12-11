@@ -29,7 +29,8 @@ const authUser = asyncHandler(async (req, res) => {
 // @route   POST /api/users
 // @access  Public
 const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password, isAdmin, city, phone, address } = req.body;
+  const { name, email, password, isAdmin, city, phone, address, hasPaid } =
+    req.body;
 
   const userExists = await User.findOne({ email });
 
@@ -46,6 +47,7 @@ const registerUser = asyncHandler(async (req, res) => {
     city,
     address,
     phone,
+    hasPaid,
   });
 
   if (user) {
@@ -60,6 +62,7 @@ const registerUser = asyncHandler(async (req, res) => {
       address: user.address,
       phone: user.phone,
       progresses: [],
+      hasPaid: user.hasPaid,
     });
   } else {
     res.status(400);
@@ -103,6 +106,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   if (user) {
     user.progresses = req.body.progresses || user.progresses;
     user.isFullRegistered = req.body.isFullRegistered || user.isFullRegistered;
+    user.hasPaid = req.body.hasPaid || user.hasPaid;
 
     user.name = req.body.name || user.name;
     user.email = req.body.email || user.email;

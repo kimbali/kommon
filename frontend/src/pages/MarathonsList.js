@@ -96,7 +96,7 @@ function MarathonsList() {
   };
 
   return (
-    <div className='marathons-list'>
+    <div className='data-table'>
       <table border='1'>
         <thead>
           <tr>

@@ -280,7 +280,11 @@ form {
 
       .multi-prefix__single-value {
         color: $secondary-color;
-        font-family: $avenirBlack;
+        font-family: $avenirBook;
+
+        &::first-letter {
+          text-transform: uppercase;
+        }
       }
 
       .multi-prefix__placeholder {

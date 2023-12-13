@@ -7,11 +7,16 @@ import registerValidator from '../../utils/validators/registerValidator';
 import toast from 'react-hot-toast';
 import Button from '../button/Button';
 import frontRoutes from '../../config/frontRoutes';
+import { useGetRegionsQuery } from '../../slices/regionsApiSlice';
 
 function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ ...userData });
+  const [selectedCity, setSelectedCity] = useState();
   const [invalidFields, setInvalidFields] = useState('');
+  const [regionOptions, setRegionOptions] = useState();
+
+  const { data: regionsData } = useGetRegionsQuery({});
 
   useEffect(() => {
     if (userData) {
@@ -19,8 +24,29 @@ function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
     }
   }, [userData]);
 
+  useEffect(() => {
+    if (regionsData) {
+      const regionsList = regionsData.regions.map(ele => {
+        return { label: ele.region, value: ele._id };
+      });
+
+      setRegionOptions(regionsList);
+    }
+  }, [regionsData]);
+
+  useEffect(() => {
+    if (userData && regionOptions) {
+      setSelectedCity(regionOptions.find(ele => ele.value === userData.city));
+    }
+  }, [regionOptions]);
+
   const handleOnChange = ({ name, value }) => {
     setFormData({ ...formData, [name]: value });
+  };
+
+  const handleCityChange = ({ value, label }) => {
+    setSelectedCity({ label, value });
+    setFormData({ ...formData, city: value });
   };
 
   const handlePayNow = e => {
@@ -107,11 +133,14 @@ function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
         <Space small />
 
         <Input
-          label='Ciudad:'
+          label='En que zona te encuentras'
+          placeholder='Selecciona ninguna'
+          options={regionOptions}
+          onChange={handleCityChange}
+          selectedOption={selectedCity}
+          isSingleSelect
           name='city'
-          placeholder='Alabama'
-          onChange={handleOnChange}
-          value={formData.city}
+          error={{ invalidFields, message: 'Localizacion field required' }}
         />
 
         {!userData && hasGift && (

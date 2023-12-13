@@ -27,7 +27,10 @@ const userSchema = new Schema(
     },
     password: String,
     phone: String,
-    city: String,
+    city: {
+      type: Schema.Types.ObjectId,
+      ref: 'Region',
+    },
     address: String,
     age: Number,
     weight: Number,

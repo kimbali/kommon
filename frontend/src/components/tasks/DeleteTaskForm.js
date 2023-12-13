@@ -17,6 +17,7 @@ function DeleteTaskForm({ task, onClose }) {
       toast.error(err?.data?.message || err.error);
     }
   };
+
   return (
     <div>
       <Text isTitle>Delete: {task.title}</Text>

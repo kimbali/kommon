@@ -15,6 +15,7 @@ export const PLANNINGS_URL = '/api/plannings';
 export const DAYS_URL = '/api/days';
 export const LEGALS_URL = '/api/legals';
 export const UPLOAD_URL = '/api/upload';
+export const REGIONS_URL = '/api/regions';
 
 export const EXPIRATION_TIME = 'expirationTime';
 export const MARATHON_ID = 'marathonId';

@@ -33,13 +33,13 @@ form {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto;
-    gap: 16px;
     row-gap: 24px;
   }
 
   @media screen and (min-width: 1024px) {
     .grid-container {
       grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 16px;
     }
 
     .form-section {

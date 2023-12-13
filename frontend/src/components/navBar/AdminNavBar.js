@@ -6,6 +6,7 @@ import {
   faListCheck,
   faPlateWheat,
   faSpa,
+  faTools,
   faUser,
   faWheatAwn,
 } from '@fortawesome/free-solid-svg-icons';
@@ -60,6 +61,8 @@ function AdminNavBar() {
         />
 
         <NavLink icon={faUser} label='Users' route={frontRoutes.users} />
+
+        <NavLink icon={faTools} label='Config' route={frontRoutes.config} />
       </ul>
     </nav>
   );

@@ -50,7 +50,7 @@ const Login = () => {
       if (!res.isAdmin && !res.isFullRegistered) {
         navigate(frontRoutes.register);
       } else {
-        navigate(res.isAdmin ? frontRoutes.planning : frontRoutes.main);
+        navigate(res.isAdmin ? frontRoutes.marathonList : frontRoutes.main);
       }
     } catch (err) {
       toast.error(err?.data?.message || err.error);

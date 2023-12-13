@@ -52,12 +52,12 @@ export const createRegion = asyncHandler(async (req, res) => {
 // @route   PUT /api/regions/:id
 // @access  Private/Admin
 export const updateRegion = asyncHandler(async (req, res) => {
-  const { region, price } = req.body;
+  const { region: regionParams, price } = req.body;
 
   const region = await Region.findById(req.params.id);
 
   if (region) {
-    region.region = region || region.region;
+    region.region = regionParams || region.region;
     region.price = price || region.price;
 
     const updatedRegion = await region.save();

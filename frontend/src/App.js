@@ -48,6 +48,7 @@ import UserMarathons from './pages/UserMarathons';
 import UserProfile from './pages/UserProfile';
 import UserMore from './pages/UserMore';
 import { useProgress } from './context/progressContext';
+import Configuration from './pages/Configuration';
 
 function App() {
   const dispatch = useDispatch();
@@ -191,6 +192,7 @@ function App() {
             element={<MeditationDetails />}
           />
           <Route path={frontRoutes.tasksConfig} element={<TasksConfig />} />
+          <Route path={frontRoutes.config} element={<Configuration />} />
         </Route>
 
         <Route path='*' element={<div>Not found</div>} />

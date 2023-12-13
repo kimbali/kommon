@@ -1,6 +1,7 @@
 const frontRoutes = {
   avisoLegal: '/aviso-legal',
   cookies: '/cookies',
+  config: '/config/config',
   diet: '/diet',
   dietDetailsMain: '/diet/:id',
   dietsConfig: '/config/diets',

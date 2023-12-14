@@ -36,7 +36,9 @@ function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
 
   useEffect(() => {
     if (userData && regionOptions) {
-      setSelectedCity(regionOptions.find(ele => ele.value === userData.city));
+      setSelectedCity(
+        regionOptions.find(ele => ele.value === userData.city._id)
+      );
     }
   }, [regionOptions]);
 

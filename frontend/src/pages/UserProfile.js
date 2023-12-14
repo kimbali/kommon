@@ -5,9 +5,10 @@ import Space from '../components/space/Space';
 import ResumeTable from '../components/resumeTable/ResumeTable';
 import { getActivityLabel } from '../config/enums/activitiesEnum';
 import { getPatologiesLabel } from '../config/enums/patologiesEnum';
-import { getPorpuseEnum } from '../config/enums/porpusesEnum';
+import { getPorpuseLabel } from '../config/enums/porpusesEnum';
 import { getProblemsLabel } from '../config/enums/problemsEnum';
 import { getAllergiesLabel } from '../config/enums/allergiesEnum';
+import { getYesNoLabel } from '../config/enums/yesNoEnum';
 
 function UserProfile() {
   const { user } = useUser();
@@ -26,7 +27,7 @@ function UserProfile() {
         list={[
           { name: 'Nombre', value: user?.name },
           { name: 'Email', value: user?.email },
-          { name: 'Ciudad', value: user?.city },
+          { name: 'Region', value: user?.city?.region || '-' },
           { name: 'Address', value: user?.address || '-' },
           { name: 'Telefono', value: user?.phone },
         ]}
@@ -63,7 +64,8 @@ function UserProfile() {
             value: getAllergiesLabel(user?.allergies),
           },
           { name: 'Patologias', value: getPatologiesLabel(user?.patologies) },
-          { name: 'Propósito', value: getPorpuseEnum(user?.porpuse) },
+          { name: 'Propósito', value: getPorpuseLabel(user?.porpuse) },
+          { name: 'Das el pecho', value: getYesNoLabel(user?.breastfeed) },
           {
             name: 'Antecedentes',
             value: getProblemsLabel(user?.problem) || '-',

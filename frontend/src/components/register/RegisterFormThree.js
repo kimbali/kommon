@@ -11,6 +11,7 @@ import porpusesEnum from '../../config/enums/porpusesEnum';
 import problemsEnum from '../../config/enums/problemsEnum';
 import patologyEnum from '../../config/enums/patologiesEnum';
 import allergiesEnum from '../../config/enums/allergiesEnum';
+import yesNoEnum from '../../config/enums/yesNoEnum';
 
 function RegisterFormThree({ onSuccess, userData }) {
   const [formData, setFormData] = useState({ ...userData });
@@ -76,6 +77,19 @@ function RegisterFormThree({ onSuccess, userData }) {
         selectedOption={formData.porpuse}
         options={porpusesEnum}
         error={{ invalidFields, message: 'Porpuse field required' }}
+      />
+
+      <Space big />
+
+      <Input
+        label='¿Estas dando pecho?'
+        placeholder=''
+        type='radio'
+        onChange={handleOnChange}
+        name='breastfeed'
+        selectedOption={formData.breastfeed}
+        options={yesNoEnum}
+        error={{ invalidFields, message: 'Breastfeed field required' }}
       />
 
       <Space big />

@@ -5,18 +5,13 @@ const porpusesEnum = [
     numeral: 0.8,
   },
   {
-    label: 'Perder peso (pero estoy dando el pecho)',
-    value: 'BREASTFEED',
-    numeral: 1,
-  },
-  {
     label: 'Tonificar',
     value: 'TONIFICAR',
     numeral: 1,
   },
 ];
 
-export const getPorpuseEnum = value => {
+export const getPorpuseLabel = value => {
   const porpuse = porpusesEnum.find(ele => ele.value === value);
 
   return porpuse?.label || value;

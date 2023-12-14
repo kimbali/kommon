@@ -293,7 +293,14 @@ form {
     }
 
     .multi-prefix__multi-value {
-      background-color: $white;
+      background-color: $primary-color;
+      border-radius: 20px;
+      color: $white;
+      margin-right: 10px;
+
+      .multi-prefix__multi-value__label {
+        color: $white;
+      }
     }
 
     .multi-prefix__input-container,

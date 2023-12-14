@@ -1,6 +1,6 @@
 const yesNoEnum = [
   {
-    label: 'Yes',
+    label: 'Si',
     value: 'YES',
   },
   {
@@ -8,5 +8,11 @@ const yesNoEnum = [
     value: 'NO',
   },
 ];
+
+export const getYesNoLabel = value => {
+  const yesNo = yesNoEnum.find(ele => ele.value === value);
+
+  return yesNo?.label || value;
+};
 
 export default yesNoEnum;

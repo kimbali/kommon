@@ -25,11 +25,15 @@ export const getAllergyLabel = allergy => {
 };
 
 export const getAllergiesLabel = values => {
+  if (!values) {
+    return '';
+  }
+
   const allergies = values.map(each =>
     allergiesEnum.find(ele => ele.value === each)
   );
 
-  return allergies.reduce((acc, ele) => `${acc} ${ele.label}`, '');
+  return allergies.reduce((acc, ele) => `${acc} ${ele.label} / `, '');
 };
 
 export default allergiesEnum;

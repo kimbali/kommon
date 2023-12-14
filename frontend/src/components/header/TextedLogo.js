@@ -4,7 +4,7 @@ import Text from '../text/Text';
 function TextedLogo() {
   return (
     <Text isTitle className='texted-logo'>
-      <span className='primary'>marathon</span>.com
+      <span className='primary'>maraton</span>.com
     </Text>
   );
 }

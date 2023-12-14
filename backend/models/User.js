@@ -40,6 +40,7 @@ const userSchema = new Schema(
     buttocks: Number,
     activity: String,
     porpuse: String,
+    breastfeed: String,
     problems: String,
     patologies: [String],
     allergies: [String],

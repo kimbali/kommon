@@ -55,7 +55,7 @@ body {
       display: grid;
       gap: 0px 0px;
       grid-template-rows: 1fr;
-      grid-template-columns: 3fr 1fr 1fr;
+      grid-template-columns: 3fr 1fr 32px;
       grid-template-areas: 'LOGO USER BREADCRUMB';
       align-items: center;
       background-color: $background-1;

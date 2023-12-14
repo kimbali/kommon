@@ -87,7 +87,8 @@ const logoutUser = (req, res) => {
 const getUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user?._id)
     .select('-password')
-    .populate('progresses', 'marathon');
+    .populate('progresses', 'marathon')
+    .populate('city');
 
   if (user) {
     res.json(user);
@@ -120,6 +121,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 
     user.activity = req.body.activity || user.activity;
     user.porpuse = req.body.porpuse || user.porpuse;
+    user.breastfeed = req.body.breastfeed || user.breastfeed;
     user.allergies = req.body.allergies || user.allergies;
     user.problems = req.body.problems || user.problems;
     user.patologies = req.body.patologies || user.patologies;

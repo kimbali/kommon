@@ -20,6 +20,7 @@ import legalsRoutes from './routes/legalsRoutes.js';
 import uploadS3 from './routes/imagesRoutes.js';
 import progressRoutes from './routes/progressRoutes.js';
 import regionsRoutes from './routes/regionsRoutes.js';
+import sendEmail from './routes/sendEmail.js';
 
 dotenv.config();
 
@@ -49,6 +50,7 @@ app.use('/api/legals', legalsRoutes);
 app.use('/api/upload', uploadS3);
 app.use('/api/progress', progressRoutes);
 app.use('/api/regions', regionsRoutes);
+app.use('/api/email', sendEmail);
 
 // app.get('/api/config/paypal', (req, res) =>
 //   res.send(process.env.PAYPAL_CLIENT_ID)

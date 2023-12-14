@@ -15,6 +15,7 @@ import {
 } from '../slices/usersApiSlices';
 import { useDispatch } from 'react-redux';
 import { setCredentials } from '../slices/authSlice';
+import { useGetEmailQuery } from '../slices/emailApiSlice';
 
 function Payment() {
   const { setMarathonId } = useMarathon();
@@ -47,6 +48,8 @@ function Payment() {
     }
   };
 
+  // const { data: emailData } = useGetEmailQuery();
+
   const handleSelectMarathon = async marathon => {
     try {
       // TODO: create user after pay
@@ -61,7 +64,8 @@ function Payment() {
       await updateProfile({ progresses });
 
       setMarathonId(marathon._id);
-      setShowEmailLink(true);
+
+      await setShowEmailLink(true);
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }

@@ -3,23 +3,24 @@ import { Resend } from 'resend';
 import asyncHandler from '../middleware/asyncHandler.js';
 
 const app = express();
-const resend = new Resend('re_9mFN6G36_27G8BxdE8EPnxW3XPervVxsS');
+const resend = new Resend(process.env.RESEND_KEY);
 
 export const sendEmail = asyncHandler(async (req, res) => {
   try {
     const data = await resend.emails.send({
-      from: 'Body Maraton - ¡Registrado! <onboarding@resend.dev>',
-      to: ['kimgarcianton@gmail.com'],
-      subject: '¿El deporte de hace feliz?',
+      from: 'Body Maraton <onboarding@resend.dev>',
+      to: [req.body.email, 'kimgarcianton@gmail.com'],
+      subject: 'Registro con exito',
       html: `
-        <div style="text-align: center; background-color: #201d2b; padding: 20px;">
-          <h1 style="color: #ef0482; font-family: 'Arial', sans-serif;">Body Maratón</h1>
-          <h2 style="font-family: 'Arial', sans-serif;">¡Has pagado con éxito!</h2>
-          <p style="font-family: 'Arial', sans-serif;">¡Prepárate para la próxima maratón que comienza el 3 de enero!</p>
-          <p style="font-family: 'Arial', sans-serif;"><strong><a href="http://bodymaraton.com" style="color: #ef0482;">¡Únete a Body Maratón y cambia tu vida!</a></strong></p>
-        </div>
-      `,
+        <body style="text-align: center; background-color: #201d2b; color: #ffffff; padding: 20px; font-family: 'Arial', sans-serif;">
+          <h1 style="color: #ef0482;">Body Maraton</h1>
+          <h2>¡Has pagado con éxito!</h2>
+          <p>¡Prepárate para la próxima maratón que comienza el 3 de enero!</p>
+          <p><strong><a href="http://bodymaraton.com/login" style="color: #ef0482;">¡Únete a Body Maratón y cambia tu vida!</a></strong></p>
+        </body>
+    `,
     });
+
     res.status(200).json({ data });
   } catch (error) {
     res.status(500).json({ error });

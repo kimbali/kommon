@@ -15,7 +15,7 @@ import {
 } from '../slices/usersApiSlices';
 import { useDispatch } from 'react-redux';
 import { setCredentials } from '../slices/authSlice';
-import { useGetEmailQuery } from '../slices/emailApiSlice';
+import { useSendEmailMutation } from '../slices/emailApiSlice';
 
 function Payment() {
   const { setMarathonId } = useMarathon();
@@ -48,7 +48,7 @@ function Payment() {
     }
   };
 
-  // const { data: emailData } = useGetEmailQuery();
+  const [sendEmail] = useSendEmailMutation();
 
   const handleSelectMarathon = async marathon => {
     try {
@@ -66,6 +66,8 @@ function Payment() {
       setMarathonId(marathon._id);
 
       await setShowEmailLink(true);
+
+      await sendEmail({ email: 'kimgarcianton@hotmail.com' });
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }

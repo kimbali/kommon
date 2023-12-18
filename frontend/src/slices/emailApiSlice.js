@@ -3,14 +3,15 @@ import { apiSlice } from './apiSlice';
 
 export const emailApiSlice = apiSlice.injectEndpoints({
   endpoints: builder => ({
-    getEmail: builder.query({
-      query: () => ({
+    sendEmail: builder.mutation({
+      query: data => ({
         url: `${EMAIL_URL}`,
+        method: 'POST',
+        body: data,
       }),
-      keepUnusedDataFor: 5,
-      providesTags: ['Email'],
+      invalidatesTags: ['Email'],
     }),
   }),
 });
 
-export const { useGetEmailQuery } = emailApiSlice;
+export const { useSendEmailMutation } = emailApiSlice;

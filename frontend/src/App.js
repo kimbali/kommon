@@ -17,6 +17,7 @@ import DietDetailsMain from './pages/DietDetailsMain';
 import Home from './pages/Home';
 import IngredientsConfig from './pages/IngredientsConfig';
 import Login from './pages/Login';
+import Logout from './pages/Logout';
 import Main from './pages/Main';
 import MarathonsList from './pages/MarathonsList';
 import MeditationDetails from './pages/MeditationDetails';
@@ -128,6 +129,7 @@ function App() {
         <Route path={frontRoutes.register} element={<Register />} />
         <Route path={frontRoutes.login} element={<Login />} />
         <Route path={frontRoutes.payment} element={<Payment />} />
+        <Route path={frontRoutes.logout} element={<Logout />} />
 
         <Route element={<PlainLayout />}>
           <Route path={frontRoutes.privacyPolicy} element={<PrivacyPolicy />} />

@@ -8,6 +8,7 @@ const frontRoutes = {
   home: '/',
   ingredients: '/config/ingredients',
   login: '/login',
+  logout: '/logout',
   main: '/maraton',
   more: '/more',
   marathonList: '/marathons',

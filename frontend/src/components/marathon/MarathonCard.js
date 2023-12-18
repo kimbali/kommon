@@ -25,7 +25,7 @@ function MarathonCard({ handleSelectMarathon, marathon }) {
       <Space extraSmall />
 
       <Button onClick={() => handleSelectMarathon(marathon)} isPrimary>
-        Selecciona
+        Inscribirme
       </Button>
     </div>
   );

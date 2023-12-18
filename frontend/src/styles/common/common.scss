@@ -190,10 +190,10 @@ a {
   width: 100%;
   flex-grow: 1;
   max-width: 1350px;
-  padding: 0 12px 0;
+  padding: 0 12px 32px;
 
   @media screen and (min-width: 1024px) {
-    padding: 0 24px 0;
+    padding: 0 24px 32px;
   }
 
   header {

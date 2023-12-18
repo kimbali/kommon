@@ -74,7 +74,7 @@ function Payment() {
   };
 
   return (
-    <div>
+    <div className='page-wrapper'>
       <Space big />
 
       <Text isTitle>Página de pago</Text>

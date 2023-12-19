@@ -80,13 +80,24 @@ export const calculateWeeks = (startDate, endDate) => {
   return totalWeeks;
 };
 
-export const weeksOptionsList = (startDate, endDate) => {
+export const weeksOptionsList = ({
+  startDate,
+  endDate,
+  isAdmin,
+  todayPosition,
+}) => {
   const totalWeeks = calculateWeeks(startDate, endDate);
 
   const optionsWeeks = [...Array(totalWeeks).keys()].map((ele, index) => {
+    const isDisabled =
+      !isAdmin &&
+      !(todayPosition.weekDay >= 5 && todayPosition.week === index) &&
+      todayPosition.week < index + 1;
+
     return {
       label: `Week ${index + 1}`,
       value: index + 1,
+      isDisabled,
     };
   });
 
@@ -145,8 +156,8 @@ export const getDatePositionInMonthArray = (monthArray, date) => {
 
     if (columnIndex !== -1) {
       position = {
-        row: i + 1,
-        column: columnIndex,
+        week: i + 1,
+        weekDay: columnIndex,
         date: monthArray[i][columnIndex],
       };
       break;

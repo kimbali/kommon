@@ -27,16 +27,16 @@ function Main() {
   const [updateProgress] = useUpdateProgressMutation();
 
   const isCheckedTask = task => {
-    return userProgress.tasksChecked.findIndex(ele => ele === task._id) > -1;
+    return userProgress?.tasksChecked?.findIndex(ele => ele === task._id) > -1;
   };
 
   const handleCheckTask = async task => {
     let updatedList;
 
     if (isCheckedTask(task)) {
-      updatedList = userProgress.tasksChecked.filter(ele => ele !== task._id);
+      updatedList = userProgress.tasksChecked?.filter(ele => ele !== task._id);
     } else {
-      updatedList = userProgress.tasksChecked.concat(task._id);
+      updatedList = userProgress.tasksChecked?.concat(task._id);
     }
 
     await updateProgress({ ...userProgress, tasksChecked: updatedList });

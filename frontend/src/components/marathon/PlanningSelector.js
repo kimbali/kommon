@@ -15,6 +15,7 @@ import Space from '../space/Space';
 import Text from '../text/Text';
 import { DATE, MARATHON_ID } from '../../config/constants';
 import levelsEnum from '../../config/enums/levelsEnum';
+import { useUser } from '../../context/userContext';
 
 function PlanningSelector({
   marathon,
@@ -26,6 +27,7 @@ function PlanningSelector({
   defaultDiet,
 }) {
   const { marathonId, day: dayParams } = useParams();
+  const { user } = useUser();
   const navigate = useNavigate();
 
   const [monthArray, setMonthArray] = useState();
@@ -39,14 +41,10 @@ function PlanningSelector({
     let dateFormatted;
 
     if (month && date) {
-      const {
-        row,
-        column,
-        date: dateInArray,
-      } = getDatePositionInMonthArray(month, date);
-      week = row;
-      weekDay = column;
-      dateFormatted = dateInArray;
+      const position = getDatePositionInMonthArray(month, date);
+      week = position.week;
+      weekDay = position.weekDay;
+      dateFormatted = position.date;
     }
 
     setSelectedDate(dateFormatted);
@@ -75,9 +73,6 @@ function PlanningSelector({
   useEffect(() => {
     const { startDate, endDate } = marathon;
 
-    const optionsWeeks = weeksOptionsList(startDate, endDate);
-    setWeekOptions(optionsWeeks);
-
     if (marathon && !dayParams) {
       const url = isFrontoffice
         ? `${baseUrl}?${MARATHON_ID}=${
@@ -93,6 +88,15 @@ function PlanningSelector({
     if (marathon) {
       const month = getWeeksArray(startDate, endDate);
       setMonthArray(month);
+
+      const todayPosition = getDatePositionInMonthArray(month, new Date());
+      const optionsWeeks = weeksOptionsList({
+        startDate,
+        endDate,
+        isAdmin: user?.isAdmin,
+        todayPosition,
+      });
+      setWeekOptions(optionsWeeks);
 
       handleSelectDay(dayParams || month[0][0], month, optionsWeeks);
     } else {

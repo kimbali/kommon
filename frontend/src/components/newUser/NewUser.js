@@ -7,8 +7,8 @@ import { useRegisterMutation } from '../../slices/usersApiSlices';
 import yesNoEnum from '../../config/enums/yesNoEnum';
 import toast from 'react-hot-toast';
 
-function NewUser({ onCreate, onCancel }) {
-  const [formData, setFormData] = useState({ password: 'maraton' });
+function NewUser({ onCreate, onCancel, user }) {
+  const [formData, setFormData] = useState({ ...user });
   const [invalidFields, setInvalidFields] = useState([]);
 
   const handleOnChange = ({ name, value: valueProp }) => {
@@ -34,7 +34,7 @@ function NewUser({ onCreate, onCancel }) {
     }
 
     try {
-      await register({ ...formData }).unwrap();
+      await register({ ...formData, createdByAdmin: true }).unwrap();
 
       toast.success('Usuario creado con exito');
     } catch (err) {

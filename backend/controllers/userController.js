@@ -29,8 +29,17 @@ const authUser = asyncHandler(async (req, res) => {
 // @route   POST /api/users
 // @access  Public
 const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password, isAdmin, city, phone, address, hasPaid } =
-    req.body;
+  const {
+    name,
+    email,
+    password,
+    isAdmin,
+    city,
+    phone,
+    address,
+    hasPaid,
+    createdByAdmin,
+  } = req.body;
 
   const userExists = await User.findOne({ email });
 
@@ -51,7 +60,9 @@ const registerUser = asyncHandler(async (req, res) => {
   });
 
   if (user) {
-    generateToken(res, user._id);
+    if (!createdByAdmin) {
+      generateToken(res, user._id);
+    }
 
     res.status(201).json({
       _id: user._id,
@@ -87,7 +98,13 @@ const logoutUser = (req, res) => {
 const getUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user?._id)
     .select('-password')
-    .populate('progresses', 'marathon')
+    .populate({
+      path: 'progresses',
+      populate: {
+        path: 'marathon',
+        select: 'startDate endDate',
+      },
+    })
     .populate('city');
 
   if (user) {

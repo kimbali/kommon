@@ -14,11 +14,18 @@ import Modal from '../modal/Modal';
 import Space from '../space/Space';
 import { useGetProgressDetailsQuery } from '../../slices/progressApiSlice';
 import { useProgress } from '../../context/progressContext';
+import {
+  getDatePositionInMonthArray,
+  getWeeksArray,
+} from '../../utils/formatDate';
+import { useUser } from '../../context/userContext';
 
 function MainLayout() {
   const location = useLocation();
   const { marathonId, setDayDetails, updateMarathon } = useMarathon();
   const { progressId, updateUserProgress } = useProgress();
+  const { user } = useUser();
+
   const [currentDay, setCurrentDay] = useState();
   const [showNav, setShowNav] = useState(false);
 
@@ -51,9 +58,12 @@ function MainLayout() {
     if (marathonData) {
       updateMarathon(marathonData);
 
+      const month = getWeeksArray(marathonData.startDate, marathonData.endDate);
+      const todayPos = getDatePositionInMonthArray(month, new Date());
+
       handleSelectDay({
-        week: 1,
-        weekDay: 0,
+        week: !user.isAdmin && todayPos.week ? todayPos.week : 1,
+        weekDay: !user.isAdmin && todayPos.weekDay ? todayPos.weekDay : 0,
         planningId: marathonData.planning._id,
       });
     }

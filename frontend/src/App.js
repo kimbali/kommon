@@ -71,7 +71,7 @@ function App() {
       const lastProgress = userData?.progresses[userData.progresses.length - 1];
 
       setProgressId(lastProgress._id);
-      setMarathonId(lastProgress.marathon);
+      setMarathonId(lastProgress.marathon._id);
     }
   }, [userData]);
 

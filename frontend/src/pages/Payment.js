@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import MarathonCard from '../components/marathon/MarathonCard';
 import Space from '../components/space/Space';
 import Text from '../components/text/Text';
@@ -20,8 +20,11 @@ import { useSendEmailMutation } from '../slices/emailApiSlice';
 function Payment() {
   const { setMarathonId } = useMarathon();
   const { updateUser } = useUser();
+
   const { state } = useLocation();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const [showEmailLink, setShowEmailLink] = useState(false);
   const [today] = useState(new Date().toISOString());
 
@@ -33,6 +36,12 @@ function Payment() {
     isActive: true,
     startDate: today,
   });
+
+  useEffect(() => {
+    if (!state) {
+      navigate(frontRoutes.register);
+    }
+  }, [state]);
 
   const handleCreateUser = async () => {
     try {
@@ -52,8 +61,11 @@ function Payment() {
 
   const handleSelectMarathon = async marathon => {
     try {
-      // TODO: create user after pay
       const res = await handleCreateUser();
+
+      if (!res) {
+        return;
+      }
 
       const newProgress = await createProgress({
         marathon: marathon._id,

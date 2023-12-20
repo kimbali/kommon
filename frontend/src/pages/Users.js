@@ -47,15 +47,6 @@ function Users() {
         new user
       </Button>
 
-      {showNewUserModal && (
-        <Modal onClose={setshowNewUserModal} isSecondary>
-          <NewUser
-            onCreate={handleCreate}
-            onCancel={() => setshowNewUserModal(false)}
-          />
-        </Modal>
-      )}
-
       <Space medium />
 
       <table>
@@ -87,7 +78,11 @@ function Users() {
                 <td>{ele.isFullRegistered ? 'yes' : ''}</td>
                 <td>{ele.hasPaid ? 'yes' : ''}</td>
                 <td>
-                  <Button onlyIcon iconLeft={faEdit} />
+                  <Button
+                    onlyIcon
+                    iconLeft={faEdit}
+                    onClick={() => setshowNewUserModal(ele)}
+                  />
                 </td>
                 <td>
                   <Button
@@ -100,6 +95,16 @@ function Users() {
             ))}
         </tbody>
       </table>
+
+      {showNewUserModal && (
+        <Modal onClose={setshowNewUserModal} isSecondary>
+          <NewUser
+            onCreate={handleCreate}
+            onCancel={() => setshowNewUserModal(false)}
+            user={showNewUserModal}
+          />
+        </Modal>
+      )}
 
       {showDeleteUserModal && (
         <ConfirmModal

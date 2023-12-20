@@ -6,7 +6,6 @@ const registerValidator = (
     email,
     password,
     name,
-    city,
     address,
     confirmPassword,
     phone,
@@ -69,7 +68,6 @@ export const registerRedirectValidator = user => {
   const {
     email,
     name,
-    city,
     age,
     weight,
     height,
@@ -82,7 +80,7 @@ export const registerRedirectValidator = user => {
     patologies,
   } = user;
 
-  if (!email || !name || !city) {
+  if (!email || !name) {
     return 1;
   }
 

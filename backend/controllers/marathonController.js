@@ -5,11 +5,14 @@ import Marathon from '../models/Marathon.js';
 // @route   GET /api/marathons
 // @access  Public
 export const getMarathons = asyncHandler(async (req, res) => {
-  const startDate = req.query.startDate
+  const today = new Date(req.query?.startDate).setHours(0, 0, 0, 0);
+
+  const dateFilter = req.query?.startDate
     ? {
-        startDate: {
-          $gt: new Date(req.query.startDate).setHours(0, 0, 0, 0),
-        },
+        $or: [
+          { startDate: { $lte: today }, endDate: { $gte: today } },
+          { startDate: { $gt: today } },
+        ],
       }
     : {};
 
@@ -21,9 +24,11 @@ export const getMarathons = asyncHandler(async (req, res) => {
       : {};
 
   const marathons = await Marathon.find({
-    ...startDate,
+    ...dateFilter,
     ...isActive,
-  }).populate('planning', 'name');
+  })
+    .sort({ startDate: 1 })
+    .populate('planning', 'name');
 
   res.json({ marathons });
 });

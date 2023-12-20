@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import dietsEnum from '../../config/enums/dietsEnum';
 import {
   formatDateHyphens,
@@ -26,7 +26,10 @@ function PlanningSelector({
   isFrontoffice,
   defaultDiet,
 }) {
-  const { marathonId, day: dayParams } = useParams();
+  const { marathonId } = useParams();
+  const [searchParams] = useSearchParams();
+  const dateParam = searchParams.get('date');
+
   const { user } = useUser();
   const navigate = useNavigate();
 
@@ -59,7 +62,7 @@ function PlanningSelector({
 
     const stringDate = formatDateHyphens(date);
 
-    if (date && dayParams !== stringDate) {
+    if (date && dateParam !== stringDate) {
       const url = isFrontoffice
         ? `${baseUrl}?${MARATHON_ID}=${marathon._id}&${DATE}=${stringDate}`
         : `${baseUrl}/${marathonId}/${stringDate}`;
@@ -73,7 +76,7 @@ function PlanningSelector({
   useEffect(() => {
     const { startDate, endDate } = marathon;
 
-    if (marathon && !dayParams) {
+    if (marathon && !dateParam) {
       const url = isFrontoffice
         ? `${baseUrl}?${MARATHON_ID}=${
             marathon._id
@@ -98,7 +101,7 @@ function PlanningSelector({
       });
       setWeekOptions(optionsWeeks);
 
-      handleSelectDay(dayParams || month[0][0], month, optionsWeeks);
+      handleSelectDay(dateParam || month[0][0], month, optionsWeeks);
     } else {
       setMonthArray();
       setWeekOptions([]);

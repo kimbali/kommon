@@ -134,16 +134,18 @@ function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
 
         <Space small />
 
-        <Input
-          label='En que zona te encuentras'
-          placeholder='Selecciona ninguna'
-          options={regionOptions}
-          onChange={handleCityChange}
-          selectedOption={selectedCity}
-          isSingleSelect
-          name='city'
-          error={{ invalidFields, message: 'Localizacion field required' }}
-        />
+        {hasGift && (
+          <Input
+            label='En que zona te encuentras'
+            placeholder='Selecciona ninguna'
+            options={regionOptions}
+            onChange={handleCityChange}
+            selectedOption={selectedCity}
+            isSingleSelect
+            name='city'
+            error={{ invalidFields, message: 'Localizacion field required' }}
+          />
+        )}
 
         {!userData && hasGift && (
           <>

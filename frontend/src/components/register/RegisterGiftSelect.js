@@ -77,6 +77,9 @@ function RegisterGiftSelect({
                 giftKey={'CHOCOLATE_ALMOND'}
                 text={'BODY SCRUB CHOCOLATE-ALMOND'}
               />
+            </div>
+
+            <div className='gift-section two'>
               <GiftItem
                 giftSelected={giftSelected}
                 selectGift={setGiftSelected}
@@ -91,9 +94,6 @@ function RegisterGiftSelect({
                 giftKey={'COFFEE'}
                 text={'COFFEE BODY SCRUB'}
               />
-            </div>
-
-            <div className='gift-section two'>
               <GiftItem
                 giftSelected={giftSelected}
                 selectGift={setGiftSelected}
@@ -108,6 +108,9 @@ function RegisterGiftSelect({
                 giftKey={'HOT_COLD'}
                 text={'HOT/COLD CONTRAST BODY WRAP GEL'}
               />
+            </div>
+
+            <div className='gift-section three'>
               <GiftItem
                 giftSelected={giftSelected}
                 selectGift={setGiftSelected}
@@ -138,7 +141,7 @@ function RegisterGiftSelect({
               />
             </div>
 
-            <div className='gift-section three'>
+            <div className='gift-section four'>
               <GiftItem
                 giftSelected={giftSelected}
                 selectGift={setGiftSelected}

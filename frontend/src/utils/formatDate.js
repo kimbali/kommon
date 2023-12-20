@@ -7,7 +7,7 @@ export const formatDate = date => {
     month: 'short',
     year: '2-digit',
   };
-  return new Date(date).toLocaleDateString('gb-GB', options); // mar, 13 nov
+  return new Date(date).toLocaleDateString('gb-GB', options); // mar, 13 nov 23
 };
 
 export const formatDateDayMonth = date => {
@@ -146,14 +146,13 @@ export const getDatePositionInMonthArray = (monthArray, date) => {
     targetDate = new Date(year, month - 1, day);
   }
 
-  let position = { row: -1, column: -1 };
+  let position = { row: null, column: null };
 
   for (let i = 0; i < monthArray.length; i++) {
     const currentArray = monthArray[i];
     const columnIndex = currentArray.findIndex(ele =>
       areDatesEqual(ele, targetDate)
     );
-
     if (columnIndex !== -1) {
       position = {
         week: i + 1,
@@ -165,6 +164,27 @@ export const getDatePositionInMonthArray = (monthArray, date) => {
   }
 
   return position;
+};
+
+export const hasMarathonStarted = startDate => {
+  const today = new Date();
+  const twoDaysBeforeStart = new Date(startDate);
+  twoDaysBeforeStart.setDate(twoDaysBeforeStart.getDate() - 2);
+
+  return today.getTime() >= twoDaysBeforeStart.getTime();
+};
+
+export const hasMarathonFinished = endDate => {
+  const today = new Date();
+
+  return today.getTime() > new Date(endDate).getTime();
+};
+
+export const calculateDaysDifference = (startDate, endDate) => {
+  const timeDifference =
+    new Date(endDate).getTime() - new Date(startDate).getTime();
+
+  return Math.ceil(timeDifference / (1000 * 3600 * 24));
 };
 
 export default formatDate;

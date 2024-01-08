@@ -221,6 +221,23 @@ const updateUser = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc    Delete all no admin users
+// @route   DELETE /api/users
+// @access  Private/admin
+export const deleteAllNoAdminUsers = asyncHandler(async (req, res) => {
+  try {
+    const condition = {
+      $or: [{ admin: false }, { admin: { $exists: false } }],
+    };
+    const result = await User.deleteMany(condition);
+
+    res.json(`${result.deletedCount} documents removed`);
+  } catch (error) {
+    res.status(404);
+    throw new Error(error);
+  }
+});
+
 export {
   authUser,
   registerUser,

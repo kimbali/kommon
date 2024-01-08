@@ -7,11 +7,16 @@ import {
   createProgress,
   updateProgress,
   deleteProgress,
+  deleteAllProgresses,
 } from '../controllers/progressController.js';
 
 const router = express.Router();
 
-router.route('/').get(protect, getProgresses).post(protect, createProgress);
+router
+  .route('/')
+  .get(protect, getProgresses)
+  .post(protect, createProgress)
+  .delete(protect, admin, deleteAllProgresses);
 router
   .route('/:id')
   .get(checkObjectId, protect, getProgressById)

@@ -52,7 +52,7 @@ function RecipeFormDetails({
             return {
               name: ele.ingredient?.name,
               value: `(${
-                ele.quantity.toLocaleString('de-DE') || 0
+                ele.quantity?.toLocaleString('de-DE') || 0
               } ${getMeasureDiminutive(ele.ingredient?.measure)})`,
             };
           })}

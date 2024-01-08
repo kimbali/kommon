@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Space from '../components/space/Space';
-import { Link, useLocation } from 'react-router-dom';
-import frontRoutes from '../config/frontRoutes';
+import { useLocation } from 'react-router-dom';
 import TextedLogo from '../components/header/TextedLogo';
 import { registerRedirectValidator } from '../utils/validators/registerValidator';
 import RegisterFormOne from '../components/register/RegisterFormOne';

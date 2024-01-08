@@ -3,13 +3,19 @@ import bcrypt from 'bcryptjs';
 
 const userSchema = new Schema(
   {
-    isFullRegistered: Boolean,
-    hasPaid: Boolean,
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    password: String,
     isAdmin: {
       type: Boolean,
       required: true,
       default: false,
     },
+    isFullRegistered: Boolean,
+    hasPaid: Boolean,
     progresses: {
       type: [
         {
@@ -20,12 +26,6 @@ const userSchema = new Schema(
       default: [],
     },
     name: String,
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    password: String,
     phone: String,
     city: {
       type: Schema.Types.ObjectId,

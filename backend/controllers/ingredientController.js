@@ -120,3 +120,18 @@ export const deleteIngredient = asyncHandler(async (req, res) => {
     throw new Error('Ingredient not found');
   }
 });
+
+// @desc    Fetch all ingredients
+// @route   DELETE /api/ingredients
+// @access  Private/admin
+export const deleteAllIngredients = asyncHandler(async (req, res) => {
+  try {
+    const condition = {};
+    const result = await Ingredient.deleteMany(condition);
+
+    res.json(`${result.deletedCount} documents removed`);
+  } catch (error) {
+    res.status(404);
+    throw new Error(error);
+  }
+});

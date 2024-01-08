@@ -107,3 +107,18 @@ export const deleteProgress = asyncHandler(async (req, res) => {
     throw new Error('Progress not found');
   }
 });
+
+// @desc    Delete all progresses
+// @route   DELETE /api/progresses
+// @access  Private/admin
+export const deleteAllProgresses = asyncHandler(async (req, res) => {
+  try {
+    const condition = {};
+    const result = await Progress.deleteMany(condition);
+
+    res.json(`${result.deletedCount} documents removed`);
+  } catch (error) {
+    res.status(404);
+    throw new Error(error);
+  }
+});

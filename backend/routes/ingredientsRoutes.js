@@ -3,6 +3,7 @@ import { protect, admin } from '../middleware/authMiddleware.js';
 import checkObjectId from '../middleware/checkObjectId.js';
 import {
   createIngredient,
+  deleteAllIngredients,
   deleteIngredient,
   getIngredientById,
   getIngredients,
@@ -14,7 +15,8 @@ const router = express.Router();
 router
   .route('/')
   .get(protect, getIngredients)
-  .post(protect, admin, createIngredient);
+  .post(protect, admin, createIngredient)
+  .delete(protect, admin, deleteAllIngredients);
 router
   .route('/:id')
   .get(checkObjectId, protect, getIngredientById)

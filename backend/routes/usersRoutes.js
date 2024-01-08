@@ -11,11 +11,16 @@ import {
   deleteUser,
   getUserById,
   updateUser,
+  deleteAllNoAdminUsers,
 } from '../controllers/userController.js';
 
 const router = express.Router();
 
-router.route('/').post(registerUser).get(protect, admin, getUsers);
+router
+  .route('/')
+  .post(registerUser)
+  .get(protect, admin, getUsers)
+  .delete(protect, admin, deleteAllNoAdminUsers);
 router.post('/auth', authUser);
 router.post('/logout', logoutUser);
 router

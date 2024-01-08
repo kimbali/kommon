@@ -7,14 +7,18 @@ import { useNavigate } from 'react-router-dom';
 import frontRoutes from '../../config/frontRoutes';
 import formatDate, {
   calculateDaysDifference,
+  formatDateHyphens,
   hasMarathonFinished,
   hasMarathonStarted,
 } from '../../utils/formatDate';
+import { DATE, MARATHON_ID } from '../../config/constants';
+import { useMarathon } from '../../context/marathonContext';
 
 function RegisterFormFour({ userData }) {
   const navigate = useNavigate();
+  const { setMarathonId } = useMarathon();
 
-  const [{ startDate, endDate }] = useState(
+  const [{ startDate, endDate, _id: marathonId }] = useState(
     userData.progresses[userData.progresses.length - 1].marathon
   );
 
@@ -23,7 +27,16 @@ function RegisterFormFour({ userData }) {
   const daysDifference = calculateDaysDifference(new Date(), endDate);
 
   const handleClick = () => {
-    navigate(frontRoutes.main);
+    setMarathonId(marathonId);
+
+    navigate(
+      `${
+        frontRoutes.main
+      }?${MARATHON_ID}=${marathonId}&${DATE}=${formatDateHyphens(new Date())}`,
+      {
+        replace: true,
+      }
+    );
   };
 
   return (

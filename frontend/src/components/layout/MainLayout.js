@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './layout.scss';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation, useSearchParams } from 'react-router-dom';
 import { useGetMarathonDetailsForClientQuery } from '../../slices/marathonApiSlice';
 import { useGetMonthDayDetailsQuery } from '../../slices/daysApiSlice';
 import { useMarathon } from '../../context/marathonContext';
@@ -19,9 +19,11 @@ import {
   getWeeksArray,
 } from '../../utils/formatDate';
 import { useUser } from '../../context/userContext';
+import { DATE } from '../../config/constants';
 
 function MainLayout() {
   const location = useLocation();
+  const [searchParams] = useSearchParams();
   const { marathonId, setDayDetails, updateMarathon } = useMarathon();
   const { progressId, updateUserProgress } = useProgress();
   const { user } = useUser();
@@ -56,10 +58,11 @@ function MainLayout() {
 
   useEffect(() => {
     if (marathonData) {
+      const urlDate = searchParams.get(DATE);
       updateMarathon(marathonData);
 
       const month = getWeeksArray(marathonData.startDate, marathonData.endDate);
-      const todayPos = getDatePositionInMonthArray(month, new Date());
+      const todayPos = getDatePositionInMonthArray(month, new Date(urlDate));
 
       handleSelectDay({
         week: !user.isAdmin && todayPos.week ? todayPos.week : 1,

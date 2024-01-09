@@ -61,6 +61,71 @@ export const getMarathonClientById = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc    Fetch shopping list
+// @route   GET /api/marathons/shopping-list/:marathonId/:week
+// @access  Protect
+export const getShoppingList = asyncHandler(async (req, res) => {
+  const marathon = await Marathon.findById(req.params.id).populate({
+    path: 'planning',
+    populate: {
+      path: 'month',
+      match: { week: req.params.week },
+      populate: {
+        path: 'meals.recipe',
+        select: 'ingredients',
+        populate: {
+          path: 'ingredients.ingredient',
+          select: 'name supermarket measure',
+        },
+      },
+    },
+  });
+
+  if (marathon) {
+    const ingredientsList = marathon.planning.month
+      .reduce((acc, day) => {
+        const mealsRecipesIngredients = day?.meals.reduce((acc, ele) => {
+          return [...acc, ...ele.recipe?.ingredients];
+        }, []);
+
+        return [...acc, ...mealsRecipesIngredients];
+      }, [])
+      .reduce((acc, ele) => {
+        const exists =
+          acc.findIndex(item => item.ingredientId === ele.ingredient._id) + 1;
+
+        const position = exists - 1;
+
+        const quantity = exists
+          ? acc[position].quantity + ele?.quantity
+          : ele?.quantity;
+
+        const ingredient = {
+          ingredientId: ele.ingredient._id,
+          name: ele.ingredient.name,
+          quantity,
+          supermarket: ele.ingredient.supermarket,
+          measure: ele.ingredient.measure,
+        };
+
+        const arraySet = [...acc];
+
+        if (exists) {
+          arraySet[position] = ingredient;
+        } else {
+          arraySet.push(ingredient);
+        }
+
+        return arraySet;
+      }, []);
+
+    return res.json(ingredientsList);
+  } else {
+    res.status(404);
+    throw new Error('Marathon not found');
+  }
+});
+
 // @desc    Create a marathon
 // @route   POST /api/marathons
 // @access  Private/Admin

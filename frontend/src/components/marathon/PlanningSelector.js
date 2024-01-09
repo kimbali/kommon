@@ -25,6 +25,7 @@ function PlanningSelector({
   baseUrl,
   isFrontoffice,
   defaultDiet,
+  handleShoppingList,
 }) {
   const { marathonId } = useParams();
   const [searchParams] = useSearchParams();
@@ -130,15 +131,21 @@ function PlanningSelector({
         />
 
         {setCurrentDiet && (
-          <Input
-            className='selector-fix-width'
-            placeholder='Select diet'
-            isSingleSelect
-            options={dietsEnum}
-            onChange={({ value }) => setCurrentDiet(value)}
-            name='diet'
-            defaultValue={dietsEnum.find(ele => ele.value === defaultDiet)}
-          />
+          <div className='buttons-container'>
+            <Input
+              className='selector-fix-width'
+              placeholder='Select diet'
+              isSingleSelect
+              options={dietsEnum}
+              onChange={({ value }) => setCurrentDiet(value)}
+              name='diet'
+              defaultValue={dietsEnum.find(ele => ele.value === defaultDiet)}
+            />
+
+            <Button className='shooping-list-cta' onClick={handleShoppingList}>
+              Lista de la compra
+            </Button>
+          </div>
         )}
 
         {setCurrentLevel && (

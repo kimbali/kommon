@@ -13,6 +13,7 @@ const MarathonsSchema = new Schema(
   },
   {
     timestamps: true,
+    strictPopulate: false,
   }
 );
 

@@ -2,7 +2,6 @@ import asyncHandler from '../middleware/asyncHandler.js';
 import Recipe from '../models/Recipe.js';
 
 // @desc    Fetch all recipes
-// @route   GET /api/recipes
 // @route   GET /api/recipes?keyword=pollo
 // @access  Public
 export const getRecipes = asyncHandler(async (req, res) => {

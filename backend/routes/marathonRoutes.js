@@ -7,6 +7,7 @@ import {
   getMarathonById,
   getMarathonClientById,
   getMarathons,
+  getShoppingList,
   updateMarathon,
 } from '../controllers/marathonController.js';
 
@@ -19,5 +20,8 @@ router
   .put(checkObjectId, protect, admin, updateMarathon)
   .delete(checkObjectId, protect, admin, deleteMarathon);
 router.route('/client/:id').get(checkObjectId, protect, getMarathonClientById);
+router
+  .route('/shopping-list/:id/:week')
+  .get(checkObjectId, protect, getShoppingList);
 
 export default router;

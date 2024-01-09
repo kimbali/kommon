@@ -205,3 +205,22 @@
     }
   }
 }
+
+.shooping-list-cta {
+  box-shadow: none;
+  border-bottom: thin dashed $white;
+  padding: 16px 0 2px;
+  height: fit-content;
+  width: fit-content;
+  border-radius: 0;
+
+  .text {
+    font-size: 16px;
+    font-family: $avenirBook;
+    text-transform: lowercase;
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+}

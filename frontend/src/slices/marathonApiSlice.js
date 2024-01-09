@@ -48,6 +48,12 @@ export const marathonsApiSlice = apiSlice.injectEndpoints({
       }),
       keepUnusedDataFor: 5,
     }),
+    getShoppingList: builder.query({
+      query: ({ marathonId, week }) => ({
+        url: `${MARATHON_URL}/shopping-list/${marathonId}/${week}`,
+      }),
+      keepUnusedDataFor: 5,
+    }),
   }),
 });
 
@@ -58,4 +64,5 @@ export const {
   useUpdateMarathonMutation,
   useDeleteMarathonMutation,
   useGetMarathonDetailsForClientQuery,
+  useGetShoppingListQuery,
 } = marathonsApiSlice;

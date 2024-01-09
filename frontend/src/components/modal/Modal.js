@@ -7,7 +7,7 @@ import { scrollToTop } from '../../utils/layoutHelpers';
 function Modal({
   onClose,
   children,
-  scroll = false,
+  scroll = true,
   className = '',
   isSecondary = false,
   fullWidth = false,

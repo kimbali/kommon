@@ -48,7 +48,7 @@ function RecipeDetails({ recipe }) {
   const deleteHandler = async () => {
     try {
       await deleteRecipe(id);
-      toast.success('Recipe deleted');
+      toast.success(t('deleted'));
       navigate(frontRoutes.dietsConfig);
     } catch (err) {
       toast.error(err?.data?.message || err.error);

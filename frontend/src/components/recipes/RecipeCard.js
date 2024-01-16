@@ -25,7 +25,7 @@ function RecipeCard({ recipe, meal = '', onClick }) {
     try {
       await refetch(recipe?.image?.url);
     } catch (err) {
-      toast.error('Error fetchin image');
+      toast.error(t('errorImage'));
     }
   };
 

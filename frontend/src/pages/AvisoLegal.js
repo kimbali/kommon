@@ -25,7 +25,7 @@ function AvisoLegal() {
     try {
       await refetchLegals();
     } catch (err) {
-      toast.error('Error fetching legal advise');
+      toast.error(t('errorLegal'));
     }
   };
 

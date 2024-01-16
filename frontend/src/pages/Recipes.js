@@ -33,7 +33,7 @@ function Recipes() {
     try {
       await refetchRecipes();
     } catch (err) {
-      toast.error('Refresh page');
+      toast.error(t('refresh'));
     }
   };
 

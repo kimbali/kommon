@@ -38,7 +38,7 @@ function NewUser({ onCreate, onCancel, user }) {
     try {
       await register({ ...formData, createdByAdmin: true }).unwrap();
 
-      toast.success('Usuario creado con exito');
+      toast.success(t('userCreated'));
     } catch (err) {
       toast.error(err.message);
     }

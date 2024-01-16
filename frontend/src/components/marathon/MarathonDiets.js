@@ -82,7 +82,7 @@ function MarathonDiet({ currentDiet, mealsData, dayId, onSave }) {
         dayId,
       });
       setShowDietModal(false);
-      toast.success('Recipes saved');
+      toast.success(t('saved'));
 
       onSave();
     } catch (err) {

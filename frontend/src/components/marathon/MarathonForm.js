@@ -87,7 +87,7 @@ function MarathonForm({ onSucces, onCancel, marathon }) {
 
   const handleDeleteMarathon = async () => {
     await deleteMarathon(formData._id);
-    toast.success('Marathon deleted');
+    toast.success(t('marathonDeleted'));
     setShowDeleteModal(false);
     onSucces();
   };

@@ -34,10 +34,10 @@ function RegionForm({ data, onSuccess }) {
     try {
       if (data) {
         await updateRegion({ ...formData }).unwrap();
-        toast.success('Updated');
+        toast.success(t('updated'));
       } else {
         await createRegion({ ...formData }).unwrap();
-        toast.success('Created');
+        toast.success(t('created'));
       }
 
       onSuccess();

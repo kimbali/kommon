@@ -70,12 +70,12 @@ function MarathonTasks({ tasksData, dayId, onSave }) {
         dayId,
       });
       setShowEditModal(false);
-      toast.success('Tasks updated');
+      toast.success(t('updated'));
 
       onSave();
     } catch (err) {
       console.error(err.message);
-      toast.error('Error updating tasks');
+      toast.error(t('errorUpdatingTask'));
     }
   };
 

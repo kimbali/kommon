@@ -13,7 +13,7 @@ function DeleteTaskForm({ task, onClose }) {
   const handleDeleteTask = async () => {
     try {
       await deleteTask(task._id);
-      toast.success('Deleted');
+      toast.success(t('deleted'));
       onClose();
     } catch (err) {
       toast.error(err?.data?.message || err.error);

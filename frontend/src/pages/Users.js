@@ -31,7 +31,7 @@ function Users() {
       await deleteUser(showDeleteUserModal._id);
 
       setshowDeleteUserModal(false);
-      toast.success('Usuario eliminado');
+      toast.success(t('deleted'));
 
       refetchUsers();
     } catch (err) {

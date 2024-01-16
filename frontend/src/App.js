@@ -50,8 +50,10 @@ import UserProfile from './pages/UserProfile';
 import UserMore from './pages/UserMore';
 import { useProgress } from './context/progressContext';
 import Configuration from './pages/Configuration';
+import { useTranslation } from 'react-i18next';
 
 function App() {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
   const { updateUser } = useUser();
@@ -79,7 +81,7 @@ function App() {
     try {
       await createLegalDoc();
     } catch (err) {
-      toast.error('No terms and conditions');
+      toast.error(t('noTermsAndCon'));
     }
   };
 

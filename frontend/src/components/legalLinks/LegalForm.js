@@ -33,7 +33,7 @@ function LegalForm({ onSuccess, legalKey, label }) {
 
     try {
       await updateLegals(formData);
-      toast.success('Guardado');
+      toast.success(t('saved'));
       onSuccess();
     } catch (err) {
       console.error(err.message);

@@ -46,7 +46,7 @@ function MeditationDetails() {
   const deleteHandler = async () => {
     try {
       await deleteMeditation(id);
-      toast.success('Meditation deleted');
+      toast.success(t('deleted'));
       navigate(frontRoutes.meditationsConfig);
     } catch (err) {
       toast.error(err?.data?.message || err.error);

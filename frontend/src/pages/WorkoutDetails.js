@@ -39,7 +39,7 @@ function WorkoutDetails() {
   const deleteHandler = async () => {
     try {
       await deleteWorkout(id);
-      toast.success('Workout deleted');
+      toast.success(t('deleted'));
       navigate(frontRoutes.workoutsConfig);
     } catch (err) {
       toast.error(err?.data?.message || err.error);

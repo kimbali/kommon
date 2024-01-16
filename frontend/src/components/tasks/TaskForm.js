@@ -24,10 +24,10 @@ function TaskForm({ data, onSuccess }) {
     try {
       if (data) {
         await updateTask(task).unwrap();
-        toast.success('Updated');
+        toast.success(t('updated'));
       } else {
         await createTask(task).unwrap();
-        toast.success('Created');
+        toast.success(t('created'));
       }
 
       onSuccess();

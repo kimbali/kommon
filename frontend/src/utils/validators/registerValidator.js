@@ -1,4 +1,5 @@
 import toast from 'react-hot-toast';
+import { translate } from '../../traducciones/i18n';
 
 const registerValidator = (
   formNumber,
@@ -54,7 +55,7 @@ const registerValidator = (
   }
 
   if (errors.length > 0) {
-    toast.error('Rellena los espacios marcados');
+    toast.error(translate('fillEmpty'));
   }
 
   return errors;

@@ -17,4 +17,8 @@ i18n.use(initReactI18next).init({
   },
 });
 
+export function translate(key) {
+  return i18n.t(key);
+}
+
 export default i18n;

@@ -24,7 +24,7 @@ function TermsAndConditions() {
     try {
       await refetchLegals();
     } catch (err) {
-      toast.error('Error fetching terms');
+      toast.error(t('errorTerms'));
     }
   };
 

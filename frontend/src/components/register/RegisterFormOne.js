@@ -81,7 +81,7 @@ function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
       const { password, confirmPassword } = formData;
 
       if (password !== confirmPassword) {
-        toast.error('Passwords do not match');
+        toast.error(t('noPasswordMatch'));
         return;
       }
 

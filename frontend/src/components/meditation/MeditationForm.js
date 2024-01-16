@@ -26,7 +26,7 @@ function MeditationForm({ data, onSuccess, isEdit }) {
     try {
       await createMeditation(formData).unwrap();
       onSuccess();
-      toast.success('Created');
+      toast.success(t('created'));
     } catch (err) {
       console.error(err);
       toast.error(err?.data?.message || err.error);
@@ -39,7 +39,7 @@ function MeditationForm({ data, onSuccess, isEdit }) {
     try {
       await updateMeditation(formData).unwrap();
       onSuccess();
-      toast.success('Updated');
+      toast.success(t('updated'));
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }

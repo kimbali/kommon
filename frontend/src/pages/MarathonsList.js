@@ -37,11 +37,11 @@ function MarathonsList() {
     try {
       await deleteMarathon(showDeleteModal._id);
       setShowDeleteModal(false);
-      toast.success('Marathon deleted');
+      toast.success(t('marathonDeleted'));
 
       await refetchMarathons();
     } catch (err) {
-      toast.error('Error');
+      toast.error(t('error'));
     }
   };
 
@@ -79,13 +79,13 @@ function MarathonsList() {
       }).unwrap();
 
       if (res) {
-        toast.success('Marathon activated');
+        toast.success(t('activated'));
         await refetchMarathons();
       } else {
-        toast.error('Error');
+        toast.error(t('error'));
       }
     } catch (err) {
-      toast.error('Error');
+      toast.error(t('error'));
     }
 
     setShowActivateModal(false);

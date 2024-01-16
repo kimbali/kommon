@@ -52,7 +52,7 @@ function RegionsConfig() {
   const handleDelete = async () => {
     try {
       await deleteTask(showDeleteModal._id);
-      toast.success('Deleted');
+      toast.success(t('deleted'));
 
       setShowDeleteModal(false);
       refetch();

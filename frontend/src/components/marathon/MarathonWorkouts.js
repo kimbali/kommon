@@ -74,7 +74,7 @@ function MarathonWorkouts({ workoutsData, dayId, onSave }) {
         dayId,
       });
       setShowWorkoutModal(false);
-      toast.success('Workouts updated');
+      toast.success(t('updated'));
 
       onSave();
     } catch (err) {

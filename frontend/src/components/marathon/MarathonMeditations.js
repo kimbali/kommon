@@ -74,7 +74,7 @@ function MarathonMeditations({ meditationData, dayId, onSave }) {
         dayId,
       });
       setShowModal(false);
-      toast.success('Meditations updated');
+      toast.success(t('updated'));
 
       onSave();
     } catch (err) {

@@ -27,8 +27,12 @@ export const calculateUserKcal = ({
   return Math.round(totalKcalPerWeek / 50) * 50;
 };
 
-export const KcalReglaDeTres = (total, user) => {
+export const KcalReglaDeTres = (total, user, { returnNumber } = {}) => {
   const computation = (total * calculateUserKcal(user)) / BASE_KCAL;
+
+  if (returnNumber) {
+    return computation;
+  }
 
   return computation.toLocaleString('de-DE', { maximumFractionDigits: 2 });
 };
@@ -42,7 +46,7 @@ const calculateEnergy = (type = '', ingredients = [], user) => {
     return acc + ele.ingredient[type] * (ele.quantity || 0);
   }, 0);
 
-  total = parseInt(KcalReglaDeTres(total, user)) / 100;
+  total = KcalReglaDeTres(total, user, { returnNumber: true }) / 100;
 
   return total.toLocaleString('de-DE', { maximumFractionDigits: 2 });
 };

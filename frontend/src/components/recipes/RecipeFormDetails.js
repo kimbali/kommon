@@ -9,6 +9,7 @@ import mealsEnum from '../../config/enums/mealsEnum';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useGetImageUrlQuery } from '../../slices/imagesApiSlice';
 import calculateEnergy from '../../utils/calculateEnergy';
+import { useTranslation } from 'react-i18next';
 
 function RecipeFormDetails({
   data: recipeDetails,
@@ -16,6 +17,7 @@ function RecipeFormDetails({
   handleCreateRecipe,
   isEdit,
 }) {
+  const { t } = useTranslation();
   const { title, steps, ingredients, minutes, image, meals } = recipeDetails;
 
   const { data: imageS3 } = useGetImageUrlQuery(

@@ -12,8 +12,10 @@ import LoadingError from '../components/loadingError/LoadingError';
 import Modal from '../components/modal/Modal';
 import TaskForm from '../components/tasks/TaskForm';
 import DeleteTaskForm from '../components/tasks/DeleteTaskForm';
+import { useTranslation } from 'react-i18next';
 
 function TasksConfig() {
+  const { t } = useTranslation();
   const [searchValue, setSearchValue] = useState('');
   const [keywordValue, setKeywordValue] = useState('');
   const [showFormModal, setShowFormModal] = useState(false);

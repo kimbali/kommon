@@ -8,6 +8,7 @@ import { faEye, faEyeSlash, faPlus } from '@fortawesome/free-solid-svg-icons';
 import Text from '../text/Text';
 import Spinner from '../spinner/Spinner';
 import Button from '../button/Button';
+import { useTranslation } from 'react-i18next';
 
 function Input({
   className = '',
@@ -36,6 +37,7 @@ function Input({
   labelLink = '',
   disabled = false,
 }) {
+  const { t } = useTranslation();
   const hasError = error?.invalidFields?.includes(name);
   const [uploadRecipeImage, { isLoading }] = useUploadRecipeImageMutation();
   const [fileName, setFileName] = useState(value?.originalname);

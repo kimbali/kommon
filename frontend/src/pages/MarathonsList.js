@@ -13,8 +13,10 @@ import ConfirmModal from '../components/modal/ConfirmModal';
 import toast from 'react-hot-toast';
 import frontRoutes from '../config/frontRoutes';
 import { MARATHON_ID } from '../config/constants';
+import { useTranslation } from 'react-i18next';
 
 function MarathonsList() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const { data: marathonsData, refetch: refetchMarathons } =

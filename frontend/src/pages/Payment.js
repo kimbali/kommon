@@ -16,8 +16,10 @@ import {
 import { useDispatch } from 'react-redux';
 import { setCredentials } from '../slices/authSlice';
 import { useSendEmailMutation } from '../slices/emailApiSlice';
+import { useTranslation } from 'react-i18next';
 
 function Payment() {
+  const { t } = useTranslation();
   const { setMarathonId } = useMarathon();
   const { updateUser } = useUser();
 

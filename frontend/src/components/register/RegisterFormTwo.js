@@ -6,8 +6,10 @@ import registerValidator from '../../utils/validators/registerValidator';
 import { useProfileMutation } from '../../slices/usersApiSlices';
 import toast from 'react-hot-toast';
 import Button from '../button/Button';
+import { useTranslation } from 'react-i18next';
 
 function RegisterFormTwo({ onSuccess, userData }) {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({ ...userData });
   const [invalidFields, setInvalidFields] = useState('');
 

@@ -10,8 +10,10 @@ import LoadingError from '../components/loadingError/LoadingError';
 import { useGetMeditationsQuery } from '../slices/meditationsApiSlice';
 import MeditationCard from '../components/meditation/MeditationCard';
 import MeditationForm from '../components/meditation/MeditationForm';
+import { useTranslation } from 'react-i18next';
 
 function MeditationsConfig() {
+  const { t } = useTranslation();
   const [searchValue, setSearchValue] = useState('');
   const [keywordValue, setKeywordValue] = useState('');
   const [showFormModal, setShowFormModal] = useState(false);

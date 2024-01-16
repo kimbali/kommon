@@ -16,8 +16,10 @@ import ConfirmModal from '../modal/ConfirmModal';
 import toast from 'react-hot-toast';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { addOneMonth } from '../../utils/formatDate';
+import { useTranslation } from 'react-i18next';
 
 function MarathonForm({ onSucces, onCancel, marathon }) {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState(marathon);
   const [error, setError] = useState('');
   const [showDeleteModal, setShowDeleteModal] = useState(false);

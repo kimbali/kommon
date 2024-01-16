@@ -2,8 +2,11 @@ import React from 'react';
 import Text from '../text/Text';
 import { Link } from 'react-router-dom';
 import frontRoutes from '../../config/frontRoutes';
+import { useTranslation } from 'react-i18next';
 
 function Footer() {
+  const { t } = useTranslation();
+
   return (
     <footer>
       <Text className='copyright'>

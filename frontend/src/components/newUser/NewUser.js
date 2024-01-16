@@ -6,8 +6,10 @@ import Input from '../input/Input';
 import { useRegisterMutation } from '../../slices/usersApiSlices';
 import yesNoEnum from '../../config/enums/yesNoEnum';
 import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
 function NewUser({ onCreate, onCancel, user }) {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({ ...user });
   const [invalidFields, setInvalidFields] = useState([]);
 

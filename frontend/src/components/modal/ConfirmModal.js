@@ -3,6 +3,7 @@ import Modal from './Modal';
 import Text from '../text/Text';
 import Button from '../button/Button';
 import Space from '../space/Space';
+import { useTranslation } from 'react-i18next';
 
 function ConfirmModal({
   onConfirm,
@@ -12,6 +13,8 @@ function ConfirmModal({
   description = '',
   confirmLabel = 'Confirm',
 }) {
+  const { t } = useTranslation();
+
   return (
     <Modal onClose={onClose} isSecondary>
       <Text isTitle>{title}</Text>

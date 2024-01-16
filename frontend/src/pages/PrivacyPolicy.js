@@ -9,8 +9,10 @@ import { useGetLegalsQuery } from '../slices/legalsApiSlice';
 import Space from '../components/space/Space';
 import LegalForm from '../components/legalLinks/LegalForm';
 import { useUser } from '../context/userContext';
+import { useTranslation } from 'react-i18next';
 
 function PrivacyPolicy() {
+  const { t } = useTranslation();
   const { user } = useUser();
   const [showEditForm, setShowEditForm] = useState(false);
 

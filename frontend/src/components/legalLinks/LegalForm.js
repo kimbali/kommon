@@ -9,8 +9,10 @@ import Button from '../button/Button';
 import Text from '../text/Text';
 import Space from '../space/Space';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 function LegalForm({ onSuccess, legalKey, label }) {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({});
 
   const { data: legalsData } = useGetLegalsQuery({});

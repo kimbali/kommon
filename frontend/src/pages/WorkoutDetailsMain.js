@@ -7,8 +7,10 @@ import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { useParams } from 'react-router-dom';
 import { useMarathon } from '../context/marathonContext';
+import { useTranslation } from 'react-i18next';
 
 function WorkoutDetailsMain() {
+  const { t } = useTranslation();
   const { id } = useParams();
   const { dayDetails } = useMarathon();
   const [workout, setWorkout] = useState();

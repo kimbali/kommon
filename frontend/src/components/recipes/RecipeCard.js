@@ -7,8 +7,10 @@ import Spinner from '../spinner/Spinner';
 import toast from 'react-hot-toast';
 import calculateEnergy from '../../utils/calculateEnergy';
 import { useUser } from '../../context/userContext';
+import { useTranslation } from 'react-i18next';
 
 function RecipeCard({ recipe, meal = '', onClick }) {
+  const { t } = useTranslation();
   const { user } = useUser();
 
   const {

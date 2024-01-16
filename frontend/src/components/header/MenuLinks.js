@@ -4,8 +4,10 @@ import frontRoutes from '../../config/frontRoutes';
 import LogoutButton from '../button/LogoutButton';
 import { useUser } from '../../context/userContext';
 import Button from '../button/Button';
+import { useTranslation } from 'react-i18next';
 
 function MenuLinks() {
+  const { t } = useTranslation();
   const { user } = useUser();
   const navigate = useNavigate();
 

@@ -2,8 +2,11 @@ import React from 'react';
 import Text from '../text/Text';
 import { useGetImageUrlQuery } from '../../slices/imagesApiSlice';
 import PlayButton from '../workouts/PlayButton';
+import { useTranslation } from 'react-i18next';
 
 function MeditationCard({ data, onClick }) {
+  const { t } = useTranslation();
+
   const { data: imageS3 } = useGetImageUrlQuery(
     {
       url: data?.image?.url,

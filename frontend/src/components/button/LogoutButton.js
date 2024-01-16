@@ -7,8 +7,10 @@ import Button from './Button';
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import frontRoutes from '../../config/frontRoutes';
 import { useUser } from '../../context/userContext';
+import { useTranslation } from 'react-i18next';
 
 function LogoutButton() {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { updateUser } = useUser();
@@ -34,7 +36,7 @@ function LogoutButton() {
       onClick={handleLogout}
       iconRight={faArrowRightFromBracket}
     >
-      Log out
+      {t('logOut')}
     </Button>
   );
 }

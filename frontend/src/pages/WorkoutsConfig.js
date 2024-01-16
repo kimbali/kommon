@@ -10,8 +10,10 @@ import WorkoutForm from '../components/workouts/WorkoutForm';
 import frontRoutes from '../config/frontRoutes';
 import LoadingError from '../components/loadingError/LoadingError';
 import WorkoutCard from '../components/workouts/WorkoutCard';
+import { useTranslation } from 'react-i18next';
 
 function Workouts() {
+  const { t } = useTranslation();
   const [searchValue, setSearchValue] = useState('');
   const [keywordValue, setKeywordValue] = useState('');
   const [showFormModal, setShowFormModal] = useState(false);

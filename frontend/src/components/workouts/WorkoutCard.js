@@ -3,8 +3,11 @@ import Text from '../text/Text';
 import { getLevelLabel } from '../../config/enums/levelsEnum';
 import PlayButton from './PlayButton';
 import { useGetImageUrlQuery } from '../../slices/imagesApiSlice';
+import { useTranslation } from 'react-i18next';
 
 function WorkoutCard({ data, onClick }) {
+  const { t } = useTranslation();
+
   const { data: imageS3 } = useGetImageUrlQuery(
     {
       url: data?.image?.url,

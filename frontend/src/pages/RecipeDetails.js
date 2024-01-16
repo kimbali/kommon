@@ -18,8 +18,10 @@ import RecipeForm from '../components/recipes/RecipeForm';
 import { getMeasureDiminutive } from '../config/enums/measuresEnum';
 import calculateEnergy, { KcalReglaDeTres } from '../utils/calculateEnergy';
 import { useUser } from '../context/userContext';
+import { useTranslation } from 'react-i18next';
 
 function RecipeDetails({ recipe }) {
+  const { t } = useTranslation();
   const { id } = useParams();
   const { user } = useUser();
   const navigate = useNavigate();
@@ -73,7 +75,7 @@ function RecipeDetails({ recipe }) {
             iconLeft={faEdit}
             isPrimary
           >
-            Edit recipe
+            {t('editRecipe')}
           </Button>
 
           <Button
@@ -81,15 +83,15 @@ function RecipeDetails({ recipe }) {
             iconLeft={faTrash}
             isSecondary
           >
-            Delete recipe
+            {t('deleteRecipe')}
           </Button>
 
           {showDeleteModal && (
             <ConfirmModal
               onConfirm={deleteHandler}
               onClose={setShowDeleteModal}
-              title='Delete recipe'
-              text={`Are you sure you whant to delete: ${title}`}
+              title={t('deleteRecipe')}
+              text={`${t('confirmDeleteRecipe')}: ${title}`}
             />
           )}
         </div>
@@ -112,29 +114,29 @@ function RecipeDetails({ recipe }) {
 
           <div className='propiedades'>
             <div className='propiedad'>
-              <Text isSubtitle>Kcal</Text>
+              <Text isSubtitle>{t('kcal')}</Text>
               <Text>{calculateEnergy('calories', ingredients, user)}</Text>
             </div>
 
             <div className='propiedad'>
-              <Text isSubtitle>Prot</Text>
+              <Text isSubtitle>{t('prot')}</Text>
               <Text>{calculateEnergy('proteins', ingredients, user)}</Text>
             </div>
 
             <div className='propiedad'>
-              <Text isSubtitle>Fats</Text>
+              <Text isSubtitle>{t('fats')}</Text>
               <Text>{calculateEnergy('fats', ingredients, user)}</Text>
             </div>
 
             <div className='propiedad'>
-              <Text isSubtitle>Carbh</Text>
+              <Text isSubtitle>{t('carbh')}</Text>
               <Text>{calculateEnergy('carbohydrates', ingredients, user)}</Text>
             </div>
           </div>
         </div>
 
         <div className='recipe-details-content  background-2'>
-          <Text isSectionTitle>Ingredients</Text>
+          <Text isSectionTitle>{t('ingredients')}</Text>
 
           <Space small />
 
@@ -155,7 +157,9 @@ function RecipeDetails({ recipe }) {
           <Space medium />
 
           <Text className='steps-title' isSectionTitle>
-            <span>Instrucción ({minutes} MIN)</span>
+            <span>
+              {t('instruccion')} ({minutes} {t('min')})
+            </span>
           </Text>
 
           <Space small />

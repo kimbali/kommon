@@ -3,8 +3,10 @@ import Text from '../text/Text';
 import Space from '../space/Space';
 import { getSupermarketLabel } from '../../config/enums/supermarketEnum';
 import { getMeasureDiminutive } from '../../config/enums/measuresEnum';
+import { useTranslation } from 'react-i18next';
 
 function ShoppingList({ shoppingListData = [] }) {
+  const { t } = useTranslation();
   const [supermarketIngredients, setSupermarketIngredients] = useState([]);
 
   useEffect(() => {

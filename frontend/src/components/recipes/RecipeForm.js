@@ -15,8 +15,10 @@ import {
 import IngredientForm from '../ingredients/IngredientForm';
 import RecipeFormDetails from './RecipeFormDetails';
 import sortBy from '../../utils/sortBy';
+import { useTranslation } from 'react-i18next';
 
 function RecipeForm({ recipe, onCreate, isEdit }) {
+  const { t } = useTranslation();
   const [showCreateIngredient, setShowCreateIngredient] = useState(false);
   const [ingredientsOptions, setIngredientsOptions] = useState([]);
   const [formData, setFormData] = useState(
@@ -119,7 +121,7 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
     try {
       await createRecipe(formData).unwrap();
       onCreate();
-      toast.success('Created');
+      toast.success(t('created'));
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }
@@ -133,7 +135,7 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
     try {
       await updateRecipe(formData).unwrap();
       onCreate();
-      toast.success('Updated');
+      toast.success(t('updated'));
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }

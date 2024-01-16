@@ -5,8 +5,10 @@ import Input from '../input/Input';
 import Button from '../button/Button';
 import { useUpdateProgressMutation } from '../../slices/progressApiSlice';
 import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
 function BodyParametersForm() {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState();
   const [updateProgress] = useUpdateProgressMutation();
 

@@ -17,8 +17,10 @@ import Space from '../space/Space';
 import ConfirmModal from '../modal/ConfirmModal';
 import toast from 'react-hot-toast';
 import Text from '../text/Text';
+import { useTranslation } from 'react-i18next';
 
 function RegionsConfig() {
+  const { t } = useTranslation();
   const [searchValue, setSearchValue] = useState('');
   const [keywordValue, setKeywordValue] = useState('');
   const [showFormModal, setShowFormModal] = useState(false);

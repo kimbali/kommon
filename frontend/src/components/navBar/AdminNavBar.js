@@ -13,8 +13,11 @@ import {
 import './navBar.scss';
 import frontRoutes from '../../config/frontRoutes';
 import NavLink from './NavLink';
+import { useTranslation } from 'react-i18next';
 
 function AdminNavBar() {
+  const { t } = useTranslation();
+
   return (
     <nav>
       <ul className='nav-links'>

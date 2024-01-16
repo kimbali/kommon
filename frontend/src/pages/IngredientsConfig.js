@@ -21,8 +21,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getAllergyLabel } from '../config/enums/allergiesEnum';
 import sortBy from '../utils/sortBy';
 import { getSupermarketLabel } from '../config/enums/supermarketEnum';
+import { useTranslation } from 'react-i18next';
 
 function IngredientsConfig() {
+  const { t } = useTranslation();
   const [searchValue, setSearchValue] = useState('');
   const [keywordValue, setKeywordValue] = useState('');
   const [showFormModal, setShowFormModal] = useState(false);

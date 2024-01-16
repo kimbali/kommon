@@ -12,8 +12,10 @@ import problemsEnum from '../../config/enums/problemsEnum';
 import patologyEnum from '../../config/enums/patologiesEnum';
 import allergiesEnum from '../../config/enums/allergiesEnum';
 import yesNoEnum from '../../config/enums/yesNoEnum';
+import { useTranslation } from 'react-i18next';
 
 function RegisterFormThree({ onSuccess, userData }) {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({ ...userData });
   const [invalidFields, setInvalidFields] = useState('');
 

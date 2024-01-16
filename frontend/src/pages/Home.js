@@ -31,8 +31,10 @@ import PLATAFORMA from '../styles/img/platform_img2.png';
 import MENU from '../styles/img/menu.png';
 import frontRoutes from '../config/frontRoutes';
 import Button from '../components/button/Button';
+import { useTranslation } from 'react-i18next';
 
 function Home() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   return (

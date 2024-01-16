@@ -11,8 +11,10 @@ import { useUser } from '../context/userContext';
 import { useGetShoppingListQuery } from '../slices/marathonApiSlice';
 import Modal from '../components/modal/Modal';
 import ShoppingList from '../components/recipes/ShoppingList';
+import { useTranslation } from 'react-i18next';
 
 function Diet({ setCurrentDay }) {
+  const { t } = useTranslation();
   const [handleSelectDay, isError] = useOutletContext();
   const { user } = useUser();
   const navigate = useNavigate();

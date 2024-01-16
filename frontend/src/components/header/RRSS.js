@@ -2,8 +2,11 @@ import React from 'react';
 import Text from '../text/Text';
 import TELEGRAM from '../../styles/img/telegram.png';
 import INSTAGRAM from '../../styles/img/instagram.png';
+import { useTranslation } from 'react-i18next';
 
 function RRSS() {
+  const { t } = useTranslation();
+
   return (
     <div className='rrss'>
       <a href=''>

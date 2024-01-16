@@ -8,8 +8,10 @@ import toast from 'react-hot-toast';
 import Button from '../button/Button';
 import frontRoutes from '../../config/frontRoutes';
 import { useGetRegionsQuery } from '../../slices/regionsApiSlice';
+import { useTranslation } from 'react-i18next';
 
 function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ ...userData });
   const [selectedCity, setSelectedCity] = useState();

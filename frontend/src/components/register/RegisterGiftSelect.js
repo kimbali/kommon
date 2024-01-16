@@ -18,6 +18,7 @@ import LYMPHATIC_DRAINAGE from '../../styles/img/Lymphatic_Drainage_small.png';
 import GiftItem from './GiftItem';
 import Space from '../space/Space';
 import { Carousel } from 'react-responsive-carousel';
+import { useTranslation } from 'react-i18next';
 
 function RegisterGiftSelect({
   setGiftSelected,
@@ -25,6 +26,8 @@ function RegisterGiftSelect({
   hasGift,
   setHasGift,
 }) {
+  const { t } = useTranslation();
+
   return (
     <div className={`gift-selector ${hasGift ? 'show-gifts' : ''}`}>
       <div className={`buttons ${!hasGift ? 'without-gift' : ''}`}>

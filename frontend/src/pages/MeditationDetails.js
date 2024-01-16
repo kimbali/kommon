@@ -18,8 +18,10 @@ import {
   useGetMeditationDetailsQuery,
 } from '../slices/meditationsApiSlice';
 import { useGetImageUrlQuery } from '../slices/imagesApiSlice';
+import { useTranslation } from 'react-i18next';
 
 function MeditationDetails() {
+  const { t } = useTranslation();
   const { id } = useParams();
   const navigate = useNavigate();
   const [showDeleteModal, setShowDeleteModal] = useState(false);

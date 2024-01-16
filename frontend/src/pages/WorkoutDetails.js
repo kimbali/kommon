@@ -18,8 +18,10 @@ import { getLevelLabel } from '../config/enums/levelsEnum';
 import VideoPlayer from '../components/video/VideoPlayer';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { useTranslation } from 'react-i18next';
 
 function WorkoutDetails() {
+  const { t } = useTranslation();
   const { id } = useParams();
   const navigate = useNavigate();
   const [showDeleteModal, setShowDeleteModal] = useState(false);

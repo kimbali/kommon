@@ -12,8 +12,10 @@ import Button from '../components/button/Button';
 import RegisterGiftSelect from '../components/register/RegisterGiftSelect';
 import { useGetUserProfileQuery } from '../slices/usersApiSlices';
 import { scrollToTop } from '../utils/layoutHelpers';
+import { useTranslation } from 'react-i18next';
 
 function Register() {
+  const { t } = useTranslation();
   const { state } = useLocation();
   const [currentForm, setcurrentForm] = useState();
   const [giftSelected, setGiftSelected] = useState();

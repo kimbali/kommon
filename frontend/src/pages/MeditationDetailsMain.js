@@ -7,8 +7,10 @@ import remarkGfm from 'remark-gfm';
 import { useParams } from 'react-router-dom';
 import { useMarathon } from '../context/marathonContext';
 import { useGetImageUrlQuery } from '../slices/imagesApiSlice';
+import { useTranslation } from 'react-i18next';
 
 function MeditationDetailsMain() {
+  const { t } = useTranslation();
   const { id } = useParams();
   const { dayDetails } = useMarathon();
   const [meditation, setMeditation] = useState();

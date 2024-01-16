@@ -12,8 +12,10 @@ import frontRoutes from '../config/frontRoutes';
 import loginValidator from '../utils/validators/loginValidator';
 import TextedLogo from '../components/header/TextedLogo';
 import { useUser } from '../context/userContext';
+import { useTranslation } from 'react-i18next';
 
 const Login = () => {
+  const { t } = useTranslation();
   const { updateUser } = useUser();
   const [formData, setFormData] = useState({
     email: JSON.parse(localStorage.getItem('userInfo'))?.email || '',

@@ -10,8 +10,10 @@ import {
 } from '../slices/usersApiSlices';
 import toast from 'react-hot-toast';
 import ConfirmModal from '../components/modal/ConfirmModal';
+import { useTranslation } from 'react-i18next';
 
 function Users() {
+  const { t } = useTranslation();
   const [showNewUserModal, setshowNewUserModal] = useState(false);
   const [showDeleteUserModal, setshowDeleteUserModal] = useState(false);
 

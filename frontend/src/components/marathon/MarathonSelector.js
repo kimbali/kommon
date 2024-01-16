@@ -16,8 +16,10 @@ import {
 import frontRoutes from '../../config/frontRoutes';
 import { useMarathon } from '../../context/marathonContext';
 import { MARATHON_ID } from '../../config/constants';
+import { useTranslation } from 'react-i18next';
 
 function MarathonSelector({ setMarathon }) {
+  const { t } = useTranslation();
   const { marathonId } = useParams();
   const navigate = useNavigate();
   const { setMarathonId } = useMarathon();

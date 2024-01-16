@@ -8,8 +8,10 @@ import {
   useUpdateTaskMutation,
 } from '../../slices/tasksApiSlice';
 import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
 function TaskForm({ data, onSuccess }) {
+  const { t } = useTranslation();
   const [taskValue, setTaskValue] = useState(data?.title);
   const [createTask] = useCreateTaskMutation();
   const [updateTask] = useUpdateTaskMutation();

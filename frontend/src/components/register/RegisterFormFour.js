@@ -13,8 +13,10 @@ import formatDate, {
 } from '../../utils/formatDate';
 import { DATE, MARATHON_ID } from '../../config/constants';
 import { useMarathon } from '../../context/marathonContext';
+import { useTranslation } from 'react-i18next';
 
 function RegisterFormFour({ userData }) {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { setMarathonId } = useMarathon();
 

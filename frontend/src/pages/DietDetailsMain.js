@@ -8,8 +8,10 @@ import ResumeTable from '../components/resumeTable/ResumeTable';
 import { useGetImageUrlQuery } from '../slices/imagesApiSlice';
 import calculateEnergy, { KcalReglaDeTres } from '../utils/calculateEnergy';
 import { useUser } from '../context/userContext';
+import { useTranslation } from 'react-i18next';
 
 function DietDetailsMain() {
+  const { t } = useTranslation();
   const { id } = useParams();
   const { user } = useUser();
   const { dayDetails } = useMarathon();

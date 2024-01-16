@@ -8,8 +8,10 @@ import {
   useCreateRegionMutation,
   useUpdateRegionMutation,
 } from '../../slices/regionsApiSlice';
+import { useTranslation } from 'react-i18next';
 
 function RegionForm({ data, onSuccess }) {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({});
   const [createRegion] = useCreateRegionMutation();
   const [updateRegion] = useUpdateRegionMutation();

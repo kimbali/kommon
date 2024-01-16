@@ -11,8 +11,10 @@ import Button from '../button/Button';
 import WorkoutCard from '../workouts/WorkoutCard';
 import frontRoutes from '../../config/frontRoutes';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 function MarathonWorkouts({ workoutsData, dayId, onSave }) {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [formData, setFormData] = useState();
   const [showWorkoutModal, setShowWorkoutModal] = useState(false);

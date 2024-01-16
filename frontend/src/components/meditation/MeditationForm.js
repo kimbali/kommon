@@ -8,8 +8,10 @@ import {
   useCreateMeditationMutation,
   useUpdateMeditationMutation,
 } from '../../slices/meditationsApiSlice';
+import { useTranslation } from 'react-i18next';
 
 function MeditationForm({ data, onSuccess, isEdit }) {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState(data || {});
   const [createMeditation] = useCreateMeditationMutation();
   const [updateMeditation] = useUpdateMeditationMutation();

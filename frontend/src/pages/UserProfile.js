@@ -9,8 +9,10 @@ import { getPorpuseLabel } from '../config/enums/porpusesEnum';
 import { getProblemsLabel } from '../config/enums/problemsEnum';
 import { getAllergiesLabel } from '../config/enums/allergiesEnum';
 import { getYesNoLabel } from '../config/enums/yesNoEnum';
+import { useTranslation } from 'react-i18next';
 
 function UserProfile() {
+  const { t } = useTranslation();
   const { user } = useUser();
 
   return (

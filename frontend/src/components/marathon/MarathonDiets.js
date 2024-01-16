@@ -10,8 +10,10 @@ import mealsEnum from '../../config/enums/mealsEnum';
 import { useUpdateDayMutation } from '../../slices/daysApiSlice';
 import toast from 'react-hot-toast';
 import RecipeCard from '../recipes/RecipeCard';
+import { useTranslation } from 'react-i18next';
 
 function MarathonDiet({ currentDiet, mealsData, dayId, onSave }) {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState(mealsData);
   const [showDietModal, setShowDietModal] = useState(false);
   const [options, setOptions] = useState([]);

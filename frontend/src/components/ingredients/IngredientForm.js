@@ -11,8 +11,10 @@ import {
 import Button from '../button/Button';
 import Text from '../text/Text';
 import supermarketEnum from '../../config/enums/supermarketEnum';
+import { useTranslation } from 'react-i18next';
 
 function IngredientForm({ onSuccess, data, onCancel }) {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState(data || {});
 
   const [createIngredient] = useCreateIngredientMutation();

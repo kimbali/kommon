@@ -8,8 +8,10 @@ import toast from 'react-hot-toast';
 import Input from '../input/Input';
 import { useGetTasksQuery } from '../../slices/tasksApiSlice';
 import Button from '../button/Button';
+import { useTranslation } from 'react-i18next';
 
 function MarathonTasks({ tasksData, dayId, onSave }) {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState();
   const [showEditModal, setShowEditModal] = useState(false);
   const [options, setOptions] = useState([]);

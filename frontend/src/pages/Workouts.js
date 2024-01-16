@@ -7,8 +7,10 @@ import WorkoutCard from '../components/workouts/WorkoutCard';
 import frontRoutes from '../config/frontRoutes';
 import { useMarathon } from '../context/marathonContext';
 import { useUser } from '../context/userContext';
+import { useTranslation } from 'react-i18next';
 
 function Workouts({ setCurrentDay }) {
+  const { t } = useTranslation();
   const [handleSelectDay, isError] = useOutletContext();
   const { user } = useUser();
 

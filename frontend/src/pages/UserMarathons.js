@@ -7,8 +7,10 @@ import frontRoutes from '../config/frontRoutes';
 import { MARATHON_ID } from '../config/constants';
 import { useMarathon } from '../context/marathonContext';
 import MarathonCard from '../components/marathon/MarathonCard';
+import { useTranslation } from 'react-i18next';
 
 function UserMarathons() {
+  const { t } = useTranslation();
   const { setMarathonId } = useMarathon();
   const navigate = useNavigate();
 

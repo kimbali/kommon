@@ -4,8 +4,10 @@ import Space from '../space/Space';
 import Button from '../button/Button';
 import { useDeleteTaskMutation } from '../../slices/tasksApiSlice';
 import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
 function DeleteTaskForm({ task, onClose }) {
+  const { t } = useTranslation();
   const [deleteTask] = useDeleteTaskMutation();
 
   const handleDeleteTask = async () => {

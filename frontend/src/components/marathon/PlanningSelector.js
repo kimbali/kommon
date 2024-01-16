@@ -16,6 +16,7 @@ import Text from '../text/Text';
 import { DATE, MARATHON_ID } from '../../config/constants';
 import levelsEnum from '../../config/enums/levelsEnum';
 import { useUser } from '../../context/userContext';
+import { useTranslation } from 'react-i18next';
 
 function PlanningSelector({
   marathon,
@@ -27,6 +28,7 @@ function PlanningSelector({
   defaultDiet,
   handleShoppingList,
 }) {
+  const { t } = useTranslation();
   const { marathonId } = useParams();
   const [searchParams] = useSearchParams();
   const dateParam = searchParams.get('date');

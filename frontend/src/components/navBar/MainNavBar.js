@@ -12,8 +12,10 @@ import DUMBBELL from '../../styles/img/dumbbell.png';
 import PROGRESS from '../../styles/img/weighing-scale.png';
 import MORE from '../../styles/img/more.png';
 import { useUser } from '../../context/userContext';
+import { useTranslation } from 'react-i18next';
 
 function MainNavBar({ showNav }) {
+  const { t } = useTranslation();
   const { user } = useUser();
 
   const navigate = useNavigate();

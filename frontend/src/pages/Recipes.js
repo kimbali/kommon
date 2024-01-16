@@ -11,8 +11,10 @@ import RecipeForm from '../components/recipes/RecipeForm';
 import frontRoutes from '../config/frontRoutes';
 import LoadingError from '../components/loadingError/LoadingError';
 import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
 function Recipes() {
+  const { t } = useTranslation();
   const [searchValue, setSearchValue] = useState('');
   const [keywordValue, setKeywordValue] = useState('');
   const [showRecipeModal, setShowRecipeModal] = useState(false);

@@ -9,8 +9,10 @@ import {
   useUpdateWorkoutMutation,
 } from '../../slices/workoutsApiSlice';
 import levelsEnum from '../../config/enums/levelsEnum';
+import { useTranslation } from 'react-i18next';
 
 function WorkoutForm({ data, onSuccess, isEdit }) {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState(data || {});
   const [createWorkout] = useCreateWorkoutMutation();
   const [updateWorkout] = useUpdateWorkoutMutation();

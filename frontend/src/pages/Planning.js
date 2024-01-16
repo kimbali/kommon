@@ -15,8 +15,10 @@ import {
   useUpdatePlanningMutation,
 } from '../slices/planningsApiSlice';
 import MarathonMeditations from '../components/marathon/MarathonMeditations';
+import { useTranslation } from 'react-i18next';
 
 function Planning() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { marathonId: marathonIdParams } = useParams();
   const { marathonId, setMarathonId } = useMarathon();

@@ -65,8 +65,8 @@ function MainLayout() {
       const todayPos = getDatePositionInMonthArray(month, new Date(urlDate));
 
       handleSelectDay({
-        week: !user.isAdmin && todayPos.week ? todayPos.week : 1,
-        weekDay: !user.isAdmin && todayPos.weekDay ? todayPos.weekDay : 0,
+        week: !user?.isAdmin && todayPos.week ? todayPos.week : 1,
+        weekDay: !user?.isAdmin && todayPos.weekDay ? todayPos.weekDay : 0,
         planningId: marathonData.planning._id,
       });
     }

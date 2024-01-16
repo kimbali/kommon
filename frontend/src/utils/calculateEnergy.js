@@ -30,7 +30,7 @@ export const calculateUserKcal = ({
 export const KcalReglaDeTres = (total, user) => {
   const computation = (total * calculateUserKcal(user)) / BASE_KCAL;
 
-  return computation.toLocaleString('de-DE', { maximumFractionDigits: 0 });
+  return computation.toLocaleString('de-DE', { maximumFractionDigits: 2 });
 };
 
 const calculateEnergy = (type = '', ingredients = [], user) => {
@@ -42,9 +42,9 @@ const calculateEnergy = (type = '', ingredients = [], user) => {
     return acc + ele.ingredient[type] * (ele.quantity || 0);
   }, 0);
 
-  total = KcalReglaDeTres(total, user);
+  total = parseInt(KcalReglaDeTres(total, user)) / 100;
 
-  return total.toLocaleString('de-DE', { maximumFractionDigits: 0 });
+  return total.toLocaleString('de-DE', { maximumFractionDigits: 2 });
 };
 
 export default calculateEnergy;

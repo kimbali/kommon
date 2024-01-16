@@ -40,7 +40,6 @@ function Main() {
     }
 
     await updateProgress({ ...userProgress, tasksChecked: updatedList });
-
     updateUserProgress({ ...userProgress, tasksChecked: updatedList });
   };
 

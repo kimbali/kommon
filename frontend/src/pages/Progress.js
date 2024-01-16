@@ -1,7 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Text from '../components/text/Text';
+import Space from '../components/space/Space';
+import Button from '../components/button/Button';
+import Modal from '../components/modal/Modal';
+import BodyParametersForm from '../components/progress/BodyParametersForm';
 
 function Progress() {
-  return <div>PROGRESS</div>;
+  const [showModal, setShowModal] = useState();
+
+  return (
+    <div>
+      <Text isTitle>Tu progreso</Text>
+
+      <Space medium />
+
+      <Button isPrimary onClick={() => setShowModal(true)}>
+        Añadir parametros
+      </Button>
+
+      {showModal && (
+        <Modal isSecondary onClose={setShowModal}>
+          <BodyParametersForm />
+        </Modal>
+      )}
+    </div>
+  );
 }
 
 export default Progress;

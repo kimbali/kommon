@@ -86,7 +86,7 @@ function MarathonTasks({ tasksData, dayId, onSave }) {
         sectionIcon={faEdit}
         sectionIconClick={() => setShowEditModal(true)}
       >
-        To do list
+        {t('toDoList')}
       </Text>
 
       <Space small />
@@ -103,7 +103,9 @@ function MarathonTasks({ tasksData, dayId, onSave }) {
       {showEditModal && (
         <Modal scroll onClose={setShowEditModal} isSecondary>
           <form onSubmit={handleOnSubmit}>
-            <Text isTitle>Update tasks</Text>
+            <Text isTitle>
+              {t('update')} {t('task')}
+            </Text>
 
             <Space medium />
 
@@ -114,8 +116,8 @@ function MarathonTasks({ tasksData, dayId, onSave }) {
                   key={`input-task${index}`}
                 >
                   <Input
-                    label={`Task ${index + 1}`}
-                    placeholder='Select task'
+                    label={`${t('task')} ${index + 1}`}
+                    placeholder={t('selectTask')}
                     options={options}
                     onChange={value => handleOnChange(value, index)}
                     selectedOption={ele && handleSelectOption(ele)}
@@ -139,7 +141,7 @@ function MarathonTasks({ tasksData, dayId, onSave }) {
 
             <div className='content-on-the-right'>
               <Button type='submit' isPrimary iconLeft={faDumbbell}>
-                Save tasks
+                {t('save')}
               </Button>
             </div>
           </form>

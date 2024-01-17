@@ -97,12 +97,12 @@ function MarathonDiet({ currentDiet, mealsData, dayId, onSave }) {
         sectionIcon={currentDiet && faEdit}
         sectionIconClick={() => setShowDietModal(true)}
       >
-        Diet
+        {t('diet')}
       </Text>
 
       <Space small />
 
-      {!currentDiet && <Text> Select a diet</Text>}
+      {!currentDiet && <Text>{t('selectDiet')}</Text>}
 
       {currentDiet && (
         <div className='marathon-config-scrollx'>
@@ -132,14 +132,14 @@ function MarathonDiet({ currentDiet, mealsData, dayId, onSave }) {
       {showDietModal && (
         <Modal scroll onClose={setShowDietModal} isSecondary>
           <form onSubmit={handleOnSubmit}>
-            <Text isTitle>Update diet</Text>
+            <Text isTitle>{t('update')}</Text>
 
             <Space medium />
 
             <Input
               keyValue={mealsEnum[0].value}
               label={mealsEnum[0].label}
-              placeholder='Select recipe'
+              placeholder={t('selectRecipe')}
               options={options}
               onChange={handleOnChange}
               selectedOption={handleSelectOption(mealsEnum[0].value)}
@@ -152,7 +152,7 @@ function MarathonDiet({ currentDiet, mealsData, dayId, onSave }) {
             <Input
               keyValue={mealsEnum[1].value}
               label={mealsEnum[1].label}
-              placeholder='Select recipe'
+              placeholder={t('selectRecipe')}
               options={options}
               onChange={handleOnChange}
               selectedOption={handleSelectOption(mealsEnum[1].value)}
@@ -165,7 +165,7 @@ function MarathonDiet({ currentDiet, mealsData, dayId, onSave }) {
             <Input
               keyValue={mealsEnum[2].value}
               label={mealsEnum[2].label}
-              placeholder='Select recipe'
+              placeholder={t('selectRecipe')}
               options={options}
               onChange={handleOnChange}
               selectedOption={handleSelectOption(mealsEnum[2].value)}
@@ -178,7 +178,7 @@ function MarathonDiet({ currentDiet, mealsData, dayId, onSave }) {
             <Input
               keyValue={mealsEnum[3].value}
               label={mealsEnum[3].label}
-              placeholder='Select recipe'
+              placeholder={t('selectRecipe')}
               options={options}
               onChange={handleOnChange}
               selectedOption={handleSelectOption(mealsEnum[3].value)}
@@ -191,7 +191,7 @@ function MarathonDiet({ currentDiet, mealsData, dayId, onSave }) {
             <Input
               keyValue={mealsEnum[4].value}
               label={mealsEnum[4].label}
-              placeholder='Select recipe'
+              placeholder={t('selectRecipe')}
               options={options}
               onChange={handleOnChange}
               selectedOption={handleSelectOption(mealsEnum[4].value)}
@@ -203,7 +203,7 @@ function MarathonDiet({ currentDiet, mealsData, dayId, onSave }) {
 
             <div className='content-on-the-right'>
               <Button isPrimary type='submit'>
-                Save diets
+                {t('save')}
               </Button>
             </div>
           </form>

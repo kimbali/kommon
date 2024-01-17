@@ -33,7 +33,7 @@ function BodyParametersForm() {
       <Input
         label='Peso, kg*'
         name='weight'
-        placeholder='0'
+        placeholder={t('placeholderNumber')}
         onChange={handleOnChange}
         value={formData?.weight}
         type='number'
@@ -44,7 +44,7 @@ function BodyParametersForm() {
       <Input
         label='Pecho'
         name='chest'
-        placeholder='0'
+        placeholder={t('placeholderNumber')}
         onChange={handleOnChange}
         value={formData?.chest}
         type='number'
@@ -55,7 +55,7 @@ function BodyParametersForm() {
       <Input
         label='Cintura'
         name='waist'
-        placeholder='0'
+        placeholder={t('placeholderNumber')}
         onChange={handleOnChange}
         value={formData?.waist}
         type='number'
@@ -66,7 +66,7 @@ function BodyParametersForm() {
       <Input
         label='Cadera'
         name='buttocks'
-        placeholder='0'
+        placeholder={t('placeholderNumber')}
         onChange={handleOnChange}
         value={formData?.buttocks}
         type='number'

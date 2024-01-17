@@ -76,11 +76,11 @@ function MarathonForm({ onSucces, onCancel, marathon }) {
 
     if (marathon) {
       const res = await updateMarathon(formData).unwrap();
-      toast.success(`${formData.name} updated`);
+      toast.success(`${formData.name} ${t('updated')}`);
       onSucces(res);
     } else {
       const res = await createMarathon(formData).unwrap();
-      toast.success(`${formData.name} created`);
+      toast.success(`${formData.name} ${t('created')}`);
       onSucces(res);
     }
   };
@@ -110,15 +110,13 @@ function MarathonForm({ onSucces, onCancel, marathon }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Text isTitle>
-        {marathon ? 'Update marathon' : 'Create new marathon'}
-      </Text>
+      <Text isTitle>{marathon ? t('update') : t('create')}</Text>
 
       <Space medium />
 
       <Input
-        label='Marathon name'
-        placeholder='A name for this new marahton'
+        label={t('marathonName')}
+        placeholder={t('marathonNamePlaceholder')}
         name='name'
         onChange={handleOnChange}
         value={formData?.name}
@@ -127,8 +125,8 @@ function MarathonForm({ onSucces, onCancel, marathon }) {
       <Space small />
 
       <Input
-        label='Marathon plan'
-        placeholder='Select a plan or introduce a new name'
+        label={t('marathonPlanName')}
+        placeholder={t('marathonPlanPlaceholder')}
         options={planningsOptions}
         onChange={handleSelectPlan}
         selectedOption={selectedPlan}
@@ -140,7 +138,7 @@ function MarathonForm({ onSucces, onCancel, marathon }) {
       <Space small />
 
       <Input
-        label='start date'
+        label={t('startDate')}
         name='startDate'
         type='date'
         onChange={handleOnChange}
@@ -150,7 +148,7 @@ function MarathonForm({ onSucces, onCancel, marathon }) {
       <Space small />
 
       <Input
-        label='end date'
+        label={t('endDate')}
         name='endDate'
         type='date'
         onChange={handleOnChange}
@@ -159,7 +157,7 @@ function MarathonForm({ onSucces, onCancel, marathon }) {
 
       <Space medium />
 
-      {error && <Text danger>All are required fields</Text>}
+      {error && <Text danger>{t('allRequiredFields')}</Text>}
 
       <Space big />
 
@@ -172,13 +170,13 @@ function MarathonForm({ onSucces, onCancel, marathon }) {
             isSecondary
             iconLeft={faTrash}
           >
-            Delete marathon
+            {t('delete')}
           </Button>
         )}
 
         <div className='content-on-the-right'>
           <Button type='submit' isPrimary>
-            {marathon ? 'Update' : 'Create'} marathon
+            {marathon ? t('update') : t('create')} {t('marathon')}
           </Button>
         </div>
       </div>
@@ -188,7 +186,7 @@ function MarathonForm({ onSucces, onCancel, marathon }) {
           onConfirm={handleDeleteMarathon}
           onClose={setShowDeleteModal}
           title='Delete recipe'
-          text={`Are you sure you whant to delete: ${formData?.name}`}
+          text={`${t('confirmDelete')} ${formData?.name}`}
         />
       )}
     </form>

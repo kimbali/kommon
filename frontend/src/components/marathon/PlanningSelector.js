@@ -124,7 +124,7 @@ function PlanningSelector({
       <div className='buttons-container'>
         <Input
           className='selector-fix-width'
-          placeholder='Select week'
+          placeholder={t('selectWeek')}
           isSingleSelect
           options={weekOptions}
           onChange={handleWeekChange}
@@ -136,7 +136,7 @@ function PlanningSelector({
           <div className='buttons-container'>
             <Input
               className='selector-fix-width'
-              placeholder='Select diet'
+              placeholder={t('selectDiet')}
               isSingleSelect
               options={dietsEnum}
               onChange={({ value }) => setCurrentDiet(value)}
@@ -145,7 +145,7 @@ function PlanningSelector({
             />
 
             <Button className='shooping-list-cta' onClick={handleShoppingList}>
-              Lista de la compra
+              {t('shoppingList')}
             </Button>
           </div>
         )}
@@ -153,9 +153,11 @@ function PlanningSelector({
         {setCurrentLevel && (
           <Input
             className='selector-fix-width'
-            placeholder='Select workout level'
+            placeholder={t('selectWorkoutLevel')}
             isSingleSelect
-            options={[{ label: 'All levels', value: null }].concat(levelsEnum)}
+            options={[{ label: t('allLevels'), value: null }].concat(
+              levelsEnum
+            )}
             onChange={({ value }) => setCurrentLevel(value)}
             name='diet'
           />

@@ -62,7 +62,7 @@ function TasksConfig() {
         <form onSubmit={handleSearchSubmit} className='search-input'>
           <Input
             onChange={({ value }) => setSearchValue(value)}
-            placeholder='Search by title'
+            placeholder={t('searchTitle')}
             iconLeft={faMagnifyingGlass}
             isSecondary
             name='search'

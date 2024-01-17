@@ -44,13 +44,13 @@ function IngredientForm({ onSuccess, data, onCancel }) {
 
   return (
     <form className='ingredient' onSubmit={handleOnSubmit}>
-      <Text isTitle>{data ? 'Update ingredient' : 'Create ingredient'}</Text>
+      <Text isTitle>{data ? t('update') : t('create')}</Text>
 
       <Space small />
 
       <Input
-        label='Name'
-        placeholder='Ingredient name'
+        label={t('name')}
+        placeholder={t('ingredientName')}
         name='name'
         onChange={handleOnChange}
         value={formData?.name}
@@ -59,52 +59,52 @@ function IngredientForm({ onSuccess, data, onCancel }) {
       <Space small />
 
       <Input
-        label='allergy'
+        label={t('allergy')}
         name='allergy'
         value={formData?.allergy}
         type='select'
-        selectOption='Select allergy'
+        selectOption={t('selectAllergy')}
         options={allergiesEnum}
-        noValueOption='No allergies'
+        noValueOption={t('noAllergies')}
         onChange={handleOnChange}
       />
 
       <Space small />
 
       <Input
-        label='supermarket section'
+        label={t('supermarketSection')}
         name='supermarket'
         value={formData?.supermarket}
         type='select'
-        selectOption='Select section'
+        selectOption={t('selectSection')}
         options={supermarketEnum}
-        noValueOption='Otra'
+        noValueOption={t('other')}
         onChange={handleOnChange}
       />
 
       <Space small />
 
       <Input
-        label='measure'
+        label={t('measure')}
         name='measure'
         value={formData?.measure}
         type='select'
-        selectOption='Select measure'
+        selectOption={t('selectMeasure')}
         options={measuresEnum}
         onChange={handleOnChange}
       />
 
       <Space small />
-      <Text>Por cada unidad (1) de medida seleccionada:</Text>
+      <Text>{t('forEachUnityOfSelectedMeasure')}</Text>
       <Space extraSmall />
 
       <div className='section'>
         <div className='grid-container'>
           <div className='cols-1'>
             <Input
-              label='calories'
+              label={t('calories')}
               name='calories'
-              placeholder='0'
+              placeholder={t('placeholderNumber')}
               onChange={handleOnChange}
               value={formData?.calories}
               type='number'
@@ -113,9 +113,9 @@ function IngredientForm({ onSuccess, data, onCancel }) {
 
           <div className='cols-1'>
             <Input
-              label='proteins'
+              label={t('proteins')}
               name='proteins'
-              placeholder='0'
+              placeholder={t('placeholderNumber')}
               onChange={handleOnChange}
               value={formData?.proteins}
               type='number'
@@ -124,9 +124,9 @@ function IngredientForm({ onSuccess, data, onCancel }) {
 
           <div className='cols-1'>
             <Input
-              label='fats'
+              label={t('fats')}
               name='fats'
-              placeholder='0'
+              placeholder={t('placeholderNumber')}
               onChange={handleOnChange}
               value={formData?.fats}
               type='number'
@@ -135,9 +135,9 @@ function IngredientForm({ onSuccess, data, onCancel }) {
 
           <div className='cols-1'>
             <Input
-              label='carbohydrates'
+              label={t('carbohydrates')}
               name='carbohydrates'
-              placeholder='0'
+              placeholder={t('placeholderNumber')}
               onChange={handleOnChange}
               value={formData?.carbohydrates}
               type='number'
@@ -151,7 +151,7 @@ function IngredientForm({ onSuccess, data, onCancel }) {
       <Space small />
 
       <Input
-        label='image'
+        label={t('image')}
         name='image'
         onChange={handleOnChange}
         value={formData?.image}
@@ -161,11 +161,11 @@ function IngredientForm({ onSuccess, data, onCancel }) {
       <Space small />
 
       <Input
-        name='benefits'
+        name={t('benefits')}
         label='Benefits'
         type='textarea'
         className='benefits'
-        placeholder='Ingredient benefits'
+        placeholder={t('ingredientBenefits')}
         onChange={handleOnChange}
         value={formData?.benefits}
       />
@@ -175,11 +175,11 @@ function IngredientForm({ onSuccess, data, onCancel }) {
       <Space medium />
       <div className='content-on-the-right'>
         <Button onClick={onCancel} isSecondary>
-          Cancel
+          {t('cancel')}
         </Button>
 
         <Button isPrimary type='submit'>
-          {data ? 'Update' : 'Create'} ingredient
+          {data ? t('update') : t('create')} {t('ingredient')}
         </Button>
       </div>
     </form>

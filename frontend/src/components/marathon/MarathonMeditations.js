@@ -93,7 +93,7 @@ function MarathonMeditations({ meditationData, dayId, onSave }) {
         sectionIcon={faEdit}
         sectionIconClick={() => setShowModal(true)}
       >
-        Meditations
+        {t('meditations')}
       </Text>
 
       <Space small />
@@ -113,7 +113,9 @@ function MarathonMeditations({ meditationData, dayId, onSave }) {
       {showModal && (
         <Modal scroll onClose={setShowModal} isSecondary>
           <form onSubmit={handleOnSubmit}>
-            <Text isTitle>Update meditations</Text>
+            <Text isTitle>
+              {t('update')} {t('meditations')}
+            </Text>
 
             <Space medium />
 
@@ -125,8 +127,8 @@ function MarathonMeditations({ meditationData, dayId, onSave }) {
                 >
                   <Input
                     key={`marathon-meditation-${index}`}
-                    label={`Meditation ${index + 1}`}
-                    placeholder='Select meditation'
+                    label={`${t('meditation')} ${index + 1}`}
+                    placeholder={t('selectMeditation')}
                     options={options}
                     onChange={value => handleOnChange(value, index)}
                     selectedOption={ele && handleSelectOption(ele)}
@@ -150,7 +152,7 @@ function MarathonMeditations({ meditationData, dayId, onSave }) {
 
             <div className='content-on-the-right'>
               <Button type='submit' isPrimary iconLeft={faDumbbell}>
-                Save meditations
+                {t('save')}
               </Button>
             </div>
           </form>

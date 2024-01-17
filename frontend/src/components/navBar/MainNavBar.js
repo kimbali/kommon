@@ -37,29 +37,29 @@ function MainNavBar({ showNav }) {
       )}
 
       <ul className='nav-links'>
-        <NavLink image={CALENDAR} label='Main' route={frontRoutes.main} />
+        <NavLink image={CALENDAR} label={t('hoy')} route={frontRoutes.main} />
 
-        <NavLink image={DIET} label='Diet' route={frontRoutes.diet} />
+        <NavLink image={DIET} label={t('diet')} route={frontRoutes.diet} />
 
         <NavLink
           image={DUMBBELL}
-          label='Workouts'
+          label={t('workouts')}
           route={frontRoutes.workouts}
         />
 
         <NavLink
           icon={faSpa}
-          label='Meditations'
+          label={t('meditations')}
           route={frontRoutes.meditations}
         />
 
         <NavLink
           image={PROGRESS}
-          label='Progress'
+          label={t('progress')}
           route={frontRoutes.progress}
         />
 
-        <NavLink image={MORE} label='More' route={frontRoutes.more} />
+        <NavLink image={MORE} label={t('more')} route={frontRoutes.more} />
       </ul>
     </nav>
   );

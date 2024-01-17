@@ -173,7 +173,7 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
               <Input
                 label='minutes'
                 name='minutes'
-                placeholder='0'
+                placeholder={t('placeholderNumber')}
                 onChange={handleOnChange}
                 value={formData.minutes}
                 type='number'

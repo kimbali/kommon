@@ -28,7 +28,7 @@ function MarathonCard({ handleSelectMarathon, marathon }) {
       <Space extraSmall />
 
       <Button small onClick={() => handleSelectMarathon(marathon)} isPrimary>
-        Inscribirme
+        {t('signUp')}
       </Button>
     </div>
   );

@@ -9,24 +9,22 @@ function Footer() {
 
   return (
     <footer>
-      <Text className='copyright'>
-        @ copyright maraton.com 2022. All rights reserved
-      </Text>
+      <Text className='copyright'>{t('copyrightReserved')}</Text>
 
       <div className='footer-links'>
-        <Link to={frontRoutes.terms}>Términos y condiciones</Link>
+        <Link to={frontRoutes.terms}>{t('termsAndConditions')}</Link>
 
         <span>|</span>
 
-        <Link to={frontRoutes.privacyPolicy}>Política de privacidad</Link>
+        <Link to={frontRoutes.privacyPolicy}>{t('privatePolicy')}</Link>
 
         <span>|</span>
 
-        <Link to={frontRoutes.avisoLegal}>Aviso legal</Link>
+        <Link to={frontRoutes.avisoLegal}>{t('legalAdvise')}</Link>
 
         <span>|</span>
 
-        <Link to={frontRoutes.cookies}>Política de cookies</Link>
+        <Link to={frontRoutes.cookies}>{t('cookiesPolicy')}</Link>
       </div>
     </footer>
   );

@@ -69,7 +69,7 @@ function Workouts() {
         <form onSubmit={handleSearchSubmit} className='search-input'>
           <Input
             onChange={handleSearchValueChange}
-            placeholder='Search by title'
+            placeholder={t('searchTitle')}
             iconLeft={faMagnifyingGlass}
             isSecondary
             name='search'

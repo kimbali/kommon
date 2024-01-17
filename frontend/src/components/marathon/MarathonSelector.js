@@ -47,7 +47,7 @@ function MarathonSelector({ setMarathon }) {
 
   const createMarathonOptions = () => {
     const options = marathonsData?.marathons.map((ele, index) => {
-      return { label: ele.name || `Marathon ${index}`, value: ele };
+      return { label: ele.name || `${t('marathon')} ${index}`, value: ele };
     });
 
     setmarathonOptions(options);
@@ -116,11 +116,11 @@ function MarathonSelector({ setMarathon }) {
       <div className='content-left-and-right'>
         <div className='buttons-container'>
           <Button iconLeft={faPlus} isPrimary onClick={handleNewMarathon}>
-            New marathon
+            {t('newMarathon')}
           </Button>
 
           <Input
-            placeholder='Select a marathon'
+            placeholder={t('selectMarathon')}
             isSingleSelect
             options={marathonOptions}
             onChange={handleMarathonChange}
@@ -134,7 +134,7 @@ function MarathonSelector({ setMarathon }) {
               iconLeft={faEdit}
               onClick={() => setShowNewMarathonModal(true)}
             >
-              Marathon
+              {t('marathon')}
             </Button>
           )}
 
@@ -142,7 +142,7 @@ function MarathonSelector({ setMarathon }) {
             <div className='marathon-details'>
               <div>
                 <Text>
-                  <span>Marathon plan: </span>
+                  <span>{t('marathonPlan')}: </span>
                   {marathonSelected.value.planning?.name}
                 </Text>
               </div>
@@ -165,7 +165,7 @@ function MarathonSelector({ setMarathon }) {
               onClick={() => handleGoToLiveMarathon(marathonSelected?.value)}
               isSecondary
             >
-              Go to live
+              {t('goToLive')}
             </Button>
           </div>
         )}

@@ -8,6 +8,7 @@ import Button from '../button/Button';
 import Modal from '../modal/Modal';
 import MENU from '../../styles/img/menu.png';
 import { useUser } from '../../context/userContext';
+import frontRoutes from '../../config/frontRoutes';
 
 const AdminLayout = () => {
   const [showNav, setShowNav] = useState(false);
@@ -48,7 +49,7 @@ const AdminLayout = () => {
       </main>
     </div>
   ) : (
-    <Navigate to='/login' replace />
+    <Navigate to={frontRoutes.login} replace />
   );
 };
 export default AdminLayout;

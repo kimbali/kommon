@@ -55,7 +55,7 @@ function MeditationForm({ data, onSuccess, isEdit }) {
         <div className='grid-container'>
           <Input
             className='cols-4'
-            label='title'
+            label={t('title')}
             name='title'
             placeholder='Title'
             onChange={handleOnChange}
@@ -65,8 +65,8 @@ function MeditationForm({ data, onSuccess, isEdit }) {
           <Input
             className='cols-4'
             type='textarea'
-            label='description'
-            placeholder='Utiliza un guión "-" seguido de un salto de linea para crear listas'
+            label={t('description')}
+            placeholder={t('descriptionPlaceholder')}
             name='description'
             onChange={handleOnChange}
             value={formData.description}
@@ -74,16 +74,16 @@ function MeditationForm({ data, onSuccess, isEdit }) {
 
           <Input
             className='cols-4'
-            label='Audio'
+            label={t('audio')}
             name='audio'
-            placeholder='Audio link'
+            placeholder={t('audioLink')}
             onChange={handleOnChange}
             value={formData.audio}
           />
 
           <Input
             className='cols-4'
-            label='image'
+            label={t('image')}
             name='image'
             onChange={handleOnChange}
             value={formData.image}
@@ -92,9 +92,9 @@ function MeditationForm({ data, onSuccess, isEdit }) {
 
           <Input
             className='cols-4'
-            label='minutes'
+            label={t('minutes')}
             name='minutes'
-            placeholder='0'
+            placeholder={t('placeholderNumber')}
             onChange={handleOnChange}
             value={formData.minutes}
           />
@@ -103,7 +103,7 @@ function MeditationForm({ data, onSuccess, isEdit }) {
         <Space medium />
 
         <Button isPrimary type='submit'>
-          {isEdit ? 'Edit meditation' : 'Create meditation'}
+          {isEdit ? t('edit') : t('create')}
         </Button>
       </form>
     </div>

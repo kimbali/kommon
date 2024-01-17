@@ -34,7 +34,7 @@ function ConfirmModal({
 
       <div className='content-on-the-right'>
         <Button onClick={() => onClose(false)} isSecondary>
-          Cancel
+          {t('cancel')}
         </Button>
 
         <Button onClick={onConfirm} isPrimary>

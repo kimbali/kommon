@@ -18,15 +18,15 @@ function MenuLinks() {
   return (
     <ul className='user-menu-links'>
       <li>
-        <Link to={frontRoutes.profile}>Profile</Link>
+        <Link to={frontRoutes.profile}>{t('profile')}</Link>
       </li>
       <li>
-        <Link to={frontRoutes.profileMarathons}>Your marathons</Link>
+        <Link to={frontRoutes.profileMarathons}>{t('yourMarathones')}</Link>
       </li>
       {!user ? (
         <li>
           <Button small isPrimary onClick={handleLogin}>
-            Login
+            {t('login')}
           </Button>
         </li>
       ) : (

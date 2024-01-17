@@ -26,7 +26,7 @@ function MeditationCard({ data, onClick }) {
           <Text className='description'>{data.description}</Text>
 
           <Text className='minutes'>
-            <span className='primary'>{data.minutes}</span> min
+            <span className='primary'>{data.minutes}</span> {t('min')}
           </Text>
         </div>
 

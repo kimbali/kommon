@@ -95,7 +95,7 @@ function WorkoutForm({ data, onSuccess, isEdit }) {
             className='cols-4'
             label='minutes'
             name='minutes'
-            placeholder='0'
+            placeholder={t('placeholderNumber')}
             onChange={handleOnChange}
             value={formData.minutes}
           />

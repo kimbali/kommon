@@ -72,19 +72,19 @@ function RegionsConfig() {
 
   return (
     <div>
-      <Text isSubtitle>Configuracion de los gastos de envio</Text>
+      <Text isSubtitle>{t('sendCostConfig')}</Text>
 
       <Space medium />
 
       <div className='content-left-and-right'>
         <Button isPrimary onClick={() => setShowFormModal(true)}>
-          Add a region
+          {t('addRegion')}
         </Button>
 
         <form onSubmit={handleSearchSubmit} className='search-input'>
           <Input
             onChange={({ value }) => setSearchValue(value)}
-            placeholder='Search by title'
+            placeholder={t('searchTitle')}
             iconLeft={faMagnifyingGlass}
             isSecondary
             name='search'
@@ -103,7 +103,10 @@ function RegionsConfig() {
           {data.regions.map((region, i) => (
             <tr key={`region-item-${i}`}>
               <td>{region.region}</td>
-              <td className='currency'>{region.price}€</td>
+              <td className='currency'>
+                {region.price}
+                {t('currency')}
+              </td>
 
               <td className='only-icon center'>
                 <Button
@@ -137,8 +140,8 @@ function RegionsConfig() {
         <ConfirmModal
           onConfirm={handleDelete}
           onClose={setShowDeleteModal}
-          title='Eliminar region'
-          text={`¿Estas seguro d querer eliminar: ${showDeleteModal.region}?`}
+          title={t('deleteRegion')}
+          text={`${t('confirmDelete')} ${showDeleteModal.region}?`}
         />
       )}
 

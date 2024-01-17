@@ -93,7 +93,7 @@ function MarathonWorkouts({ workoutsData, dayId, onSave }) {
         sectionIcon={faEdit}
         sectionIconClick={() => setShowWorkoutModal(true)}
       >
-        Workouts
+        {t('workouts')}
       </Text>
 
       <Space small />
@@ -113,7 +113,9 @@ function MarathonWorkouts({ workoutsData, dayId, onSave }) {
       {showWorkoutModal && (
         <Modal scroll onClose={setShowWorkoutModal} isSecondary>
           <form onSubmit={handleOnSubmit}>
-            <Text isTitle>Update workouts</Text>
+            <Text isTitle>
+              {t('update')} {t('workout')}
+            </Text>
 
             <Space medium />
 
@@ -125,8 +127,8 @@ function MarathonWorkouts({ workoutsData, dayId, onSave }) {
                 >
                   <Input
                     key={`marathon-workout-${index}`}
-                    label={`Workout ${index + 1}`}
-                    placeholder='Select workout'
+                    label={`${t('workout')} ${index + 1}`}
+                    placeholder={t('selectWorkout')}
                     options={options}
                     onChange={value => handleOnChange(value, index)}
                     selectedOption={ele && handleSelectOption(ele)}
@@ -150,7 +152,7 @@ function MarathonWorkouts({ workoutsData, dayId, onSave }) {
 
             <div className='content-on-the-right'>
               <Button type='submit' isPrimary iconLeft={faDumbbell}>
-                Save workouts
+                {t('save')}
               </Button>
             </div>
           </form>

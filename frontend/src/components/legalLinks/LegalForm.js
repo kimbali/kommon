@@ -66,7 +66,7 @@ function LegalForm({ onSuccess, legalKey, label }) {
 
       <div className='content-on-the-right'>
         <Button type='submit' isPrimary>
-          Save
+          {t('save')}
         </Button>
       </div>
 

@@ -88,8 +88,7 @@ function Input({
       {label && (
         <div>
           <label className='main-label' htmlFor={name}>
-            {label}{' '}
-            {selectCreatable ? '(Escribir nombre para crear nuevo)' : ''}
+            {label} {selectCreatable ? t('writeNameToCreate') : ''}
           </label>
           {labelLink && labelLink}
         </div>
@@ -240,11 +239,7 @@ function Input({
         ) : (
           <div className='input-file'>
             <Text className={value ? 'has-value' : 'placeholder'}>
-              {isLoading
-                ? 'Cargando...'
-                : fileName
-                ? fileName
-                : 'Upload an image...'}
+              {isLoading ? t('loading') : fileName ? fileName : t('imageLoad')}
             </Text>
             <Text>
               <FontAwesomeIcon icon={faPlus} />

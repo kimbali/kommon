@@ -7,7 +7,7 @@ function Logo({ height = 'auto', width = 'auto', className = 'logo' }) {
     <img
       className={className}
       src={LOGO}
-      alt='Body marathon logo'
+      alt='Body maraton logo'
       height={height}
       width={width}
     />

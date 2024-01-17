@@ -49,27 +49,27 @@ function RegionForm({ data, onSuccess }) {
 
   return (
     <div>
-      <Text isTitle>{data ? 'Modificar region' : 'Nueva region'}</Text>
+      <Text isTitle>{data ? t('modifyRegion') : t('newRegion')}</Text>
 
       <Space medium />
 
       <form onSubmit={handleOnSubmit}>
         <Input
-          label='Nombre de la region'
+          label={t('regionName')}
           name='region'
           value={formData.region}
-          placeholder='Region'
+          placeholder={t('region')}
           onChange={handleOnChange}
         />
 
         <Space medium />
 
         <Input
-          label='Precio gastos de envio'
+          label={t('sendCost')}
           type='number'
           name='price'
           value={formData.price}
-          placeholder='Price'
+          placeholder={t('price')}
           onChange={handleOnChange}
         />
 
@@ -77,7 +77,7 @@ function RegionForm({ data, onSuccess }) {
 
         <div className='content-on-the-right'>
           <Button isPrimary type='submit'>
-            {data ? 'Update region' : 'Create region'}
+            {data ? t('update') : t('create')}
           </Button>
         </div>
       </form>

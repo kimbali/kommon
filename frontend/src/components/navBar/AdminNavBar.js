@@ -23,49 +23,53 @@ function AdminNavBar() {
       <ul className='nav-links'>
         <NavLink
           icon={faFlagCheckered}
-          label='Marathons'
+          label={t('marathons')}
           route={frontRoutes.marathonList}
         />
 
         <NavLink
           icon={faCalendarDays}
-          label='Planning'
+          label={t('planning')}
           route={frontRoutes.planning}
         />
 
         <NavLink
           icon={faPlateWheat}
-          label='Recipes'
+          label={t('recipes')}
           route={frontRoutes.dietsConfig}
         />
 
         <NavLink
           icon={faWheatAwn}
-          label='Ingredients'
+          label={t('ingredients')}
           route={frontRoutes.ingredients}
         />
 
         <NavLink
           icon={faDumbbell}
-          label='Workouts'
+          label={t('workouts')}
           route={frontRoutes.workoutsConfig}
         />
 
         <NavLink
           icon={faSpa}
-          label='Meditations'
+          label={t('meditations')}
           route={frontRoutes.meditationsConfig}
         />
 
         <NavLink
           icon={faListCheck}
-          label='Tasks'
+          label={t('tasks')}
           route={frontRoutes.tasksConfig}
         />
 
-        <NavLink icon={faUser} label='Users' route={frontRoutes.users} />
+        <NavLink icon={faUser} label={t('users')} route={frontRoutes.users} />
 
-        <NavLink icon={faTools} label='Config' route={frontRoutes.config} />
+        <NavLink
+          icon={faTools}
+          label={t('config')}
+          route={frontRoutes.config}
+        />
       </ul>
     </nav>
   );

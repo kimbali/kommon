@@ -91,7 +91,7 @@ function RecipeDetails({ recipe }) {
               onConfirm={deleteHandler}
               onClose={setShowDeleteModal}
               title={t('deleteRecipe')}
-              text={`${t('confirmDeleteRecipe')}: ${title}`}
+              text={`${t('confirmDelete')}: ${title}`}
             />
           )}
         </div>
@@ -124,7 +124,7 @@ function RecipeDetails({ recipe }) {
             </div>
 
             <div className='propiedad'>
-              <Text isSubtitle>{t('fats')}</Text>
+              <Text isSubtitle>{t('fat')}</Text>
               <Text>{calculateEnergy('fats', ingredients, user)}</Text>
             </div>
 

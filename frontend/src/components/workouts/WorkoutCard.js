@@ -28,7 +28,7 @@ function WorkoutCard({ data, onClick }) {
 
           <div className='content-left-and-right'>
             <Text className='minutes'>
-              <span className='primary'>{data.minutes}</span> min
+              <span className='primary'>{data.minutes}</span> {t('min')}
             </Text>
 
             <div className='pill'>{getLevelLabel(data.level)}</div>

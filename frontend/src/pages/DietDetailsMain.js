@@ -54,22 +54,22 @@ function DietDetailsMain() {
 
           <div className='propiedades'>
             <div className='propiedad'>
-              <Text isSubtitle>Kcal</Text>
+              <Text isSubtitle>{t('kcal')}</Text>
               <Text>{calculateEnergy('calories', ingredients, user)}</Text>
             </div>
 
             <div className='propiedad'>
-              <Text isSubtitle>Prot</Text>
+              <Text isSubtitle>{t('prot')}</Text>
               <Text>{calculateEnergy('proteins', ingredients, user)}</Text>
             </div>
 
             <div className='propiedad'>
-              <Text isSubtitle>Fats</Text>
+              <Text isSubtitle>{t('fats')}</Text>
               <Text>{calculateEnergy('fats', ingredients, user)}</Text>
             </div>
 
             <div className='propiedad'>
-              <Text isSubtitle>Carbh</Text>
+              <Text isSubtitle>{t('carbh')}</Text>
               <Text>
                 {calculateEnergy('carbohydrates', carbohydrates, user)}
               </Text>
@@ -78,7 +78,7 @@ function DietDetailsMain() {
         </div>
 
         <div className='recipe-details-content  background-2'>
-          <Text isSectionTitle>Ingredients</Text>
+          <Text isSectionTitle>{t('ingredients')}</Text>
 
           <Space small />
 
@@ -99,7 +99,9 @@ function DietDetailsMain() {
           <Space medium />
 
           <Text className='steps-title' isSectionTitle>
-            <span>Instrucción ({minutes} MIN)</span>
+            <span>
+              {t('instruccion')} ({minutes} {t('min')})
+            </span>
           </Text>
 
           <Space small />

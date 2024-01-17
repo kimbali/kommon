@@ -161,8 +161,8 @@ function IngredientForm({ onSuccess, data, onCancel }) {
       <Space small />
 
       <Input
-        name={t('benefits')}
-        label='Benefits'
+        label={t('benefits')}
+        name='benefits'
         type='textarea'
         className='benefits'
         placeholder={t('ingredientBenefits')}

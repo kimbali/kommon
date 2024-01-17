@@ -71,7 +71,7 @@ function RecipeCard({ recipe, meal = '', onClick }) {
           <Text className='recipe-card-data'>
             {recipe.minutes} <span>min</span> |{' '}
             {calculateEnergy('calories', recipe.ingredients, user)}{' '}
-            <span>kcal</span>
+            <span>{t('kcal')}</span>
           </Text>
         </div>
       </div>

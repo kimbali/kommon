@@ -94,43 +94,43 @@ function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
   return (
     <div>
       <form onSubmit={handlePayNow} className='personal-info-form'>
-        <Text isTitle>Información general:</Text>
-        <Text fontSize='18'>¡Explícanos más sobre ti, antes de empezar!</Text>
+        <Text isTitle>{t('generalInfo')}</Text>
+        <Text fontSize='18'>{t('tellUsMoreAboutYou')}</Text>
 
         <Space medium />
 
         <Input
-          label='E-mail:*'
+          label={t('email')}
           name='email'
-          placeholder='email@email.com'
+          placeholder={t('emailPlaceholder')}
           onChange={handleOnChange}
           value={formData.email}
-          error={{ invalidFields, message: 'Email field required' }}
+          error={{ invalidFields, message: t('emailRequired') }}
           disabled={!!userData}
         />
 
         <Space small />
 
         <Input
-          label='Nombre completo:*'
+          label={t('name')}
           name='name'
-          placeholder='Full name'
+          placeholder={t('userNameComplete')}
           onChange={handleOnChange}
           value={formData.name}
-          error={{ invalidFields, message: 'Name field required' }}
+          error={{ invalidFields, message: t('nameRequired') }}
         />
 
         <Space small />
 
         <Input
-          label='Número de teléfono:*'
+          label={t('phone')}
           name='phone'
-          placeholder='+34 000 000 000'
+          placeholder={t('phonePlaceholder')}
           onChange={handleOnChange}
           value={formData.phone}
           error={{
             invalidFields,
-            message: 'Phone field required',
+            message: t('phoneRequired'),
           }}
         />
 
@@ -138,14 +138,14 @@ function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
 
         {hasGift && (
           <Input
-            label='En que zona te encuentras'
-            placeholder='Selecciona ninguna'
+            label={t('regionLabel')}
+            placeholder={t('selectRegion')}
             options={regionOptions}
             onChange={handleCityChange}
             selectedOption={selectedCity}
             isSingleSelect
             name='city'
-            error={{ invalidFields, message: 'Localizacion field required' }}
+            error={{ invalidFields, message: t('regionRequired') }}
           />
         )}
 
@@ -154,16 +154,16 @@ function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
             <Space small />
 
             <Input
-              label={`Dirección de envio${
-                !giftSelected ? ' (¡Selecciona un regalo!)' : ''
-              }:*`}
+              label={`${t('sendAddress')}${
+                !giftSelected ? t('selectAGift') : ''
+              }${t('requiredLabel')}`}
               name='address'
-              placeholder='Dirección completa'
+              placeholder={t('completeAddress')}
               onChange={handleOnChange}
               value={formData.address}
               error={{
                 invalidFields,
-                message: 'Selecciona una dirección de envío para el regalo',
+                message: t('addressRequired'),
               }}
             />
           </>
@@ -175,9 +175,9 @@ function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
 
             <Input
               type='password'
-              label='Contraseña:*'
+              label={t('password')}
               name='password'
-              placeholder='*******'
+              placeholder={t('passwordPlaceholder')}
               onChange={handleOnChange}
               value={formData.password}
               error={{ invalidFields, message: 'Password field required' }}
@@ -187,14 +187,14 @@ function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
 
             <Input
               type='password'
-              label='Confirmar contraseña:*'
+              label={t('confirmPassword')}
               name='confirmPassword'
-              placeholder='*******'
+              placeholder={t('passwordPlaceholder')}
               onChange={handleOnChange}
               value={formData.confirmPassword}
               error={{
                 invalidFields,
-                message: 'Confirm password field required',
+                message: t('confirmPasswordRequired'),
               }}
             />
           </>
@@ -210,9 +210,9 @@ function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
               className={formData.termsAndConditions ? 'checked' : ''}
               label={
                 <Text>
-                  He leído y acepto los{' '}
+                  {t('iveRead')}
                   <Link target='is_blank' to={frontRoutes.terms}>
-                    términos y condiciones
+                    {t('termsAndConditions')}
                   </Link>
                 </Text>
               }
@@ -226,9 +226,9 @@ function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
               className={formData.privacyPolicy ? 'checked' : ''}
               label={
                 <Text>
-                  He leído y acepto la{' '}
+                  {t('iveReadThe')}
                   <Link target='is_blank' to={frontRoutes.privacyPolicy}>
-                    política de privacidad
+                    {t('privatePolicy')}
                   </Link>
                 </Text>
               }
@@ -251,7 +251,7 @@ function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
             (!userData && hasGift && !giftSelected)
           }
         >
-          {userData ? 'Continuar' : 'Pagar 29,90€'}
+          {userData ? t('continue') : `${t('pay')} 29,90€`}
         </Button>
 
         <Space medium />
@@ -261,7 +261,7 @@ function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
             <Space medium />
 
             <Text center error fontSize='16'>
-              ¡Selecciona un regalo!
+              {t('selectAGift')}
             </Text>
           </>
         )}

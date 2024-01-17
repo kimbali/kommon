@@ -35,14 +35,14 @@ function RegisterGiftSelect({
           className={`${hasGift ? 'selected' : ''}`}
           onClick={() => setHasGift(true)}
         >
-          Pedir con regalo
+          {t('askGift')}
         </button>
 
         <button
           className={`${!hasGift ? 'selected' : ''}`}
           onClick={() => setHasGift(false)}
         >
-          Básico
+          {t('basic')}
         </button>
       </div>
 

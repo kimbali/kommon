@@ -227,24 +227,25 @@ function Home() {
                     <div className='result-slider-lbl'>Helena</div>
                     <div className='result-slider-txt'>
                       <p>
-                        I am 100% satisfied with the result, just like in the
-                        last marathon six months ago. I am not satisfied only
-                        with the fact that after the last marathon, I stopped
-                        adhering to useful habits and launched myself a little.
-                        Here I see two ways out: either to introduce all the
-                        marathon chips into my life and keep myself in constant
-                        shape, or (a backup option) to pass this super marathon
-                        from Lera and Artem a couple of times a year , I want to
-                        thank everyone who prepared this product and say that
-                        the level has increased tenfold in six months. Very
-                        cool!
+                        Estoy 100% satisfecho con el resultado, al igual que en
+                        el último maratón hace seis meses. Solo no estoy
+                        satisfecho con el hecho de que después del último
+                        maratón, dejé de seguir hábitos útiles y me lancé un
+                        poco. Aquí veo dos salidas: o introducir todas las
+                        recomendaciones del maratón en mi vida y mantenerme en
+                        forma constante, o (una opción de respaldo) hacer este
+                        súper maratón de Lera y Artem un par de veces al año.
+                        Quiero agradecer a todos los que prepararon este
+                        producto y decir que el nivel ha aumentado diez veces en
+                        seis meses. ¡Muy bien!
                       </p>
                       <p>
-                        Here I see two ways out: either to introduce all the
-                        marathon chips into my life and keep myself in constant
-                        shape, or (a backup option) to pass this super marathon
-                        from Lera and Artem a couple of times a year
-                      </p>{' '}
+                        Aquí veo dos posibles soluciones: ya sea incorporar
+                        todas las recomendaciones del maratón en mi vida y
+                        mantenerme en forma constantemente, o (como una opción
+                        de respaldo) realizar este súper maratón de Lera y Artem
+                        un par de veces al año.
+                      </p>
                     </div>
                   </div>
                   <div className='result-slider-right'>
@@ -596,12 +597,12 @@ function Home() {
                 </a>
               </div>
               <div className='coach-item-right'>
-                I am 100% satisfied with the result, just like in the last
-                marathon six months ago. I am not satisfied only with the fact
-                that after the last marathon, I stopped adhering to useful
-                habits and launched myself a little. Here I see two ways out:
-                either to introduce all the marathon chips into my life and keep
-                myself in constant shape,
+                Estoy 100% satisfecho con el resultado, al igual que en el
+                último maratón hace seis meses. Solo no estoy satisfecho con el
+                hecho de que después del último maratón, dejé de seguir hábitos
+                útiles y me lancé un poco. Aquí veo dos salidas: ya sea
+                incorporar todas las recomendaciones del maratón en mi vida y
+                mantenerme en forma constantemente,
               </div>
               <div className='clear'></div>
             </div>
@@ -621,12 +622,12 @@ function Home() {
                 </a>
               </div>
               <div className='coach-item-right'>
-                I am 100% satisfied with the result, just like in the last
-                marathon six months ago. I am not satisfied only with the fact
-                that after the last marathon, I stopped adhering to useful
-                habits and launched myself a little. Here I see two ways out:
-                either to introduce all the marathon chips into my life and keep
-                myself in constant shape,{' '}
+                Estoy 100% satisfecho con el resultado, al igual que en el
+                último maratón hace seis meses. Solo no estoy satisfecho con el
+                hecho de que después del último maratón, dejé de seguir hábitos
+                útiles y me lancé un poco. Aquí veo dos salidas: ya sea
+                incorporar todas las recomendaciones del maratón en mi vida y
+                mantenerme en forma constantemente,
               </div>
               <div className='clear'></div>
             </div>

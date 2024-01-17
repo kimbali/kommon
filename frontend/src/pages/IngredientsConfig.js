@@ -82,7 +82,7 @@ function IngredientsConfig() {
     <div>
       <div className='content-left-and-right'>
         <Button isPrimary onClick={() => setShowFormModal(true)}>
-          Create an ingredient
+          {t('createIngredient')}
         </Button>
 
         <form onSubmit={handleSearchSubmit} className='search-input'>
@@ -107,18 +107,18 @@ function IngredientsConfig() {
           <tr>
             <th>
               <button onClick={sortByName}>
-                Name <FontAwesomeIcon icon={faSort} />
+                {t('name')} <FontAwesomeIcon icon={faSort} />
               </button>
             </th>
-            <th>Measure</th>
-            <th>Allergies</th>
-            <th>Supermarket</th>
-            <th>Kcal</th>
-            <th>Prot</th>
-            <th>Fats</th>
-            <th>Carbh</th>
-            <th>Edit</th>
-            <th>Trash</th>
+            <th>{t('measure')}</th>
+            <th>{t('allergies')}</th>
+            <th>{t('supermarket')}</th>
+            <th>{t('kcal')}</th>
+            <th>{t('prot')}</th>
+            <th>{t('fats')}</th>
+            <th>{t('carbh')}</th>
+            <th>{t('edit')}</th>
+            <th>{t('trash')}</th>
           </tr>
         </thead>
         <tbody>
@@ -172,8 +172,8 @@ function IngredientsConfig() {
           onConfirm={handleDelete}
           onClose={setShowDeleteModal}
           title='Delete ingredient'
-          text={`Are you sure you whant to delete: ${showDeleteModal.name}`}
-          confirmLabel='Delete'
+          text={`${t('confirmDelete')} ${showDeleteModal.name}`}
+          confirmLabel={t('delete')}
         />
       )}
 

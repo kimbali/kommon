@@ -9,7 +9,7 @@ function Configuration() {
 
   return (
     <div>
-      <Text isTitle>Configuration</Text>
+      <Text isTitle>{t('config')}</Text>
 
       <Space big />
 

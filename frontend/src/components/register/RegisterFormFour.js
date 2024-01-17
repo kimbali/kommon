@@ -43,11 +43,11 @@ function RegisterFormFour({ userData }) {
 
   return (
     <div className='register-success'>
-      <Text isTitle>¡Felicidades!</Text>
+      <Text isTitle>{t('congrats')}</Text>
 
       <Space small />
 
-      <Text fontSize='18'>Has completado satisfactoriamente el formulario</Text>
+      <Text fontSize='18'>{t('hasComplete')}</Text>
 
       <Space small />
 
@@ -58,14 +58,14 @@ function RegisterFormFour({ userData }) {
       {hasStarted && !hasFinished && (
         <>
           <Text fontSize='18'>
-            La Maraton empezó el{' '}
+            {t('marathonHasStarted')}{' '}
             <span className='bold'> {formatDate(startDate)}</span>
           </Text>
 
           <Space small />
 
           <Text fontSize='18'>
-            ¡Quedan {daysDifference} días para que termine!
+            {t('remains')} {daysDifference} {t('daysForEnd')}
           </Text>
         </>
       )}
@@ -73,29 +73,21 @@ function RegisterFormFour({ userData }) {
       {!hasStarted && !hasFinished && (
         <>
           <Text fontSize='18'>
-            La Maraton empieza el{' '}
+            {t('marathonStarts')}{' '}
             <span className='bold'> {formatDate(startDate)}</span>
           </Text>
 
           <Space medium />
 
-          <Text isPlaceholder>
-            Tendras acceso a la plataforma 2 días antes de que empiece la
-            marathon
-          </Text>
+          <Text isPlaceholder>{t('accessTewoDaysBefore')}</Text>
 
           <Space extraSmall />
 
-          <Text isPlaceholder>
-            Podras descargarte la lista de la compra de los menus de la primera
-            semana
-          </Text>
+          <Text isPlaceholder>{t('downloadShoppingList')}</Text>
         </>
       )}
 
-      {hasFinished && (
-        <Text>Esta Maraton ya ha finalizado. ¡Apuntate a la siguiente!</Text>
-      )}
+      {hasFinished && <Text>{t('marathonHasFinished')}</Text>}
 
       <Space big />
 
@@ -106,7 +98,7 @@ function RegisterFormFour({ userData }) {
         isPrimary
         onClick={handleClick}
       >
-        marathon
+        {t('marathon')}
       </Button>
 
       <Space medium />

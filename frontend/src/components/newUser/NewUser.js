@@ -48,25 +48,25 @@ function NewUser({ onCreate, onCancel, user }) {
 
   return (
     <form onSubmit={handleSubmit} className='new-user-form'>
-      <Text isTitle>Create new user</Text>
+      <Text isTitle>{t('createNewUser')}</Text>
 
       <Space small />
 
       <Input
-        label='email'
+        label={t('email')}
         name='email'
-        placeholder='hola@bodymaraton.com'
+        placeholder={t('emailPlaceholder')}
         onChange={handleOnChange}
         value={formData.email}
-        error={{ invalidFields, message: 'Email field required' }}
+        error={{ invalidFields, message: t('emailRequired') }}
       />
 
       <Space small />
 
       <Input
-        label='nombre'
+        label={t('name')}
         name='name'
-        placeholder='nombre usuario'
+        placeholder={t('userName')}
         onChange={handleOnChange}
         value={formData.name}
       />
@@ -74,35 +74,35 @@ function NewUser({ onCreate, onCancel, user }) {
       <Space small />
 
       <Input
-        label='password'
+        label={t('password')}
         name='password'
-        placeholder='*****'
+        placeholder={t('passwordPlaceholder')}
         onChange={handleOnChange}
         value={formData.password}
-        error={{ invalidFields, message: 'Password field required' }}
+        error={{ invalidFields, message: t('passwordRequired') }}
       />
 
       <Space small />
 
       <Input
-        label='¿Usuario administrador?'
+        label={t('adminUserAsk')}
         placeholder=''
         type='radio'
         onChange={handleOnChange}
         name='isAdmin'
-        selectedOption={formData.isAdmin ? 'YES' : 'NO'}
+        selectedOption={formData.isAdmin ? t('yes') : t('no')}
         options={yesNoEnum}
       />
 
       <Space small />
 
       <Input
-        label='¿Ha pagado?'
+        label={t('hasPaidAsk')}
         placeholder=''
         type='radio'
         onChange={handleOnChange}
         name='hasPaid'
-        selectedOption={formData.hasPaid ? 'YES' : 'NO'}
+        selectedOption={formData.hasPaid ? t('yes') : t('no')}
         options={yesNoEnum}
       />
 
@@ -110,11 +110,11 @@ function NewUser({ onCreate, onCancel, user }) {
 
       <div className='content-on-the-right'>
         <Button onClick={onCancel} isSecondary>
-          Cancel
+          {t('cancel')}
         </Button>
 
         <Button type='submit' isPrimary>
-          Create user
+          {t('create')} {t('user')}
         </Button>
       </div>
     </form>

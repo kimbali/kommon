@@ -66,14 +66,14 @@ const Login = () => {
       <TextedLogo />
 
       <form className='content-wrapper' onSubmit={handleSubmit}>
-        <Text isTitle>Log In</Text>
+        <Text isTitle>{t('login')}</Text>
 
         <Space medium />
 
         <Input
-          label='email:'
+          label={t('email')}
           name='email'
-          placeholder='hola@bodymaraton.com'
+          placeholder={t('emailPlaceholder')}
           onChange={handleOnChange}
           value={formData.email}
           error={{ invalidFields, message: 'Email field required' }}
@@ -82,19 +82,19 @@ const Login = () => {
         <Space medium />
 
         <Input
-          label='password:'
+          label={t('password')}
           name='password'
-          placeholder='*****'
+          placeholder={t('passwordPlaceholder')}
           onChange={handleOnChange}
           value={formData.password}
-          error={{ invalidFields, message: 'Password field required' }}
+          error={{ invalidFields, message: t('passwordRequired') }}
         />
 
         <Space big />
 
         <div className='content-on-the-right allways'>
           <Button type='submit' isPrimary>
-            Continue
+            {t('continue')}
           </Button>
         </div>
       </form>

@@ -30,7 +30,7 @@ function CookiesFiles() {
 
   return (
     <div className='absolute-right legal-page'>
-      <Text isTitle>Cookies files</Text>
+      <Text isTitle>{t('cookies')}</Text>
 
       <Space small />
 
@@ -42,7 +42,7 @@ function CookiesFiles() {
             className='edit-button'
             onClick={() => setShowEditForm(true)}
           >
-            Modificar texto
+            {t('editText')}
           </Button>
         </div>
       )}
@@ -51,7 +51,7 @@ function CookiesFiles() {
         <LegalForm
           onSuccess={handleEditForm}
           legalKey='cookiesFiles'
-          label='Cookies'
+          label={t('cookies')}
         />
       )}
 

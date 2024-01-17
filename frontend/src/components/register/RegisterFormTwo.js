@@ -46,37 +46,37 @@ function RegisterFormTwo({ onSuccess, userData }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Text isTitle>Medidas corporales:</Text>
-      <Text fontSize='18'>Toma tus medidas corporales con un metro.</Text>
+      <Text isTitle>{t('bodySize')}:</Text>
+      <Text fontSize='18'>{t('bodySizeHint')}</Text>
 
       <Space medium />
 
       <Input
-        label='Edad:*'
+        label={t('age')}
         placeholder=''
         type='number'
         onChange={handleOnChange}
         name='age'
         value={formData.age}
-        error={{ invalidFields, message: 'Age field required' }}
+        error={{ invalidFields, message: t('ageRequired') }}
       />
 
       <Space small />
 
       <Input
-        label='Peso, kg:*'
+        label={t('weight')}
         placeholder=''
         type='number'
         onChange={handleOnChange}
         name='weight'
         value={formData.weight}
-        error={{ invalidFields, message: 'Weight field required' }}
+        error={{ invalidFields, message: t('weightRequired') }}
       />
 
       <Space small />
 
       <Input
-        label='Altura, cm:*'
+        label={t('height')}
         placeholder=''
         type='number'
         onChange={handleOnChange}
@@ -84,14 +84,14 @@ function RegisterFormTwo({ onSuccess, userData }) {
         value={formData.height}
         error={{
           invalidFields,
-          message: 'Height password field required',
+          message: t('heightRequired'),
         }}
       />
 
       <Space small />
 
       <Input
-        label='Pecho, cm:*'
+        label={t('chest')}
         placeholder=''
         type='number'
         onChange={handleOnChange}
@@ -99,38 +99,38 @@ function RegisterFormTwo({ onSuccess, userData }) {
         value={formData.chest}
         error={{
           invalidFields,
-          message: 'Chest field required',
+          message: t('chestRequired'),
         }}
       />
 
       <Space small />
 
       <Input
-        label='Cintura, cm:*'
+        label={t('waist')}
         placeholder=''
         type='number'
         onChange={handleOnChange}
         name='waist'
         value={formData.waist}
-        error={{ invalidFields, message: 'Waist field required' }}
+        error={{ invalidFields, message: t('waistRequired') }}
       />
 
       <Space small />
 
       <Input
-        label='Gluteos, cm:*'
+        label={t('buttocks')}
         placeholder=''
         type='number'
         onChange={handleOnChange}
         name='buttocks'
         value={formData.buttocks}
-        error={{ invalidFields, message: 'Buttocks field required' }}
+        error={{ invalidFields, message: t('buttocksRequired') }}
       />
 
       <Space big />
 
       <Button type='submit' isPrimary big center>
-        Continue
+        {t('continue')}
       </Button>
 
       <Space medium />

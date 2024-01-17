@@ -40,7 +40,7 @@ function RecipeFormDetails({
 
       <Space medium />
 
-      <Text isSectionTitle>Ingredients</Text>
+      <Text isSectionTitle>{t('ingredients')}</Text>
 
       <Space small />
 
@@ -64,7 +64,10 @@ function RecipeFormDetails({
       <Space medium />
 
       <Text isSectionTitle>
-        Steps - <span className='secondary'>{minutes || 0} min</span>
+        {t('steps')} -{' '}
+        <span className='secondary'>
+          {minutes || 0} {t('min')}
+        </span>
       </Text>
 
       <Space extraSmall />
@@ -87,22 +90,22 @@ function RecipeFormDetails({
 
       <div className='propiedades'>
         <div className='propiedad'>
-          <Text isBold>KCAL</Text>
+          <Text isBold>{t('kcal')}</Text>
           <Text>{calculateEnergy('calories', ingredients)}</Text>
         </div>
 
         <div className='propiedad'>
-          <Text isBold>PROT</Text>
+          <Text isBold>{t('prot')}</Text>
           <Text>{calculateEnergy('proteins', ingredients)}</Text>
         </div>
 
         <div className='propiedad'>
-          <Text isBold>FATS</Text>
+          <Text isBold>{t('fats')}</Text>
           <Text>{calculateEnergy('fats', ingredients)}</Text>
         </div>
 
         <div className='propiedad'>
-          <Text isBold>CARBH</Text>
+          <Text isBold>{t('carbh')}</Text>
           <Text>{calculateEnergy('carbohydrates', ingredients)}</Text>
         </div>
       </div>
@@ -135,7 +138,7 @@ function RecipeFormDetails({
             onClick={handleEditRecipe}
             type='submit'
           >
-            Save changes
+            {t('save')}
           </Button>
         ) : (
           <Button
@@ -144,7 +147,7 @@ function RecipeFormDetails({
             onClick={handleCreateRecipe}
             type='submit'
           >
-            Create recipe
+            {t('create')}
           </Button>
         )}
       </div>

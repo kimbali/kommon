@@ -61,7 +61,7 @@ function Diet({ setCurrentDay }) {
 
   return (
     <div className='diet-tab'>
-      <Text isTitle>Your diet for today</Text>
+      <Text isTitle>{t('todayDiet')}</Text>
 
       <Space medium />
 
@@ -77,9 +77,7 @@ function Diet({ setCurrentDay }) {
 
       <Space big />
 
-      {isError && user.isAdmin && (
-        <div>You should configure this day on the backoffice</div>
-      )}
+      {isError && user.isAdmin && <div>{t('configureInBackoffice')}</div>}
 
       <div className='recipes-list'>
         {!isError &&

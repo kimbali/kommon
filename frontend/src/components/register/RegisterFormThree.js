@@ -52,39 +52,39 @@ function RegisterFormThree({ onSuccess, userData }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Text isTitle>Cuestionario de salud:</Text>
-      <Text fontSize='18'>Elige una opción para completar el formulario.</Text>
+      <Text isTitle>{t('healthAsk')}:</Text>
+      <Text fontSize='18'>{t('chooseOption')}</Text>
 
       <Space big />
 
       <Input
-        label='Actividad física diaria:'
+        label={`${t('dailyActivity')}:`}
         placeholder=''
         type='radio'
         onChange={handleOnChange}
         name='activity'
         selectedOption={formData.activity}
         options={activityEnum}
-        error={{ invalidFields, message: 'Activity field required' }}
+        error={{ invalidFields, message: t('activityRequired') }}
       />
 
       <Space big />
 
       <Input
-        label='¿Cuál es tu propósito?'
+        label={t('yourPorpose')}
         placeholder=''
         type='radio'
         onChange={handleOnChange}
         name='porpuse'
         selectedOption={formData.porpuse}
         options={porpusesEnum}
-        error={{ invalidFields, message: 'Porpuse field required' }}
+        error={{ invalidFields, message: t('porposeRequired') }}
       />
 
       <Space big />
 
       <Input
-        label='¿Estas dando pecho?'
+        label={t('breastAsk')}
         placeholder=''
         type='radio'
         onChange={handleOnChange}
@@ -98,47 +98,47 @@ function RegisterFormThree({ onSuccess, userData }) {
 
       <Input
         className='register'
-        label='¿Tienes alguna alergia alimentaria?'
-        placeholder='Selecciona ninguna o varias'
+        label={t('allergiesAsk')}
+        placeholder={t('selectOneOrMore')}
         isMultiSelect
         onChange={handleOnChange}
         name='allergies'
         selectedOption={formData.allergies}
         options={allergiesEnum}
-        error={{ invalidFields, message: 'Allergies field required' }}
+        error={{ invalidFields, message: t('allergiesRequired') }}
       />
 
       <Space big />
 
       <Input
-        label='¿Problemas de conducta alimentaria?'
+        label={t('problemsAsk')}
         placeholder=''
         type='radio'
         onChange={handleOnChange}
         name='problems'
         selectedOption={formData.problems}
         options={problemsEnum}
-        error={{ invalidFields, message: 'Eating behavior field required' }}
+        error={{ invalidFields, message: t('problemsRequired') }}
       />
 
       <Space big />
 
       <Input
         className='register'
-        label='¿Patologías previas?'
-        placeholder='Selecciona ninguna o varias'
+        label={t('patologiesAsk')}
+        placeholder={t('selectOneOrMore')}
         isMultiSelect
         onChange={handleOnChange}
         name='patologies'
         selectedOption={formData.patologies}
         options={patologyEnum}
-        error={{ invalidFields, message: 'Patologies field required' }}
+        error={{ invalidFields, message: t('patologiesRequired') }}
       />
 
       <Space big />
 
       <Button type='submit' isPrimary big center>
-        Finalizar
+        {t('finish')}
       </Button>
 
       <Space medium />

@@ -31,7 +31,7 @@ function ShoppingList({ shoppingListData = [] }) {
 
   return (
     <div>
-      <Text isTitle>Lista de la compra</Text>
+      <Text isTitle>{t('shoppingList')}</Text>
 
       <Space medium />
 

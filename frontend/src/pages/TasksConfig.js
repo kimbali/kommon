@@ -11,8 +11,8 @@ import { useGetTasksQuery } from '../slices/tasksApiSlice';
 import LoadingError from '../components/loadingError/LoadingError';
 import Modal from '../components/modal/Modal';
 import TaskForm from '../components/tasks/TaskForm';
-import DeleteTaskForm from '../components/tasks/DeleteTaskForm';
 import { useTranslation } from 'react-i18next';
+import ConfirmModal from '../components/modal/ConfirmModal';
 
 function TasksConfig() {
   const { t } = useTranslation();
@@ -112,7 +112,12 @@ function TasksConfig() {
 
       {showDeleteModal && (
         <Modal onClose={setShowDeleteModal} isSecondary>
-          <DeleteTaskForm onClose={handleDelete} task={showDeleteModal} />
+          <ConfirmModal
+            onConfirm={handleDelete}
+            onClose={handleDelete}
+            title={t('deleteTask')}
+            text={`${t('confirmDelete')} ${showDeleteModal}?`}
+          />
         </Modal>
       )}
 

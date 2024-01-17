@@ -56,9 +56,9 @@ function WorkoutForm({ data, onSuccess, isEdit }) {
         <div className='grid-container'>
           <Input
             className='cols-4'
-            label='title'
+            label={t('title')}
             name='title'
-            placeholder='Exercice'
+            placeholder={t('workout')}
             onChange={handleOnChange}
             value={formData.title}
           />
@@ -66,8 +66,8 @@ function WorkoutForm({ data, onSuccess, isEdit }) {
           <Input
             className='cols-4'
             type='textarea'
-            label='description'
-            placeholder='Utiliza un guión "-" seguido de un salto de linea para crear listas'
+            label={t('description')}
+            placeholder={t('descriptionPlaceholder')}
             name='description'
             onChange={handleOnChange}
             value={formData.description}
@@ -75,16 +75,16 @@ function WorkoutForm({ data, onSuccess, isEdit }) {
 
           <Input
             className='cols-4'
-            label='Video'
+            label={t('video')}
             name='video'
-            placeholder='Vimeo link'
+            placeholder={t('vimeoLink')}
             onChange={handleOnChange}
             value={formData.video}
           />
 
           <Input
             className='cols-4'
-            label='image'
+            label={t('image')}
             name='image'
             onChange={handleOnChange}
             value={formData.image}
@@ -93,7 +93,7 @@ function WorkoutForm({ data, onSuccess, isEdit }) {
 
           <Input
             className='cols-4'
-            label='minutes'
+            label={t('minutes')}
             name='minutes'
             placeholder={t('placeholderNumber')}
             onChange={handleOnChange}
@@ -103,7 +103,7 @@ function WorkoutForm({ data, onSuccess, isEdit }) {
           <Input
             className='cols-4'
             name='level'
-            label='Level'
+            label={t('level')}
             isSingleSelect
             options={levelsEnum}
             onChange={handleOnChange}

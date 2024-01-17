@@ -144,7 +144,7 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
   return (
     <div className='recipe-form-container'>
       <div className='recipe-form cols-1'>
-        <Text isTitle>{isEdit ? 'Edit recipe' : 'Create recipe'}</Text>
+        <Text isTitle>{isEdit ? t('edit') : t('create')}</Text>
 
         <Space small />
 
@@ -152,16 +152,16 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
           <div className='section grid-container'>
             <Input
               className='cols-4'
-              label='title'
+              label={t('title')}
               name='title'
-              placeholder='Recipe title'
+              placeholder={t('recipeTitle')}
               onChange={handleOnChange}
               value={formData.title}
             />
 
             <div className='cols-3'>
               <Input
-                label='image'
+                label={t('image')}
                 name='image'
                 onChange={handleOnChange}
                 value={formData.image}
@@ -171,7 +171,7 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
 
             <div className='cols-1'>
               <Input
-                label='minutes'
+                label={t('minutes')}
                 name='minutes'
                 placeholder={t('placeholderNumber')}
                 onChange={handleOnChange}
@@ -186,7 +186,7 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
           <Space medium />
 
           <div className='section'>
-            <Text isSubtitle>Ingredients</Text>
+            <Text isSubtitle>{t('ingredients')}</Text>
 
             <Space extraSmall />
 
@@ -224,7 +224,7 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
                         type='number'
                         placeholder={
                           ingredientOption?.value.ingredient.measure ||
-                          'quantity'
+                          t('quantity')
                         }
                         onChange={handleIngredientChange}
                         value={eachIngredient.quantity}
@@ -262,7 +262,7 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
                 }
                 className='cols-1 no-submit'
               >
-                Add ingredient
+                {t('addIngredient')}
               </Button>
 
               <Button
@@ -270,15 +270,12 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
                 iconLeft={faCartPlus}
                 onClick={() => setShowCreateIngredient(true)}
               >
-                Create ingredient
+                {t('createIngredient')}
               </Button>
             </div>
 
             {ingredientsOptions.length === 0 && (
-              <Text>
-                No hay mas ingredientes en la lista, deberias crear los que te
-                falten
-              </Text>
+              <Text>{t('noMoreIngredients')}</Text>
             )}
             <Space small />
           </div>
@@ -286,7 +283,7 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
           <Space medium />
 
           <div className='section'>
-            <Text isSubtitle>Steps</Text>
+            <Text isSubtitle>{t('steps')}</Text>
 
             <Space extraSmall />
 
@@ -295,7 +292,7 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
                 <Input
                   name={`step${index}`}
                   type='textarea'
-                  placeholder={`Step ${index + 1}`}
+                  placeholder={`${t('step')} ${index + 1}`}
                   onChange={handleOnChangeSteps}
                   value={eachStep}
                 />
@@ -312,7 +309,7 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
               type='button'
               disabled={formData.steps[formData.steps.length - 1] === ''}
             >
-              Add step
+              {t('addStep')}
             </Button>
 
             <Space small />
@@ -322,10 +319,10 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
 
           <div className='section '>
             <Input
-              key={'meals-form'}
+              key='meals-form'
+              label={t('meals')}
               name='meals'
-              label='meals'
-              placeholder='Select all possible meals'
+              placeholder={t('allMeals')}
               isMultiSelect
               options={mealsEnum}
               onChange={handleOnChange}

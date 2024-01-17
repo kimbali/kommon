@@ -26,12 +26,12 @@ function BodyParametersForm() {
 
   return (
     <form onSubmit={handleOnSubmit}>
-      <Text isTitle>Actualizar parámetros</Text>
+      <Text isTitle>{t('updateParameters')}</Text>
 
       <Space small />
 
       <Input
-        label='Peso, kg*'
+        label={t('weight')}
         name='weight'
         placeholder={t('placeholderNumber')}
         onChange={handleOnChange}
@@ -42,7 +42,7 @@ function BodyParametersForm() {
       <Space small />
 
       <Input
-        label='Pecho'
+        label={t('chest')}
         name='chest'
         placeholder={t('placeholderNumber')}
         onChange={handleOnChange}
@@ -53,7 +53,7 @@ function BodyParametersForm() {
       <Space small />
 
       <Input
-        label='Cintura'
+        label={t('waist')}
         name='waist'
         placeholder={t('placeholderNumber')}
         onChange={handleOnChange}
@@ -64,7 +64,7 @@ function BodyParametersForm() {
       <Space small />
 
       <Input
-        label='Cadera'
+        label={t('buttocks')}
         name='buttocks'
         placeholder={t('placeholderNumber')}
         onChange={handleOnChange}
@@ -73,7 +73,7 @@ function BodyParametersForm() {
       />
 
       <Button isPrimary center type='submit'>
-        Guardar
+        {t('save')}
       </Button>
     </form>
   );

@@ -31,7 +31,7 @@ function AvisoLegal() {
 
   return (
     <div className='absolute-right legal-page'>
-      <Text isTitle>Aviso legal</Text>
+      <Text isTitle>{t('legalAdvise')}</Text>
 
       <Space small />
 
@@ -43,7 +43,7 @@ function AvisoLegal() {
             className='edit-button'
             onClick={() => setShowEditForm(true)}
           >
-            Modificar texto
+            {t('editText')}
           </Button>
         </div>
       )}
@@ -52,7 +52,7 @@ function AvisoLegal() {
         <LegalForm
           onSuccess={handleEditForm}
           legalKey='avisoLegal'
-          label='Aviso legal'
+          label={t('legalAdvise')}
         />
       )}
 

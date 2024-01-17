@@ -38,7 +38,7 @@ function Meditations({ setCurrentDay }) {
 
   return (
     <div>
-      <Text isTitle>Your meditations for today</Text>
+      <Text isTitle>{t('todayMeditations')}</Text>
 
       <Space medium />
 
@@ -51,9 +51,7 @@ function Meditations({ setCurrentDay }) {
 
       <Space big />
 
-      {isError && user.isAdmin && (
-        <div>You should configure this day on the backoffice</div>
-      )}
+      {isError && user.isAdmin && <div>{t('configureInBackoffice')}</div>}
 
       {!isError &&
         meditationsList.length > 0 &&

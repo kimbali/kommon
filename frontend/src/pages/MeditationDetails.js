@@ -63,7 +63,7 @@ function MeditationDetails() {
   }
 
   if (!meditationDetails) {
-    return <Text>Meditation not found</Text>;
+    return <Text>{t('meditationNotFound')}</Text>;
   }
 
   const { title, description, minutes, audio } = meditationDetails;
@@ -79,7 +79,7 @@ function MeditationDetails() {
             iconLeft={faEdit}
             isPrimary
           >
-            Edit meditation
+            {t('edit')}
           </Button>
 
           <Button
@@ -87,7 +87,7 @@ function MeditationDetails() {
             iconLeft={faTrash}
             isSecondary
           >
-            Delete meditation
+            {t('delete')}
           </Button>
         </div>
       </div>
@@ -103,7 +103,7 @@ function MeditationDetails() {
 
       <div className='content-on-the-left'>
         <Text>
-          <span className='primary'>{minutes}</span> min
+          <span className='primary'>{minutes}</span> {t('min')}
         </Text>
       </div>
 
@@ -129,9 +129,9 @@ function MeditationDetails() {
         <ConfirmModal
           onConfirm={deleteHandler}
           onClose={setShowDeleteModal}
-          title='Delete meditation'
-          text={`Are you sure you whant to delete: ${title}`}
-          confirmLabel='Delete'
+          title={t('deleteMeditation')}
+          text={`${t('confirmDelete')} ${title}`}
+          confirmLabel={t('delete')}
         />
       )}
     </div>

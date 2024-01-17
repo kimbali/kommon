@@ -21,7 +21,7 @@ function MenuLinks() {
         <Link to={frontRoutes.profile}>{t('profile')}</Link>
       </li>
       <li>
-        <Link to={frontRoutes.profileMarathons}>{t('yourMarathones')}</Link>
+        <Link to={frontRoutes.profileMarathons}>{t('yourMarathons')}</Link>
       </li>
       {!user ? (
         <li>

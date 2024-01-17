@@ -21,55 +21,58 @@ function UserProfile() {
 
       <Space medium />
 
-      <Text isSubtitle>Información personal</Text>
+      <Text isSubtitle>{t('personalInfo')}</Text>
 
       <Space extraSmall />
 
       <ResumeTable
         list={[
-          { name: 'Nombre', value: user?.name },
-          { name: 'Email', value: user?.email },
-          { name: 'Region', value: user?.city?.region || '-' },
-          { name: 'Address', value: user?.address || '-' },
-          { name: 'Telefono', value: user?.phone },
+          { name: t('name'), value: user?.name },
+          { name: t('mail'), value: user?.email },
+          { name: t('region'), value: user?.city?.region || '-' },
+          { name: t('address'), value: user?.address || '-' },
+          { name: t('tel'), value: user?.phone },
         ]}
       />
 
       <Space medium />
 
-      <Text isSubtitle>Body parámeters</Text>
+      <Text isSubtitle>{t('parameters')}</Text>
 
       <Space extraSmall />
 
       <ResumeTable
         list={[
-          { name: 'Edad', value: user?.age },
-          { name: 'Altura', value: user?.height },
-          { name: 'Peso', value: user?.weight },
-          { name: 'Pecho', value: user?.chest },
-          { name: 'Cintura', value: user?.waist },
-          { name: 'Gluteos', value: user?.buttocks },
+          { name: t('age'), value: user?.age },
+          { name: t('height'), value: user?.height },
+          { name: t('weight'), value: user?.weight },
+          { name: t('chest'), value: user?.chest },
+          { name: t('waist'), value: user?.waist },
+          { name: t('buttocks'), value: user?.buttocks },
         ]}
       />
 
       <Space medium />
 
-      <Text isSubtitle>Estilo de vida</Text>
+      <Text isSubtitle>{t('lifeStyle')}</Text>
 
       <Space extraSmall />
 
       <ResumeTable
         list={[
-          { name: 'Actividad', value: getActivityLabel(user?.activity) },
+          { name: t('activity'), value: getActivityLabel(user?.activity) },
           {
-            name: 'Alergias alimentarias',
+            name: t('allergies'),
             value: getAllergiesLabel(user?.allergies),
           },
-          { name: 'Patologias', value: getPatologiesLabel(user?.patologies) },
-          { name: 'Propósito', value: getPorpuseLabel(user?.porpuse) },
-          { name: 'Das el pecho', value: getYesNoLabel(user?.breastfeed) },
           {
-            name: 'Antecedentes',
+            name: t('patologies'),
+            value: getPatologiesLabel(user?.patologies),
+          },
+          { name: t('porpuse'), value: getPorpuseLabel(user?.porpuse) },
+          { name: t('breastfeed'), value: getYesNoLabel(user?.breastfeed) },
+          {
+            name: t('problem'),
             value: getProblemsLabel(user?.problem) || '-',
           },
         ]}

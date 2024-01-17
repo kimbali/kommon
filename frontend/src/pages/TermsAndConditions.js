@@ -30,7 +30,7 @@ function TermsAndConditions() {
 
   return (
     <div className='absolute-right legal-page'>
-      <Text isTitle>Términos y condiciones</Text>
+      <Text isTitle>{t('termsAndConditions')}</Text>
 
       <Space small />
 
@@ -42,7 +42,7 @@ function TermsAndConditions() {
             className='edit-button'
             onClick={() => setShowEditForm(true)}
           >
-            Modificar texto
+            {t('editText')}
           </Button>
         </div>
       )}
@@ -51,7 +51,7 @@ function TermsAndConditions() {
         <LegalForm
           onSuccess={handleEditForm}
           legalKey='termsAndConditions'
-          label='Términos y condiciones'
+          label={t('termsAndConditions')}
         />
       )}
 

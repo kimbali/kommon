@@ -37,7 +37,7 @@ function WorkoutDetailsMain() {
 
       <div className='content-on-the-left'>
         <Text>
-          <span className='primary'>{workout.minutes}</span> min
+          <span className='primary'>{workout.minutes}</span> {t('min')}
         </Text>
 
         <Text className='pill'>{getLevelLabel(workout.level)}</Text>

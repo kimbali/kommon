@@ -23,7 +23,7 @@ function UserMarathons() {
 
   return (
     <div>
-      <Text isTitle>Tus maratones</Text>
+      <Text isTitle>{t('yourMarathons')}</Text>
 
       <Space medium />
 

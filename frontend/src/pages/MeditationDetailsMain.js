@@ -46,7 +46,7 @@ function MeditationDetailsMain() {
       <Space small />
 
       <Text>
-        <span className='primary'>{meditation.minutes}</span> min
+        <span className='primary'>{meditation.minutes}</span> {t('min')}
       </Text>
 
       <Space small />

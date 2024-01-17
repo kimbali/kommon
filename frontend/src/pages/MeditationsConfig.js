@@ -63,7 +63,7 @@ function MeditationsConfig() {
     <div>
       <div className='content-left-and-right'>
         <Button onClick={handleShowModal} iconLeft={faPlus} isPrimary>
-          create new meditation
+          {t('createMeditation')}
         </Button>
 
         <form onSubmit={handleSearchSubmit} className='search-input'>

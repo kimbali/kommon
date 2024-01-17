@@ -40,19 +40,19 @@ function Register() {
 
   const registerSteps = [
     {
-      label: 'Info',
+      label: t('info'),
       step: 1,
     },
     {
-      label: 'Measuring',
+      label: t('measures'),
       step: 2,
     },
     {
-      label: 'Survey',
+      label: t('survey'),
       step: 3,
     },
     {
-      label: 'Done',
+      label: t('done'),
       step: 4,
     },
   ];
@@ -67,10 +67,10 @@ function Register() {
 
       <div className='content-wrapper'>
         <Text isBold fontSize='18'>
-          Rellenar el formulario
+          {t('fillTheForm')}
         </Text>
 
-        <Text fontSize='18'>Comienza tu camino hacia la transformación</Text>
+        <Text fontSize='18'>{t('startTheChange')}</Text>
 
         {userData && (
           <>

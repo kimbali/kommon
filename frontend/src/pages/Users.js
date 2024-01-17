@@ -46,7 +46,7 @@ function Users() {
         isPrimary
         iconLeft={faAdd}
       >
-        new user
+        {t('newUser')}
       </Button>
 
       <Space medium />
@@ -54,16 +54,16 @@ function Users() {
       <table>
         <thead>
           <tr>
-            <th>Nombre</th>
-            <th>Email</th>
-            <th>Admin</th>
-            <th>Patologias</th>
-            <th>Problemas</th>
-            <th>Alergias</th>
-            <th>Registrado</th>
-            <th>Pagado</th>
-            <th>Editar</th>
-            <th>Eliminar</th>
+            <th>{t('name')}</th>
+            <th>{t('mail')}</th>
+            <th>{t('admin')}</th>
+            <th>{t('patologies')}</th>
+            <th>{t('problem')}</th>
+            <th>{t('allergies')}</th>
+            <th>{t('registered')}</th>
+            <th>{t('paid')}</th>
+            <th>{t('edit')}</th>
+            <th>{t('delete')}</th>
           </tr>
         </thead>
 
@@ -73,12 +73,12 @@ function Users() {
               <tr key={ele._id}>
                 <td>{ele.name}</td>
                 <td>{ele.email}</td>
-                <td>{ele.isAdmin ? 'admin' : ''}</td>
-                <td>{ele.patologies.length > 0 ? 'yes' : ''}</td>
-                <td>{ele.problems ? 'yes' : ''}</td>
-                <td>{ele.allergies.length > 0 ? 'yes' : ''}</td>
-                <td>{ele.isFullRegistered ? 'yes' : ''}</td>
-                <td>{ele.hasPaid ? 'yes' : ''}</td>
+                <td>{ele.isAdmin ? t('admin') : ''}</td>
+                <td>{ele.patologies.length > 0 ? t('yes') : ''}</td>
+                <td>{ele.problems ? t('yes') : ''}</td>
+                <td>{ele.allergies.length > 0 ? t('yes') : ''}</td>
+                <td>{ele.isFullRegistered ? t('yes') : ''}</td>
+                <td>{ele.hasPaid ? t('yes') : ''}</td>
                 <td>
                   <Button
                     onlyIcon
@@ -112,8 +112,8 @@ function Users() {
         <ConfirmModal
           onConfirm={handleDelete}
           onClose={setshowDeleteUserModal}
-          title='Delete marathon'
-          text={`Are you sure you whant to delete: ${showDeleteUserModal.name}`}
+          title={t('deleteMarathon')}
+          text={`${t('confirmDelete')} ${showDeleteUserModal.name}`}
         />
       )}
     </div>

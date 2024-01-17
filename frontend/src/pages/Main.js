@@ -55,7 +55,7 @@ function Main() {
 
   return (
     <div className='main-tab'>
-      <Text isTitle>Your workouts for today</Text>
+      <Text isTitle>{t('todayWorkouts')}</Text>
 
       <Space small />
 
@@ -73,7 +73,7 @@ function Main() {
 
       <Space medium />
 
-      <Text isSubtitle>Your diet for today</Text>
+      <Text isSubtitle>{t('todayDiet')}</Text>
 
       <Space small />
 
@@ -95,7 +95,7 @@ function Main() {
 
       <Space medium />
 
-      <Text isTitle>Your meditations for today</Text>
+      <Text isTitle>{t('todayMeditations')}</Text>
 
       <Space small />
 
@@ -112,12 +112,12 @@ function Main() {
 
       <div className='content-left-and-right'>
         <div className='content'>
-          <Text isSubtitle>To do list</Text>
+          <Text isSubtitle>{t('todoList')}</Text>
 
           <Space small />
 
           <div className='container'>
-            <Text className='decolored-title'>Your tasks for today</Text>
+            <Text className='decolored-title'>{t('todayTasks')}</Text>
 
             <Space small />
 
@@ -143,7 +143,7 @@ function Main() {
         </div>
 
         <div className='content'>
-          <Text isSubtitle>Weight</Text>
+          <Text isSubtitle>{t('weight')}</Text>
 
           <Space small />
 

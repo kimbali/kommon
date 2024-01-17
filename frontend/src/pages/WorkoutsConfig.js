@@ -63,7 +63,7 @@ function Workouts() {
     <div>
       <div className='content-left-and-right'>
         <Button onClick={handleShowModal} iconLeft={faPlus} isPrimary>
-          create new workout
+          {t('newWorkout')}
         </Button>
 
         <form onSubmit={handleSearchSubmit} className='search-input'>

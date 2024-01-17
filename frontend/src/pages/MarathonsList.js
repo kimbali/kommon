@@ -102,18 +102,18 @@ function MarathonsList() {
       <table border='1'>
         <thead>
           <tr>
-            <th>Marathon</th>
-            <th>Plan</th>
+            <th>{t('marathon')}</th>
+            <th>{t('plan')}</th>
             <th>
               <button onClick={sortByStartDate}>
-                Start date <FontAwesomeIcon icon={faSort} />
+                {t('startDate')} <FontAwesomeIcon icon={faSort} />
               </button>
             </th>
-            <th>End date</th>
-            <th>Trash</th>
-            <th>Edit</th>
-            <th>Public</th>
-            <th>See marathon</th>
+            <th>{t('endDate')}</th>
+            <th>{t('trush')}</th>
+            <th>{t('edit')}</th>
+            <th>{t('public')}</th>
+            <th>{t('see')}</th>
           </tr>
         </thead>
 
@@ -131,7 +131,7 @@ function MarathonsList() {
                     onlyIcon
                     iconLeft={faTrash}
                   >
-                    Delete
+                    {t('delete')}
                   </Button>
                 </td>
                 <td>
@@ -140,7 +140,7 @@ function MarathonsList() {
                     onlyIcon
                     iconLeft={faEdit}
                   >
-                    Edit
+                    {t('edit')}
                   </Button>
                 </td>
                 <td>
@@ -149,7 +149,7 @@ function MarathonsList() {
                     isPrimary
                     disabled={eachMarathon.isActive}
                   >
-                    {eachMarathon.isActive ? 'Active' : 'Publish'}
+                    {eachMarathon.isActive ? t('active') : t('publish')}
                   </Button>
                 </td>
                 <td>
@@ -158,7 +158,7 @@ function MarathonsList() {
                     isSecondary
                     disabled={!eachMarathon.isActive}
                   >
-                    Go to live
+                    {t('goToLive')}
                   </Button>
                 </td>
               </tr>
@@ -170,8 +170,8 @@ function MarathonsList() {
         <ConfirmModal
           onConfirm={handleDeleteMarathon}
           onClose={setShowDeleteModal}
-          title='Delete marathon'
-          text={`Are you sure you whant to delete: ${showDeleteModal.name}`}
+          title={t('deleteMarathon')}
+          text={`${t('confirmDelete')} ${showDeleteModal.name}`}
         />
       )}
 
@@ -180,8 +180,8 @@ function MarathonsList() {
           onConfirm={handleActivate}
           onClose={setShowActivateModal}
           title='Publicar marathon'
-          text={`Estas seguro que quieres publicar: ${showActivateModal.name}`}
-          description='Una vez este activado, los usuarios podran verlo i apuntarse.'
+          text={`${t('publishAsk')} ${showActivateModal.name}`}
+          description={t('publishHint')}
         />
       )}
     </div>

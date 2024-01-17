@@ -12,12 +12,12 @@ function Progress() {
 
   return (
     <div>
-      <Text isTitle>Tu progreso</Text>
+      <Text isTitle>{t('yourProgress')}</Text>
 
       <Space medium />
 
       <Button isPrimary onClick={() => setShowModal(true)}>
-        Añadir parametros
+        {t('addParameters')}
       </Button>
 
       {showModal && (

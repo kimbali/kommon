@@ -92,7 +92,7 @@ function Planning() {
 
   return (
     <div>
-      <Text isTitle>Plannings configuration</Text>
+      <Text isTitle>{t('planningsConfig')}</Text>
 
       <Space medium />
 

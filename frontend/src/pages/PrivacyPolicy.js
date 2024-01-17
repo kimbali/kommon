@@ -30,7 +30,7 @@ function PrivacyPolicy() {
 
   return (
     <div className='absolute-right legal-page'>
-      <Text isTitle>Política de privacidad</Text>
+      <Text isTitle>{t('privacyPolicy')}</Text>
 
       <Space small />
 
@@ -42,7 +42,7 @@ function PrivacyPolicy() {
             className='edit-button'
             onClick={() => setShowEditForm(true)}
           >
-            Modificar texto
+            {t('editText')}
           </Button>
         </div>
       )}
@@ -51,7 +51,7 @@ function PrivacyPolicy() {
         <LegalForm
           onSuccess={handleEditForm}
           legalKey='privacyPolicy'
-          label='Política de privacidad'
+          label={t('privacyPolicy')}
         />
       )}
 

@@ -48,7 +48,7 @@ function Workouts({ setCurrentDay }) {
 
   return (
     <div>
-      <Text isTitle>Your workouts for today</Text>
+      <Text isTitle>{t('todayWorkouts')}</Text>
 
       <Space medium />
 
@@ -62,9 +62,7 @@ function Workouts({ setCurrentDay }) {
 
       <Space big />
 
-      {isError && user.isAdmin && (
-        <div>You should configure this day on the backoffice</div>
-      )}
+      {isError && user.isAdmin && <div>{t('configureInBackoffice')}</div>}
 
       {!isError &&
         workoutsList.length > 0 &&

@@ -72,7 +72,7 @@ function Recipes() {
     <div>
       <div className='content-left-and-right'>
         <Button onClick={handleCreateRecipe} iconLeft={faPlus} isPrimary>
-          create new recipe
+          {t('createRecipe')}
         </Button>
 
         <form onSubmit={handleSearchSubmit} className='search-input'>

@@ -56,7 +56,7 @@ function WorkoutDetails() {
   }
 
   if (!workoutDetails) {
-    return <Text>Recipe not found</Text>;
+    return <Text>{t('workoutNotFound')}</Text>;
   }
 
   const { title, description, minutes, video, level } = workoutDetails;
@@ -74,7 +74,7 @@ function WorkoutDetails() {
             iconLeft={faEdit}
             isPrimary
           >
-            Edit workout
+            {t('edit')}
           </Button>
 
           <Button
@@ -82,7 +82,7 @@ function WorkoutDetails() {
             iconLeft={faTrash}
             isSecondary
           >
-            Delete workout
+            {t('delete')}
           </Button>
         </div>
       </div>
@@ -91,9 +91,9 @@ function WorkoutDetails() {
         <ConfirmModal
           onConfirm={deleteHandler}
           onClose={setShowDeleteModal}
-          title='Delete workout'
-          text={`Are you sure you whant to delete: ${title}`}
-          confirmLabel='Delete'
+          title={t('deleteWorkout')}
+          text={`${t('confirmDelete')} ${title}`}
+          confirmLabel={t('delete')}
         />
       )}
 
@@ -101,7 +101,7 @@ function WorkoutDetails() {
 
       <div className='content-on-the-left'>
         <Text>
-          <span className='primary'>{minutes}</span> min
+          <span className='primary'>{minutes}</span> {t('min')}
         </Text>
 
         <Text className='pill'>{getLevelLabel(level)}</Text>

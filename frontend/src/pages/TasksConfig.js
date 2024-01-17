@@ -56,7 +56,7 @@ function TasksConfig() {
     <div>
       <div className='content-left-and-right'>
         <Button isPrimary onClick={() => setShowFormModal(true)}>
-          Add a task
+          {t('addTask')}
         </Button>
 
         <form onSubmit={handleSearchSubmit} className='search-input'>

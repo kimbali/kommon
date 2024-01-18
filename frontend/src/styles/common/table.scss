@@ -132,9 +132,11 @@ table {
       text-align: center;
       font-size: 14px;
       padding: 4px;
+      text-transform: uppercase;
 
       button {
         background-color: $disabled;
+        text-transform: uppercase;
         font-size: 14px;
         font-family: $avenirBook;
       }

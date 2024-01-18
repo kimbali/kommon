@@ -1,10 +1,12 @@
+import { translate } from '../../traducciones/i18n';
+
 const patologyEnum = [
   {
-    label: 'Diabetes',
+    label: translate('diabetes'),
     value: 'DIABETES',
   },
   {
-    label: 'Cancer',
+    label: translate('cancer'),
     value: 'CANCER',
   },
 ];

@@ -1,14 +1,16 @@
+import { translate } from '../../traducciones/i18n';
+
 const alcoholEnum = [
   {
-    label: 'Frecuentemente',
+    label: translate('frecuentemente'),
     value: 'FREQUENT',
   },
   {
-    label: 'A veces',
+    label: translate('aVeces'),
     value: 'RARELY',
   },
   {
-    label: 'Nunca',
+    label: translate('nunca'),
     value: 'NO',
   },
 ];

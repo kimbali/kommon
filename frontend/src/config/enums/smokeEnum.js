@@ -1,10 +1,12 @@
+import { translate } from '../../traducciones/i18n';
+
 const smokeEnum = [
   {
-    label: 'Si',
+    label: translate('yes'),
     value: 'YES_SMOKE',
   },
   {
-    label: 'No',
+    label: translate('no'),
     value: 'NO',
   },
 ];

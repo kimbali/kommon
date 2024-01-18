@@ -1,12 +1,14 @@
+import { translate } from '../../traducciones/i18n';
+
 const supermarketEnum = [
-  { label: 'Mercado', value: 'MERCADO' },
-  { label: 'Despensa', value: 'DESPENSA' },
-  { label: 'Refrigerados', value: 'REFRIGERADOS' },
-  { label: 'Congelados', value: 'CONGELADOS' },
-  { label: 'Especies', value: 'ESPECIES' },
-  { label: 'Dulces y desayuno', value: 'DULCES' },
-  { label: 'Preparados', value: 'PREPARADOS' },
-  { label: 'Bebidas', value: 'DRINKS' },
+  { label: translate('mercado'), value: 'MERCADO' },
+  { label: translate('despensa'), value: 'DESPENSA' },
+  { label: translate('refrigerados'), value: 'REFRIGERADOS' },
+  { label: translate('congelados'), value: 'CONGELADOS' },
+  { label: translate('especies'), value: 'ESPECIES' },
+  { label: translate('dulcesYDesayuno'), value: 'DULCES' },
+  { label: translate('Preparpreparadosados'), value: 'PREPARADOS' },
+  { label: translate('bebidas'), value: 'DRINKS' },
 ];
 
 // Carne

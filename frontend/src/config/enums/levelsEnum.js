@@ -1,7 +1,9 @@
+import { translate } from '../../traducciones/i18n';
+
 const levelsEnum = [
-  { label: 'Beginner', value: 'PRINCIPIANTE' },
-  { label: 'Intermediate', value: 'INTERMEDIO' },
-  { label: 'Advanced', value: 'AVANZADO' },
+  { label: translate('beginner'), value: 'PRINCIPIANTE' },
+  { label: translate('intermediate'), value: 'INTERMEDIO' },
+  { label: translate('advanced'), value: 'AVANZADO' },
 ];
 
 export const getLevelLabel = value => {

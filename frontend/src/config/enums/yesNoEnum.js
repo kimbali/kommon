@@ -1,10 +1,12 @@
+import { translate } from '../../traducciones/i18n';
+
 const yesNoEnum = [
   {
-    label: 'Si',
+    label: translate('si'),
     value: 'YES',
   },
   {
-    label: 'No',
+    label: translate('no'),
     value: 'NO',
   },
 ];

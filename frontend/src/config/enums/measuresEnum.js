@@ -1,9 +1,11 @@
+import { translate } from '../../traducciones/i18n';
+
 const measuresEnum = [
-  { label: 'grams', diminutive: 'gr', value: 'GR' },
-  { label: 'milliliters', diminutive: 'ml', value: 'ML' },
-  { label: 'units', diminutive: 'units', value: 'UNIT' },
-  { label: 'spoon', diminutive: 'spoon', value: 'SPOON' },
-  { label: 'al gusto', diminutive: 'al gusto', value: 'AL_GUSTO' },
+  { label: translate('grams'), diminutive: 'gr', value: 'GR' },
+  { label: translate('mililiters'), diminutive: 'ml', value: 'ML' },
+  { label: translate('units'), diminutive: 'units', value: 'UNIT' },
+  { label: translate('spoon'), diminutive: 'spoon', value: 'SPOON' },
+  { label: translate('alGusto'), diminutive: 'al gusto', value: 'AL_GUSTO' },
 ];
 
 export const getMeasureLabel = value => {

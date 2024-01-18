@@ -1,18 +1,20 @@
+import { translate } from '../../traducciones/i18n';
+
 const problemsEnum = [
   {
-    label: 'Comer compulsivamente',
+    label: translate('compulsivo'),
     value: 'COMPULSIVELY_EATING',
   },
   {
-    label: 'Anorexia',
+    label: translate('anorexia'),
     value: 'ANOREXY',
   },
   {
-    label: 'Bulimia',
+    label: translate('bulimia'),
     value: 'BULIMIA',
   },
   {
-    label: 'No',
+    label: translate('no'),
     value: 'NO',
   },
 ];

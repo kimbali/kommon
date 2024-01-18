@@ -5,13 +5,14 @@ import {
   faMugHot,
   faPlateWheat,
 } from '@fortawesome/free-solid-svg-icons';
+import { translate } from '../../traducciones/i18n';
 
 const mealsEnum = [
-  { label: 'Breakfast', value: 'DESAYUNO', svg: faCoffee },
-  { label: 'Midmorning', value: 'MEDIA_MAÑANA', svg: faCookie },
-  { label: 'Lunch', value: 'COMIDA', svg: faPlateWheat },
-  { label: 'Snack', value: 'MERIENDA', svg: faMugHot },
-  { label: 'Dinner', value: 'CENA', svg: faBowlFood },
+  { label: translate('breakfast'), value: 'DESAYUNO', svg: faCoffee },
+  { label: translate('midmorning'), value: 'MEDIA_MAÑANA', svg: faCookie },
+  { label: translate('bunch'), value: 'COMIDA', svg: faPlateWheat },
+  { label: translate('snack'), value: 'MERIENDA', svg: faMugHot },
+  { label: translate('dinner'), value: 'CENA', svg: faBowlFood },
 ];
 
 export const getmealSVGAndLabel = value => {

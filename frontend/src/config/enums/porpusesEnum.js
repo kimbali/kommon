@@ -1,11 +1,13 @@
+import { translate } from '../../traducciones/i18n';
+
 const porpusesEnum = [
   {
-    label: 'Perder peso',
+    label: translate('looseWeight'),
     value: 'LOSE_WEIGHT',
     numeral: 0.8,
   },
   {
-    label: 'Tonificar',
+    label: translate('tonificar'),
     value: 'TONIFICAR',
     numeral: 1,
   },

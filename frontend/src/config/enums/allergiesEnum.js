@@ -1,18 +1,20 @@
+import { translate } from '../../traducciones/i18n';
+
 const allergiesEnum = [
-  { label: 'Apio', value: 'APIO' },
-  { label: 'Crustáceos', value: 'CRUSTACEOS' },
-  { label: 'Gluten', value: 'GLUTEN' },
-  { label: 'Huevos', value: 'HUEVOS' },
-  { label: 'Pescado', value: 'PESCADO' },
-  { label: 'Altramuces', value: 'ALTRAMUCES' },
-  { label: 'Leche', value: 'LECHE' },
-  { label: 'Moluscos', value: 'MOLUSCOS' },
-  { label: 'Mostaza', value: 'MOSTAZA' },
-  { label: 'Frutos Secos', value: 'FRUTOS_SECOS' },
-  { label: 'Cacahuetes', value: 'CACAHUETES' },
-  { label: 'Semillas de Sésamo', value: 'SESAMO' },
-  { label: 'Soja', value: 'SOJA' },
-  { label: 'Sulfitos', value: 'SULFITOS' },
+  { label: translate('apio'), value: 'APIO' },
+  { label: translate('crustaceos'), value: 'CRUSTACEOS' },
+  { label: translate('gluten'), value: 'GLUTEN' },
+  { label: translate('huevos'), value: 'HUEVOS' },
+  { label: translate('pescado'), value: 'PESCADO' },
+  { label: translate('altramuces'), value: 'ALTRAMUCES' },
+  { label: translate('leche'), value: 'LECHE' },
+  { label: translate('moluscos'), value: 'MOLUSCOS' },
+  { label: translate('mostaza'), value: 'MOSTAZA' },
+  { label: translate('frutosSecos'), value: 'FRUTOS_SECOS' },
+  { label: translate('cacahuetes'), value: 'CACAHUETES' },
+  { label: translate('semillasDeSesamo'), value: 'SESAMO' },
+  { label: translate('soja'), value: 'SOJA' },
+  { label: translate('sulfitos'), value: 'SULFITOS' },
 ];
 
 export const getAllergyLabel = allergy => {

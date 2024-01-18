@@ -1,27 +1,27 @@
+import { translate } from '../../traducciones/i18n';
+
 const activitiesEnum = [
   {
-    label: 'Sin movimiento',
-    sublabel: 'Muy poca actividad física (trabajo sentada, sin ejercicio)',
+    label: translate('sinMovilidad'),
+    sublabel: translate('sinMovilidadSub'),
     value: 'SEDENTARY',
     numeral: 1.2,
   },
   {
-    label: 'Poca movilidad',
-    sublabel: 'Actividad física reducida (1-3 entrenos a la semana)',
+    label: translate('pocaMovilidad'),
+    sublabel: translate('pocaMovilidadSub'),
     value: 'LOW',
     numeral: 1.375,
   },
   {
-    label: 'Movilidad regular',
-    sublabel:
-      'Actividad física regular (3-5 entrenos a la semana, trabajo de pie)',
+    label: translate('movilidadRegular'),
+    sublabel: translate('movilidadRegularSub'),
     value: 'MODERATE',
     numeral: 1.55,
   },
   {
-    label: 'Mucha movilidad',
-    sublabel:
-      'Actividad física constante (6-7 entrenos a la semana, trabajo de pie)',
+    label: translate('muchaMovilidad'),
+    sublabel: translate('muchaMovilidadSub'),
     value: 'HIGH',
     numeral: 1.72,
   },

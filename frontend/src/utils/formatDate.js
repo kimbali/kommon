@@ -1,3 +1,5 @@
+import { translate } from '../traducciones/i18n';
+
 export const formatDate = date => {
   if (!date) return;
 
@@ -52,7 +54,7 @@ export const formatDateShort = date => {
 export const formatWeekDayShort = date => {
   if (!date) return;
 
-  return date.toLocaleDateString('en', { weekday: 'short' }).slice(0, 3);
+  return date.toLocaleDateString('es', { weekday: 'short' }).slice(0, 3);
 };
 
 export function addOneMonth(startDate, weeksToAdd = 4) {
@@ -95,7 +97,7 @@ export const weeksOptionsList = ({
       todayPosition.week < index + 1;
 
     return {
-      label: `Week ${index + 1}`,
+      label: `${translate('week')} ${index + 1}`,
       value: index + 1,
       isDisabled,
     };

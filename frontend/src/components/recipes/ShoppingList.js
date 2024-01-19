@@ -4,12 +4,27 @@ import Space from '../space/Space';
 import { getSupermarketLabel } from '../../config/enums/supermarketEnum';
 import { getMeasureDiminutive } from '../../config/enums/measuresEnum';
 import { useTranslation } from 'react-i18next';
+import { useMarathon } from '../../context/marathonContext';
+import { useGetShoppingListQuery } from '../../slices/marathonApiSlice';
 
-function ShoppingList({ shoppingListData = [] }) {
+function ShoppingList() {
   const { t } = useTranslation();
+  const { dayDetails, marathonId } = useMarathon();
+
   const [supermarketIngredients, setSupermarketIngredients] = useState([]);
 
+  const { data: shoppingListData } = useGetShoppingListQuery(
+    { marathonId, week: dayDetails?.week },
+    {
+      skip: !marathonId || !dayDetails,
+    }
+  );
+
   useEffect(() => {
+    if (!shoppingListData) {
+      return;
+    }
+
     const supermarketSections = shoppingListData.reduce((acc, ele) => {
       const newSet = [...acc];
       const position = acc.findIndex(item => item.name === ele.supermarket);
@@ -27,7 +42,7 @@ function ShoppingList({ shoppingListData = [] }) {
     }, []);
 
     setSupermarketIngredients(supermarketSections);
-  }, []);
+  }, [shoppingListData]);
 
   return (
     <div>
@@ -36,13 +51,13 @@ function ShoppingList({ shoppingListData = [] }) {
       <Space medium />
 
       {supermarketIngredients.map(section => (
-        <div key={section.ingredientId}>
+        <div key={section.name}>
           <Text isSubtitle>{getSupermarketLabel(section.name)}</Text>
 
           <Space extraSmall />
 
           {section.ingredients.map(item => (
-            <li>
+            <li key={section.ingredientId}>
               <Text>
                 {item.name} - {item.quantity}{' '}
                 {getMeasureDiminutive(item.measure)}

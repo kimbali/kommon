@@ -13,8 +13,9 @@ export const calculateUserKcal = ({
   activity,
   porpuse,
   breastfeed,
+  isAdmin,
 } = {}) => {
-  if (!age || !height || !weight) {
+  if (!age || !height || !weight || isAdmin) {
     return 1700;
   }
 

@@ -17,6 +17,8 @@ import { DATE, MARATHON_ID } from '../../config/constants';
 import levelsEnum from '../../config/enums/levelsEnum';
 import { useUser } from '../../context/userContext';
 import { useTranslation } from 'react-i18next';
+import Modal from '../modal/Modal';
+import ShoppingList from '../recipes/ShoppingList';
 
 function PlanningSelector({
   marathon,
@@ -26,7 +28,6 @@ function PlanningSelector({
   baseUrl,
   isFrontoffice,
   defaultDiet,
-  handleShoppingList,
 }) {
   const { t } = useTranslation();
   const { marathonId } = useParams();
@@ -40,6 +41,11 @@ function PlanningSelector({
   const [weekOptions, setWeekOptions] = useState([]);
   const [selectedWeek, setSelectedWeek] = useState();
   const [selectedDate, setSelectedDate] = useState();
+  const [showShoppingList, setShowShoppingList] = useState(false);
+
+  const handleShoppingList = () => {
+    setShowShoppingList(true);
+  };
 
   const handleSelectDay = (date, month, optionsWeeks) => {
     let week;
@@ -183,6 +189,12 @@ function PlanningSelector({
             </div>
           ))}
       </div>
+
+      {showShoppingList && (
+        <Modal onClose={setShowShoppingList}>
+          <ShoppingList />
+        </Modal>
+      )}
     </div>
   );
 }

@@ -8,7 +8,6 @@ import { useMarathon } from '../context/marathonContext';
 import RecipeCard from '../components/recipes/RecipeCard';
 import dietsEnum from '../config/enums/dietsEnum';
 import { useUser } from '../context/userContext';
-import { useGetShoppingListQuery } from '../slices/marathonApiSlice';
 import Modal from '../components/modal/Modal';
 import ShoppingList from '../components/recipes/ShoppingList';
 import { useTranslation } from 'react-i18next';
@@ -18,17 +17,9 @@ function Diet({ setCurrentDay }) {
   const [handleSelectDay, isError] = useOutletContext();
   const { user } = useUser();
   const navigate = useNavigate();
-  const { dayDetails, marathon, marathonId } = useMarathon();
+  const { dayDetails, marathon } = useMarathon();
   const [mealsList, setMealsList] = useState([]);
   const [currentDiet, setCurrentDiet] = useState(dietsEnum[0].value);
-  const [showShoppingList, setShowShoppingList] = useState(false);
-
-  const { data: shoppingListData } = useGetShoppingListQuery(
-    { marathonId, week: dayDetails?.week },
-    {
-      skip: !marathonId || !dayDetails,
-    }
-  );
 
   const handleSelectDiet = diet => {
     let list = dayDetails.meals;
@@ -51,10 +42,6 @@ function Diet({ setCurrentDay }) {
     navigate(frontRoutes.dietDetailsMain.replace(':id', meal._id));
   };
 
-  const handleShoppingList = () => {
-    setShowShoppingList(true);
-  };
-
   if (!marathon) {
     return null;
   }
@@ -72,7 +59,6 @@ function Diet({ setCurrentDay }) {
         baseUrl={frontRoutes.diet}
         setCurrentDiet={handleSelectDiet}
         defaultDiet={currentDiet}
-        handleShoppingList={handleShoppingList}
       />
 
       <Space big />
@@ -93,12 +79,6 @@ function Diet({ setCurrentDay }) {
             </div>
           ))}
       </div>
-
-      {showShoppingList && (
-        <Modal onClose={setShowShoppingList}>
-          <ShoppingList shoppingListData={shoppingListData} />
-        </Modal>
-      )}
     </div>
   );
 }

@@ -24,7 +24,7 @@ function PrivacyPolicy() {
     try {
       await refetchLegals();
     } catch (err) {
-      toast.error(t('errorPrivatPolicy'));
+      toast.error(t('errorPrivacyPolicy'));
     }
   };
 

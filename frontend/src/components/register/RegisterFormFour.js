@@ -79,7 +79,7 @@ function RegisterFormFour({ userData }) {
 
           <Space medium />
 
-          <Text isPlaceholder>{t('accessTewoDaysBefore')}</Text>
+          <Text isPlaceholder>{t('accessTwoDaysBefore')}</Text>
 
           <Space extraSmall />
 

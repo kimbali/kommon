@@ -228,7 +228,7 @@ function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
                 <Text>
                   {t('iveReadThe')}
                   <Link target='is_blank' to={frontRoutes.privacyPolicy}>
-                    {t('privatePolicy')}
+                    {t('privacyPolicy')}
                   </Link>
                 </Text>
               }

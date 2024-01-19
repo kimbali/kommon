@@ -110,9 +110,9 @@ function MarathonsList() {
               </button>
             </th>
             <th>{t('endDate')}</th>
-            <th>{t('trush')}</th>
+            <th>{t('trash')}</th>
             <th>{t('edit')}</th>
-            <th>{t('public')}</th>
+            <th>{t('active')}</th>
             <th>{t('see')}</th>
           </tr>
         </thead>

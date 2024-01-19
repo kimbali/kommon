@@ -16,7 +16,7 @@ function Footer() {
 
         <span>|</span>
 
-        <Link to={frontRoutes.privacyPolicy}>{t('privatePolicy')}</Link>
+        <Link to={frontRoutes.privacyPolicy}>{t('privacyPolicy')}</Link>
 
         <span>|</span>
 

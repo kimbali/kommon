@@ -29,7 +29,7 @@ function MainNavBar({ showNav }) {
       {user?.isAdmin && (
         <>
           <Button onClick={handleGoToConfig} isSecondary>
-            Go to configuration
+            {t('goToConfig')}
           </Button>
 
           <Space medium />
@@ -37,7 +37,7 @@ function MainNavBar({ showNav }) {
       )}
 
       <ul className='nav-links'>
-        <NavLink image={CALENDAR} label={t('hoy')} route={frontRoutes.main} />
+        <NavLink image={CALENDAR} label={t('main')} route={frontRoutes.main} />
 
         <NavLink image={DIET} label={t('diet')} route={frontRoutes.diet} />
 

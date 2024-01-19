@@ -124,6 +124,14 @@ table {
       .only-icon {
         padding: 6px;
       }
+
+      td {
+        text-align: center;
+
+        &::first-letter {
+          text-transform: uppercase;
+        }
+      }
     }
 
     th {

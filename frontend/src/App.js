@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { Route, Routes, useSearchParams } from 'react-router-dom';
@@ -51,6 +51,8 @@ import UserMore from './pages/UserMore';
 import { useProgress } from './context/progressContext';
 import Configuration from './pages/Configuration';
 import { useTranslation } from 'react-i18next';
+import Cookies from 'js-cookie';
+import CookiesDisclaimer from './components/cookies/CookiesDisclaimer';
 
 function App() {
   const { t } = useTranslation();
@@ -59,10 +61,19 @@ function App() {
   const { updateUser } = useUser();
   const { setMarathonId } = useMarathon();
   const { setProgressId } = useProgress();
+  const [showCookies, setShowCookies] = useState(false);
 
   const { data: userData } = useGetUserProfileQuery();
   const { data: legalsData } = useGetLegalsQuery();
   const [createLegalDoc] = useCreateLegalMutation();
+
+  useEffect(() => {
+    const cookieAccepted = Cookies.get('cookie');
+
+    if (!cookieAccepted) {
+      setShowCookies(true);
+    }
+  }, []);
 
   useEffect(() => {
     if (userData) {
@@ -203,6 +214,8 @@ function App() {
       </Routes>
 
       <Footer />
+
+      {showCookies && <CookiesDisclaimer setShowCookies={setShowCookies} />}
     </div>
   );
 }

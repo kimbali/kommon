@@ -1,5 +1,6 @@
 {
   "accessTwoDaysBefore": "Tendrás acceso a la plataforma 2 días antes de que empiece la marathon",
+  "accept": "Aceptar",
   "active": "Activo",
   "activate": "Activar",
   "activated": "Activada",
@@ -312,5 +313,7 @@
   "dulcesYDesayuno": "Dulces y desayuno",
   "preparados": "Preparados",
   "bebidas": "Bebidas",
-  "week": "Semana"
+  "week": "Semana",
+  "cookiesText": "Utilizamos cookies para mejorar su experiencia. Al continuar visitando este sitio aceptas nuestro uso de cookies.",
+  "moreInfo": "Mas información"
 }

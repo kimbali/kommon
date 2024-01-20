@@ -5,10 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { useUser } from '../context/userContext';
 import { useLogoutMutation } from '../slices/usersApiSlices';
 import frontRoutes from '../config/frontRoutes';
-import { useTranslation } from 'react-i18next';
 
 function Logout() {
-  const { t } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { updateUser } = useUser();

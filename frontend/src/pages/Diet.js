@@ -12,16 +12,18 @@ import { useTranslation } from 'react-i18next';
 import calculateEnergy, {
   createUniqueIngredientsList,
 } from '../utils/calculateEnergy';
+import { useGetDietsQuery } from '../slices/dietsApiSlice';
 
 function Diet({ setCurrentDay }) {
   const { t } = useTranslation();
   const [handleSelectDay, isError] = useOutletContext();
   const { user } = useUser();
   const navigate = useNavigate();
+  const { data: dietsData } = useGetDietsQuery({ keyword: 'YES' });
   const { dayDetails, marathon } = useMarathon();
   const [mealsList, setMealsList] = useState([]);
   const [todayIngredients, setTodayIngredients] = useState([]);
-  const [currentDiet, setCurrentDiet] = useState(dietsEnum[0].value);
+  const [currentDiet, setCurrentDiet] = useState();
 
   const handleSelectDiet = diet => {
     let list = dayDetails.meals;
@@ -35,10 +37,11 @@ function Diet({ setCurrentDay }) {
   };
 
   useEffect(() => {
-    if (dayDetails) {
-      handleSelectDiet(currentDiet);
+    if (dayDetails && dietsData) {
+      const firstDietOfTheList = dietsData.diets[0]._id;
+      handleSelectDiet(currentDiet || firstDietOfTheList);
     }
-  }, [dayDetails]);
+  }, [dayDetails, dietsData]);
 
   const navigateToRecipeDetail = meal => {
     navigate(frontRoutes.dietDetailsMain.replace(':id', meal._id));
@@ -97,7 +100,7 @@ function Diet({ setCurrentDay }) {
         isFrontoffice
         baseUrl={frontRoutes.diet}
         setCurrentDiet={handleSelectDiet}
-        defaultDiet={currentDiet}
+        currentDiet={currentDiet}
       />
 
       <Space big />

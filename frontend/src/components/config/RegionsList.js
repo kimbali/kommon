@@ -33,7 +33,7 @@ function RegionsConfig() {
     setKeywordValue(searchValue);
   };
 
-  const [deleteTask] = useDeleteRegionMutation();
+  const [deleteRegion] = useDeleteRegionMutation();
   const { data, isLoading, isError, refetch } = useGetRegionsQuery({
     keyword: keywordValue,
   });
@@ -51,7 +51,7 @@ function RegionsConfig() {
 
   const handleDelete = async () => {
     try {
-      await deleteTask(showDeleteModal._id);
+      await deleteRegion(showDeleteModal._id);
       toast.success(t('deleted'));
 
       setShowDeleteModal(false);
@@ -72,33 +72,33 @@ function RegionsConfig() {
 
   return (
     <div>
-      <Text isSubtitle>{t('sendCostConfig')}</Text>
-
-      <Space medium />
-
       <div className='content-left-and-right'>
-        <Button isPrimary onClick={() => setShowFormModal(true)}>
-          {t('addRegion')}
-        </Button>
+        <Text isSubtitle>{t('sendCostConfig')}</Text>
 
-        <form onSubmit={handleSearchSubmit} className='search-input'>
-          <Input
-            onChange={({ value }) => setSearchValue(value)}
-            placeholder={t('searchTitle')}
-            iconLeft={faMagnifyingGlass}
-            isSecondary
-            name='search'
-            value={searchValue}
-            type='search'
-          />
+        <div className='content-on-the-right'>
+          <Button isPrimary onClick={() => setShowFormModal(true)}>
+            {t('addRegion')}
+          </Button>
 
-          <Button type='submit' isPrimary iconLeft={faMagnifyingGlass} />
-        </form>
+          <form onSubmit={handleSearchSubmit} className='search-input'>
+            <Input
+              onChange={({ value }) => setSearchValue(value)}
+              placeholder={t('searchTitle')}
+              iconLeft={faMagnifyingGlass}
+              isSecondary
+              name='search'
+              value={searchValue}
+              type='search'
+            />
+
+            <Button type='submit' isPrimary iconLeft={faMagnifyingGlass} />
+          </form>
+        </div>
       </div>
 
       <Space medium />
 
-      <table>
+      <table className='config-table'>
         <tbody>
           {data.regions.map((region, i) => (
             <tr key={`region-item-${i}`}>
@@ -108,16 +108,14 @@ function RegionsConfig() {
                 {t('currency')}
               </td>
 
-              <td className='only-icon center'>
+              <td className='only-icon'>
                 <Button
                   className='background-2'
                   onlyIcon
                   iconLeft={faEdit}
                   onClick={() => handleEdit(region)}
                 />
-              </td>
 
-              <td className='only-icon'>
                 <Button
                   className='background-2'
                   onlyIcon

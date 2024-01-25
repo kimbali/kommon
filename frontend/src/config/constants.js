@@ -17,6 +17,7 @@ export const LEGALS_URL = '/api/legals';
 export const UPLOAD_URL = '/api/upload';
 export const REGIONS_URL = '/api/regions';
 export const EMAIL_URL = '/api/email';
+export const DIETS_URL = '/api/diets';
 
 export const EXPIRATION_TIME = 'expirationTime';
 export const MARATHON_ID = 'marathonId';

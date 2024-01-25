@@ -6,7 +6,10 @@ const DaySchema = new Schema(
     weekDay: Number,
     meals: [
       {
-        diet: String,
+        diet: {
+          type: Schema.Types.ObjectId,
+          ref: 'Diet',
+        },
         meal: String,
         recipe: {
           type: Schema.Types.ObjectId,

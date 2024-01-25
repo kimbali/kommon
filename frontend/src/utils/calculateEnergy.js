@@ -78,7 +78,7 @@ export const createUniqueIngredientsList = ingredients => {
   return ingredients.reduce((acc, ele) => {
     const accSet = [...acc];
     const position = acc.findIndex(
-      item => item.ingredient._id === ele.ingredient._id
+      item => item.ingredient?._id === ele.ingredient?._id
     );
 
     if (acc.length === 0 || position === -1) {

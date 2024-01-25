@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Text from '../components/text/Text';
 import Space from '../components/space/Space';
 import WorkoutCard from '../components/workouts/WorkoutCard';
@@ -9,11 +9,11 @@ import RecipeDetails from './RecipeDetails';
 import frontRoutes from '../config/frontRoutes';
 import { useNavigate } from 'react-router-dom';
 import { useMarathon } from '../context/marathonContext';
-import dietsEnum from '../config/enums/dietsEnum';
 import MeditationCard from '../components/meditation/MeditationCard';
 import { useUpdateProgressMutation } from '../slices/progressApiSlice';
 import { useProgress } from '../context/progressContext';
 import { useTranslation } from 'react-i18next';
+import { useGetDietsQuery } from '../slices/dietsApiSlice';
 
 // TODO: El dia de mañana, cuando se logee un usuario que no es admin, guardar en el progresso, por qué dia de la marathon va.
 // Mas que por que dia va, seria ver qué marathon esta haciendo, qué dia era el "startDate", y que dia es hoy
@@ -25,8 +25,19 @@ function Main() {
   const { dayDetails } = useMarathon();
   const { userProgress, updateUserProgress } = useProgress();
   const [showRecipe, setShowRecipe] = useState();
+  const [mealsList, setMealsList] = useState([]);
 
   const [updateProgress] = useUpdateProgressMutation();
+  const { data: dietsData } = useGetDietsQuery({ keyword: 'YES' });
+
+  useEffect(() => {
+    if (dietsData && dayDetails) {
+      const list = dayDetails.meals.filter(
+        ele => ele.diet === dietsData.diets[0]._id
+      );
+      setMealsList(list);
+    }
+  }, [dietsData, dayDetails]);
 
   const isCheckedTask = task => {
     return userProgress?.tasksChecked?.findIndex(ele => ele === task._id) > -1;
@@ -82,19 +93,16 @@ function Main() {
       <Space small />
 
       <div className='marathon-config-scrollx'>
-        {dayDetails?.meals.length > 0 &&
-          dayDetails.meals
-            .filter(ele => ele.diet === dietsEnum[0].value)
-            .map((eachMeal, i) => (
-              <div className='single-recipe' key={`${i}-recipe`}>
-                <RecipeCard
-                  recipe={eachMeal.recipe}
-                  onClick={() => setShowRecipe(eachMeal.recipe)}
-                />
+        {mealsList.map((eachMeal, i) => (
+          <div className='single-recipe' key={`${i}-recipe`}>
+            <RecipeCard
+              recipe={eachMeal.recipe}
+              onClick={() => setShowRecipe(eachMeal.recipe)}
+            />
 
-                <Space small />
-              </div>
-            ))}
+            <Space small />
+          </div>
+        ))}
       </div>
 
       <Space medium />

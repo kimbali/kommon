@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import dietsEnum from '../../config/enums/dietsEnum';
+import { useGetDietsQuery } from '../../slices/dietsApiSlice';
 import {
   formatDateHyphens,
   formatDateShort,
@@ -27,7 +27,7 @@ function PlanningSelector({
   setCurrentDay,
   baseUrl,
   isFrontoffice,
-  defaultDiet,
+  currentDiet,
 }) {
   const { t } = useTranslation();
   const { marathonId } = useParams();
@@ -36,12 +36,24 @@ function PlanningSelector({
 
   const { user } = useUser();
   const navigate = useNavigate();
+  const { data: dietsData } = useGetDietsQuery({ keyword: 'YES' });
 
   const [monthArray, setMonthArray] = useState();
   const [weekOptions, setWeekOptions] = useState([]);
   const [selectedWeek, setSelectedWeek] = useState();
   const [selectedDate, setSelectedDate] = useState();
   const [showShoppingList, setShowShoppingList] = useState(false);
+  const [dietsList, setDietsList] = useState([]);
+
+  useEffect(() => {
+    if (dietsData) {
+      const options = dietsData.diets.map(ele => {
+        return { value: ele, label: ele.name };
+      });
+
+      setDietsList(options);
+    }
+  }, [dietsData]);
 
   const handleShoppingList = () => {
     setShowShoppingList(true);
@@ -144,10 +156,12 @@ function PlanningSelector({
               className='selector-fix-width'
               placeholder={t('selectDiet')}
               isSingleSelect
-              options={dietsEnum}
-              onChange={({ value }) => setCurrentDiet(value)}
+              options={dietsList}
+              onChange={({ value }) => setCurrentDiet(value._id)}
               name='diet'
-              defaultValue={dietsEnum.find(ele => ele.value === defaultDiet)}
+              selectedOption={dietsList.find(
+                ele => ele.value._id === currentDiet
+              )}
             />
 
             <Button className='shooping-list-cta' onClick={handleShoppingList}>

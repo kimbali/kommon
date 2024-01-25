@@ -8,9 +8,10 @@ import { useMarathon } from '../context/marathonContext';
 import RecipeCard from '../components/recipes/RecipeCard';
 import dietsEnum from '../config/enums/dietsEnum';
 import { useUser } from '../context/userContext';
-import Modal from '../components/modal/Modal';
-import ShoppingList from '../components/recipes/ShoppingList';
 import { useTranslation } from 'react-i18next';
+import calculateEnergy, {
+  createUniqueIngredientsList,
+} from '../utils/calculateEnergy';
 
 function Diet({ setCurrentDay }) {
   const { t } = useTranslation();
@@ -19,6 +20,7 @@ function Diet({ setCurrentDay }) {
   const navigate = useNavigate();
   const { dayDetails, marathon } = useMarathon();
   const [mealsList, setMealsList] = useState([]);
+  const [todayIngredients, setTodayIngredients] = useState([]);
   const [currentDiet, setCurrentDiet] = useState(dietsEnum[0].value);
 
   const handleSelectDiet = diet => {
@@ -42,13 +44,50 @@ function Diet({ setCurrentDay }) {
     navigate(frontRoutes.dietDetailsMain.replace(':id', meal._id));
   };
 
+  useEffect(() => {
+    if (!mealsList.length > 0) {
+      return;
+    }
+
+    const duplicatedList = mealsList.flatMap(ele => ele.recipe.ingredients);
+    const reducedList = createUniqueIngredientsList(duplicatedList);
+
+    setTodayIngredients(reducedList);
+  }, [mealsList]);
+
   if (!marathon) {
     return null;
   }
 
   return (
     <div className='diet-tab'>
-      <Text isTitle>{t('todayDiet')}</Text>
+      <div className='content-on-the-left'>
+        <Text isTitle>{t('todayDiet')}</Text>
+
+        <div className='propiedades'>
+          <div className='propiedad'>
+            <Text isSubtitle>{t('kcal')}: </Text>
+            <Text>{calculateEnergy('calories', todayIngredients, user)}</Text>
+          </div>
+
+          <div className='propiedad'>
+            <Text isSubtitle>{t('prot')}: </Text>
+            <Text>{calculateEnergy('proteins', todayIngredients, user)}</Text>
+          </div>
+
+          <div className='propiedad'>
+            <Text isSubtitle>{t('fat')}: </Text>
+            <Text>{calculateEnergy('fats', todayIngredients, user)}</Text>
+          </div>
+
+          <div className='propiedad'>
+            <Text isSubtitle>{t('carbh')}: </Text>
+            <Text>
+              {calculateEnergy('carbohydrates', todayIngredients, user)}
+            </Text>
+          </div>
+        </div>
+      </div>
 
       <Space medium />
 

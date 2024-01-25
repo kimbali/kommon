@@ -73,3 +73,23 @@ export default calculateEnergy;
 //   return Math.round(totalKcalPerWeek / 50) * 50;
 // };
 // _calculateUserKcal({ age: 32, height: 180, weight: 57, activity: 1.55, porpuse: 0.8, breastfeed: 200})
+
+export const createUniqueIngredientsList = ingredients => {
+  return ingredients.reduce((acc, ele) => {
+    const accSet = [...acc];
+    const position = acc.findIndex(
+      item => item.ingredient._id === ele.ingredient._id
+    );
+
+    if (acc.length === 0 || position === -1) {
+      return [...acc, { quantity: ele.quantity, ingredient: ele.ingredient }];
+    }
+
+    accSet[position] = {
+      quantity: ele.quantity + accSet[position].quantity,
+      ingredient: ele.ingredient,
+    };
+
+    return accSet;
+  }, []);
+};

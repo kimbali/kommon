@@ -11,7 +11,7 @@ function ConfirmModal({
   title,
   text,
   description = '',
-  confirmLabel = 'Confirm',
+  confirmLabel,
 }) {
   const { t } = useTranslation();
 
@@ -38,7 +38,7 @@ function ConfirmModal({
         </Button>
 
         <Button onClick={onConfirm} isPrimary>
-          {confirmLabel}
+          {confirmLabel || t('confirma')}
         </Button>
       </div>
     </Modal>

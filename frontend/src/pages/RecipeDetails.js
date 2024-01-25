@@ -158,7 +158,8 @@ function RecipeDetails({ recipe }) {
 
           <Text className='steps-title' isSectionTitle>
             <span>
-              {t('instruccion')} ({minutes} {t('min')})
+              {t('instruccion')}
+              {!!+minutes && ` (${minutes} ${t('min')})`}
             </span>
           </Text>
 

@@ -204,6 +204,31 @@
       justify-content: flex-start;
     }
   }
+
+  .propiedades {
+    display: flex;
+    margin: 0 24px;
+    background-color: $background-2;
+    border-radius: $border-radius-element;
+    padding: 12px 22px 12px;
+    margin-top: 24px;
+
+    @media screen and (min-width: 1024px) {
+      margin-top: 0;
+      justify-content: flex-start;
+    }
+
+    .propiedad {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 12px;
+
+      .text {
+        margin: 0 8px;
+      }
+    }
+  }
 }
 
 .shooping-list-cta {

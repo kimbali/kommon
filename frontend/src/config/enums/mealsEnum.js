@@ -10,7 +10,7 @@ import { translate } from '../../traducciones/i18n';
 const mealsEnum = [
   { label: translate('breakfast'), value: 'DESAYUNO', svg: faCoffee },
   { label: translate('midmorning'), value: 'MEDIA_MAÑANA', svg: faCookie },
-  { label: translate('bunch'), value: 'COMIDA', svg: faPlateWheat },
+  { label: translate('lunch'), value: 'COMIDA', svg: faPlateWheat },
   { label: translate('snack'), value: 'MERIENDA', svg: faMugHot },
   { label: translate('dinner'), value: 'CENA', svg: faBowlFood },
 ];

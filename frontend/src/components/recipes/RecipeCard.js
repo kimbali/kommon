@@ -69,9 +69,13 @@ function RecipeCard({ recipe, meal = '', onClick }) {
           </div>
 
           <Text className='recipe-card-data'>
-            {recipe.minutes} <span>min</span> |{' '}
-            {calculateEnergy('calories', recipe.ingredients, user)}{' '}
-            <span>{t('kcal')}</span>
+            {!!recipe.minutes && (
+              <>
+                {recipe.minutes} <span>{t('min')} | </span>
+              </>
+            )}
+            {calculateEnergy('calories', recipe.ingredients, user)}
+            <span> {t('kcal')}</span>
           </Text>
         </div>
       </div>

@@ -7,7 +7,10 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import Space from '../components/space/Space';
 import Input from '../components/input/Input';
-import { useGetTasksQuery } from '../slices/tasksApiSlice';
+import {
+  useDeleteTaskMutation,
+  useGetTasksQuery,
+} from '../slices/tasksApiSlice';
 import LoadingError from '../components/loadingError/LoadingError';
 import Modal from '../components/modal/Modal';
 import TaskForm from '../components/tasks/TaskForm';
@@ -32,6 +35,8 @@ function TasksConfig() {
     keyword: keywordValue,
   });
 
+  const [deleteTask] = useDeleteTaskMutation();
+
   const onSuccessTask = async () => {
     setShowFormModal(false);
     setCurrentTask(null);
@@ -43,9 +48,10 @@ function TasksConfig() {
     setCurrentTask(task);
   };
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
+    await deleteTask(showDeleteModal.id);
     setShowDeleteModal(false);
-    refetch();
+    await refetch();
   };
 
   if (isLoading || isError) {
@@ -111,14 +117,13 @@ function TasksConfig() {
       )}
 
       {showDeleteModal && (
-        <Modal onClose={setShowDeleteModal} isSecondary>
-          <ConfirmModal
-            onConfirm={handleDelete}
-            onClose={handleDelete}
-            title={t('deleteTask')}
-            text={`${t('confirmDelete')} ${showDeleteModal}?`}
-          />
-        </Modal>
+        <ConfirmModal
+          onConfirm={handleDelete}
+          onClose={setShowDeleteModal}
+          title={t('deleteTask')}
+          text={`${t('confirmDelete')} ${showDeleteModal.title}?`}
+          confirmLabel={t('delete')}
+        />
       )}
 
       <Space medium />

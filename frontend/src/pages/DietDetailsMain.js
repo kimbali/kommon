@@ -35,7 +35,7 @@ function DietDetailsMain() {
     return null;
   }
 
-  const { title, steps, ingredients, minutes, carbohydrates } = meal?.recipe;
+  const { title, steps, ingredients, minutes } = meal?.recipe;
 
   return (
     <div>
@@ -70,9 +70,7 @@ function DietDetailsMain() {
 
             <div className='propiedad'>
               <Text isSubtitle>{t('carbh')}</Text>
-              <Text>
-                {calculateEnergy('carbohydrates', carbohydrates, user)}
-              </Text>
+              <Text>{calculateEnergy('carbohydrates', ingredients, user)}</Text>
             </div>
           </div>
         </div>
@@ -96,13 +94,19 @@ function DietDetailsMain() {
             />
           )}
 
-          <Space medium />
+          {!!+minutes && (
+            <>
+              <Space medium />
 
-          <Text className='steps-title' isSectionTitle>
-            <span>
-              {t('instruccion')} ({minutes} {t('min')})
-            </span>
-          </Text>
+              <Text className='steps-title' isSectionTitle>
+                <span>
+                  {t('instruccion')}
+
+                  {!!+minutes && ` (${minutes} ${t('min')})`}
+                </span>
+              </Text>
+            </>
+          )}
 
           <Space small />
 

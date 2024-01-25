@@ -64,10 +64,11 @@ function RecipeFormDetails({
       <Space medium />
 
       <Text isSectionTitle>
-        {t('steps')} -{' '}
-        <span className='secondary'>
-          {minutes || 0} {t('min')}
-        </span>
+        {t('steps')}
+
+        {!!+minutes && (
+          <span className='secondary'>{` - ${minutes} ${t('min')}`}</span>
+        )}
       </Text>
 
       <Space extraSmall />

@@ -5,7 +5,7 @@ import PlayButton from './PlayButton';
 import { useGetImageUrlQuery } from '../../slices/imagesApiSlice';
 import { useTranslation } from 'react-i18next';
 
-function WorkoutCard({ data, onClick }) {
+function WorkoutCard({ data, onClick, hideTitle }) {
   const { t } = useTranslation();
 
   const { data: imageS3 } = useGetImageUrlQuery(
@@ -22,9 +22,11 @@ function WorkoutCard({ data, onClick }) {
         style={{ backgroundImage: `url(${imageS3?.signedUrl})` }}
       >
         <div className='workout-card-content'>
-          <Text isTitle>{data.title}</Text>
+          {!hideTitle && <Text isTitle>{data.title}</Text>}
 
-          <Text className='description'>{data.description}</Text>
+          {!hideTitle && (
+            <Text className='description'>{data.description}</Text>
+          )}
 
           <div className='content-left-and-right'>
             <Text className='minutes'>

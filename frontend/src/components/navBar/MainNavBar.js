@@ -1,5 +1,4 @@
 import React from 'react';
-import { faSpa } from '@fortawesome/free-solid-svg-icons';
 import Space from '../space/Space';
 import './navBar.scss';
 import frontRoutes from '../../config/frontRoutes';
@@ -45,12 +44,6 @@ function MainNavBar({ showNav }) {
           image={DUMBBELL}
           label={t('workouts')}
           route={frontRoutes.workouts}
-        />
-
-        <NavLink
-          icon={faSpa}
-          label={t('meditations')}
-          route={frontRoutes.meditations}
         />
 
         <NavLink

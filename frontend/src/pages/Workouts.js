@@ -71,6 +71,7 @@ function Workouts({ setCurrentDay }) {
             <WorkoutCard
               data={eachWorkout}
               onClick={() => navigateToWorkoutDetail(eachWorkout)}
+              hideTitle
             />
 
             <Space medium />

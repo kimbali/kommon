@@ -66,7 +66,11 @@ function Main() {
               className={`single-workout ${i % 2 ? 'even' : 'pair'}`}
               key={`${i}-workout`}
             >
-              <WorkoutCard data={eachWorkout} onClick={navigateToWorkouts} />
+              <WorkoutCard
+                data={eachWorkout}
+                onClick={navigateToWorkouts}
+                hideTitle
+              />
             </div>
           ))}
       </div>

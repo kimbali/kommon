@@ -1,0 +1,33 @@
+.more-links {
+  li {
+    background-color: $background-3;
+    height: 150px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: $border-radius-element;
+
+    a {
+      text-decoration: none;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+
+      .nav-icon {
+        margin-bottom: 8px;
+
+        svg {
+          height: 42px;
+          color: $disabled;
+          fill: $disabled;
+        }
+      }
+
+      .subtitle {
+        font-size: 16px;
+      }
+    }
+  }
+}

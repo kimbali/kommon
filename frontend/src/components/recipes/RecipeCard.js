@@ -63,7 +63,9 @@ function RecipeCard({ recipe, meal = '', onClick }) {
 
             <Space extraSmall />
 
-            <Text className='title'>{recipe.title}</Text>
+            <Text isUppercase className='title'>
+              {recipe.title}
+            </Text>
 
             {meal && <Space medium />}
           </div>

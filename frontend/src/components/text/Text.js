@@ -12,6 +12,7 @@ function Text({
   isCTA = false,
   isPlaceholder = false,
   isBold = false,
+  isUppercase = false,
   children,
   danger = false,
   small = false,
@@ -62,12 +63,12 @@ function Text({
   return (
     <p
       className={`text ${className} ${isBold ? 'bold' : ''} ${
-        isCTA ? 'cta' : ''
-      } ${isPlaceholder ? 'decolored' : ''} ${danger ? 'danger' : ''} ${
-        error ? 'error' : ''
-      } ${small ? 'small' : ''} ${isCurrency ? 'align-right' : ''} ${
-        center ? 'center' : ''
-      } ${color} ${`font-${fontSize}`}`}
+        isUppercase ? 'uppercase' : ''
+      } ${isCTA ? 'cta' : ''} ${isPlaceholder ? 'decolored' : ''} ${
+        danger ? 'danger' : ''
+      } ${error ? 'error' : ''} ${small ? 'small' : ''} ${
+        isCurrency ? 'align-right' : ''
+      } ${center ? 'center' : ''} ${color} ${`font-${fontSize}`}`}
     >
       {children}
     </p>

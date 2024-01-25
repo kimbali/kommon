@@ -75,6 +75,10 @@ h3 {
     font-family: $avenirBlack;
   }
 
+  &.uppercase {
+    text-transform: uppercase;
+  }
+
   &.cta {
     text-transform: uppercase;
     font-family: $avenirHeavy;

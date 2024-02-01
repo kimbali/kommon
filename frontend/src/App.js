@@ -53,6 +53,7 @@ import Configuration from './pages/Configuration';
 import { useTranslation } from 'react-i18next';
 import Cookies from 'js-cookie';
 import CookiesDisclaimer from './components/cookies/CookiesDisclaimer';
+import UserPayment from './pages/UserPayment';
 
 function App() {
   const { t } = useTranslation();
@@ -175,6 +176,7 @@ function App() {
             path={frontRoutes.profileMarathons}
             element={<UserMarathons />}
           />
+          <Route path={frontRoutes.userPayment} element={<UserPayment />} />
         </Route>
 
         <Route path='' element={<AdminLayout />}>

@@ -28,6 +28,7 @@ const frontRoutes = {
   terms: '/terminos-y-condiciones',
   todoList: '/todolist',
   users: '/users',
+  userPayment: '/user/payment',
   workoutDetails: '/config/workout/:id',
   workoutDetailsMain: '/workouts/:id',
   workouts: '/workouts',

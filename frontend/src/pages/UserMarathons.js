@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGetMarathonsQuery } from '../slices/marathonApiSlice';
 import Text from '../components/text/Text';
@@ -11,17 +11,14 @@ import { useTranslation } from 'react-i18next';
 
 function UserMarathons() {
   const { t } = useTranslation();
-  const { setMarathonId, marathon } = useMarathon();
+  const { marathon } = useMarathon();
   const navigate = useNavigate();
 
   const { data: marathonsData } = useGetMarathonsQuery({ isActive: true });
 
   const handleSelectMarathon = marathon => {
-    setMarathonId(marathon._id);
-    navigate(`${frontRoutes.main}?${MARATHON_ID}=${marathon._id}`);
+    navigate(`${frontRoutes.userPayment}?${MARATHON_ID}=${marathon._id}`);
   };
-
-  console.log(marathon);
 
   return (
     <div>

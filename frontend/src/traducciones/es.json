@@ -327,5 +327,9 @@
   "yes": "Si",
   "yourMarathons": "Tus maratones",
   "yourPorpose": "¿Cuál es tu propósito?",
-  "yourProgress": "Tu progreso"
+  "yourProgress": "Tu progreso",
+
+  "yourCurrentMarathon": "Marathon actual",
+  "nextMarathons": "Siguientes maratones",
+  "goToProgress": "Progreso"
 }

@@ -5,6 +5,7 @@ import LogoutButton from '../button/LogoutButton';
 import { useUser } from '../../context/userContext';
 import Button from '../button/Button';
 import { useTranslation } from 'react-i18next';
+import Languages from '../languages/Languages';
 
 function MenuLinks() {
   const { t } = useTranslation();
@@ -23,6 +24,7 @@ function MenuLinks() {
       <li>
         <Link to={frontRoutes.profileMarathons}>{t('yourMarathons')}</Link>
       </li>
+      <Languages />
       {!user ? (
         <li>
           <Button small isPrimary onClick={handleLogin}>

@@ -9,6 +9,9 @@ i18n.use(initReactI18next).init({
     es: {
       translation: require('./es.json'),
     },
+    ca: {
+      translation: require('./ca.json'),
+    },
   },
   lng: 'es', // Establece el idioma predeterminado
   fallbackLng: 'es', // Idioma de respaldo si no se encuentra una traducción

@@ -2,6 +2,7 @@ import i18n from '../../traducciones/i18n';
 import React from 'react';
 import { useState } from 'react';
 import ReactCountryFlag from 'react-country-flag';
+import CAT_FLAG from '../../styles/assets/cat-flag.png';
 
 function Languages() {
   const [language, setLanguage] = useState('es');
@@ -26,15 +27,10 @@ function Languages() {
       </button>
 
       <button
-        className={`${language !== 'en' ? 'inactive' : ''}`}
-        onClick={() => changeLang('en')}
+        className={`${language !== 'ca' ? 'inactive' : ''}`}
+        onClick={() => changeLang('ca')}
       >
-        <ReactCountryFlag
-          className='emojiFlag'
-          countryCode='GB'
-          aria-label='English'
-          svg
-        />
+        <img className='emojiFlag' src={CAT_FLAG} alt='Bandera catalunya' />
       </button>
     </div>
   );

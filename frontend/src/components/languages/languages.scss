@@ -1,13 +1,13 @@
 .languages {
-  margin: 32px 32px 0 0;
   display: flex;
 
   .inactive {
-    opacity: 0.5;
+    opacity: 0.4;
   }
 
   img {
-    margin-left: 16px;
+    height: 16px;
+    margin-right: 16px;
     font-size: 22px;
   }
 }

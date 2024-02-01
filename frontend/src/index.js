@@ -6,6 +6,7 @@ import App from './App';
 import { MarathonProvider } from './context/marathonContext';
 import { ProgressProvider } from './context/progressContext';
 import { UserProvider } from './context/userContext';
+import { DateProvider } from './context/dateContext';
 import './index.scss';
 import reportWebVitals from './reportWebVitals';
 import store from './store';
@@ -16,13 +17,15 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <Router>
-        <UserProvider>
-          <MarathonProvider>
-            <ProgressProvider>
-              <App />
-            </ProgressProvider>
-          </MarathonProvider>
-        </UserProvider>
+        <DateProvider>
+          <UserProvider>
+            <MarathonProvider>
+              <ProgressProvider>
+                <App />
+              </ProgressProvider>
+            </MarathonProvider>
+          </UserProvider>
+        </DateProvider>
       </Router>
     </Provider>
   </React.StrictMode>

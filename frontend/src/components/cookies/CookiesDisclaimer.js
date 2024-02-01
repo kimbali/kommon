@@ -6,6 +6,7 @@ import Button from '../button/Button';
 import { Link } from 'react-router-dom';
 import frontRoutes from '../../config/frontRoutes';
 import Cookies from 'js-cookie';
+import { COOKIE_DISCLAIMER } from '../../config/constants';
 
 function CookiesDisclaimer({ setShowCookies }) {
   const { t } = useTranslation();
@@ -19,7 +20,7 @@ function CookiesDisclaimer({ setShowCookies }) {
   }, []);
 
   const handleCookie = () => {
-    Cookies.set('cookie', true, { expires: 31 });
+    Cookies.set(COOKIE_DISCLAIMER, true, { expires: 31 });
     setShowCookies(false);
   };
 

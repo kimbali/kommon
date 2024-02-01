@@ -19,13 +19,13 @@ import {
   getWeeksArray,
 } from '../../utils/formatDate';
 import { useUser } from '../../context/userContext';
-import { DATE } from '../../config/constants';
+import { useDate } from '../../context/dateContext';
 
 function MainLayout() {
   const location = useLocation();
-  const [searchParams] = useSearchParams();
   const { marathonId, setDayDetails, updateMarathon } = useMarathon();
   const { progressId, updateUserProgress } = useProgress();
+  const { currentDate } = useDate();
   const { user } = useUser();
 
   const [currentDay, setCurrentDay] = useState();
@@ -58,11 +58,13 @@ function MainLayout() {
 
   useEffect(() => {
     if (marathonData) {
-      const urlDate = searchParams.get(DATE);
       updateMarathon(marathonData);
 
       const month = getWeeksArray(marathonData.startDate, marathonData.endDate);
-      const todayPos = getDatePositionInMonthArray(month, new Date(urlDate));
+      const todayPos = getDatePositionInMonthArray(
+        month,
+        new Date(currentDate)
+      );
 
       handleSelectDay({
         week: !user?.isAdmin && todayPos.week ? todayPos.week : 1,

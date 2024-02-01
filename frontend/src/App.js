@@ -7,7 +7,12 @@ import AdminLayout from './components/layout/AdminLayout';
 import MainLayout from './components/layout/MainLayout';
 import PlainLayout from './components/layout/PlainLayout';
 import ScrollToTop from './components/scrollToTop/ScrollToTop';
-import { EXPIRATION_TIME, MARATHON_ID } from './config/constants';
+import {
+  COOKIE_DISCLAIMER,
+  DATE,
+  EXPIRATION_TIME,
+  MARATHON_ID,
+} from './config/constants';
 import frontRoutes from './config/frontRoutes';
 import { useMarathon } from './context/marathonContext';
 import AvisoLegal from './pages/AvisoLegal';
@@ -54,6 +59,7 @@ import { useTranslation } from 'react-i18next';
 import Cookies from 'js-cookie';
 import CookiesDisclaimer from './components/cookies/CookiesDisclaimer';
 import UserPayment from './pages/UserPayment';
+import { useDate } from './context/dateContext';
 
 function App() {
   const { t } = useTranslation();
@@ -62,6 +68,7 @@ function App() {
   const { updateUser } = useUser();
   const { setMarathonId } = useMarathon();
   const { setProgressId } = useProgress();
+  const { setCurrentDate } = useDate();
   const [showCookies, setShowCookies] = useState(false);
 
   const { data: userData } = useGetUserProfileQuery();
@@ -69,7 +76,7 @@ function App() {
   const [createLegalDoc] = useCreateLegalMutation();
 
   useEffect(() => {
-    const cookieAccepted = Cookies.get('cookie');
+    const cookieAccepted = Cookies.get(COOKIE_DISCLAIMER);
 
     if (!cookieAccepted) {
       setShowCookies(true);
@@ -114,23 +121,24 @@ function App() {
     }
   }, [dispatch]);
 
-  const handleMarathonId = () => {
-    const storageId = localStorage.getItem(MARATHON_ID);
-    const urlId = searchParams.get(MARATHON_ID);
+  const handleSearchParam = (param, handleParam) => {
+    const storageId = localStorage.getItem(param);
+    const urlparam = searchParams.get(param);
 
-    if (urlId && storageId !== urlId) {
-      localStorage.setItem(MARATHON_ID, urlId);
-      setMarathonId(urlId);
+    if (urlparam && storageId !== urlparam) {
+      localStorage.setItem(param, urlparam);
+      handleParam(urlparam);
     } else {
-      setMarathonId(storageId);
+      handleParam(storageId);
     }
 
-    searchParams.delete(MARATHON_ID);
+    searchParams.delete(param);
     setSearchParams(searchParams);
   };
 
   useEffect(() => {
-    handleMarathonId();
+    handleSearchParam(MARATHON_ID, setMarathonId);
+    handleSearchParam(DATE, setCurrentDate);
   }, [searchParams]);
 
   return (

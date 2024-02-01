@@ -1,29 +1,17 @@
 import { translate } from '../../traducciones/i18n';
 
 const supermarketEnum = [
-  { label: translate('mercado'), value: 'MERCADO' },
-  { label: translate('despensa'), value: 'DESPENSA' },
-  { label: translate('refrigerados'), value: 'REFRIGERADOS' },
-  { label: translate('congelados'), value: 'CONGELADOS' },
-  { label: translate('especies'), value: 'ESPECIES' },
-  { label: translate('dulcesYDesayuno'), value: 'DULCES' },
-  { label: translate('Preparpreparadosados'), value: 'PREPARADOS' },
-  { label: translate('bebidas'), value: 'DRINKS' },
+  { label: translate('fruit'), value: 'FRUIT' },
+  { label: translate('vegetables'), value: 'VEGETABLES' },
+  { label: translate('meat'), value: 'MEAT' },
+  { label: translate('fish'), value: 'FISH' },
+  { label: translate('dairyEgss'), value: 'DAIRY_EGGS' },
+  { label: translate('pantry'), value: 'PANTRY' },
+  { label: translate('breakfastSweets'), value: 'BREAKFAST_SWEETS' },
+  { label: translate('bakery'), value: 'BAKERY' },
+  { label: translate('frozen'), value: 'FROZEN' },
+  { label: translate('species'), value: 'SPECIES' },
 ];
-
-// Carne
-// Pescado
-// Verdura/fruta
-// Especias
-// Lacteos
-// Legumbres
-// Despensa
-
-// Frescos:
-// Carnicería
-// Charcutería
-// Pescadería
-// Frutas y verduras
 
 export const getSupermarketLabel = value => {
   const element = supermarketEnum.find(each => each.value === value);

@@ -28,15 +28,15 @@ function CaloriesCalculator() {
 
   return (
     <div className='calories-calculator'>
-      <Text isTitle>Calculadora de calorias</Text>
+      <Text isTitle>{t('caloriesCalculator')}</Text>
 
-      <Text>Calcula tus calorías para formar un programa adecuado</Text>
+      <Text>{t('calculateCaloriesForYouProgram')}</Text>
 
       <Space medium />
 
       <form onSubmit={handleCalculate} className='background-2 no-margin'>
-        <Text isSubtitle>Información general</Text>
-        <Text>Cuéntanos más sobre ti, antes de empezar!</Text>
+        <Text isSubtitle>{t('generalInfo')}</Text>
+        <Text>{t('tellUsMoreAboutYou')}</Text>
 
         <Space small />
 

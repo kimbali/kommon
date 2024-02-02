@@ -67,6 +67,7 @@ function MainLayout() {
 
   useEffect(() => {
     if (marathonData) {
+      console.log(1, marathonData);
       updateMarathon(marathonData);
 
       const month = getWeeksArray(marathonData.startDate, marathonData.endDate);

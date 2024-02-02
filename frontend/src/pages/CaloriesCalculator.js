@@ -95,7 +95,7 @@ function CaloriesCalculator() {
 
         <Space big />
 
-        <Button isPrimary type='submit' center>
+        <Button big isPrimary type='submit' center>
           {t('calculate')}
         </Button>
 

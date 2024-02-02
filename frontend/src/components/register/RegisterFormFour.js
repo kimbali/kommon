@@ -7,11 +7,10 @@ import { useNavigate } from 'react-router-dom';
 import frontRoutes from '../../config/frontRoutes';
 import formatDate, {
   calculateDaysDifference,
-  formatDateHyphens,
   hasMarathonFinished,
   hasMarathonStarted,
 } from '../../utils/formatDate';
-import { DATE, MARATHON_ID } from '../../config/constants';
+import { MARATHON_ID } from '../../config/constants';
 import { useMarathon } from '../../context/marathonContext';
 import { useTranslation } from 'react-i18next';
 

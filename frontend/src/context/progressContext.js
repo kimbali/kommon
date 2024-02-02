@@ -3,11 +3,12 @@ import React, { createContext, useContext, useState } from 'react';
 const ProgressContext = createContext();
 
 export const ProgressProvider = ({ children }) => {
-  const [userProgress, setUserProgress] = useState({});
+  const [userProgress, setUserProgress] = useState();
   const [progressId, setProgressId] = useState(null);
 
   const updateUserProgress = progressData => {
     setUserProgress(progressData);
+    setProgressId(progressData?._id);
   };
 
   return (

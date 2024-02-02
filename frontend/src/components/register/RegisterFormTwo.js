@@ -7,6 +7,7 @@ import { useProfileMutation } from '../../slices/usersApiSlices';
 import toast from 'react-hot-toast';
 import Button from '../button/Button';
 import { useTranslation } from 'react-i18next';
+import { useUpdateProgressMutation } from '../../slices/progressApiSlice';
 
 function RegisterFormTwo({ onSuccess, userData }) {
   const { t } = useTranslation();
@@ -14,6 +15,7 @@ function RegisterFormTwo({ onSuccess, userData }) {
   const [invalidFields, setInvalidFields] = useState('');
 
   const [updateProfile] = useProfileMutation();
+  const [updateProgress] = useUpdateProgressMutation();
 
   useEffect(() => {
     if (userData) {
@@ -37,6 +39,13 @@ function RegisterFormTwo({ onSuccess, userData }) {
 
     try {
       await updateProfile({ ...formData }).unwrap();
+      await updateProgress({
+        ...userData.progresses[userData.progresses.length - 1],
+        waist: [+formData.waist],
+        chest: [+formData.chest],
+        weight: [+formData.weight],
+        buttocks: [+formData.buttocks],
+      });
 
       onSuccess(3);
     } catch (err) {
@@ -64,7 +73,7 @@ function RegisterFormTwo({ onSuccess, userData }) {
       <Space small />
 
       <Input
-        label={t('weight')}
+        label={t('weightKg')}
         placeholder=''
         type='number'
         onChange={handleOnChange}
@@ -91,7 +100,7 @@ function RegisterFormTwo({ onSuccess, userData }) {
       <Space small />
 
       <Input
-        label={t('chest')}
+        label={t('chestCm')}
         placeholder=''
         type='number'
         onChange={handleOnChange}
@@ -106,7 +115,7 @@ function RegisterFormTwo({ onSuccess, userData }) {
       <Space small />
 
       <Input
-        label={t('waist')}
+        label={t('waistCm')}
         placeholder=''
         type='number'
         onChange={handleOnChange}
@@ -118,7 +127,7 @@ function RegisterFormTwo({ onSuccess, userData }) {
       <Space small />
 
       <Input
-        label={t('buttocks')}
+        label={t('buttocksCm')}
         placeholder=''
         type='number'
         onChange={handleOnChange}

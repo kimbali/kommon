@@ -65,8 +65,8 @@ function App() {
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
   const { updateUser } = useUser();
-  const { setMarathonId } = useMarathon();
-  const { setProgressId } = useProgress();
+  const { setMarathonId, marathonId } = useMarathon();
+  const { updateUserProgress } = useProgress();
   const [showCookies, setShowCookies] = useState(false);
 
   const { data: userData } = useGetUserProfileQuery();
@@ -87,12 +87,17 @@ function App() {
     }
 
     if (userData?.progresses.length > 0) {
-      const lastProgress = userData?.progresses[userData.progresses.length - 1];
+      if (marathonId) {
+        const userProgress = userData?.progresses.find(
+          ele => ele.marathon._id === marathonId
+        );
 
-      setProgressId(lastProgress._id);
-      setMarathonId(lastProgress.marathon._id);
+        if (userProgress) {
+          updateUserProgress(userProgress);
+        }
+      }
     }
-  }, [userData]);
+  }, [userData, marathonId]);
 
   const createLegals = async () => {
     try {

@@ -6,9 +6,14 @@ import Button from '../button/Button';
 import { useUpdateProgressMutation } from '../../slices/progressApiSlice';
 import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
+import { useProgress } from '../../context/progressContext';
+import { useDate } from '../../context/dateContext';
 
-function BodyParametersForm() {
+function BodyParametersForm({ onSave }) {
   const { t } = useTranslation();
+  const { userProgress } = useProgress();
+  const { currentDay } = useDate();
+
   const [formData, setFormData] = useState();
   const [updateProgress] = useUpdateProgressMutation();
 
@@ -16,10 +21,27 @@ function BodyParametersForm() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleOnSubmit = async () => {
+  const handleOnSubmit = async e => {
+    e.preventDefault();
+
     try {
-      await updateProgress(formData);
+      let progress = { ...userProgress };
+
+      progress.weight = [...progress.weight];
+      progress.chest = [...progress.chest];
+      progress.waist = [...progress.waist];
+      progress.buttocks = [...progress.buttocks];
+
+      progress.weight[currentDay.week - 1] = +formData.weight;
+      progress.chest[currentDay.week - 1] = +formData.chest;
+      progress.waist[currentDay.week - 1] = +formData.waist;
+      progress.buttocks[currentDay.week - 1] = +formData.buttocks;
+
+      await updateProgress({ ...userProgress, ...progress });
+
+      onSave({ ...userProgress, ...progress });
     } catch (error) {
+      console.error(error.message);
       toast.error(error.message);
     }
   };
@@ -28,10 +50,14 @@ function BodyParametersForm() {
     <form onSubmit={handleOnSubmit}>
       <Text isTitle>{t('updateParameters')}</Text>
 
-      <Space small />
+      <Space extraSmall />
+
+      <Text>{t('parametresHelp')}</Text>
+
+      <Space medium />
 
       <Input
-        label={t('weight')}
+        label={t('weightKg')}
         name='weight'
         placeholder={t('placeholderNumber')}
         onChange={handleOnChange}
@@ -42,7 +68,7 @@ function BodyParametersForm() {
       <Space small />
 
       <Input
-        label={t('chest')}
+        label={t('chestCm')}
         name='chest'
         placeholder={t('placeholderNumber')}
         onChange={handleOnChange}
@@ -53,7 +79,7 @@ function BodyParametersForm() {
       <Space small />
 
       <Input
-        label={t('waist')}
+        label={t('waistCm')}
         name='waist'
         placeholder={t('placeholderNumber')}
         onChange={handleOnChange}
@@ -64,13 +90,15 @@ function BodyParametersForm() {
       <Space small />
 
       <Input
-        label={t('buttocks')}
+        label={t('buttocksCm')}
         name='buttocks'
         placeholder={t('placeholderNumber')}
         onChange={handleOnChange}
         value={formData?.buttocks}
         type='number'
       />
+
+      <Space medium />
 
       <Button isPrimary center type='submit'>
         {t('save')}

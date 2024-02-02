@@ -33,7 +33,6 @@ function MainLayout() {
 
   const { user } = useUser();
   const { marathonId, setDayDetails, updateMarathon } = useMarathon();
-  const { progressId, updateUserProgress } = useProgress();
   const {
     currentDay,
     setCurrentDay,
@@ -43,10 +42,6 @@ function MainLayout() {
   } = useDate();
 
   const [showNav, setShowNav] = useState(false);
-
-  const { data: progressData } = useGetProgressDetailsQuery(progressId, {
-    skip: !progressId,
-  });
 
   const { data: marathonData } = useGetMarathonDetailsForClientQuery(
     marathonId,
@@ -60,14 +55,7 @@ function MainLayout() {
   });
 
   useEffect(() => {
-    if (progressData) {
-      updateUserProgress(progressData);
-    }
-  }, [progressData]);
-
-  useEffect(() => {
     if (marathonData) {
-      console.log(1, marathonData);
       updateMarathon(marathonData);
 
       const month = getWeeksArray(marathonData.startDate, marathonData.endDate);
@@ -76,10 +64,10 @@ function MainLayout() {
         currentDate || new Date()
       );
 
-      //TODO: Abilitar cuando funcione todo
-      if (!user?.isAdmin && !todayPos.week && !todayPos.weekDay) {
-        navigate(frontRoutes.profileMarathons);
-      }
+      // //TODO: Abilitar cuando funcione todo
+      // if (!user?.isAdmin && !todayPos.week && !todayPos.weekDay) {
+      //   navigate(frontRoutes.profileMarathons);
+      // }
 
       setMonthArray(month);
       setCurrentDate(currentDate || new Date());

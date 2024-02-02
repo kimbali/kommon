@@ -45,10 +45,10 @@ function UserProfile() {
         list={[
           { name: t('age'), value: user?.age },
           { name: t('height'), value: user?.height },
-          { name: t('weight'), value: user?.weight },
-          { name: t('chest'), value: user?.chest },
-          { name: t('waist'), value: user?.waist },
-          { name: t('buttocks'), value: user?.buttocks },
+          { name: t('weightKg'), value: user?.weight },
+          { name: t('chestCm'), value: user?.chest },
+          { name: t('waistCm'), value: user?.waist },
+          { name: t('buttocksCm'), value: user?.buttocks },
         ]}
       />
 

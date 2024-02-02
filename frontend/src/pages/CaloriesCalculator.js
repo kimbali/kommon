@@ -52,7 +52,7 @@ function CaloriesCalculator() {
         <Space small />
 
         <Input
-          label={t('weight')}
+          label={t('weightKg')}
           placeholder=''
           type='number'
           onChange={handleOnChange}

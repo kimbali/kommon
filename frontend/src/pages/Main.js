@@ -151,7 +151,7 @@ function Main() {
         </div>
 
         <div className='content'>
-          <Text isSubtitle>{t('weight')}</Text>
+          <Text isSubtitle>{t('weightKg')}</Text>
 
           <Space small />
 

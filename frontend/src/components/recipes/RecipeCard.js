@@ -73,7 +73,8 @@ function RecipeCard({ recipe, meal = '', onClick }) {
           <Text className='recipe-card-data'>
             {!!recipe.minutes && (
               <>
-                {recipe.minutes} <span>{t('min')} | </span>
+                {recipe.minutes} <span>{t('min')}</span>
+                <span className='decolored'> | </span>
               </>
             )}
             {calculateEnergy('calories', recipe.ingredients, user)}

@@ -36,11 +36,15 @@
 
     .recipe-card-data {
       margin: 0 14px 14px;
-      color: $grey-decolored;
-      font-size: 12px;
+      color: $primary-color;
+      font-size: 16px;
 
       span {
         color: $white;
+      }
+
+      .decolored {
+        color: $disabled;
       }
     }
   }

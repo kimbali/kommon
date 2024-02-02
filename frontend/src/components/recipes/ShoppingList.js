@@ -56,8 +56,8 @@ function ShoppingList() {
 
           <Space extraSmall />
 
-          {section.ingredients.map(item => (
-            <li key={section.ingredientId}>
+          {section.ingredients.map((item, i) => (
+            <li key={`${i}${section.ingredientId}`}>
               <Text>
                 {item.name} - {item.quantity}{' '}
                 {getMeasureDiminutive(item.measure)}

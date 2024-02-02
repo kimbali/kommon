@@ -86,7 +86,7 @@ export const createUniqueIngredientsList = ingredients => {
     }
 
     accSet[position] = {
-      quantity: ele.quantity + accSet[position].quantity,
+      quantity: (ele.quantity || 0) + accSet[position].quantity,
       ingredient: ele.ingredient,
     };
 

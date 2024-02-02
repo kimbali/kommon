@@ -105,7 +105,12 @@ function Recipes() {
       </ul>
 
       {showRecipeModal && (
-        <Modal className='recipe-modal' scroll onClose={setShowRecipeModal}>
+        <Modal
+          fullWidth
+          className='recipe-modal'
+          scroll
+          onClose={setShowRecipeModal}
+        >
           <RecipeForm onCreate={handleOnCreateRecipe} />
         </Modal>
       )}

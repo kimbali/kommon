@@ -6,9 +6,10 @@ import Text from '../components/text/Text';
 import { getMeasureDiminutive } from '../config/enums/measuresEnum';
 import ResumeTable from '../components/resumeTable/ResumeTable';
 import { useGetImageUrlQuery } from '../slices/imagesApiSlice';
-import calculateEnergy, { KcalReglaDeTres } from '../utils/calculateEnergy';
+import { KcalReglaDeTres } from '../utils/calculateEnergy';
 import { useUser } from '../context/userContext';
 import { useTranslation } from 'react-i18next';
+import EnergyDetails from '../components/recipes/EnergyDetails';
 
 function DietDetailsMain() {
   const { t } = useTranslation();
@@ -52,27 +53,7 @@ function DietDetailsMain() {
 
           <Space medium />
 
-          <div className='propiedades'>
-            <div className='propiedad'>
-              <Text isSubtitle>{t('kcal')}</Text>
-              <Text>{calculateEnergy('calories', ingredients, user)}</Text>
-            </div>
-
-            <div className='propiedad'>
-              <Text isSubtitle>{t('prot')}</Text>
-              <Text>{calculateEnergy('proteins', ingredients, user)}</Text>
-            </div>
-
-            <div className='propiedad'>
-              <Text isSubtitle>{t('fats')}</Text>
-              <Text>{calculateEnergy('fats', ingredients, user)}</Text>
-            </div>
-
-            <div className='propiedad'>
-              <Text isSubtitle>{t('carbh')}</Text>
-              <Text>{calculateEnergy('carbohydrates', ingredients, user)}</Text>
-            </div>
-          </div>
+          <EnergyDetails ingredients={ingredients} fullWidth />
         </div>
 
         <div className='recipe-details-content  background-2'>

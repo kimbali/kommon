@@ -90,6 +90,10 @@ a {
     margin-left: 12px;
   }
 
+  .section-title {
+    width: fit-content;
+  }
+
   @media screen and (min-width: 1024px) {
     flex-direction: row;
   }

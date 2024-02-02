@@ -26,24 +26,6 @@
     }
   }
 
-  .propiedades {
-    display: flex;
-    justify-content: space-between;
-    background-color: $background-2;
-    border-radius: $border-radius-element;
-    padding: 12px 22px 12px;
-
-    .propiedad {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-
-      .text {
-        text-align: center;
-      }
-    }
-  }
-
   .steps-title .section-title__text {
     display: flex;
     justify-content: space-between;

@@ -16,9 +16,10 @@ import ConfirmModal from '../components/modal/ConfirmModal';
 import Modal from '../components/modal/Modal';
 import RecipeForm from '../components/recipes/RecipeForm';
 import { getMeasureDiminutive } from '../config/enums/measuresEnum';
-import calculateEnergy, { KcalReglaDeTres } from '../utils/calculateEnergy';
+import { KcalReglaDeTres } from '../utils/calculateEnergy';
 import { useUser } from '../context/userContext';
 import { useTranslation } from 'react-i18next';
+import EnergyDetails from '../components/recipes/EnergyDetails';
 
 function RecipeDetails({ recipe }) {
   const { t } = useTranslation();
@@ -112,27 +113,7 @@ function RecipeDetails({ recipe }) {
 
           <Space medium />
 
-          <div className='propiedades'>
-            <div className='propiedad'>
-              <Text isSubtitle>{t('kcal')}</Text>
-              <Text>{calculateEnergy('calories', ingredients, user)}</Text>
-            </div>
-
-            <div className='propiedad'>
-              <Text isSubtitle>{t('prot')}</Text>
-              <Text>{calculateEnergy('proteins', ingredients, user)}</Text>
-            </div>
-
-            <div className='propiedad'>
-              <Text isSubtitle>{t('fat')}</Text>
-              <Text>{calculateEnergy('fats', ingredients, user)}</Text>
-            </div>
-
-            <div className='propiedad'>
-              <Text isSubtitle>{t('carbh')}</Text>
-              <Text>{calculateEnergy('carbohydrates', ingredients, user)}</Text>
-            </div>
-          </div>
+          <EnergyDetails ingredients={ingredients} fullWidth />
         </div>
 
         <div className='recipe-details-content  background-2'>
@@ -182,7 +163,7 @@ function RecipeDetails({ recipe }) {
       </div>
 
       {showEditModal && (
-        <Modal scroll onClose={setShowEditModal}>
+        <Modal scroll onClose={setShowEditModal} fullWidth>
           <RecipeForm isEdit recipe={recipeDetails} onCreate={editHandler} />
         </Modal>
       )}

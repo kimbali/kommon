@@ -30,7 +30,10 @@ export const getPlanningById = asyncHandler(async (req, res) => {
         path: 'meals',
         populate: {
           path: 'recipe',
-          model: 'Recipe',
+          populate: {
+            path: 'ingredients.ingredient',
+            model: 'Ingredient',
+          },
         },
       },
     })

@@ -11,15 +11,29 @@ import { useUpdateDayMutation } from '../../slices/daysApiSlice';
 import toast from 'react-hot-toast';
 import RecipeCard from '../recipes/RecipeCard';
 import { useTranslation } from 'react-i18next';
+import EnergyDetails from '../recipes/EnergyDetails';
+import { createUniqueIngredientsList } from '../../utils/calculateEnergy';
 
 function MarathonDiet({ currentDiet, mealsData, dayId, onSave }) {
   const { t } = useTranslation();
   const [formData, setFormData] = useState(mealsData);
   const [showDietModal, setShowDietModal] = useState(false);
   const [options, setOptions] = useState([]);
+  const [ingredients, setIngredients] = useState([]);
 
   const { data: recipesData } = useGetRecipesQuery({});
   const [updateDay] = useUpdateDayMutation();
+
+  useEffect(() => {
+    if (!mealsData || mealsData?.length === 0) {
+      return;
+    }
+
+    const duplicatedList = mealsData.flatMap(ele => ele.recipe.ingredients);
+    const reducedList = createUniqueIngredientsList(duplicatedList);
+
+    setIngredients(reducedList);
+  }, [mealsData]);
 
   useEffect(() => {
     if (mealsData) {
@@ -92,13 +106,17 @@ function MarathonDiet({ currentDiet, mealsData, dayId, onSave }) {
 
   return (
     <div>
-      <Text
-        isSectionTitle
-        sectionIcon={currentDiet && faEdit}
-        sectionIconClick={() => setShowDietModal(true)}
-      >
-        {t('diet')}
-      </Text>
+      <div className='content-on-the-left'>
+        <Text
+          isSectionTitle
+          sectionIcon={currentDiet && faEdit}
+          sectionIconClick={() => setShowDietModal(true)}
+        >
+          {t('diet')}
+        </Text>
+
+        {currentDiet && <EnergyDetails ingredients={ingredients} />}
+      </div>
 
       <Space small />
 

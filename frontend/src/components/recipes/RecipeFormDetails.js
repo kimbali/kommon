@@ -8,8 +8,8 @@ import { faFolderPlus, faSave } from '@fortawesome/free-solid-svg-icons';
 import mealsEnum from '../../config/enums/mealsEnum';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useGetImageUrlQuery } from '../../slices/imagesApiSlice';
-import calculateEnergy from '../../utils/calculateEnergy';
 import { useTranslation } from 'react-i18next';
+import EnergyDetails from './EnergyDetails';
 
 function RecipeFormDetails({
   data: recipeDetails,
@@ -89,27 +89,7 @@ function RecipeFormDetails({
 
       <Space medium />
 
-      <div className='propiedades'>
-        <div className='propiedad'>
-          <Text isBold>{t('kcal')}</Text>
-          <Text>{calculateEnergy('calories', ingredients)}</Text>
-        </div>
-
-        <div className='propiedad'>
-          <Text isBold>{t('prot')}</Text>
-          <Text>{calculateEnergy('proteins', ingredients)}</Text>
-        </div>
-
-        <div className='propiedad'>
-          <Text isBold>{t('fats')}</Text>
-          <Text>{calculateEnergy('fats', ingredients)}</Text>
-        </div>
-
-        <div className='propiedad'>
-          <Text isBold>{t('carbh')}</Text>
-          <Text>{calculateEnergy('carbohydrates', ingredients)}</Text>
-        </div>
-      </div>
+      <EnergyDetails ingredients={ingredients} fullWidth />
 
       <Space medium />
 

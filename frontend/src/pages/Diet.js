@@ -8,10 +8,9 @@ import { useMarathon } from '../context/marathonContext';
 import RecipeCard from '../components/recipes/RecipeCard';
 import { useUser } from '../context/userContext';
 import { useTranslation } from 'react-i18next';
-import calculateEnergy, {
-  createUniqueIngredientsList,
-} from '../utils/calculateEnergy';
+import { createUniqueIngredientsList } from '../utils/calculateEnergy';
 import { useGetDietsQuery } from '../slices/dietsApiSlice';
+import EnergyDetails from '../components/recipes/EnergyDetails';
 
 function Diet() {
   const { t } = useTranslation();
@@ -68,29 +67,7 @@ function Diet() {
       <div className='content-on-the-left'>
         <Text isTitle>{t('todayDiet')}</Text>
 
-        <div className='propiedades'>
-          <div className='propiedad'>
-            <Text isSubtitle>{t('kcal')}: </Text>
-            <Text>{calculateEnergy('calories', todayIngredients, user)}</Text>
-          </div>
-
-          <div className='propiedad'>
-            <Text isSubtitle>{t('prot')}: </Text>
-            <Text>{calculateEnergy('proteins', todayIngredients, user)}</Text>
-          </div>
-
-          <div className='propiedad'>
-            <Text isSubtitle>{t('fat')}: </Text>
-            <Text>{calculateEnergy('fats', todayIngredients, user)}</Text>
-          </div>
-
-          <div className='propiedad'>
-            <Text isSubtitle>{t('carbh')}: </Text>
-            <Text>
-              {calculateEnergy('carbohydrates', todayIngredients, user)}
-            </Text>
-          </div>
-        </div>
+        <EnergyDetails ingredients={todayIngredients} />
       </div>
 
       <Space medium />

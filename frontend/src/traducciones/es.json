@@ -276,7 +276,7 @@
   "services": "Servicios",
   "shoppingList": "Lista de la compra",
   "signUp": "Inscribirme",
-  "sinMovilidad": "'Sin movimiento'",
+  "sinMovilidad": "Sin movimiento",
   "sinMovilidadSub": "Muy poca actividad física (trabajo sentada, sin ejercicio)",
   "snack": "Merienda",
   "soja": "Soja",
@@ -331,5 +331,11 @@
 
   "yourCurrentMarathon": "Marathon actual",
   "nextMarathons": "Siguientes maratones",
-  "goToProgress": "Progreso"
+  "goToProgress": "Progreso",
+  "caloriesCalculator": "Calculadora de calorías",
+  "specifyActivity": "Especifica tu actividad diaria",
+  "specifyGoal": "Dinos cual es tu propósito",
+  "goal": "Meta",
+  "calculate": "Calcular",
+  "dailyCalorieIntake": "Tu ingesta diaria de calorías"
 }

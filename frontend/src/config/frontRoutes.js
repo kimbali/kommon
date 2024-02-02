@@ -1,5 +1,6 @@
 const frontRoutes = {
   avisoLegal: '/aviso-legal',
+  caloriesCalculator: '/calories-calculator',
   cookies: '/cookies',
   config: '/config/config',
   diet: '/diet',

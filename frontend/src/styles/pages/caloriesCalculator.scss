@@ -1,0 +1,27 @@
+.calories-calculator {
+  max-width: 520px;
+
+  form {
+    &.background-2 {
+      padding: 24px;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      font-family: $avenirBlack;
+    }
+
+    .radio .label-wrapper {
+      // margin-bottom: 14px;
+
+      .sublabel {
+        border-bottom: 1px solid #52566c;
+        padding-bottom: 14px;
+      }
+      .main-label {
+        border-bottom: none;
+        padding: 8px 0;
+      }
+    }
+  }
+}

@@ -1,8 +1,14 @@
 .more-links {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(4, minmax(140px, 200px));
+  grid-template-rows: auto;
+  gap: 18px;
+
   li {
     background-color: $background-3;
     height: 150px;
-    width: 200px;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -230,4 +230,8 @@ a {
   padding: 16px;
   border-radius: $border-radius-wrapper;
   margin: 0 16px;
+
+  &.no-margin {
+    margin: 0;
+  }
 }

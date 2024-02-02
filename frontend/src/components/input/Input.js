@@ -21,6 +21,7 @@ function Input({
   isSingleSelect = false,
   keyValue = '',
   label,
+  subLabel = '',
   maxLength,
   name = '',
   noValueOption = '',
@@ -86,11 +87,11 @@ function Input({
   return (
     <div className={`field ${className} ${name} ${type}`}>
       {label && (
-        <div>
+        <div className='label-wrapper'>
           <label className='main-label' htmlFor={name}>
             {label} {selectCreatable ? t('writeNameToCreate') : ''}
           </label>
-          {labelLink && labelLink}
+          {subLabel && <Text className='sublabel'>{subLabel}</Text>}
         </div>
       )}
 

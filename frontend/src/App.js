@@ -58,6 +58,7 @@ import { useTranslation } from 'react-i18next';
 import Cookies from 'js-cookie';
 import CookiesDisclaimer from './components/cookies/CookiesDisclaimer';
 import UserPayment from './pages/UserPayment';
+import CaloriesCalculator from './pages/CaloriesCalculator';
 
 function App() {
   const { t } = useTranslation();
@@ -181,6 +182,10 @@ function App() {
             element={<UserMarathons />}
           />
           <Route path={frontRoutes.userPayment} element={<UserPayment />} />
+          <Route
+            path={frontRoutes.caloriesCalculator}
+            element={<CaloriesCalculator />}
+          />
         </Route>
 
         <Route path='' element={<AdminLayout />}>

@@ -14,12 +14,15 @@ import { useUpdateProgressMutation } from '../slices/progressApiSlice';
 import { useProgress } from '../context/progressContext';
 import { useTranslation } from 'react-i18next';
 import { useGetDietsQuery } from '../slices/dietsApiSlice';
+import BodyParameter from '../components/progress/BodyParameter';
 
 function Main() {
   const { t } = useTranslation();
   const navigate = useNavigate();
+
   const { dayDetails } = useMarathon();
   const { userProgress, updateUserProgress } = useProgress();
+
   const [showRecipe, setShowRecipe] = useState();
   const [mealsList, setMealsList] = useState([]);
 
@@ -122,7 +125,7 @@ function Main() {
         <div className='content'>
           <Text isSubtitle>{t('todoList')}</Text>
 
-          <Space small />
+          <Space extraSmall />
 
           <div className='container'>
             <Text className='decolored-title'>{t('todayTasks')}</Text>
@@ -151,20 +154,11 @@ function Main() {
         </div>
 
         <div className='content'>
-          <Text isSubtitle>{t('weightKg')}</Text>
-
-          <Space small />
-
-          <div className='container'>
-            <div className='content-left-and-right'>
-              <Text className='weigth-title'>XX kg > XX kg</Text>
-              <Text className='weigth-title'>- XX kg</Text>
-            </div>
-
-            <Space small />
-
-            <div>GRAFICOS</div>
-          </div>
+          <BodyParameter
+            title={t('weight')}
+            progress={userProgress?.weight}
+            measure='kg'
+          />
         </div>
       </div>
 

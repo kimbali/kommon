@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Text from '../text/Text';
 import Space from '../space/Space';
 import ProgressColumn from './ProgressColumn';
+import { useDate } from '../../context/dateContext';
+import { weeksDatesList } from '../../utils/formatDate';
+import { useProgress } from '../../context/progressContext';
 
-function BodyParameter({ title, progress, measure, weeksDates }) {
+function BodyParameter({ title, progress, measure }) {
+  const { monthArray } = useDate();
+  const { userProgress } = useProgress();
+
+  const [weeksDates, setWeeksDates] = useState([]);
+
+  useEffect(() => {
+    if (monthArray) {
+      const weekColumns = weeksDatesList(monthArray);
+      setWeeksDates(weekColumns);
+    }
+  }, [monthArray, userProgress]);
+
   if (!progress) {
     return null;
   }

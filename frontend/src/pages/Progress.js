@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import BodyParameter from '../components/progress/BodyParameter';
 import { useProgress } from '../context/progressContext';
 import { useDate } from '../context/dateContext';
+import { weeksDatesList } from '../utils/formatDate';
 
 function Progress() {
   const { t } = useTranslation();
@@ -20,17 +21,7 @@ function Progress() {
 
   useEffect(() => {
     if (monthArray) {
-      const weekColumns = monthArray.reduce((acc, ele) => {
-        let accUpdated = acc;
-
-        accUpdated.push({
-          start: ele[0].getDate(),
-          end: ele[ele.length - 1].getDate(),
-        });
-
-        return accUpdated;
-      }, []);
-
+      const weekColumns = weeksDatesList(monthArray);
       setWeeksDates(weekColumns);
     }
   }, [monthArray, userProgress]);

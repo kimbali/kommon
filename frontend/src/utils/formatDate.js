@@ -196,4 +196,17 @@ export const isSameDay = (date1, date2) => {
   );
 };
 
+export const weeksDatesList = monthArray => {
+  return monthArray.reduce((acc, ele) => {
+    let accUpdated = acc;
+
+    accUpdated.push({
+      start: ele[0].getDate(),
+      end: ele[ele.length - 1].getDate(),
+    });
+
+    return accUpdated;
+  }, []);
+};
+
 export default formatDate;

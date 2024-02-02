@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './layout.scss';
-import { Outlet, useLocation, useSearchParams } from 'react-router-dom';
+import {
+  Outlet,
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from 'react-router-dom';
 import { useGetMarathonDetailsForClientQuery } from '../../slices/marathonApiSlice';
 import { useGetMonthDayDetailsQuery } from '../../slices/daysApiSlice';
 import { useMarathon } from '../../context/marathonContext';
@@ -20,15 +25,23 @@ import {
 } from '../../utils/formatDate';
 import { useUser } from '../../context/userContext';
 import { useDate } from '../../context/dateContext';
+import frontRoutes from '../../config/frontRoutes';
 
 function MainLayout() {
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const { user } = useUser();
   const { marathonId, setDayDetails, updateMarathon } = useMarathon();
   const { progressId, updateUserProgress } = useProgress();
-  const { currentDate } = useDate();
-  const { user } = useUser();
+  const {
+    currentDay,
+    setCurrentDay,
+    setMonthArray,
+    setCurrentDate,
+    currentDate,
+  } = useDate();
 
-  const [currentDay, setCurrentDay] = useState();
   const [showNav, setShowNav] = useState(false);
 
   const { data: progressData } = useGetProgressDetailsQuery(progressId, {
@@ -46,10 +59,6 @@ function MainLayout() {
     skip: !currentDay,
   });
 
-  const handleSelectDay = day => {
-    setCurrentDay({ ...day, planningId: marathonData?.planning._id });
-  };
-
   useEffect(() => {
     if (progressData) {
       updateUserProgress(progressData);
@@ -63,12 +72,19 @@ function MainLayout() {
       const month = getWeeksArray(marathonData.startDate, marathonData.endDate);
       const todayPos = getDatePositionInMonthArray(
         month,
-        new Date(currentDate)
+        currentDate || new Date()
       );
 
-      handleSelectDay({
-        week: !user?.isAdmin && todayPos.week ? todayPos.week : 1,
-        weekDay: !user?.isAdmin && todayPos.weekDay ? todayPos.weekDay : 0,
+      //TODO: Abilitar cuando funcione todo
+      if (!user?.isAdmin && !todayPos.week && !todayPos.weekDay) {
+        navigate(frontRoutes.profileMarathons);
+      }
+
+      setMonthArray(month);
+      setCurrentDate(currentDate || new Date());
+      setCurrentDay({
+        week: todayPos.week,
+        weekDay: todayPos.weekDay,
         planningId: marathonData.planning._id,
       });
     }
@@ -112,7 +128,7 @@ function MainLayout() {
       )}
 
       <main>
-        <Outlet context={[handleSelectDay, isError]} />
+        <Outlet context={[isError]} />
       </main>
 
       <Space big />

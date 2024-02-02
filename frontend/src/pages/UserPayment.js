@@ -5,9 +5,11 @@ import { useMarathon } from '../context/marathonContext';
 import MarathonCard from '../components/marathon/MarathonCard';
 
 function UserPayment() {
-  const { marathon } = useMarathon();
+  const { marathon, updateMarathon } = useMarathon();
 
-  const handleSelectMarathon = marathon => {};
+  const handleSelectMarathon = marathon => {
+    updateMarathon(marathon);
+  };
 
   return (
     <div>

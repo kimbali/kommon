@@ -9,9 +9,9 @@ import { useMarathon } from '../context/marathonContext';
 import { useUser } from '../context/userContext';
 import { useTranslation } from 'react-i18next';
 
-function Workouts({ setCurrentDay }) {
+function Workouts() {
   const { t } = useTranslation();
-  const [handleSelectDay, isError] = useOutletContext();
+  const [isError] = useOutletContext();
   const { user } = useUser();
 
   const navigate = useNavigate();
@@ -24,15 +24,11 @@ function Workouts({ setCurrentDay }) {
     }
   }, [dayDetails]);
 
-  const handleDayChange = day => {
-    handleSelectDay(day);
-  };
-
   const handleSelectLevel = level => {
-    let list = dayDetails.workouts;
+    let list = dayDetails?.workouts;
 
     if (level) {
-      list = list.filter(ele => ele.level === level);
+      list = list?.filter(ele => ele.level === level);
     }
 
     setWorkoutsList(list);
@@ -53,8 +49,6 @@ function Workouts({ setCurrentDay }) {
       <Space medium />
 
       <PlanningSelector
-        marathon={marathon}
-        setCurrentDay={handleDayChange}
         baseUrl={frontRoutes.workouts}
         isFrontoffice
         setCurrentLevel={handleSelectLevel}

@@ -46,11 +46,7 @@ function MarathonsList() {
   };
 
   const handleEditButton = eachMarathon => {
-    navigate(
-      `${frontRoutes.planning}/${eachMarathon._id}/${formatDateHyphens(
-        eachMarathon.startDate
-      )}`
-    );
+    navigate(`${frontRoutes.planning}?${MARATHON_ID}=${eachMarathon._id}`);
   };
 
   const sortByStartDate = () => {
@@ -110,10 +106,10 @@ function MarathonsList() {
               </button>
             </th>
             <th>{t('endDate')}</th>
-            <th>{t('trash')}</th>
             <th>{t('edit')}</th>
-            <th>{t('active')}</th>
             <th>{t('see')}</th>
+            <th>{t('active')}</th>
+            <th>{t('trash')}</th>
           </tr>
         </thead>
 
@@ -127,20 +123,20 @@ function MarathonsList() {
                 <td>{formatDate(eachMarathon.endDate)}</td>
                 <td>
                   <Button
-                    onClick={() => setShowDeleteModal(eachMarathon)}
-                    onlyIcon
-                    iconLeft={faTrash}
-                  >
-                    {t('delete')}
-                  </Button>
-                </td>
-                <td>
-                  <Button
                     onClick={() => handleEditButton(eachMarathon)}
                     onlyIcon
                     iconLeft={faEdit}
                   >
                     {t('edit')}
+                  </Button>
+                </td>
+                <td>
+                  <Button
+                    onClick={() => handleGoToLiveMarathon(eachMarathon)}
+                    isSecondary
+                    disabled={!eachMarathon.isActive}
+                  >
+                    {t('goToLive')}
                   </Button>
                 </td>
                 <td>
@@ -154,11 +150,11 @@ function MarathonsList() {
                 </td>
                 <td>
                   <Button
-                    onClick={() => handleGoToLiveMarathon(eachMarathon)}
-                    isSecondary
-                    disabled={!eachMarathon.isActive}
+                    onClick={() => setShowDeleteModal(eachMarathon)}
+                    onlyIcon
+                    iconLeft={faTrash}
                   >
-                    {t('goToLive')}
+                    {t('delete')}
                   </Button>
                 </td>
               </tr>

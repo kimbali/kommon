@@ -37,7 +37,7 @@ function IngredientForm({ onSuccess, data, onCancel }) {
       onSuccess();
       toast.success(`${formData?.name} ${data ? 'updated' : 'created'}!`);
     } catch (err) {
-      console.log(err);
+      console.error(err);
       toast.error(err?.data?.message || err.error);
     }
   };

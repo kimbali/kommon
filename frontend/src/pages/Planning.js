@@ -16,34 +16,22 @@ import {
 } from '../slices/planningsApiSlice';
 import MarathonMeditations from '../components/marathon/MarathonMeditations';
 import { useTranslation } from 'react-i18next';
+import { useDate } from '../context/dateContext';
 
 function Planning() {
   const { t } = useTranslation();
-  const navigate = useNavigate();
-  const { marathonId: marathonIdParams } = useParams();
-  const { marathonId, setMarathonId } = useMarathon();
+  const { updateMarathon, marathon } = useMarathon();
+  const { currentDay } = useDate();
 
-  const [currentMarathon, setCurrentMarathon] = useState();
   const [currentDiet, setCurrentDiet] = useState();
-  const [currentDay, setCurrentDay] = useState();
   const [day, setDay] = useState();
 
   const [createDay] = useCreateDayMutation();
   const [updatePlanning] = useUpdatePlanningMutation();
   const { data: planData, refetch: refetchPlan } = useGetPlanningDetailsQuery(
-    currentMarathon?.planning?._id,
-    { skip: !currentMarathon?.planning?._id }
+    marathon?.planning?._id,
+    { skip: !marathon?.planning?._id }
   );
-
-  useEffect(() => {
-    if (!marathonIdParams && marathonId) {
-      navigate(`${frontRoutes.planning}/${marathonId}`, {
-        replace: true,
-      });
-    } else {
-      setMarathonId(marathonIdParams);
-    }
-  }, [marathonIdParams]);
 
   const handleNewDay = async () => {
     try {
@@ -67,7 +55,7 @@ function Planning() {
   };
 
   useEffect(() => {
-    if (!planData && currentMarathon?.planning) {
+    if (!planData && marathon?.planning) {
       refetchPlan();
       return;
     }
@@ -97,26 +85,24 @@ function Planning() {
       <Space medium />
 
       <MarathonSelector
-        setMarathon={setCurrentMarathon}
+        setMarathon={updateMarathon}
         planName={planData?.name}
       />
 
-      {currentMarathon && <Text line />}
+      {marathon && <Text line />}
 
       <Space small />
 
-      {currentMarathon && (
+      {marathon && (
         <PlanningSelector
-          marathon={currentMarathon}
           setCurrentDiet={setCurrentDiet}
-          setCurrentDay={setCurrentDay}
           baseUrl={frontRoutes.planning}
         />
       )}
 
       <Space big />
 
-      {currentMarathon && currentDay && (
+      {marathon && currentDay && (
         <MarathonDiets
           mealsData={day?.meals}
           currentDiet={currentDiet}
@@ -127,7 +113,7 @@ function Planning() {
 
       <Space big />
 
-      {currentMarathon && currentDay && (
+      {marathon && currentDay && (
         <MarathonWorkouts
           workoutsData={day?.workouts}
           dayId={day?._id}
@@ -137,7 +123,7 @@ function Planning() {
 
       <Space big />
 
-      {currentMarathon && currentDay && (
+      {marathon && currentDay && (
         <MarathonMeditations
           meditationData={day?.meditations}
           dayId={day?._id}
@@ -147,7 +133,7 @@ function Planning() {
 
       <Space big />
 
-      {currentMarathon && currentDay && (
+      {marathon && currentDay && (
         <MarathonTasks
           tasksData={day?.tasks}
           dayId={day?._id}

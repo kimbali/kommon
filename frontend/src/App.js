@@ -4,12 +4,11 @@ import { useDispatch } from 'react-redux';
 import { Route, Routes, useSearchParams } from 'react-router-dom';
 import Footer from './components/footer/Footer';
 import AdminLayout from './components/layout/AdminLayout';
-import MainLayout from './components/layout/MainLayout';
+import FrontofficeLayout from './components/layout/FrontofficeLayout';
 import PlainLayout from './components/layout/PlainLayout';
 import ScrollToTop from './components/scrollToTop/ScrollToTop';
 import {
   COOKIE_DISCLAIMER,
-  DATE,
   EXPIRATION_TIME,
   MARATHON_ID,
 } from './config/constants';
@@ -59,7 +58,6 @@ import { useTranslation } from 'react-i18next';
 import Cookies from 'js-cookie';
 import CookiesDisclaimer from './components/cookies/CookiesDisclaimer';
 import UserPayment from './pages/UserPayment';
-import { useDate } from './context/dateContext';
 
 function App() {
   const { t } = useTranslation();
@@ -68,7 +66,6 @@ function App() {
   const { updateUser } = useUser();
   const { setMarathonId } = useMarathon();
   const { setProgressId } = useProgress();
-  const { setCurrentDate } = useDate();
   const [showCookies, setShowCookies] = useState(false);
 
   const { data: userData } = useGetUserProfileQuery();
@@ -121,24 +118,23 @@ function App() {
     }
   }, [dispatch]);
 
-  const handleSearchParam = (param, handleParam) => {
-    const storageId = localStorage.getItem(param);
-    const urlparam = searchParams.get(param);
+  const handleSearchParam = (paramKey, handleParam) => {
+    const storageId = localStorage.getItem(paramKey);
+    const urlparam = searchParams.get(paramKey);
 
     if (urlparam && storageId !== urlparam) {
-      localStorage.setItem(param, urlparam);
+      localStorage.setItem(paramKey, urlparam);
       handleParam(urlparam);
     } else {
       handleParam(storageId);
     }
 
-    searchParams.delete(param);
+    searchParams.delete(paramKey);
     setSearchParams(searchParams);
   };
 
   useEffect(() => {
     handleSearchParam(MARATHON_ID, setMarathonId);
-    handleSearchParam(DATE, setCurrentDate);
   }, [searchParams]);
 
   return (
@@ -160,7 +156,7 @@ function App() {
           <Route path={frontRoutes.avisoLegal} element={<AvisoLegal />} />
         </Route>
 
-        <Route element={<MainLayout />}>
+        <Route element={<FrontofficeLayout />}>
           <Route path={`${frontRoutes.main}`} element={<Main />} />
           <Route path={frontRoutes.diet} element={<Diet />} />
           <Route
@@ -189,10 +185,7 @@ function App() {
 
         <Route path='' element={<AdminLayout />}>
           <Route path={frontRoutes.marathonList} element={<MarathonsList />} />
-          <Route
-            path={`${frontRoutes.planning}/:marathonId?/:day?`}
-            element={<Planning />}
-          />
+          <Route path={`${frontRoutes.planning}`} element={<Planning />} />
           <Route path={frontRoutes.users} element={<Users />} />
           <Route path={frontRoutes.dietsConfig} element={<Recipes />} />
           <Route path={frontRoutes.recipeDetails} element={<RecipeDetails />} />

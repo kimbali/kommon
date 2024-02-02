@@ -6,7 +6,6 @@ import Text from '../components/text/Text';
 import frontRoutes from '../config/frontRoutes';
 import { useMarathon } from '../context/marathonContext';
 import RecipeCard from '../components/recipes/RecipeCard';
-import dietsEnum from '../config/enums/dietsEnum';
 import { useUser } from '../context/userContext';
 import { useTranslation } from 'react-i18next';
 import calculateEnergy, {
@@ -14,23 +13,25 @@ import calculateEnergy, {
 } from '../utils/calculateEnergy';
 import { useGetDietsQuery } from '../slices/dietsApiSlice';
 
-function Diet({ setCurrentDay }) {
+function Diet() {
   const { t } = useTranslation();
-  const [handleSelectDay, isError] = useOutletContext();
-  const { user } = useUser();
   const navigate = useNavigate();
-  const { data: dietsData } = useGetDietsQuery({ keyword: 'YES' });
+  const [isError] = useOutletContext();
+  const { user } = useUser();
   const { dayDetails, marathon } = useMarathon();
+
+  const { data: dietsData } = useGetDietsQuery({ keyword: 'YES' });
+
   const [mealsList, setMealsList] = useState([]);
   const [todayIngredients, setTodayIngredients] = useState([]);
   const [currentDiet, setCurrentDiet] = useState();
 
   const handleSelectDiet = diet => {
-    let list = dayDetails.meals;
+    let list = dayDetails?.meals;
 
     if (diet) {
       setCurrentDiet(diet);
-      list = list.filter(ele => ele.diet === diet);
+      list = list?.filter(ele => ele.diet === diet);
     }
 
     setMealsList(list);
@@ -48,7 +49,7 @@ function Diet({ setCurrentDay }) {
   };
 
   useEffect(() => {
-    if (!mealsList.length > 0) {
+    if (!mealsList?.length > 0) {
       return;
     }
 
@@ -95,8 +96,6 @@ function Diet({ setCurrentDay }) {
       <Space medium />
 
       <PlanningSelector
-        marathon={marathon}
-        setCurrentDay={handleSelectDay}
         isFrontoffice
         baseUrl={frontRoutes.diet}
         setCurrentDiet={handleSelectDiet}

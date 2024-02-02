@@ -12,10 +12,14 @@ import PROGRESS from '../../styles/img/weighing-scale.png';
 import MORE from '../../styles/img/more.png';
 import { useUser } from '../../context/userContext';
 import { useTranslation } from 'react-i18next';
+import formatDate from '../../utils/formatDate';
+import Text from '../text/Text';
+import { useDate } from '../../context/dateContext';
 
 function MainNavBar({ showNav }) {
   const { t } = useTranslation();
   const { user } = useUser();
+  const { currentDate } = useDate();
 
   const navigate = useNavigate();
 
@@ -34,6 +38,9 @@ function MainNavBar({ showNav }) {
           <Space medium />
         </>
       )}
+
+      <Text>{formatDate(currentDate)}</Text>
+      <Space medium />
 
       <ul className='nav-links'>
         <NavLink image={CALENDAR} label={t('main')} route={frontRoutes.main} />

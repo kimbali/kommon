@@ -9,9 +9,9 @@ import MeditationCard from '../components/meditation/MeditationCard';
 import { useUser } from '../context/userContext';
 import { useTranslation } from 'react-i18next';
 
-function Meditations({ setCurrentDay }) {
+function Meditations() {
   const { t } = useTranslation();
-  const [handleSelectDay, isError] = useOutletContext();
+  const [isError] = useOutletContext();
   const { user } = useUser();
 
   const navigate = useNavigate();
@@ -23,10 +23,6 @@ function Meditations({ setCurrentDay }) {
       setMeditationsList(dayDetails.meditations);
     }
   }, [dayDetails]);
-
-  const handleDayChange = day => {
-    handleSelectDay(day);
-  };
 
   const navigateToDetails = meditation => {
     navigate(frontRoutes.meditationDetailsMain.replace(':id', meditation._id));
@@ -42,12 +38,7 @@ function Meditations({ setCurrentDay }) {
 
       <Space medium />
 
-      <PlanningSelector
-        marathon={marathon}
-        setCurrentDay={handleDayChange}
-        baseUrl={frontRoutes.meditations}
-        isFrontoffice
-      />
+      <PlanningSelector baseUrl={frontRoutes.meditations} isFrontoffice />
 
       <Space big />
 

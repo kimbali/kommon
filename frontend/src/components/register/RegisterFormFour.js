@@ -31,14 +31,9 @@ function RegisterFormFour({ userData }) {
   const handleClick = () => {
     setMarathonId(marathonId);
 
-    navigate(
-      `${
-        frontRoutes.main
-      }?${MARATHON_ID}=${marathonId}&${DATE}=${formatDateHyphens(new Date())}`,
-      {
-        replace: true,
-      }
-    );
+    navigate(`${frontRoutes.main}?${MARATHON_ID}=${marathonId}`, {
+      replace: true,
+    });
   };
 
   return (

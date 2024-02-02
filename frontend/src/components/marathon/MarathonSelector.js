@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Input from '../input/Input';
 import Modal from '../modal/Modal';
 import { useGetMarathonsQuery } from '../../slices/marathonApiSlice';
 import Button from '../button/Button';
 import MarathonForm from './MarathonForm';
 import Text from '../text/Text';
-import formatDate, { formatDateHyphens } from '../../utils/formatDate';
+import formatDate from '../../utils/formatDate';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCalendarDays,
@@ -20,9 +20,8 @@ import { useTranslation } from 'react-i18next';
 
 function MarathonSelector({ setMarathon }) {
   const { t } = useTranslation();
-  const { marathonId } = useParams();
   const navigate = useNavigate();
-  const { setMarathonId } = useMarathon();
+  const { marathonId, updateMarathon, setMarathonId } = useMarathon();
 
   const [marathonOptions, setmarathonOptions] = useState([]);
   const [marathonSelected, setMarathonSelected] = useState(null);
@@ -33,16 +32,10 @@ function MarathonSelector({ setMarathon }) {
 
   const handleMarathonChange = ({ value }) => {
     setMarathonSelected({ label: value.name || value.startDate, value });
-    setMarathon(value);
 
-    navigate(
-      `${frontRoutes.planning}/${value._id}/${formatDateHyphens(
-        value.startDate
-      )}`,
-      {
-        replace: true,
-      }
-    );
+    navigate(`${frontRoutes.planning}?${MARATHON_ID}=${value._id}`, {
+      replace: true,
+    });
   };
 
   const createMarathonOptions = () => {
@@ -64,7 +57,7 @@ function MarathonSelector({ setMarathon }) {
 
       if (marathonSelectedByID) {
         setMarathonSelected(marathonSelectedByID);
-        setMarathon(marathonSelectedByID.value);
+        updateMarathon(marathonSelectedByID.value);
       }
     }
   }, [marathonsData, marathonId]);
@@ -84,9 +77,7 @@ function MarathonSelector({ setMarathon }) {
 
     if (marathon) {
       navigate(
-        `${frontRoutes.planning}/${marathon?._id || ''}/${
-          marathon ? formatDateHyphens(marathon.startDate) : ''
-        }`,
+        `${frontRoutes.planning}?${MARATHON_ID}=${marathon?._id || ''}`,
         {
           replace: true,
         }

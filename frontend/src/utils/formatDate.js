@@ -35,8 +35,8 @@ export const formatDateHyphens = date => {
   const dateFormat = new Date(date);
   return dateFormat
     .toLocaleDateString('en-GB', {
-      day: '2-digit',
       month: '2-digit',
+      day: '2-digit',
       year: 'numeric',
     })
     .replace(/\//g, '-'); // 23-10-2023
@@ -93,8 +93,8 @@ export const weeksOptionsList = ({
   const optionsWeeks = [...Array(totalWeeks).keys()].map((ele, index) => {
     const isDisabled =
       !isAdmin &&
-      !(todayPosition.weekDay >= 5 && todayPosition.week === index) &&
-      todayPosition.week < index + 1;
+      !(todayPosition?.weekDay >= 5 && todayPosition?.week === index) &&
+      todayPosition?.week < index + 1;
 
     return {
       label: `${translate('week')} ${index + 1}`,
@@ -142,13 +142,12 @@ const areDatesEqual = (date1, date2) => {
 
 export const getDatePositionInMonthArray = (monthArray, date) => {
   let targetDate = new Date(date);
-
   if (isValidHyphenFormat(date)) {
     const [day, month, year] = date.split('-').map(Number);
     targetDate = new Date(year, month - 1, day);
   }
 
-  let position = { row: null, column: null };
+  let position = { week: null, weekDay: null, date: null };
 
   for (let i = 0; i < monthArray.length; i++) {
     const currentArray = monthArray[i];
@@ -187,6 +186,14 @@ export const calculateDaysDifference = (startDate, endDate) => {
     new Date(endDate).getTime() - new Date(startDate).getTime();
 
   return Math.ceil(timeDifference / (1000 * 3600 * 24));
+};
+
+export const isSameDay = (date1, date2) => {
+  return (
+    date1.getFullYear() === date2.getFullYear() &&
+    date1.getMonth() === date2.getMonth() &&
+    date1.getDate() === date2.getDate()
+  );
 };
 
 export default formatDate;

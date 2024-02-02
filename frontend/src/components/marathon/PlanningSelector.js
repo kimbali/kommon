@@ -7,41 +7,45 @@ import {
   formatWeekDayShort,
   getDatePositionInMonthArray,
   getWeeksArray,
+  isSameDay,
   weeksOptionsList,
 } from '../../utils/formatDate';
 import Button from '../button/Button';
 import Input from '../input/Input';
 import Space from '../space/Space';
 import Text from '../text/Text';
-import { DATE, MARATHON_ID } from '../../config/constants';
 import levelsEnum from '../../config/enums/levelsEnum';
 import { useUser } from '../../context/userContext';
 import { useTranslation } from 'react-i18next';
 import Modal from '../modal/Modal';
 import ShoppingList from '../recipes/ShoppingList';
+import { useDate } from '../../context/dateContext';
+import { useMarathon } from '../../context/marathonContext';
 
 function PlanningSelector({
-  marathon,
   setCurrentDiet,
   setCurrentLevel,
-  setCurrentDay,
   baseUrl,
   isFrontoffice,
   currentDiet,
 }) {
   const { t } = useTranslation();
-  const { marathonId } = useParams();
-  const [searchParams] = useSearchParams();
-  const dateParam = searchParams.get('date');
-
   const { user } = useUser();
-  const navigate = useNavigate();
+  const { marathon } = useMarathon();
+  const {
+    currentDay,
+    setCurrentDay,
+    setCurrentDate,
+    currentDate,
+    currentWeek,
+    setCurrentWeek,
+    monthArray,
+    setMonthArray,
+  } = useDate();
+
   const { data: dietsData } = useGetDietsQuery({ keyword: 'YES' });
 
-  const [monthArray, setMonthArray] = useState();
   const [weekOptions, setWeekOptions] = useState([]);
-  const [selectedWeek, setSelectedWeek] = useState();
-  const [selectedDate, setSelectedDate] = useState();
   const [showShoppingList, setShowShoppingList] = useState(false);
   const [dietsList, setDietsList] = useState([]);
 
@@ -59,82 +63,62 @@ function PlanningSelector({
     setShowShoppingList(true);
   };
 
-  const handleSelectDay = (date, month, optionsWeeks) => {
+  const createWeeksOptions = todayPosition => {
+    const { startDate, endDate } = marathon;
+    const optionsWeeks = weeksOptionsList({
+      startDate,
+      endDate,
+      isAdmin: user?.isAdmin,
+      todayPosition,
+    });
+    setWeekOptions(optionsWeeks);
+    return optionsWeeks;
+  };
+
+  const handleSelectDay = date => {
     let week;
     let weekDay;
-    let dateFormatted;
 
-    if (month && date) {
-      const position = getDatePositionInMonthArray(month, date);
+    if (date && monthArray) {
+      const position = getDatePositionInMonthArray(monthArray, date);
       week = position.week;
       weekDay = position.weekDay;
-      dateFormatted = position.date;
     }
 
-    setSelectedDate(dateFormatted);
-    setCurrentDay({
-      week: week || 1,
-      weekDay: weekDay,
-    });
+    const day = {
+      ...currentDay,
+      week,
+      weekDay,
+    };
 
-    if (optionsWeeks) {
-      setSelectedWeek(optionsWeeks?.find(ele => ele.value === week));
+    setCurrentDate(date);
+    setCurrentDay(day);
+
+    let weeks = weekOptions;
+    if (weekOptions.length === 0) {
+      weeks = createWeeksOptions(day);
     }
 
-    const stringDate = formatDateHyphens(date);
-
-    if (date && dateParam !== stringDate) {
-      const url = isFrontoffice
-        ? `${baseUrl}?${MARATHON_ID}=${marathon._id}&${DATE}=${stringDate}`
-        : `${baseUrl}/${marathonId}/${stringDate}`;
-
-      navigate(url, {
-        replace: true,
-      });
+    if (weeks) {
+      setCurrentWeek(weeks?.find(ele => ele.value === week));
     }
   };
 
   useEffect(() => {
-    const { startDate, endDate } = marathon;
-
-    if (marathon && !dateParam) {
-      const url = isFrontoffice
-        ? `${baseUrl}?${MARATHON_ID}=${
-            marathon._id
-          }&${DATE}=${formatDateHyphens(startDate)}`
-        : `${baseUrl}/${marathonId}/${formatDateHyphens(startDate)}`;
-
-      navigate(url, {
-        replace: true,
-      });
-    }
-
     if (marathon) {
-      const month = getWeeksArray(startDate, endDate);
-      setMonthArray(month);
-
-      const todayPosition = getDatePositionInMonthArray(month, new Date());
-      const optionsWeeks = weeksOptionsList({
-        startDate,
-        endDate,
-        isAdmin: user?.isAdmin,
-        todayPosition,
-      });
-      setWeekOptions(optionsWeeks);
-
-      handleSelectDay(dateParam || month[0][0], month, optionsWeeks);
+      handleSelectDay(currentDate || marathon.startDate);
     } else {
       setMonthArray();
       setWeekOptions([]);
 
       handleSelectDay();
     }
-  }, [marathon]);
+  }, [marathon, monthArray]);
 
   const handleWeekChange = ({ value, label }) => {
-    setSelectedWeek({ label, value });
+    setCurrentWeek({ label, value });
 
-    handleSelectDay(monthArray[value - 1][0], monthArray);
+    handleSelectDay(monthArray[value - 1][0]);
   };
 
   return (
@@ -146,7 +130,7 @@ function PlanningSelector({
           isSingleSelect
           options={weekOptions}
           onChange={handleWeekChange}
-          selectedOption={selectedWeek}
+          selectedOption={currentWeek || weekOptions[0]}
           name='week'
         />
 
@@ -188,15 +172,15 @@ function PlanningSelector({
 
       <div className='days-selector'>
         {monthArray &&
-          selectedWeek &&
-          monthArray[selectedWeek?.value - 1].map((day, index) => (
+          currentWeek &&
+          monthArray[currentWeek?.value - 1].map((day, index) => (
             <div className='day' key={`day-selector${index}`}>
               <Text className='date'>{formatDateShort(day)}</Text>
 
               <Button
-                isPrimary={day.getTime() === selectedDate.getTime()}
-                isThird={day.getTime() !== selectedDate.getTime()}
-                onClick={() => handleSelectDay(day, monthArray)}
+                isPrimary={isSameDay(day, new Date(currentDate))}
+                isThird={!isSameDay(day, new Date(currentDate))}
+                onClick={() => handleSelectDay(day)}
               >
                 {formatWeekDayShort(day)}
               </Button>

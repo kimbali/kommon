@@ -6,7 +6,7 @@ import MenuLinks from './MenuLinks';
 import { useLocation } from 'react-router-dom';
 import { useUser } from '../../context/userContext';
 
-function UserMenu() {
+function UserMenu({ isLanding = false }) {
   const { user } = useUser();
   const [showMenu, setShowMenu] = useState(false);
   const location = useLocation();
@@ -26,10 +26,10 @@ function UserMenu() {
         iconRight={faAngleDown}
         onClick={handleMenu}
       >
-        {user?.name}
+        {!isLanding && user?.name}
       </Button>
 
-      {showMenu && <MenuLinks />}
+      {showMenu && <MenuLinks isLanding={isLanding} />}
     </div>
   );
 }

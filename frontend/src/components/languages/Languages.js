@@ -15,7 +15,7 @@ function Languages() {
   return (
     <div className='languages'>
       <button
-        className={`${language !== 'es' ? 'inactive' : ''}`}
+        className={`language ${language !== 'es' ? 'inactive' : ''}`}
         onClick={() => changeLang('es')}
       >
         <ReactCountryFlag
@@ -27,7 +27,7 @@ function Languages() {
       </button>
 
       <button
-        className={`${language !== 'ca' ? 'inactive' : ''}`}
+        className={`language ${language !== 'ca' ? 'inactive' : ''}`}
         onClick={() => changeLang('ca')}
       >
         <img className='emojiFlag' src={CAT_FLAG} alt='Bandera catalunya' />

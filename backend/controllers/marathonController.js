@@ -92,7 +92,7 @@ export const getShoppingList = asyncHandler(async (req, res) => {
       }, [])
       .reduce((acc, ele) => {
         const exists =
-          acc.findIndex(item => item.ingredientId === ele.ingredient._id) + 1;
+          acc.findIndex(item => item.ingredientId === ele.ingredient?._id) + 1;
 
         const position = exists - 1;
 
@@ -101,11 +101,11 @@ export const getShoppingList = asyncHandler(async (req, res) => {
           : ele?.quantity;
 
         const ingredient = {
-          ingredientId: ele.ingredient._id,
-          name: ele.ingredient.name,
+          ingredientId: ele.ingredient?._id,
+          name: ele.ingredient?.name,
           quantity,
-          supermarket: ele.ingredient.supermarket,
-          measure: ele.ingredient.measure,
+          supermarket: ele.ingredient?.supermarket,
+          measure: ele.ingredient?.measure,
         };
 
         const arraySet = [...acc];

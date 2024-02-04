@@ -6,17 +6,19 @@ import { getMeasureDiminutive } from '../../config/enums/measuresEnum';
 import { useTranslation } from 'react-i18next';
 import { useMarathon } from '../../context/marathonContext';
 import { useGetShoppingListQuery } from '../../slices/marathonApiSlice';
+import { useDate } from '../../context/dateContext';
 
 function ShoppingList() {
   const { t } = useTranslation();
-  const { dayDetails, marathonId } = useMarathon();
+  const { marathonId } = useMarathon();
+  const { currentDay } = useDate();
 
   const [supermarketIngredients, setSupermarketIngredients] = useState([]);
 
   const { data: shoppingListData } = useGetShoppingListQuery(
-    { marathonId, week: dayDetails?.week },
+    { marathonId, week: currentDay?.week },
     {
-      skip: !marathonId || !dayDetails,
+      skip: !marathonId || !currentDay,
     }
   );
 
@@ -47,12 +49,15 @@ function ShoppingList() {
   return (
     <div>
       <Text isTitle>{t('shoppingList')}</Text>
+      <Text>{t('shoppingListHelp')}</Text>
 
       <Space medium />
 
       {supermarketIngredients.map(section => (
         <div key={section.name}>
-          <Text isSubtitle>{getSupermarketLabel(section.name)}</Text>
+          <Text isSubtitle color='primary'>
+            {getSupermarketLabel(section.name)}
+          </Text>
 
           <Space extraSmall />
 

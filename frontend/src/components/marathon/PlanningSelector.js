@@ -189,7 +189,7 @@ function PlanningSelector({
       </div>
 
       {showShoppingList && (
-        <Modal onClose={setShowShoppingList}>
+        <Modal isSecondary onClose={setShowShoppingList}>
           <ShoppingList />
         </Modal>
       )}

@@ -34,7 +34,9 @@ function Text({
 
   if (isSubtitle) {
     return (
-      <h3 className={`subtitle  ${className} ${center ? 'center' : ''}`}>
+      <h3
+        className={`subtitle  ${className} ${color} ${center ? 'center' : ''}`}
+      >
         {children}
       </h3>
     );

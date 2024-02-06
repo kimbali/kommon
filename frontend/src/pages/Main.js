@@ -108,7 +108,7 @@ function Main() {
 
       <Space medium />
 
-      {configData[0]?.activeMeditations && (
+      {configData && configData[0]?.activeMeditations && (
         <>
           <Text isTitle>{t('todayMeditations')}</Text>
 

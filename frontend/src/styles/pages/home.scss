@@ -37,9 +37,12 @@
   }
   .promo-header-right {
     float: right;
-
     display: flex;
     align-items: flex-end;
+
+    .user-menu {
+      margin-bottom: 4px;
+    }
   }
   .main-menu li {
     float: left;
@@ -67,6 +70,7 @@
     font-size: 17px;
     font-family: 'AvenirHeavy';
     text-decoration: none;
+    background-position: center left;
   }
 
   .clear {

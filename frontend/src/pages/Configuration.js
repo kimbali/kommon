@@ -12,6 +12,10 @@ function Configuration() {
 
   const { data: configData } = useGetConfigsQuery({});
 
+  if (!configData) {
+    return null;
+  }
+
   return (
     <div>
       <Text isTitle>{t('config')}</Text>

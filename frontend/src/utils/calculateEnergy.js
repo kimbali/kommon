@@ -6,6 +6,28 @@ const breastfeedNumeral = value => {
   return value === 'YES' ? 200 : 0;
 };
 
+export const caloriesCalculatorFormula = ({
+  age,
+  height,
+  weight,
+  activity,
+  porpuse,
+  breastfeed,
+  isAdmin,
+} = {}) => {
+  if (!age || !height || !weight) {
+    return 0;
+  }
+
+  const totalKcalPerWeek =
+    (655 + 9.6 * ++weight + 1.8 * ++height - 4.7 * ++age) *
+      getActivityNumeral(activity) *
+      getPorpuseNumeral(porpuse) -
+    breastfeedNumeral(breastfeed);
+
+  return Math.round(totalKcalPerWeek / 50) * 50;
+};
+
 export const calculateUserKcal = ({
   age,
   height,
@@ -20,7 +42,7 @@ export const calculateUserKcal = ({
   }
 
   const totalKcalPerWeek =
-    (655 + 9.6 * weight + 1.8 * height - 4.7 * age) *
+    (655 + 9.6 * ++weight + 1.8 * ++height - 4.7 * ++age) *
       getActivityNumeral(activity) *
       getPorpuseNumeral(porpuse) -
     breastfeedNumeral(breastfeed);

@@ -7,7 +7,7 @@ import { useUser } from '../context/userContext';
 import activitiesEnum from '../config/enums/activitiesEnum';
 import porpusesEnum from '../config/enums/porpusesEnum';
 import Button from '../components/button/Button';
-import { calculateUserKcal } from '../utils/calculateEnergy';
+import { caloriesCalculatorFormula } from '../utils/calculateEnergy';
 
 function CaloriesCalculator() {
   const { t } = useTranslation();
@@ -22,7 +22,7 @@ function CaloriesCalculator() {
   const handleCalculate = e => {
     e.preventDefault();
 
-    const total = calculateUserKcal(formData);
+    const total = caloriesCalculatorFormula({ ...formData });
     setTotalCalories(total);
   };
 

@@ -9,6 +9,7 @@ import Text from '../text/Text';
 import Spinner from '../spinner/Spinner';
 import Button from '../button/Button';
 import { useTranslation } from 'react-i18next';
+import Toggle from 'react-toggle';
 
 function Input({
   className = '',
@@ -54,7 +55,7 @@ function Input({
       value:
         type === 'file'
           ? event.target.files[0]
-          : type === 'checkbox'
+          : type === 'checkbox' || type === 'toggle'
           ? event.target.checked
           : event.target.value,
     });
@@ -98,6 +99,7 @@ function Input({
       {type !== 'select' &&
         type !== 'textarea' &&
         type !== 'radio' &&
+        type !== 'toggle' &&
         !isMultiSelect &&
         !isSingleSelect &&
         !selectCreatable && (
@@ -207,6 +209,15 @@ function Input({
           placeholder={placeholder}
           required={required}
           className={`${value ? 'has-value' : 'no-value'}`}
+        />
+      )}
+
+      {type === 'toggle' && (
+        <Toggle
+          id={name}
+          name={name}
+          checked={value}
+          onChange={handleOnChange}
         />
       )}
 

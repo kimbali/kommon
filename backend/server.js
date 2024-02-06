@@ -22,6 +22,7 @@ import progressRoutes from './routes/progressRoutes.js';
 import regionsRoutes from './routes/regionsRoutes.js';
 import sendEmailRoutes from './routes/sendEmailRoutes.js';
 import dietsRoutes from './routes/dietsRoutes.js';
+import configRoutes from './routes/configRoutes.js';
 
 dotenv.config();
 
@@ -53,6 +54,7 @@ app.use('/api/progress', progressRoutes);
 app.use('/api/regions', regionsRoutes);
 app.use('/api/email', sendEmailRoutes);
 app.use('/api/diets', dietsRoutes);
+app.use('/api/config', configRoutes);
 
 // app.get('/api/config/paypal', (req, res) =>
 //   res.send(process.env.PAYPAL_CLIENT_ID)

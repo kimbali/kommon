@@ -142,8 +142,6 @@ function RegionsConfig() {
           text={`${t('confirmDelete')} ${showDeleteModal.region}?`}
         />
       )}
-
-      <Space medium />
     </div>
   );
 }

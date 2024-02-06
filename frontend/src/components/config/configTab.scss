@@ -44,4 +44,19 @@
       }
     }
   }
+
+  .helper-and-button {
+    display: flex;
+
+    .text {
+      margin-right: 8px;
+    }
+  }
+
+  form {
+    .subtitle {
+      font-size: 18px;
+      font-family: $avenirBlack;
+    }
+  }
 }

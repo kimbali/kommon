@@ -15,6 +15,7 @@ import { useProgress } from '../context/progressContext';
 import { useTranslation } from 'react-i18next';
 import { useGetDietsQuery } from '../slices/dietsApiSlice';
 import BodyParameter from '../components/progress/BodyParameter';
+import { useGetConfigsQuery } from '../slices/configApiSlice';
 
 function Main() {
   const { t } = useTranslation();
@@ -26,6 +27,7 @@ function Main() {
   const [showRecipe, setShowRecipe] = useState();
   const [mealsList, setMealsList] = useState([]);
 
+  const { data: configData } = useGetConfigsQuery({});
   const [updateProgress] = useUpdateProgressMutation();
   const { data: dietsData } = useGetDietsQuery({ keyword: 'YES' });
 
@@ -106,20 +108,24 @@ function Main() {
 
       <Space medium />
 
-      <Text isTitle>{t('todayMeditations')}</Text>
+      {configData[0]?.activeMeditations && (
+        <>
+          <Text isTitle>{t('todayMeditations')}</Text>
 
-      <Space small />
+          <Space small />
 
-      <div className='marathon-config-scrollx no-fix-content'>
-        {dayDetails?.meditations.length > 0 &&
-          dayDetails.meditations.map((ele, i) => (
-            <div className='single-workout' key={`${i}-meditation`}>
-              <MeditationCard data={ele} onClick={navigateToMeditations} />
-            </div>
-          ))}
-      </div>
+          <div className='marathon-config-scrollx no-fix-content'>
+            {dayDetails?.meditations.length > 0 &&
+              dayDetails.meditations.map((ele, i) => (
+                <div className='single-workout' key={`${i}-meditation`}>
+                  <MeditationCard data={ele} onClick={navigateToMeditations} />
+                </div>
+              ))}
+          </div>
 
-      <Space medium />
+          <Space medium />
+        </>
+      )}
 
       <div className='content-left-and-right'>
         <div className='content'>

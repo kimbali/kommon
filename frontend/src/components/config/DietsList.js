@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
-import {
-  faEdit,
-  faMagnifyingGlass,
-  faTrash,
-} from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import LoadingError from '../loadingError/LoadingError';
 import Modal from '../modal/Modal';
 import DietForm from './DietForm';
-import Input from '../input/Input';
 import Button from '../button/Button';
 import Space from '../space/Space';
 import ConfirmModal from '../modal/ConfirmModal';
@@ -117,8 +112,6 @@ function DietsList() {
           text={`${t('confirmDelete')} ${showDeleteModal.name}?`}
         />
       )}
-
-      <Space medium />
     </div>
   );
 }

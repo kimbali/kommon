@@ -59,6 +59,10 @@ import Cookies from 'js-cookie';
 import CookiesDisclaimer from './components/cookies/CookiesDisclaimer';
 import UserPayment from './pages/UserPayment';
 import CaloriesCalculator from './pages/CaloriesCalculator';
+import {
+  useCreateConfigMutation,
+  useGetConfigsQuery,
+} from './slices/configApiSlice';
 
 function App() {
   const { t } = useTranslation();
@@ -72,6 +76,8 @@ function App() {
   const { data: userData } = useGetUserProfileQuery();
   const { data: legalsData } = useGetLegalsQuery();
   const [createLegalDoc] = useCreateLegalMutation();
+  const { data: configData } = useGetConfigsQuery();
+  const [createConfigDoc] = useCreateConfigMutation();
 
   useEffect(() => {
     const cookieAccepted = Cookies.get(COOKIE_DISCLAIMER);
@@ -107,11 +113,25 @@ function App() {
     }
   };
 
+  const createConfig = async () => {
+    try {
+      await createConfigDoc();
+    } catch (err) {
+      toast.error(err.message);
+    }
+  };
+
   useEffect(() => {
     if (legalsData?.legals.length === 0) {
       createLegals();
     }
   }, [legalsData]);
+
+  useEffect(() => {
+    if (configData?.length === 0) {
+      createConfig();
+    }
+  }, [configData]);
 
   useEffect(() => {
     const expirationTime = localStorage.getItem(EXPIRATION_TIME);

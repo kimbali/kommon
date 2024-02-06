@@ -1,6 +1,13 @@
 import React from 'react';
 import NavLink from '../components/navBar/NavLink';
-import { faCalculator, faSpa } from '@fortawesome/free-solid-svg-icons';
+import {
+  faAt,
+  faCalculator,
+  faEnvelope,
+  faMailBulk,
+  faPaperPlane,
+  faSpa,
+} from '@fortawesome/free-solid-svg-icons';
 import frontRoutes from '../config/frontRoutes';
 import { useTranslation } from 'react-i18next';
 import Text from '../components/text/Text';
@@ -15,7 +22,7 @@ function UserMore() {
       <Text isTitle>{t('services')}</Text>
       <nav>
         <ul className='more-links'>
-          {config.activeMeditations && (
+          {config?.activeMeditations && (
             <NavLink
               icon={faSpa}
               label={t('meditations')}
@@ -27,6 +34,12 @@ function UserMore() {
             icon={faCalculator}
             label={t('caloriesCalculator')}
             route={frontRoutes.caloriesCalculator}
+          />
+
+          <NavLink
+            icon={faPaperPlane}
+            label={t('contactUs')}
+            route={frontRoutes.contactUs}
           />
         </ul>
       </nav>

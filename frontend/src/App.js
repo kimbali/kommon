@@ -64,6 +64,7 @@ import {
   useGetConfigsQuery,
 } from './slices/configApiSlice';
 import { useConfig } from './context/configContext';
+import ContactUs from './pages/ContactUs';
 
 function App() {
   const { t } = useTranslation();
@@ -216,6 +217,7 @@ function App() {
             element={<UserMarathons />}
           />
           <Route path={frontRoutes.userPayment} element={<UserPayment />} />
+          <Route path={frontRoutes.contactUs} element={<ContactUs />} />
           <Route
             path={frontRoutes.caloriesCalculator}
             element={<CaloriesCalculator />}

@@ -448,5 +448,9 @@
 
   "shoppingListHelp": "Lista de la compra de toda la semana",
   "inactiveSections": "Desactivar secciones",
-  "workoutsLevel": "Nivel de los ejercicios"
+  "workoutsLevel": "Nivel de los ejercicios",
+  "required": "Campo obligatorio",
+  "message": "Mensaje",
+  "send": "Enviar",
+  "contactUs": "Contáctanos"
 }

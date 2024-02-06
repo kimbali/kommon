@@ -3,6 +3,7 @@ import { model, Schema } from 'mongoose';
 const ConfigSchema = new Schema(
   {
     activeMeditations: Boolean,
+    workoutsLevel: Boolean,
   },
   {
     timestamps: true,

@@ -63,11 +63,13 @@ import {
   useCreateConfigMutation,
   useGetConfigsQuery,
 } from './slices/configApiSlice';
+import { useConfig } from './context/configContext';
 
 function App() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
+  const { updateConfig } = useConfig();
   const { updateUser } = useUser();
   const { setMarathonId, marathonId } = useMarathon();
   const { updateUserProgress } = useProgress();
@@ -75,8 +77,8 @@ function App() {
 
   const { data: userData } = useGetUserProfileQuery();
   const { data: legalsData } = useGetLegalsQuery();
-  const [createLegalDoc] = useCreateLegalMutation();
   const { data: configData } = useGetConfigsQuery();
+  const [createLegalDoc] = useCreateLegalMutation();
   const [createConfigDoc] = useCreateConfigMutation();
 
   useEffect(() => {
@@ -128,8 +130,15 @@ function App() {
   }, [legalsData]);
 
   useEffect(() => {
+    if (!configData) {
+      return;
+    }
+
     if (configData?.length === 0) {
-      createConfig();
+      const config = createConfig();
+      updateConfig(config);
+    } else {
+      updateConfig(configData[0]);
     }
   }, [configData]);
 

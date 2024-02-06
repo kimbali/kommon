@@ -4,9 +4,11 @@ import { getLevelLabel } from '../../config/enums/levelsEnum';
 import PlayButton from './PlayButton';
 import { useGetImageUrlQuery } from '../../slices/imagesApiSlice';
 import { useTranslation } from 'react-i18next';
+import { useConfig } from '../../context/configContext';
 
 function WorkoutCard({ data, onClick, hideTitle }) {
   const { t } = useTranslation();
+  const { config } = useConfig();
 
   const { data: imageS3 } = useGetImageUrlQuery(
     {
@@ -33,7 +35,9 @@ function WorkoutCard({ data, onClick, hideTitle }) {
               <span className='primary'>{data.minutes}</span> {t('min')}
             </Text>
 
-            <div className='pill'>{getLevelLabel(data.level)}</div>
+            {config?.workoutsLevel && (
+              <div className='pill'>{getLevelLabel(data.level)}</div>
+            )}
           </div>
         </div>
 

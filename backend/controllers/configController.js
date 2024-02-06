@@ -38,12 +38,13 @@ export const createConfig = asyncHandler(async (req, res) => {
 // @route   PUT /api/configs/:id
 // @access  Private/Admin
 export const updateConfig = asyncHandler(async (req, res) => {
-  const { activeMeditations } = req.body;
+  const { activeMeditations, workoutsLevel } = req.body;
 
   const config = await Config.findById(req.params.id);
 
   if (config) {
     config.activeMeditations = activeMeditations;
+    config.workoutsLevel = workoutsLevel;
 
     const updatedConfig = await config.save();
     res.json(updatedConfig);

@@ -10,12 +10,6 @@ import { useGetConfigsQuery } from '../slices/configApiSlice';
 function Configuration() {
   const { t } = useTranslation();
 
-  const { data: configData } = useGetConfigsQuery({});
-
-  if (!configData) {
-    return null;
-  }
-
   return (
     <div>
       <Text isTitle>{t('config')}</Text>
@@ -34,11 +28,9 @@ function Configuration() {
 
       <Space big />
 
-      {configData && (
-        <div className='config-section'>
-          <ActiveSections config={configData[0]} />
-        </div>
-      )}
+      <div className='config-section'>
+        <ActiveSections />
+      </div>
     </div>
   );
 }

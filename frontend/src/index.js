@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
+import { ConfigProvider } from './context/configContext';
+import { DateProvider } from './context/dateContext';
 import { MarathonProvider } from './context/marathonContext';
 import { ProgressProvider } from './context/progressContext';
 import { UserProvider } from './context/userContext';
-import { DateProvider } from './context/dateContext';
 import './index.scss';
 import reportWebVitals from './reportWebVitals';
 import store from './store';
@@ -17,15 +18,17 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <Router>
-        <DateProvider>
-          <UserProvider>
-            <MarathonProvider>
-              <ProgressProvider>
-                <App />
-              </ProgressProvider>
-            </MarathonProvider>
-          </UserProvider>
-        </DateProvider>
+        <ConfigProvider>
+          <DateProvider>
+            <UserProvider>
+              <MarathonProvider>
+                <ProgressProvider>
+                  <App />
+                </ProgressProvider>
+              </MarathonProvider>
+            </UserProvider>
+          </DateProvider>
+        </ConfigProvider>
       </Router>
     </Provider>
   </React.StrictMode>

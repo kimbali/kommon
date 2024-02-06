@@ -6,12 +6,14 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding-right: 12px;
 
       &:hover {
         background-color: $background-2;
         border-radius: $border-radius-wrapper;
       }
     }
+
     td {
       padding: 8px;
 
@@ -22,6 +24,10 @@
 
       &:first-of-type {
         width: 30%;
+      }
+
+      .toggle {
+        display: flex;
       }
     }
   }

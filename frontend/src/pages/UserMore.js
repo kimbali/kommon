@@ -4,19 +4,18 @@ import { faCalculator, faSpa } from '@fortawesome/free-solid-svg-icons';
 import frontRoutes from '../config/frontRoutes';
 import { useTranslation } from 'react-i18next';
 import Text from '../components/text/Text';
-import { useGetConfigsQuery } from '../slices/configApiSlice';
+import { useConfig } from '../context/configContext';
 
 function UserMore() {
   const { t } = useTranslation();
-
-  const { data: configData } = useGetConfigsQuery({});
+  const { config } = useConfig();
 
   return (
     <div>
       <Text isTitle>{t('services')}</Text>
       <nav>
         <ul className='more-links'>
-          {configData && configData[0].activeMeditations && (
+          {config.activeMeditations && (
             <NavLink
               icon={faSpa}
               label={t('meditations')}

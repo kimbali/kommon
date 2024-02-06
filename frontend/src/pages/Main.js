@@ -16,18 +16,19 @@ import { useTranslation } from 'react-i18next';
 import { useGetDietsQuery } from '../slices/dietsApiSlice';
 import BodyParameter from '../components/progress/BodyParameter';
 import { useGetConfigsQuery } from '../slices/configApiSlice';
+import { useConfig } from '../context/configContext';
 
 function Main() {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
+  const { config } = useConfig();
   const { dayDetails } = useMarathon();
   const { userProgress, updateUserProgress } = useProgress();
 
   const [showRecipe, setShowRecipe] = useState();
   const [mealsList, setMealsList] = useState([]);
 
-  const { data: configData } = useGetConfigsQuery({});
   const [updateProgress] = useUpdateProgressMutation();
   const { data: dietsData } = useGetDietsQuery({ keyword: 'YES' });
 
@@ -108,7 +109,7 @@ function Main() {
 
       <Space medium />
 
-      {configData && configData[0]?.activeMeditations && (
+      {config?.activeMeditations && (
         <>
           <Text isTitle>{t('todayMeditations')}</Text>
 

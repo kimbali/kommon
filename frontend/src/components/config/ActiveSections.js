@@ -5,13 +5,16 @@ import Space from '../space/Space';
 import Input from '../input/Input';
 import Button from '../button/Button';
 import { useUpdateConfigMutation } from '../../slices/configApiSlice';
+import { useConfig } from '../../context/configContext';
 
-function ActiveSections({ config }) {
+function ActiveSections() {
   const { t } = useTranslation();
-  const [formData, setFormData] = useState({ ...config });
+  const { config, updateConfig } = useConfig();
+
+  const [formData, setFormData] = useState();
   const [showHelper, setShowHelper] = useState(false);
 
-  const [updateConfig] = useUpdateConfigMutation();
+  const [updateConfigApi] = useUpdateConfigMutation();
 
   const handleOnChange = ({ value, name }) => {
     setFormData({ ...formData, [name]: value });
@@ -25,7 +28,8 @@ function ActiveSections({ config }) {
     setShowHelper(false);
 
     try {
-      await updateConfig({ ...formData });
+      await updateConfigApi({ ...config, ...formData });
+      updateConfig({ ...formData });
     } catch (err) {
       console.error(err.message);
     }
@@ -57,6 +61,19 @@ function ActiveSections({ config }) {
                 type='toggle'
                 name='activeMeditations'
                 value={!!formData?.activeMeditations}
+                onChange={handleOnChange}
+              />
+            </td>
+          </tr>
+
+          <tr>
+            <td>{t('workoutsLevel')}</td>
+
+            <td className='only-icon center'>
+              <Input
+                type='toggle'
+                name='workoutsLevel'
+                value={!!formData?.workoutsLevel}
                 onChange={handleOnChange}
               />
             </td>

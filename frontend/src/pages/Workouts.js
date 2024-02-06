@@ -51,7 +51,7 @@ function Workouts() {
       <PlanningSelector
         baseUrl={frontRoutes.workouts}
         isFrontoffice
-        setCurrentLevel={handleSelectLevel}
+        // setCurrentLevel={handleSelectLevel}
       />
 
       <Space big />

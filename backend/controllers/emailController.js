@@ -10,7 +10,6 @@ const resend = new Resend(process.env.RESEND_KEY);
 export const sendEmail = asyncHandler(async (req, res) => {
   try {
     // const data = await resend.emails.send({
-    //   // from: 'Body Maraton <onboarding@resend.dev>',
     //   from: 'Body Maraton <noreply@bodymaraton.com>',
     //   to: req.body.email,
     //   subject: 'Registrado en la Maraton',

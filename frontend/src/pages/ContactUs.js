@@ -31,8 +31,8 @@ function ContactUs() {
 
     try {
       await sendEmail({
-        from: 'Body Maraton <onboarding@resend.dev>',
-        to: 'kimgarcianton@hotmail.com',
+        from: 'Body Maraton <noreply@bodymaraton.com>',
+        to: 'info@bodymaraton.com',
         subject: 'Usuario contactando con administración',
         html: `
             <body style="text-align: center; background-color: #201d2b; color: #ffffff; padding: 20px; font-family: 'Arial', sans-serif;">

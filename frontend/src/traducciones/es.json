@@ -452,5 +452,6 @@
   "required": "Campo obligatorio",
   "message": "Mensaje",
   "send": "Enviar",
-  "contactUs": "Contáctanos"
+  "contactUs": "Contáctanos",
+  "sent": "Enviado"
 }

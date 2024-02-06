@@ -6,6 +6,7 @@ import Input from '../components/input/Input';
 import contactUsValidator from '../utils/validators/contactUsValidator';
 import Button from '../components/button/Button';
 import { useSendEmailMutation } from '../slices/emailApiSlice';
+import toast from 'react-hot-toast';
 
 function ContactUs() {
   const { t } = useTranslation();
@@ -43,6 +44,9 @@ function ContactUs() {
             </body>
         `,
       });
+
+      toast.success(t('sent'));
+      setFormData('');
     } catch (error) {
       console.error(error.message);
     }

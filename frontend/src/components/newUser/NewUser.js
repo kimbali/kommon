@@ -90,7 +90,7 @@ function NewUser({ onCreate, onCancel, user }) {
         type='radio'
         onChange={handleOnChange}
         name='isAdmin'
-        selectedOption={formData.isAdmin ? t('yes') : t('no')}
+        selectedOption={formData.isAdmin ? 'YES' : 'NO'}
         options={yesNoEnum}
       />
 
@@ -102,7 +102,7 @@ function NewUser({ onCreate, onCancel, user }) {
         type='radio'
         onChange={handleOnChange}
         name='hasPaid'
-        selectedOption={formData.hasPaid ? t('yes') : t('no')}
+        selectedOption={formData.hasPaid ? 'YES' : 'NO'}
         options={yesNoEnum}
       />
 

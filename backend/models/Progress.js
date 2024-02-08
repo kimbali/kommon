@@ -11,7 +11,7 @@ const progressSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'User',
     },
-    payed: Boolean,
+    isPaid: Boolean,
     gift: String,
     initialPhoto: String,
     photoFinish: String,

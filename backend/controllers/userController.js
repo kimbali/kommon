@@ -58,6 +58,7 @@ const registerUser = asyncHandler(async (req, res) => {
     address,
     phone,
     hasPaid,
+    createdByAdmin,
   });
 
   if (user) {
@@ -125,10 +126,10 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   if (user) {
     user.progresses = req.body.progresses || user.progresses;
     user.isFullRegistered = req.body.isFullRegistered || user.isFullRegistered;
-    user.hasPaid = req.body.hasPaid || user.hasPaid;
+    user.hasPaid = req.body.hasPaid;
 
     user.name = req.body.name || user.name;
-    user.email = req.body.email || user.email;
+    user.phone = req.body.phone || user.phone;
 
     user.age = req.body.age || user.age;
     user.weight = req.body.weight || user.weight;
@@ -205,17 +206,13 @@ const updateUser = asyncHandler(async (req, res) => {
 
   if (user) {
     user.name = req.body.name || user.name;
-    user.email = req.body.email || user.email;
+    user.password = req.body.password;
     user.isAdmin = Boolean(req.body.isAdmin);
+    user.hasPaid = req.body.hasPaid;
 
     const updatedUser = await user.save();
 
-    res.json({
-      _id: updatedUser._id,
-      name: updatedUser.name,
-      email: updatedUser.email,
-      isAdmin: updatedUser.isAdmin,
-    });
+    res.json(updatedUser);
   } else {
     res.status(404);
     throw new Error('User not found');

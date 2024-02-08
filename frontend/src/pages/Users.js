@@ -72,7 +72,7 @@ function Users() {
             usersData.map(ele => (
               <tr key={ele._id}>
                 <td>{ele.name}</td>
-                <td>{ele.email}</td>
+                <td className='lowercase'>{ele.email}</td>
                 <td>{ele.isAdmin ? t('admin') : ''}</td>
                 <td>{ele.patologies.length > 0 ? t('yes') : ''}</td>
                 <td>{ele.problems ? t('yes') : ''}</td>
@@ -112,8 +112,13 @@ function Users() {
         <ConfirmModal
           onConfirm={handleDelete}
           onClose={setshowDeleteUserModal}
-          title={t('deleteMarathon')}
-          text={`${t('confirmDelete')} ${showDeleteUserModal.name}`}
+          title={t('deleteUser')}
+          text={
+            showDeleteUserModal.isAdmin
+              ? t('cantDeleteAdminUser')
+              : `${t('confirmDelete')} ${showDeleteUserModal.name}`
+          }
+          disableConfirm={!!showDeleteUserModal.isAdmin}
         />
       )}
     </div>

@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { useLoginMutation } from '../slices/usersApiSlices';
+import {
+  useGetUserProfileQuery,
+  useLoginMutation,
+} from '../slices/usersApiSlices';
 import { setCredentials } from '../slices/authSlice';
 import toast from 'react-hot-toast';
 import Space from '../components/space/Space';
@@ -16,16 +19,18 @@ import { useTranslation } from 'react-i18next';
 
 const Login = () => {
   const { t } = useTranslation();
-  const { updateUser } = useUser();
+  const { updateUser, user } = useUser();
   const [formData, setFormData] = useState({
     email: JSON.parse(localStorage.getItem('userInfo'))?.email || '',
   });
   const [invalidFields, setInvalidFields] = useState('');
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [login] = useLoginMutation();
+  const { refetch: refetchProfile } = useGetUserProfileQuery({
+    skip: !!user,
+  });
 
   const handleOnChange = ({ name, value }) => {
     setFormData({ ...formData, [name]: value });
@@ -47,7 +52,9 @@ const Login = () => {
       const res = await login({ email, password }).unwrap();
       dispatch(setCredentials({ email: res.email }));
 
-      updateUser(res);
+      const userProfile = await refetchProfile();
+
+      updateUser({ ...userProfile.data });
 
       if (!res.isAdmin && !res.isFullRegistered) {
         navigate(frontRoutes.register);

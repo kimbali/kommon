@@ -302,7 +302,7 @@
   "pescado": "Pescado",
   "phone": "Número de teléfono",
   "phonePlaceholder": "+34 000 000 000",
-  "phoneRequired": "Numero de telefono obligatorio",
+  "phoneRequired": "Número de telefono obligatorio",
   "placeholderNumber": "0",
   "plan": "Plan",
   "planning": "Calendario",
@@ -453,5 +453,8 @@
   "message": "Mensaje",
   "send": "Enviar",
   "contactUs": "Contáctanos",
-  "sent": "Enviado"
+  "sent": "Enviado",
+  "cantDeleteAdminUser": "No se pueden borrar usuarios administradores",
+  "deleteUser": "Eliminar usuario",
+  "editUser": "Modificar usuario"
 }

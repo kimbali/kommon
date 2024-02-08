@@ -12,6 +12,7 @@ function ConfirmModal({
   text,
   description = '',
   confirmLabel,
+  disableConfirm = false,
 }) {
   const { t } = useTranslation();
 
@@ -37,7 +38,7 @@ function ConfirmModal({
           {t('cancel')}
         </Button>
 
-        <Button onClick={onConfirm} isPrimary>
+        <Button disabled={disableConfirm} onClick={onConfirm} isPrimary>
           {confirmLabel || t('confirma')}
         </Button>
       </div>

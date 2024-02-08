@@ -39,7 +39,7 @@ function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
   useEffect(() => {
     if (userData && regionOptions) {
       setSelectedCity(
-        regionOptions.find(ele => ele.value === userData.city._id)
+        regionOptions.find(ele => ele.value === userData.city?._id)
       );
     }
   }, [regionOptions]);
@@ -77,7 +77,7 @@ function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
       return;
     }
 
-    if (!userData) {
+    if (!userData || userData.createdByAdmin) {
       const { password, confirmPassword } = formData;
 
       if (password !== confirmPassword) {

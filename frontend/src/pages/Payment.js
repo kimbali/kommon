@@ -33,6 +33,7 @@ function Payment() {
   const [register] = useRegisterMutation();
   const [createProgress] = useCreateProgressMutation();
   const [updateProfile] = useProfileMutation();
+  const [sendEmail] = useSendEmailMutation();
 
   const { data: marathonsData } = useGetMarathonsQuery({
     isActive: true,
@@ -55,33 +56,36 @@ function Payment() {
 
       return res;
     } catch (err) {
+      console.error(err);
       toast.error(err?.data?.message || err.error);
     }
   };
 
-  const [sendEmail] = useSendEmailMutation();
-
   const handleSelectMarathon = async marathon => {
     try {
-      const res = await handleCreateUser();
+      const res = state.createdByAdmin
+        ? { ...state }
+        : await handleCreateUser();
 
       if (!res) {
         return;
       }
-
+      // TODO: Mirar si el usuario ya ha pagado, porque se ha creado desde Backoffice.
       const newProgress = await createProgress({
         marathon: marathon._id,
         user: res?._id,
+        isPaid: true,
       });
 
       const progresses = res.progresses.concat(newProgress.data._id);
-      await updateProfile({ progresses });
+
+      await updateProfile({ ...state, progresses, hasPaid: true });
 
       setMarathonId(marathon._id);
 
       await setShowEmailLink(true);
 
-      await sendEmail({ email: 'kimgarcianton@hotmail.com' });
+      await sendEmail({ email: state.email || 'kimgarcianton@hotmail.com' });
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }

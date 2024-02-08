@@ -36,10 +36,11 @@ export const getProgressById = asyncHandler(async (req, res) => {
 // @route   POST /api/progresses
 // @access  Private
 export const createProgress = asyncHandler(async (req, res) => {
-  const { user, marathon } = req.body;
+  const { user, marathon, isPaid } = req.body;
   const newProgress = new Progress({
     marathon,
     user,
+    isPaid,
   });
 
   const createdProgress = await newProgress.save();
@@ -52,7 +53,7 @@ export const createProgress = asyncHandler(async (req, res) => {
 // @access  Private
 export const updateProgress = asyncHandler(async (req, res) => {
   const {
-    payed,
+    isPaid,
     gift,
     initialPhoto,
     photoFinish,
@@ -70,7 +71,7 @@ export const updateProgress = asyncHandler(async (req, res) => {
   const progress = await Progress.findById(req.params.id);
 
   if (progress) {
-    progress.payed = payed || progress.payed;
+    progress.isPaid = isPaid;
     progress.gift = gift || progress.gift;
     progress.initialPhoto = initialPhoto || progress.initialPhoto;
     progress.photoFinish = photoFinish || progress.photoFinish;

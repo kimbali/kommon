@@ -3,7 +3,10 @@ import Button from '../button/Button';
 import Text from '../text/Text';
 import Space from '../space/Space';
 import Input from '../input/Input';
-import { useRegisterMutation } from '../../slices/usersApiSlices';
+import {
+  useRegisterMutation,
+  useUpdateUserMutation,
+} from '../../slices/usersApiSlices';
 import yesNoEnum from '../../config/enums/yesNoEnum';
 import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
@@ -13,6 +16,9 @@ function NewUser({ onCreate, onCancel, user }) {
   const [formData, setFormData] = useState({ ...user });
   const [invalidFields, setInvalidFields] = useState([]);
 
+  const [updatedUser] = useUpdateUserMutation();
+  const [register] = useRegisterMutation();
+
   const handleOnChange = ({ name, value: valueProp }) => {
     let value = valueProp;
     if (name === 'isAdmin' || name === 'hasPaid') {
@@ -20,8 +26,6 @@ function NewUser({ onCreate, onCancel, user }) {
     }
     setFormData({ ...formData, [name]: value });
   };
-
-  const [register] = useRegisterMutation();
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -36,7 +40,11 @@ function NewUser({ onCreate, onCancel, user }) {
     }
 
     try {
-      await register({ ...formData, createdByAdmin: true }).unwrap();
+      if (typeof user === 'object' && !!user) {
+        await updatedUser({ ...formData }).unwrap();
+      } else {
+        await register({ ...formData, createdByAdmin: true }).unwrap();
+      }
 
       toast.success(t('userCreated'));
     } catch (err) {
@@ -48,7 +56,9 @@ function NewUser({ onCreate, onCancel, user }) {
 
   return (
     <form onSubmit={handleSubmit} className='new-user-form'>
-      <Text isTitle>{t('createNewUser')}</Text>
+      <Text isTitle>
+        {typeof user === 'object' ? t('editUser') : t('createNewUser')}
+      </Text>
 
       <Space small />
 
@@ -59,6 +69,7 @@ function NewUser({ onCreate, onCancel, user }) {
         onChange={handleOnChange}
         value={formData.email}
         error={{ invalidFields, message: t('emailRequired') }}
+        disabled={typeof user === 'object' && !!user}
       />
 
       <Space small />
@@ -114,7 +125,7 @@ function NewUser({ onCreate, onCancel, user }) {
         </Button>
 
         <Button type='submit' isPrimary>
-          {t('create')} {t('user')}
+          {t('save')}
         </Button>
       </div>
     </form>

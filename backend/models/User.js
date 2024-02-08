@@ -16,6 +16,7 @@ const userSchema = new Schema(
     },
     isFullRegistered: Boolean,
     hasPaid: Boolean,
+    createdByAdmin: Boolean,
     progresses: {
       type: [
         {

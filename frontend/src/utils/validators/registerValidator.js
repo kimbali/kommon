@@ -79,9 +79,10 @@ export const registerRedirectValidator = user => {
     porpuse,
     problems,
     patologies,
+    phone,
   } = user;
 
-  if (!email || !name) {
+  if (!email || !name || !phone) {
     return 1;
   }
 

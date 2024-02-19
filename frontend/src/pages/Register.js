@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Space from '../components/space/Space';
-import { useLocation } from 'react-router-dom';
 import TextedLogo from '../components/header/TextedLogo';
 import { registerRedirectValidator } from '../utils/validators/registerValidator';
 import RegisterFormOne from '../components/register/RegisterFormOne';
@@ -13,15 +12,22 @@ import RegisterGiftSelect from '../components/register/RegisterGiftSelect';
 import { useGetUserProfileQuery } from '../slices/usersApiSlices';
 import { scrollToTop } from '../utils/layoutHelpers';
 import { useTranslation } from 'react-i18next';
+import UseQuery from '../hooks/UseQuery';
+import frontRoutes from '../config/frontRoutes';
 
 function Register() {
   const { t } = useTranslation();
-  const { state } = useLocation();
+  let query = UseQuery();
+
   const [currentForm, setcurrentForm] = useState();
   const [giftSelected, setGiftSelected] = useState();
-  const [hasGift, setHasGift] = useState(state?.withGift);
+  const [hasGift, setHasGift] = useState(query.get('gift'));
 
   const { data: userData, refetch: refetchUser } = useGetUserProfileQuery();
+
+  useEffect(() => {
+    refetchUser();
+  }, []);
 
   useEffect(() => {
     const redirectTo = registerRedirectValidator(userData);
@@ -62,7 +68,7 @@ function Register() {
       <Space medium />
 
       <header>
-        <TextedLogo />
+        <TextedLogo redirect={frontRoutes.home} />
       </header>
 
       <div className='content-wrapper'>
@@ -123,7 +129,9 @@ function Register() {
           <RegisterFormThree onSuccess={handleStep} userData={userData} />
         )}
 
-        {currentForm === 4 && <RegisterFormFour userData={userData} />}
+        {currentForm === 4 && userData && (
+          <RegisterFormFour userData={userData} />
+        )}
       </div>
     </div>
   );

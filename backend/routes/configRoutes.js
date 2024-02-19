@@ -1,5 +1,4 @@
 import express from 'express';
-import { protect, admin } from '../middleware/authMiddleware.js';
 import checkObjectId from '../middleware/checkObjectId.js';
 import {
   createConfig,

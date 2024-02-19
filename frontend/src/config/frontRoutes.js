@@ -26,6 +26,7 @@ const frontRoutes = {
   profileMarathons: '/profile-marathons',
   recipeDetails: '/recipe/:id',
   register: '/register',
+  registerGift: '/register?gift=true',
   tasksConfig: '/config/tasks',
   terms: '/terminos-y-condiciones',
   todoList: '/todolist',

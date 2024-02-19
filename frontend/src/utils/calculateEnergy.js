@@ -38,7 +38,7 @@ export const calculateUserKcal = ({
   isAdmin,
 } = {}) => {
   if (!age || !height || !weight || isAdmin) {
-    return 1700;
+    return BASE_KCAL;
   }
 
   const totalKcalPerWeek =

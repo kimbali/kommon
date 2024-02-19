@@ -7,7 +7,7 @@ const PlainLayout = () => {
     <div className='plain-layout'>
       <header>
         <Link to={frontRoutes.home}>
-          <TextedLogo />
+          <TextedLogo redirect={frontRoutes.home} />
         </Link>
       </header>
 

@@ -111,6 +111,10 @@ a {
     margin-bottom: 16px;
   }
 
+  .content {
+    margin-bottom: 24px;
+  }
+
   @media screen and (min-width: 1024px) {
     flex-direction: row;
 
@@ -238,4 +242,8 @@ a {
 
 .half-page-width {
   max-width: 500px;
+}
+
+.texted-logo {
+  text-decoration: none;
 }

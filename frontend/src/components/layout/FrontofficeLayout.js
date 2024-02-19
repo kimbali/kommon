@@ -95,7 +95,7 @@ function MainLayout() {
   return (
     <div className='app-wrapper'>
       <header>
-        <TextedLogo />
+        <TextedLogo redirect={frontRoutes.main} />
 
         <RRSS />
 

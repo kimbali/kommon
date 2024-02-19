@@ -70,6 +70,7 @@ body {
       .texted-logo {
         grid-area: LOGO;
         font-size: 22px;
+        text-decoration: none;
 
         @media screen and (min-width: 1024px) {
           font-size: 26px;

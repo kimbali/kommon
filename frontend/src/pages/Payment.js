@@ -10,7 +10,7 @@ import { useGetMarathonsQuery } from '../slices/marathonApiSlice';
 import { useCreateProgressMutation } from '../slices/progressApiSlice';
 import { useMarathon } from '../context/marathonContext';
 import {
-  useProfileMutation,
+  useCheckoutMutation,
   useRegisterMutation,
 } from '../slices/usersApiSlices';
 import { useDispatch } from 'react-redux';
@@ -28,11 +28,12 @@ function Payment() {
   const dispatch = useDispatch();
 
   const [showEmailLink, setShowEmailLink] = useState(false);
+  const [userData, setUserData] = useState(state);
   const [today] = useState(new Date().toISOString());
 
   const [register] = useRegisterMutation();
   const [createProgress] = useCreateProgressMutation();
-  const [updateProfile] = useProfileMutation();
+  const [updateCheckout] = useCheckoutMutation();
   const [sendEmail] = useSendEmailMutation();
 
   const { data: marathonsData } = useGetMarathonsQuery({
@@ -43,12 +44,14 @@ function Payment() {
   useEffect(() => {
     if (!state) {
       navigate(frontRoutes.register);
+    } else {
+      setUserData(state);
     }
-  }, [state]);
+  }, []);
 
   const handleCreateUser = async () => {
     try {
-      const res = await register({ ...state }).unwrap();
+      const res = await register({ ...userData }).unwrap();
 
       updateUser(res);
 
@@ -63,8 +66,8 @@ function Payment() {
 
   const handleSelectMarathon = async marathon => {
     try {
-      const res = state.createdByAdmin
-        ? { ...state }
+      const res = userData.createdByAdmin
+        ? { ...userData }
         : await handleCreateUser();
 
       if (!res) {
@@ -79,13 +82,18 @@ function Payment() {
 
       const progresses = res.progresses.concat(newProgress.data._id);
 
-      await updateProfile({ ...state, progresses, hasPaid: true });
+      await updateCheckout({
+        ...userData,
+        userId: res?._id,
+        progresses,
+        hasPaid: true,
+      });
 
       setMarathonId(marathon._id);
 
       await setShowEmailLink(true);
 
-      await sendEmail({ email: state.email || 'kimgarcianton@hotmail.com' });
+      await sendEmail({ email: userData.email || 'kimgarcianton@hotmail.com' });
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }

@@ -16,6 +16,7 @@ import loginValidator from '../utils/validators/loginValidator';
 import TextedLogo from '../components/header/TextedLogo';
 import { useUser } from '../context/userContext';
 import { useTranslation } from 'react-i18next';
+import getTokenFromLocalStorage from '../utils/tokenStorage';
 
 const Login = () => {
   const { t } = useTranslation();
@@ -24,13 +25,12 @@ const Login = () => {
     email: JSON.parse(localStorage.getItem('userInfo'))?.email || '',
   });
   const [invalidFields, setInvalidFields] = useState('');
+  const [token, setToken] = useState(getTokenFromLocalStorage());
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [login] = useLoginMutation();
-  const { refetch: refetchProfile } = useGetUserProfileQuery({
-    skip: !!user,
-  });
+  const { refetch: refetchProfile } = useGetUserProfileQuery(token);
 
   const handleOnChange = ({ name, value }) => {
     setFormData({ ...formData, [name]: value });
@@ -50,7 +50,9 @@ const Login = () => {
 
     try {
       const res = await login({ email, password }).unwrap();
-      dispatch(setCredentials({ email: res.email }));
+      await dispatch(setCredentials({ email: res.email, token: res.token }));
+
+      setToken(res.token);
 
       const userProfile = await refetchProfile();
 
@@ -70,7 +72,7 @@ const Login = () => {
     <div className='page-wrapper'>
       <Space medium />
 
-      <TextedLogo />
+      <TextedLogo redirect={frontRoutes.home} />
 
       <form className='content-wrapper' onSubmit={handleSubmit}>
         <Text isTitle>{t('login')}</Text>

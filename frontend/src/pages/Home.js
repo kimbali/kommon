@@ -30,21 +30,14 @@ import COACH_2 from '../styles/img/coach-02.png';
 import PLATAFORMA from '../styles/img/platform_img2.png';
 import MENU from '../styles/img/menu.png';
 import frontRoutes from '../config/frontRoutes';
-import Button from '../components/button/Button';
 import { useTranslation } from 'react-i18next';
 import Modal from '../components/modal/Modal';
-import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import UserMenu from '../components/header/UserMenu';
 
 function Home() {
   const { t } = useTranslation();
-  const navigate = useNavigate();
-  const [showMenu, setshowMenu] = useState();
-  const [showLanguage, setShowLanguage] = useState();
 
-  const handleMenuLanguage = () => {
-    setShowLanguage(prev => !prev);
-  };
+  const [showMenu, setshowMenu] = useState();
 
   return (
     <div className='home'>
@@ -597,16 +590,9 @@ function Home() {
               </div>
               <div className='option-benefits-price'>
                 <div className='option-price'>29,90 €</div>
-                <Button
-                  onClick={() =>
-                    navigate(frontRoutes.register, {
-                      state: { withGift: true },
-                    })
-                  }
-                  className='main-apply'
-                >
+                <Link to={frontRoutes.registerGift} className='main-apply'>
                   {t('signInNow')}
-                </Button>
+                </Link>
               </div>
             </div>
           </div>

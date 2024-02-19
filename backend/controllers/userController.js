@@ -1,5 +1,7 @@
 import asyncHandler from '../middleware/asyncHandler.js';
-import generateToken from '../utils/generateToken.js';
+import generateToken, {
+  generateTokenForStorage,
+} from '../utils/generateToken.js';
 import User from '../models/User.js';
 
 // @desc    Auth user & get token
@@ -11,7 +13,7 @@ const authUser = asyncHandler(async (req, res) => {
   const user = await User.findOne({ email });
 
   if (user && (await user.matchPassword(password))) {
-    generateToken(res, user._id);
+    const token = generateTokenForStorage(res, user._id);
 
     res.json({
       _id: user._id,
@@ -19,6 +21,8 @@ const authUser = asyncHandler(async (req, res) => {
       email: user.email,
       isAdmin: user.isAdmin,
       isFullRegistered: user.isFullRegistered,
+      phone: user.phone,
+      token,
     });
   } else {
     res.status(401);
@@ -111,6 +115,26 @@ const getUserProfile = asyncHandler(async (req, res) => {
 
   if (user) {
     res.json(user);
+  } else {
+    res.status(404);
+    throw new Error('User not found');
+  }
+});
+
+// @desc    Update user profile
+// @route   PUT /api/users/checkout
+// @access  Private
+const updateUserCheckout = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.body.userId).select('-password');
+
+  if (user) {
+    user.progresses = req.body.progresses || user.progresses;
+    user.hasPaid = req.body.hasPaid;
+    user.phone = req.body.phone;
+
+    const updatedUser = await user.save();
+
+    res.json(updatedUser);
   } else {
     res.status(404);
     throw new Error('User not found');
@@ -242,6 +266,7 @@ export {
   logoutUser,
   getUserProfile,
   updateUserProfile,
+  updateUserCheckout,
   getUsers,
   deleteUser,
   getUserById,

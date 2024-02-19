@@ -15,7 +15,7 @@ const router = express.Router();
 router
   .route('/')
   .get(protect, getProgresses)
-  .post(protect, createProgress)
+  .post(createProgress)
   .delete(protect, admin, deleteAllProgresses);
 router
   .route('/:id')

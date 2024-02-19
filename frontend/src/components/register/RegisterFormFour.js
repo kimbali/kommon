@@ -20,7 +20,7 @@ function RegisterFormFour({ userData }) {
   const { setMarathonId } = useMarathon();
 
   const [{ startDate, endDate, _id: marathonId }] = useState(
-    userData.progresses[userData.progresses.length - 1]?.marathon
+    userData?.progresses[userData?.progresses.length - 1]?.marathon
   );
 
   const hasStarted = hasMarathonStarted(startDate);

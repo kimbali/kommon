@@ -1,3 +1,4 @@
+// ROUTES *****
 // export const BASE_URL =
 //   process.env.NODE_ENV === 'development' ? 'http://localhost:5005' : '';
 export const BASE_URL = ''; // If using proxy
@@ -20,10 +21,13 @@ export const EMAIL_URL = '/api/email';
 export const DIETS_URL = '/api/diets';
 export const CONFIG_URL = '/api/config';
 
+// CONSTANTS ******
+export const USER_INFO = 'userInfo';
 export const EXPIRATION_TIME = 'expirationTime';
 export const MARATHON_ID = 'marathonId';
 export const DATE = 'date';
 export const USER_ID = 'userId';
 export const COOKIE_DISCLAIMER = 'cookieDisclaimer';
 
+// PARAMS ******
 export const BASE_KCAL = 1700;

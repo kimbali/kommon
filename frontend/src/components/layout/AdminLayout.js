@@ -43,7 +43,7 @@ const AdminLayout = () => {
   return user?.isAdmin ? (
     <div className='app-wrapper'>
       <header>
-        <TextedLogo />
+        <TextedLogo redirect={frontRoutes.marathonList} />
 
         <RRSS />
 

@@ -1,11 +1,14 @@
 import React from 'react';
 import Text from '../text/Text';
+import { Link } from 'react-router-dom';
 
-function TextedLogo() {
+function TextedLogo({ redirect = '' }) {
   return (
-    <Text isTitle className='texted-logo'>
-      <span className='primary'>bodymaraton</span>.com
-    </Text>
+    <Link to={redirect} className='texted-logo'>
+      <Text isTitle>
+        <span className='primary'>bodymaraton</span>.com
+      </Text>
+    </Link>
   );
 }
 

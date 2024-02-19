@@ -1,5 +1,6 @@
 import { apiSlice } from './apiSlice';
 import { USERS_URL } from '../config/constants';
+import getTokenFromLocalStorage from '../utils/tokenStorage';
 
 export const userApiSlice = apiSlice.injectEndpoints({
   endpoints: builder => ({
@@ -24,11 +25,18 @@ export const userApiSlice = apiSlice.injectEndpoints({
       }),
     }),
     getUserProfile: builder.query({
-      query: () => ({
+      query: token => ({
         url: `${USERS_URL}/profile`,
       }),
       providesTags: ['User'],
       keepUnusedDataFor: 5,
+    }),
+    checkout: builder.mutation({
+      query: data => ({
+        url: `${USERS_URL}/checkout`,
+        method: 'PUT',
+        body: data,
+      }),
     }),
     profile: builder.mutation({
       query: data => ({
@@ -71,6 +79,7 @@ export const {
   useLoginMutation,
   useLogoutMutation,
   useRegisterMutation,
+  useCheckoutMutation,
   useProfileMutation,
   useGetUserProfileQuery,
   useGetUsersQuery,

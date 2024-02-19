@@ -540,24 +540,26 @@ function Home() {
         <div className='content-wrapper'>
           <div className='options-lbl'>{t('chooseOneOption')}</div>
           <div className='options-row'>
-            <div className='option-item'>
-              <div className='option-head'>{t('basicOption')}</div>
-              <div className='option-body'>
-                <div className='option-benefit'>{t('videoWorkoutsMin')}</div>
+            <div className='option-item flex-between'>
+              <div>
+                <div className='option-head'>{t('basicOption')}</div>
+                <div className='option-body'>
+                  <div className='option-benefit'>{t('videoWorkoutsMin')}</div>
 
-                <div className='option-benefit'>{t('videosVacum')}</div>
+                  <div className='option-benefit'>{t('videosVacum')}</div>
 
-                <div className='option-benefit'>{t('menuWithRecipe')}</div>
+                  <div className='option-benefit'>{t('menuWithRecipe')}</div>
 
-                <div className='option-benefit'>{t('kcalCalculator')}</div>
+                  <div className='option-benefit'>{t('kcalCalculator')}</div>
 
-                <div className='option-benefit'>{t('shoppingListWeek')}</div>
+                  <div className='option-benefit'>{t('shoppingListWeek')}</div>
 
-                <div className='option-benefit'>{t('trackerWater')}</div>
+                  <div className='option-benefit'>{t('trackerWater')}</div>
 
-                <div className='option-benefit'>{t('followTheProcess')}</div>
+                  <div className='option-benefit'>{t('followTheProcess')}</div>
 
-                <div className='option-benefit'>{t('soportTelegram')}</div>
+                  <div className='option-benefit'>{t('soportTelegram')}</div>
+                </div>
               </div>
               <div className='option-benefits-price'>
                 <div className='option-price'>29,90 €</div>

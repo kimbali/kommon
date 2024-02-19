@@ -5,7 +5,6 @@ import RegionsList from '../components/config/RegionsList';
 import { useTranslation } from 'react-i18next';
 import DietsList from '../components/config/DietsList';
 import ActiveSections from '../components/config/ActiveSections';
-import { useGetConfigsQuery } from '../slices/configApiSlice';
 
 function Configuration() {
   const { t } = useTranslation();

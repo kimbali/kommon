@@ -65,7 +65,7 @@ export const registerRedirectValidator = user => {
   if (!user) {
     return 1;
   }
-  console.log(5, user);
+
   const {
     email,
     name,

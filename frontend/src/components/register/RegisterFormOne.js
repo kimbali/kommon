@@ -154,7 +154,7 @@ function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
             <Space small />
 
             <Input
-              label={`${t('sendAddress')}${
+              label={`${t('sendAddress')} ${
                 !giftSelected ? t('selectAGift') : ''
               }${t('requiredLabel')}`}
               name='address'

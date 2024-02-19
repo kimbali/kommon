@@ -98,8 +98,6 @@ function RecipeDetails({ recipe }) {
         </div>
       )}
 
-      <Space small />
-
       <Text isTitle>{title}</Text>
 
       <Space medium />

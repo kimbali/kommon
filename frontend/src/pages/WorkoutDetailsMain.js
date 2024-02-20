@@ -26,7 +26,7 @@ function WorkoutDetailsMain() {
     return null;
   }
   return (
-    <div>
+    <div className='workout-details'>
       <Text isTitle>{workout.title}</Text>
 
       <Space medium />

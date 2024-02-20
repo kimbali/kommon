@@ -5,16 +5,37 @@ import Config from '../models/Config.js';
 // @route   GET /api/configs
 // @access  Public
 export const getConfigs = asyncHandler(async (req, res) => {
-  const config = await Config.find({});
+  const config = await Config.find({}).populate('landingConfig');
 
   res.json(config);
+});
+
+// @desc    Fetch all configs
+// @route   GET /api/configs/landing/:lang
+// @access  Public
+export const getConfigsLanding = asyncHandler(async (req, res) => {
+  if (req.params.lang) {
+    const [config] = await Config.find({});
+
+    const languagesLabels = config?.landingConfig?.find(
+      ele => ele.lang === req.params.lang
+    );
+
+    res.json(languagesLabels);
+  } else {
+    const config = await Config.find()
+      .populate('landingConfig')
+      .select('landingConfig');
+
+    res.json(config);
+  }
 });
 
 // @desc    Fetch single config
 // @route   GET /api/configs/:id
 // @access  Public
 export const getConfigById = asyncHandler(async (req, res) => {
-  const config = await Config.findById(req.params.id);
+  const config = await Config.findById(req.params.id).populate('landingConfig');
 
   if (config) {
     return res.json(config);
@@ -38,13 +59,16 @@ export const createConfig = asyncHandler(async (req, res) => {
 // @route   PUT /api/configs/:id
 // @access  Private/Admin
 export const updateConfig = asyncHandler(async (req, res) => {
-  const { activeMeditations, workoutsLevel } = req.body;
+  const { activeMeditations, workoutsLevel, landingConfig } = req.body;
 
   const config = await Config.findById(req.params.id);
 
   if (config) {
     config.activeMeditations = activeMeditations;
     config.workoutsLevel = workoutsLevel;
+    config.landingConfig = landingConfig
+      ? [...landingConfig]
+      : config.landingConfig;
 
     const updatedConfig = await config.save();
     res.json(updatedConfig);

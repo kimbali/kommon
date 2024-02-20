@@ -456,5 +456,6 @@
   "sent": "Enviado",
   "cantDeleteAdminUser": "No se pueden borrar usuarios administradores",
   "deleteUser": "Eliminar usuario",
-  "editUser": "Modificar usuario"
+  "editUser": "Modificar usuario",
+  "modifyLanding": "Modificar textos de la landing"
 }

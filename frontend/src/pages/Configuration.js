@@ -5,6 +5,7 @@ import RegionsList from '../components/config/RegionsList';
 import { useTranslation } from 'react-i18next';
 import DietsList from '../components/config/DietsList';
 import ActiveSections from '../components/config/ActiveSections';
+import LandingConfig from '../components/config/LandingConfig';
 
 function Configuration() {
   const { t } = useTranslation();
@@ -30,6 +31,14 @@ function Configuration() {
       <div className='config-section'>
         <ActiveSections />
       </div>
+
+      <Space big />
+
+      <div className='config-section'>
+        <LandingConfig />
+      </div>
+
+      <Space big />
     </div>
   );
 }

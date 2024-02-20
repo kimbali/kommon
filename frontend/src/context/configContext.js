@@ -14,6 +14,7 @@ export const ConfigProvider = ({ children }) => {
       value={{
         config,
         updateConfig,
+        landingConfig: config?.landingConfig,
       }}
     >
       {children}

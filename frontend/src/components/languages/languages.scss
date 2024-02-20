@@ -14,4 +14,12 @@
     margin-right: 16px;
     font-size: 22px;
   }
+
+  button {
+    &:last-of-type {
+      img {
+        margin-right: 0;
+      }
+    }
+  }
 }

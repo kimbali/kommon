@@ -26,7 +26,7 @@ function Text({
 }) {
   if (isTitle) {
     return (
-      <h2 className={`title ${className} ${center ? 'center' : ''}`}>
+      <h2 className={`title ${className} ${color} ${center ? 'center' : ''}`}>
         {children}
       </h2>
     );
@@ -35,7 +35,7 @@ function Text({
   if (isSubtitle) {
     return (
       <h3
-        className={`subtitle  ${className} ${color} ${center ? 'center' : ''}`}
+        className={`subtitle ${className} ${color} ${center ? 'center' : ''}`}
       >
         {children}
       </h3>

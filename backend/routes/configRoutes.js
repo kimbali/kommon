@@ -5,12 +5,14 @@ import {
   deleteConfig,
   getConfigById,
   getConfigs,
+  getConfigsLanding,
   updateConfig,
 } from '../controllers/configController.js';
 
 const router = express.Router();
 
 router.route('/').get(getConfigs).post(createConfig);
+router.route('/landing/:lang').get(getConfigsLanding);
 router
   .route('/:id')
   .get(checkObjectId, getConfigById)

@@ -16,6 +16,12 @@ export const configsApiSlice = apiSlice.injectEndpoints({
       }),
       keepUnusedDataFor: 5,
     }),
+    getConfigLanding: builder.query({
+      query: lang => ({
+        url: `${CONFIG_URL}/landing/${lang}`,
+      }),
+      keepUnusedDataFor: 5,
+    }),
     createConfig: builder.mutation({
       query: data => ({
         url: `${CONFIG_URL}`,
@@ -46,6 +52,7 @@ export const configsApiSlice = apiSlice.injectEndpoints({
 export const {
   useGetConfigsQuery,
   useGetConfigDetailsQuery,
+  useGetConfigLandingQuery,
   useCreateConfigMutation,
   useUpdateConfigMutation,
   useDeleteConfigMutation,

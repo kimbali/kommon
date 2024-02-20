@@ -70,10 +70,11 @@
   }
 
   &.secondary-modal {
-    background-color: rgba($color: $background-4, $alpha: 0.7);
+    background-color: rgba($color: $background-2, $alpha: 0.8);
 
     .modal-content {
       max-width: 590px;
+      background-color: $background-3;
     }
   }
 

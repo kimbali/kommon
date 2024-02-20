@@ -30,7 +30,7 @@ function Languages() {
         className={`language ${language !== 'ca' ? 'inactive' : ''}`}
         onClick={() => changeLang('ca')}
       >
-        <img className='emojiFlag' src={CAT_FLAG} alt='Bandera catalunya' />
+        <img className='emojiFlag' src={CAT_FLAG} alt='Bandera de catalunya' />
       </button>
     </div>
   );

@@ -7,7 +7,7 @@ import Button from '../button/Button';
 import { useTranslation } from 'react-i18next';
 import Languages from '../languages/Languages';
 
-function MenuLinks({ isLanding = false }) {
+function MenuLinks() {
   const { t } = useTranslation();
   const { user } = useUser();
   const navigate = useNavigate();
@@ -16,25 +16,18 @@ function MenuLinks({ isLanding = false }) {
     navigate(frontRoutes.login);
   };
 
-  if (isLanding) {
-    return (
-      <ul className='user-menu-links'>
-        <li>
-          <Languages />
-        </li>
-      </ul>
-    );
-  }
-
   return (
     <ul className='user-menu-links'>
       <li>
         <Link to={frontRoutes.profile}>{t('profile')}</Link>
       </li>
+
       <li>
         <Link to={frontRoutes.profileMarathons}>{t('yourMarathons')}</Link>
       </li>
+
       <Languages />
+
       {!user ? (
         <li>
           <Button small isPrimary onClick={handleLogin}>

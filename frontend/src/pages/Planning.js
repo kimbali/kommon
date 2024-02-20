@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
 import MarathonDiets from '../components/marathon/MarathonDiets';
 import MarathonSelector from '../components/marathon/MarathonSelector';
 import MarathonTasks from '../components/marathon/MarathonTasks';

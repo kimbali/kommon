@@ -30,4 +30,4 @@ export const USER_ID = 'userId';
 export const COOKIE_DISCLAIMER = 'cookieDisclaimer';
 
 // PARAMS ******
-export const BASE_KCAL = 1700;
+export const BASE_KCAL = 1500;

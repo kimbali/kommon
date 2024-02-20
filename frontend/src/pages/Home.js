@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import BENEFIT_1 from '../styles/img/benefit-01.png';
@@ -33,11 +33,16 @@ import frontRoutes from '../config/frontRoutes';
 import { useTranslation } from 'react-i18next';
 import Modal from '../components/modal/Modal';
 import UserMenu from '../components/header/UserMenu';
+import { useGetConfigLandingQuery } from '../slices/configApiSlice';
+import Image from '../components/image/Image';
 
 function Home() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language;
 
   const [showMenu, setshowMenu] = useState();
+
+  const { data: labels } = useGetConfigLandingQuery(lang);
 
   return (
     <div className='home'>
@@ -167,13 +172,14 @@ function Home() {
       <div id='awards' className='join-us'>
         <div className='content-wrapper'>
           <div className='join-us-right'>
-            <img src={IPHONE} alt='' />
+            <Image url={labels?.giftImage.url} alt={labels?.giftDescription} />
+            {/* <img src={IPHONE} alt='' /> */}
           </div>
           <div className='join-us-left'>
             <div className='join-us-lbl'>
-              {t('joinToOurMarathon')} <span>{t('iphone13')}</span>
+              {t('joinToOurMarathon')} <span>{labels?.giftTitle}</span>
             </div>
-            <div className='join-us-txt'>{t('youAreOnTime')}</div>
+            <div className='join-us-txt'>{labels?.giftDescription}</div>
             <Link to={frontRoutes.register} className='main-apply'>
               {t('signInNow')}
             </Link>

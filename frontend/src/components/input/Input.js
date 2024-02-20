@@ -10,6 +10,8 @@ import Spinner from '../spinner/Spinner';
 import Button from '../button/Button';
 import { useTranslation } from 'react-i18next';
 import Toggle from 'react-toggle';
+import ReactCountryFlag from 'react-country-flag';
+import CAT_FLAG from '../../styles/assets/cat-flag.png';
 
 function Input({
   className = '',
@@ -38,6 +40,7 @@ function Input({
   value = '',
   labelLink = '',
   disabled = false,
+  language = '',
 }) {
   const { t } = useTranslation();
   const hasError = error?.invalidFields?.includes(name);
@@ -51,6 +54,7 @@ function Input({
 
   const handleOnChange = event => {
     onChange({
+      language,
       name: event.target.name,
       value:
         type === 'file'
@@ -85,13 +89,27 @@ function Input({
     }
   };
 
+  const flag =
+    language === 'ca' ? (
+      <img className='emojiFlag' src={CAT_FLAG} alt='Bandera de catalunya' />
+    ) : (
+      <ReactCountryFlag
+        className='emojiFlag'
+        countryCode='ES'
+        aria-label='Spanish'
+        svg
+      />
+    );
+
   return (
     <div className={`field ${className} ${name} ${type}`}>
       {label && (
         <div className='label-wrapper'>
           <label className='main-label' htmlFor={name}>
-            {label} {selectCreatable ? t('writeNameToCreate') : ''}
+            {label} {selectCreatable ? t('writeNameToCreate') : ''}{' '}
+            {language && flag}
           </label>
+
           {subLabel && <Text className='sublabel'>{subLabel}</Text>}
         </div>
       )}

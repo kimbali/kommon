@@ -8,11 +8,14 @@ import remarkGfm from 'remark-gfm';
 import { useParams } from 'react-router-dom';
 import { useMarathon } from '../context/marathonContext';
 import { useTranslation } from 'react-i18next';
+import { useConfig } from '../context/configContext';
 
 function WorkoutDetailsMain() {
   const { t } = useTranslation();
   const { id } = useParams();
   const { dayDetails } = useMarathon();
+  const { config } = useConfig();
+
   const [workout, setWorkout] = useState();
 
   useEffect(() => {
@@ -27,8 +30,6 @@ function WorkoutDetailsMain() {
   }
   return (
     <div className='workout-details'>
-      <Text isTitle>{workout.title}</Text>
-
       <Space medium />
 
       <VideoPlayer url={workout.video} />
@@ -36,11 +37,15 @@ function WorkoutDetailsMain() {
       <Space small />
 
       <div className='content-on-the-left'>
-        <Text>
-          <span className='primary'>{workout.minutes}</span> {t('min')}
-        </Text>
+        {workout.minutes && (
+          <Text className='minutes'>
+            <span className='primary'>{workout.minutes}</span> {t('min')}
+          </Text>
+        )}
 
-        <Text className='pill'>{getLevelLabel(workout.level)}</Text>
+        {config.workoutsLevel && (
+          <Text className='pill'>{getLevelLabel(workout.level)}</Text>
+        )}
       </div>
 
       <Space small />

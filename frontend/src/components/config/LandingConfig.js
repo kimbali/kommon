@@ -12,12 +12,14 @@ function LandingConfig() {
   const { t } = useTranslation();
   const { config, updateConfig } = useConfig();
 
-  const [formData, setFormData] = useState([...config.landingConfig]);
+  const [formData, setFormData] = useState();
 
   const [updateConfigApi] = useUpdateConfigMutation();
 
   const handleOnChange = ({ value, name, language }) => {
-    const allLanguages = JSON.parse(JSON.stringify(formData)); // Deep copy
+    const allLanguages = JSON.parse(
+      JSON.stringify(formData || [...config?.landingConfig])
+    ); // Deep copy
 
     const index = allLanguages.findIndex(ele => ele.lang === language);
 

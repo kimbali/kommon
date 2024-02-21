@@ -111,6 +111,9 @@
 }
 
 .workout-details {
+  .minutes {
+    margin-left: 0;
+  }
   .description {
     p {
       font-family: $avenirBlack;

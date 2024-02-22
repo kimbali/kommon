@@ -168,6 +168,10 @@ export const getDatePositionInMonthArray = (monthArray, date) => {
 };
 
 export const createPorgressWeeksArray = (progress, monthArray) => {
+  if (!progress) {
+    return [];
+  }
+
   const arr = progress.reduce(
     (acc, current) => {
       const accUpdated = acc;

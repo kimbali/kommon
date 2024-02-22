@@ -54,35 +54,37 @@ function Progress() {
 
       <Space medium />
 
-      <div className='progress-graphs'>
-        <BodyParameter
-          title={t('weight')}
-          progress={userProgress?.weight}
-          measure='kg'
-          weeksDates={weeksDates}
-        />
+      {userProgress && (
+        <div className='progress-graphs'>
+          <BodyParameter
+            title={t('weight')}
+            progress={userProgress?.weight}
+            measure='kg'
+            weeksDates={weeksDates}
+          />
 
-        <BodyParameter
-          title={t('waist')}
-          progress={userProgress?.waist}
-          measure='cm'
-          weeksDates={weeksDates}
-        />
+          <BodyParameter
+            title={t('waist')}
+            progress={userProgress?.waist}
+            measure='cm'
+            weeksDates={weeksDates}
+          />
 
-        <BodyParameter
-          title={t('chest')}
-          progress={userProgress?.chest}
-          measure='cm'
-          weeksDates={weeksDates}
-        />
+          <BodyParameter
+            title={t('chest')}
+            progress={userProgress?.chest}
+            measure='cm'
+            weeksDates={weeksDates}
+          />
 
-        <BodyParameter
-          title={t('buttocks')}
-          progress={userProgress?.buttocks}
-          measure='cm'
-          weeksDates={weeksDates}
-        />
-      </div>
+          <BodyParameter
+            title={t('buttocks')}
+            progress={userProgress?.buttocks}
+            measure='cm'
+            weeksDates={weeksDates}
+          />
+        </div>
+      )}
 
       <Space big />
 

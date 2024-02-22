@@ -303,12 +303,6 @@ form {
       }
     }
 
-    .multi-prefix__input-container,
-    .multi-prefix__value-container,
-    input {
-      height: 45px;
-    }
-
     .multi-prefix__input-container {
       margin: 0;
       padding: 0;
@@ -330,6 +324,10 @@ form {
         height: 22px;
         width: 22px;
       }
+    }
+
+    .multi-prefix__clear-indicator {
+      padding-right: 8px;
     }
 
     input::placeholder {

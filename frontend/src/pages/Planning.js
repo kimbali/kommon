@@ -19,7 +19,7 @@ import { useDate } from '../context/dateContext';
 
 function Planning() {
   const { t } = useTranslation();
-  const { updateMarathon, marathon } = useMarathon();
+  const { marathon } = useMarathon();
   const { currentDay } = useDate();
 
   const [currentDiet, setCurrentDiet] = useState();
@@ -83,10 +83,7 @@ function Planning() {
 
       <Space medium />
 
-      <MarathonSelector
-        setMarathon={updateMarathon}
-        planName={planData?.name}
-      />
+      <MarathonSelector planName={planData?.name} />
 
       {marathon && <Text line />}
 

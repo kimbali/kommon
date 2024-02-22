@@ -32,10 +32,14 @@ function BodyParametersForm({ onSave }) {
       progress.waist = [...progress.waist];
       progress.buttocks = [...progress.buttocks];
 
-      progress.weight[currentDay.week - 1] = +formData.weight;
-      progress.chest[currentDay.week - 1] = +formData.chest;
-      progress.waist[currentDay.week - 1] = +formData.waist;
-      progress.buttocks[currentDay.week - 1] = +formData.buttocks;
+      formData.weight &&
+        progress.weight.push({ value: +formData.weight, date: new Date() });
+      formData.chest &&
+        progress.chest.push({ value: +formData.chest, date: new Date() });
+      formData.waist &&
+        progress.waist.push({ value: +formData.waist, date: new Date() });
+      formData.buttocks &&
+        progress.buttocks.push({ value: +formData.buttocks, date: new Date() });
 
       await updateProgress({ ...userProgress, ...progress });
 

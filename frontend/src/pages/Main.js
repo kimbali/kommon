@@ -15,7 +15,6 @@ import { useProgress } from '../context/progressContext';
 import { useTranslation } from 'react-i18next';
 import { useGetDietsQuery } from '../slices/dietsApiSlice';
 import BodyParameter from '../components/progress/BodyParameter';
-import { useGetConfigsQuery } from '../slices/configApiSlice';
 import { useConfig } from '../context/configContext';
 
 function Main() {
@@ -163,7 +162,7 @@ function Main() {
         <div className='content'>
           <BodyParameter
             title={t('weight')}
-            progress={userProgress?.weight}
+            progress={userProgress?.weight.value}
             measure='kg'
           />
         </div>

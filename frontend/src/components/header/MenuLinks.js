@@ -6,6 +6,8 @@ import { useUser } from '../../context/userContext';
 import Button from '../button/Button';
 import { useTranslation } from 'react-i18next';
 import Languages from '../languages/Languages';
+import Text from '../text/Text';
+import Space from '../space/Space';
 
 function MenuLinks() {
   const { t } = useTranslation();
@@ -18,6 +20,10 @@ function MenuLinks() {
 
   return (
     <ul className='user-menu-links'>
+      <Text className='user-name' isSectionTitle>
+        {user.name}
+      </Text>
+
       <li>
         <Link to={frontRoutes.profile}>{t('profile')}</Link>
       </li>
@@ -26,7 +32,11 @@ function MenuLinks() {
         <Link to={frontRoutes.profileMarathons}>{t('yourMarathons')}</Link>
       </li>
 
-      <Languages />
+      <Space small />
+
+      <div className='center'>
+        <Languages />
+      </div>
 
       {!user ? (
         <li>

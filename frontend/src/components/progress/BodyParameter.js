@@ -3,7 +3,7 @@ import Text from '../text/Text';
 import Space from '../space/Space';
 import ProgressColumn from './ProgressColumn';
 import { useDate } from '../../context/dateContext';
-import { weeksDatesList } from '../../utils/formatDate';
+import { createPorgressWeeksArray } from '../../utils/formatDate';
 import { useProgress } from '../../context/progressContext';
 
 function BodyParameter({ title, progress, measure }) {
@@ -14,7 +14,8 @@ function BodyParameter({ title, progress, measure }) {
 
   useEffect(() => {
     if (monthArray) {
-      const weekColumns = weeksDatesList(monthArray);
+      const weekColumns = createPorgressWeeksArray(progress, monthArray);
+
       setWeeksDates(weekColumns);
     }
   }, [monthArray, userProgress]);
@@ -32,12 +33,12 @@ function BodyParameter({ title, progress, measure }) {
       <div className='background-2 no-margin'>
         <div className='measures'>
           <Text fontSize='16'>
-            {progress[0]} {measure} > {progress[progress.length - 1] || 0}{' '}
-            {measure}
+            {progress[0].value} {measure} >{' '}
+            {progress[progress.length - 1].value || 0} {measure}
           </Text>
 
           <Text fontSize='16'>
-            {progress[progress.length - 1] - progress[0]} {measure}
+            {progress[progress.length - 1].value - progress[0].value} {measure}
           </Text>
         </div>
 
@@ -45,20 +46,25 @@ function BodyParameter({ title, progress, measure }) {
 
         <div className='chart'>
           <div className='quantity'>
-            <Text>100</Text>
-            <Text>80</Text>
-            <Text>60</Text>
-            <Text>40</Text>
-            <Text>20</Text>
+            <Text>120 {measure}</Text>
+            <Text>100 {measure}</Text>
+            <Text>80 {measure}</Text>
+            <Text>60 {measure}</Text>
+            <Text>40 {measure}</Text>
+            <Text>Semana</Text>
           </div>
 
-          <ProgressColumn total={progress[0]} date={weeksDates[0]} />
+          {weeksDates?.map((ele, index) => {
+            const lastWeekDayValue = ele[weeksDates[index].length - 1];
 
-          <ProgressColumn total={progress[1]} date={weeksDates[1]} />
-
-          <ProgressColumn total={progress[2]} date={weeksDates[2]} />
-
-          <ProgressColumn total={progress[3]} date={weeksDates[3]} />
+            return (
+              <ProgressColumn
+                key={`week-${index}`}
+                total={(100 * +lastWeekDayValue?.value) / 120}
+                text={index + 1}
+              />
+            );
+          })}
 
           <Space medium />
         </div>

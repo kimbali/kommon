@@ -14,11 +14,13 @@ import { scrollToTop } from '../utils/layoutHelpers';
 import { useTranslation } from 'react-i18next';
 import UseQuery from '../hooks/UseQuery';
 import frontRoutes from '../config/frontRoutes';
+import Spinner from '../components/spinner/Spinner';
 
 function Register() {
   const { t } = useTranslation();
   let query = UseQuery();
 
+  const [loading, setLoading] = useState(false);
   const [currentForm, setcurrentForm] = useState();
   const [giftSelected, setGiftSelected] = useState();
   const [hasGift, setHasGift] = useState(query.get('gift'));
@@ -30,11 +32,13 @@ function Register() {
   }, []);
 
   useEffect(() => {
+    setLoading(true);
     const redirectTo = registerRedirectValidator(userData);
 
     if (redirectTo) {
       setcurrentForm(redirectTo);
     }
+    setLoading(false);
   }, [userData]);
 
   const handleStep = async nextStep => {
@@ -78,28 +82,30 @@ function Register() {
 
         <Text fontSize='18'>{t('startTheChange')}</Text>
 
-        {userData && (
-          <>
-            <Space medium />
+        <Space medium />
 
-            <div className='register-steps'>
-              {registerSteps.map((ele, i) => (
-                <div
-                  className={`single-step ${i < currentForm ? 'active' : ''}`}
-                  key={`register-step${i}`}
-                >
-                  <Button onClick={() => handleStep(i + 1)} isPrimary>
-                    {ele.step}
-                  </Button>
+        <div className='register-steps'>
+          {registerSteps.map((ele, i) => (
+            <div
+              className={`single-step ${i < currentForm ? 'active' : ''}`}
+              key={`register-step${i}`}
+            >
+              <Button onClick={() => handleStep(i + 1)} isPrimary>
+                {ele.step}
+              </Button>
 
-                  <Text className='step-label'>{ele.label}</Text>
-                </div>
-              ))}
+              <Text className='step-label'>{ele.label}</Text>
             </div>
-          </>
-        )}
+          ))}
+        </div>
 
         <Space medium />
+
+        {loading && (
+          <div className='center'>
+            <Spinner type='lds-heart' />
+          </div>
+        )}
 
         {!userData && currentForm === 1 && (
           <RegisterGiftSelect

@@ -58,7 +58,6 @@ export const updateProgress = asyncHandler(async (req, res) => {
     initialPhoto,
     photoFinish,
     weight,
-    height,
     chest,
     waist,
     buttocks,
@@ -76,7 +75,6 @@ export const updateProgress = asyncHandler(async (req, res) => {
     progress.initialPhoto = initialPhoto || progress.initialPhoto;
     progress.photoFinish = photoFinish || progress.photoFinish;
     progress.weight = weight || progress.weight;
-    progress.height = height || progress.height;
     progress.chest = chest || progress.chest;
     progress.waist = waist || progress.waist;
     progress.buttocks = buttocks || progress.buttocks;

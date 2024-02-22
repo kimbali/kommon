@@ -1,7 +1,7 @@
 import React from 'react';
 import Text from '../text/Text';
 
-function ProgressColumn({ total, date }) {
+function ProgressColumn({ total, text }) {
   return (
     <div className='progress-column'>
       <div
@@ -9,9 +9,7 @@ function ProgressColumn({ total, date }) {
         style={{ height: `${total || 100}%` }}
       ></div>
 
-      <Text>
-        {date?.start}-{date?.end}
-      </Text>
+      <Text>{text}</Text>
     </div>
   );
 }

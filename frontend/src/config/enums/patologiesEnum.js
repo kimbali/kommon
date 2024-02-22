@@ -2,6 +2,10 @@ import { translate } from '../../traducciones/i18n';
 
 const patologyEnum = [
   {
+    label: translate('negativo'),
+    value: 'NO',
+  },
+  {
     label: translate('diabetes'),
     value: 'DIABETES',
   },

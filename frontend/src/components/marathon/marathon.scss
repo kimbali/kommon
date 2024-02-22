@@ -131,9 +131,13 @@
 .user-marathons {
   display: grid;
   width: 100%;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 220px));
+  grid-template-columns: repeat(auto-fill, minmax(160px, 100%));
   grid-template-rows: auto;
   gap: 18px;
+
+  @media screen and (min-width: 1024px) {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 220px));
+  }
 
   .marathon-card {
     border-radius: $border-radius-wrapper;
@@ -171,6 +175,38 @@
 
     button {
       width: 100%;
+    }
+  }
+}
+
+.marathon-selector-buttons {
+  display: flex;
+  justify-content: space-between;
+
+  .simulacion,
+  .edit-marathon {
+    height: fit-content;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .marathon-selector-buttons {
+    display: flex;
+    flex-direction: column-reverse;
+
+    .simulacion {
+      margin-bottom: 12px;
+    }
+
+    .buttons-container {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      justify-content: space-between;
+
+      .field {
+        width: 100%;
+      }
     }
   }
 }

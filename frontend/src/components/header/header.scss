@@ -24,6 +24,10 @@
 
     .text {
       text-transform: capitalize;
+
+      @media screen and (max-width: 1024px) {
+        display: none;
+      }
     }
   }
 
@@ -32,11 +36,20 @@
     position: absolute;
     top: 32px;
     right: 0;
-    width: 200px;
-    background-color: $background-3;
+    width: 220px;
+    background-color: $background-4;
     border-radius: $border-radius-wrapper;
-    padding: 24px 20px 24px;
+    padding: 22px 26px 16px;
     box-shadow: $box-shadow-wrapper;
+
+    .user-name {
+      margin-bottom: 24px;
+      text-transform: capitalize;
+
+      @media screen and (min-width: 1024px) {
+        display: none;
+      }
+    }
 
     li {
       margin-bottom: 12px;
@@ -48,6 +61,7 @@
         cursor: pointer;
         color: $secondary-color;
         text-decoration: none;
+        font-size: 16px;
 
         &:hover {
           color: $secondary-color-decolored;
@@ -60,6 +74,7 @@
 
       button {
         margin-top: 20px;
+        width: 100%;
       }
     }
   }

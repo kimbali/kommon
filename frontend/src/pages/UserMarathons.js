@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGetMarathonsQuery } from '../slices/marathonApiSlice';
 import Text from '../components/text/Text';
@@ -13,8 +13,12 @@ function UserMarathons() {
   const { t } = useTranslation();
   const { marathon } = useMarathon();
   const navigate = useNavigate();
+  const [today] = useState(new Date().toISOString());
 
-  const { data: marathonsData } = useGetMarathonsQuery({ isActive: true });
+  const { data: marathonsData } = useGetMarathonsQuery({
+    isActive: true,
+    startDate: today,
+  });
 
   const handleSelectMarathon = marathon => {
     navigate(`${frontRoutes.userPayment}?${MARATHON_ID}=${marathon._id}`);

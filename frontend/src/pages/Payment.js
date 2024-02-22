@@ -93,7 +93,7 @@ function Payment() {
 
       await setShowEmailLink(true);
 
-      await sendEmail({ email: userData.email || 'kimgarcianton@hotmail.com' });
+      await sendEmail({ email: userData.email });
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }
@@ -103,37 +103,54 @@ function Payment() {
     <div className='page-wrapper'>
       <Space big />
 
-      <Text isTitle>Página de pago</Text>
+      <Text center isTitle>
+        Página de pago
+      </Text>
 
-      <Space medium />
+      <Space small />
 
-      <div className='user-marathons'>
-        {marathonsData?.marathons.length > 0 &&
-          marathonsData?.marathons.map((ele, i) => (
-            <MarathonCard
-              marathon={ele}
-              handleSelectMarathon={handleSelectMarathon}
-              key={`marathon-card-${i}`}
-            />
-          ))}
-      </div>
+      {marathonsData?.marathons.length > 0 && (
+        <Text center isSectionTitle>
+          ¿A qué maratón quieres inscribierte?
+        </Text>
+      )}
 
-      <Space medium />
+      <Space big />
 
-      {showEmailLink ? (
-        <Link to={frontRoutes.login}>
-          Link que recibiria el usuario en el correo electrónico (login)
-        </Link>
-      ) : (
-        <p>Selecciona la marathon a la que quieres apuntarte</p>
+      {!showEmailLink && (
+        <div className='user-marathons'>
+          {marathonsData?.marathons.length > 0 ? (
+            marathonsData?.marathons.map((ele, i) => (
+              <MarathonCard
+                marathon={ele}
+                handleSelectMarathon={handleSelectMarathon}
+                key={`marathon-card-${i}`}
+              />
+            ))
+          ) : (
+            <Text color='primary'>No hay próximas maratones</Text>
+          )}
+        </div>
       )}
 
       <Space medium />
 
-      <Text>
+      {marathonsData?.marathons.length > 0 && showEmailLink && (
+        <Link to={frontRoutes.login}>
+          <Text center color='primary'>
+            LOGIN LINK - RECIBIDO EN @MAIL
+          </Text>
+        </Link>
+      )}
+
+      <Space big />
+
+      <Text color='disabled' fontSize='14' center>
         Aqui se abriria la applicación del banco y mandariamos un email para
         confirmar el correo electrónico.
       </Text>
+
+      <Space big />
     </div>
   );
 }

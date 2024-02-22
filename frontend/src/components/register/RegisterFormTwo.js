@@ -41,10 +41,10 @@ function RegisterFormTwo({ onSuccess, userData }) {
       await updateProfile({ ...formData }).unwrap();
       await updateProgress({
         ...userData.progresses[userData.progresses.length - 1],
-        waist: [+formData.waist],
-        chest: [+formData.chest],
-        weight: [+formData.weight],
-        buttocks: [+formData.buttocks],
+        waist: [{ value: +formData.waist, date: new Date() }],
+        chest: [{ value: +formData.chest, date: new Date() }],
+        weight: [{ value: +formData.weight, date: new Date() }],
+        buttocks: [{ value: +formData.buttocks, date: new Date() }],
       });
 
       onSuccess(3);

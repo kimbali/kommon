@@ -167,6 +167,22 @@ export const getDatePositionInMonthArray = (monthArray, date) => {
   return position;
 };
 
+export const createPorgressWeeksArray = (progress, monthArray) => {
+  const arr = progress.reduce(
+    (acc, current) => {
+      const accUpdated = acc;
+      const position = getDatePositionInMonthArray(monthArray, current.date);
+
+      accUpdated[0][position.week - 1].push(current);
+
+      return accUpdated;
+    },
+    [Array.from({ length: monthArray.length }, () => [])]
+  );
+
+  return arr[0];
+};
+
 export const hasMarathonStarted = startDate => {
   const today = new Date();
   const twoDaysBeforeStart = new Date(startDate);

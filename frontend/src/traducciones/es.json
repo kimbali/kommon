@@ -181,7 +181,7 @@
   "goals": "Metas",
   "goBack": "Volver",
   "goToConfig": "backoffice",
-  "goToLive": "Ver simulación",
+  "goToLive": "Simulación",
   "goToProgress": "Progreso",
   "grams": "Gramos",
   "hasComplete": "Has completado satisfactoriamente el formulario",
@@ -234,14 +234,14 @@
   "marathon": "Maratón",
   "marathonDeleted": "Marathon eliminada",
   "marathonHasFinished": "Esta Maratón ya ha finalizado. ¡Apúntate a la siguiente!",
-  "marathonHasStarted": "La Maratón empezó el",
+  "marathonHasStarted": "La Maratón empieza el",
   "marathonName": "Nombre de la maratón",
   "marathonNamePlaceholder": "Dale nombre a la maraton",
   "marathonPlan": "Plan",
   "marathonPlanName": "Nombre del plan",
   "marathonPlanPlaceholder": "Selecciona un plan existente o escribe para crear uno nuevo",
   "marathons": "Maratones",
-  "marathonStarts": "La Maratón empezó el",
+  "marathonStarts": "La Maratón empieza el",
   "massageOil": "MASSAGE OIL GRAPEFRUIT-GINGER-CHILLI",
   "meals": "Comidas del día",
   "measure": "Medida",
@@ -457,5 +457,6 @@
   "cantDeleteAdminUser": "No se pueden borrar usuarios administradores",
   "deleteUser": "Eliminar usuario",
   "editUser": "Modificar usuario",
-  "modifyLanding": "Modificar textos de la landing"
+  "modifyLanding": "Modificar textos de la landing",
+  "negativo": "Ninguna"
 }

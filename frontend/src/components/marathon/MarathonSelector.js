@@ -8,17 +8,13 @@ import MarathonForm from './MarathonForm';
 import Text from '../text/Text';
 import formatDate from '../../utils/formatDate';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faCalendarDays,
-  faEdit,
-  faPlus,
-} from '@fortawesome/free-solid-svg-icons';
+import { faCalendarDays, faEdit } from '@fortawesome/free-solid-svg-icons';
 import frontRoutes from '../../config/frontRoutes';
 import { useMarathon } from '../../context/marathonContext';
 import { MARATHON_ID } from '../../config/constants';
 import { useTranslation } from 'react-i18next';
 
-function MarathonSelector({ setMarathon }) {
+function MarathonSelector() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { marathonId, updateMarathon, setMarathonId } = useMarathon();
@@ -71,7 +67,7 @@ function MarathonSelector({ setMarathon }) {
       : null;
 
     setMarathonSelected(currentMarathon);
-    setMarathon(marathon);
+    updateMarathon(marathon);
     setShowNewMarathonModal(false);
     refetchMarathons();
 
@@ -90,12 +86,6 @@ function MarathonSelector({ setMarathon }) {
     }
   };
 
-  const handleNewMarathon = () => {
-    setShowNewMarathonModal(true);
-    setMarathonSelected(null);
-    setMarathon(null);
-  };
-
   const handleGoToLiveMarathon = marahton => {
     navigate(`${frontRoutes.main}?${MARATHON_ID}=${marahton._id}`, {
       replace: true,
@@ -104,12 +94,8 @@ function MarathonSelector({ setMarathon }) {
 
   return (
     <>
-      <div className='content-left-and-right'>
+      <div className='marathon-selector-buttons'>
         <div className='buttons-container'>
-          <Button iconLeft={faPlus} isPrimary onClick={handleNewMarathon}>
-            {t('newMarathon')}
-          </Button>
-
           <Input
             placeholder={t('selectMarathon')}
             isSingleSelect
@@ -118,16 +104,6 @@ function MarathonSelector({ setMarathon }) {
             selectedOption={marathonSelected}
             name='marathon'
           />
-
-          {marathonSelected && (
-            <Button
-              isSecondary
-              iconLeft={faEdit}
-              onClick={() => setShowNewMarathonModal(true)}
-            >
-              {t('marathon')}
-            </Button>
-          )}
 
           {marathonSelected && (
             <div className='marathon-details'>
@@ -150,16 +126,28 @@ function MarathonSelector({ setMarathon }) {
           )}
         </div>
 
-        {marathonSelected?.value && (
-          <div>
+        <div className='buttons-container'>
+          {marathonSelected && (
+            <Button
+              className='edit-marathon'
+              isPrimary
+              iconLeft={faEdit}
+              onClick={() => setShowNewMarathonModal(true)}
+            >
+              {t('marathon')}
+            </Button>
+          )}
+
+          {marathonSelected?.value && (
             <Button
               onClick={() => handleGoToLiveMarathon(marathonSelected?.value)}
               isSecondary
+              className='simulacion'
             >
               {t('goToLive')}
             </Button>
-          </div>
-        )}
+          )}
+        </div>
       </div>
 
       {showNewMarathonModal && (

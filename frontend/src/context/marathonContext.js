@@ -9,7 +9,7 @@ export const MarathonProvider = ({ children }) => {
 
   const updateMarathon = newMarathon => {
     setMarathon(newMarathon);
-    setMarathonId(newMarathon._id);
+    setMarathonId(newMarathon?._id);
   };
 
   return (

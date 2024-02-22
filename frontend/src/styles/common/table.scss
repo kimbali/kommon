@@ -84,6 +84,10 @@ table {
 }
 
 .data-table {
+  @media screen and (max-width: 1024px) {
+    overflow-x: scroll;
+  }
+
   table {
     border-collapse: collapse;
 

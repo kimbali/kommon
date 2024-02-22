@@ -2,22 +2,32 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from '../components/button/Button';
-import { faEdit, faSort, faTrash } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCalendarDays,
+  faPlus,
+  faSort,
+  faTrash,
+} from '@fortawesome/free-solid-svg-icons';
 import {
   useDeleteMarathonMutation,
   useGetMarathonsQuery,
   useUpdateMarathonMutation,
 } from '../slices/marathonApiSlice';
-import { formatDate, formatDateHyphens } from '../utils/formatDate';
+import { formatDate } from '../utils/formatDate';
 import ConfirmModal from '../components/modal/ConfirmModal';
 import toast from 'react-hot-toast';
 import frontRoutes from '../config/frontRoutes';
 import { MARATHON_ID } from '../config/constants';
 import { useTranslation } from 'react-i18next';
+import { useMarathon } from '../context/marathonContext';
+import Modal from '../components/modal/Modal';
+import MarathonForm from '../components/marathon/MarathonForm';
+import Space from '../components/space/Space';
 
 function MarathonsList() {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { updateMarathon: updateMarathonContext } = useMarathon();
 
   const { data: marathonsData, refetch: refetchMarathons } =
     useGetMarathonsQuery({});
@@ -26,6 +36,7 @@ function MarathonsList() {
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showActivateModal, setShowActivateModal] = useState(false);
+  const [showNewMarathonModal, setShowNewMarathonModal] = useState(false);
   const [marathons, setMarathons] = useState(marathonsData?.marathons);
   const [updateMarathon] = useUpdateMarathonMutation();
 
@@ -93,8 +104,24 @@ function MarathonsList() {
     });
   };
 
+  const handleNewMarathon = () => {
+    setShowNewMarathonModal(true);
+    updateMarathonContext(null);
+  };
+
+  const handleOnConfirmMarathon = marathon => {
+    setShowNewMarathonModal(false);
+    refetchMarathons();
+  };
+
   return (
     <div className='data-table'>
+      <Button iconLeft={faPlus} isPrimary onClick={handleNewMarathon}>
+        {t('newMarathon')}
+      </Button>
+
+      <Space medium />
+
       <table border='1'>
         <thead>
           <tr>
@@ -105,8 +132,8 @@ function MarathonsList() {
                 {t('startDate')} <FontAwesomeIcon icon={faSort} />
               </button>
             </th>
-            <th>{t('endDate')}</th>
-            <th>{t('edit')}</th>
+            <th style={{ padding: '12px' }}>{t('endDate')}</th>
+            <th>{t('config')}</th>
             <th>{t('see')}</th>
             <th>{t('active')}</th>
             <th>{t('trash')}</th>
@@ -125,16 +152,14 @@ function MarathonsList() {
                   <Button
                     onClick={() => handleEditButton(eachMarathon)}
                     onlyIcon
-                    iconLeft={faEdit}
-                  >
-                    {t('edit')}
-                  </Button>
+                    iconLeft={faCalendarDays}
+                  />
                 </td>
                 <td>
                   <Button
                     onClick={() => handleGoToLiveMarathon(eachMarathon)}
                     isSecondary
-                    disabled={!eachMarathon.isActive}
+                    // disabled={!eachMarathon.isActive}
                   >
                     {t('goToLive')}
                   </Button>
@@ -179,6 +204,15 @@ function MarathonsList() {
           text={`${t('publishAsk')} ${showActivateModal.name}`}
           description={t('publishHint')}
         />
+      )}
+
+      {showNewMarathonModal && (
+        <Modal onClose={setShowNewMarathonModal} isSecondary>
+          <MarathonForm
+            onSucces={handleOnConfirmMarathon}
+            onCancel={() => setShowNewMarathonModal(false)}
+          />
+        </Modal>
       )}
     </div>
   );

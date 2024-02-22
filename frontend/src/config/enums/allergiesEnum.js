@@ -1,6 +1,7 @@
 import { translate } from '../../traducciones/i18n';
 
 const allergiesEnum = [
+  { label: translate('negativo'), value: 'NO' },
   { label: translate('apio'), value: 'APIO' },
   { label: translate('crustaceos'), value: 'CRUSTACEOS' },
   { label: translate('gluten'), value: 'GLUTEN' },

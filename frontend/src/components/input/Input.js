@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import toast from 'react-hot-toast';
 import Select from 'react-select';
 import CreatableSelect from 'react-select/creatable';
+import makeAnimated from 'react-select/animated';
 import { useUploadRecipeImageMutation } from '../../slices/imagesApiSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash, faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -42,6 +43,8 @@ function Input({
   disabled = false,
   language = '',
 }) {
+  const animatedComponents = useMemo(() => makeAnimated(), []);
+
   const { t } = useTranslation();
   const hasError = error?.invalidFields?.includes(name);
   const [uploadRecipeImage, { isLoading }] = useUploadRecipeImageMutation();
@@ -171,6 +174,7 @@ function Input({
 
       {isSingleSelect && (
         <Select
+          components={animatedComponents}
           className={`multi-select ${defaultValue ? 'has-value' : 'no-value'}`}
           closeMenuOnSelect
           options={options}
@@ -194,6 +198,7 @@ function Input({
 
       {isMultiSelect && (
         <Select
+          components={animatedComponents}
           className='multi-select'
           closeMenuOnSelect={false}
           isMulti
@@ -207,6 +212,7 @@ function Input({
 
       {selectCreatable && (
         <CreatableSelect
+          components={animatedComponents}
           className='multi-select'
           classNamePrefix='multi-prefix'
           onCreateOption={onCreateOption}

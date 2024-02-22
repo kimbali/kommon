@@ -44,7 +44,7 @@ function Text({
 
   if (isSectionTitle) {
     return (
-      <div className={`${className} section-title`}>
+      <div className={`${className} ${center ? 'center' : ''} section-title`}>
         <div className='section-title__title'>
           <h3 className='section-title__text'>{children}</h3>
 

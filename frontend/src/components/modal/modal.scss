@@ -19,7 +19,7 @@
     width: 95%;
     max-height: 95vh;
     padding: 24px 16px;
-    background-color: $background-4;
+    background-color: $background-2;
     border-radius: $border-radius-wrapper;
     position: relative;
     z-index: 4;
@@ -70,11 +70,11 @@
   }
 
   &.secondary-modal {
-    background-color: rgba($color: $background-2, $alpha: 0.8);
+    background-color: rgba($color: $background-1, $alpha: 0.8);
 
     .modal-content {
       max-width: 590px;
-      background-color: $background-3;
+      background-color: $background-2;
     }
   }
 

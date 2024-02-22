@@ -15,11 +15,30 @@ const progressSchema = new Schema(
     gift: String,
     initialPhoto: String,
     photoFinish: String,
-    weight: [Number],
-    height: [Number],
-    chest: [Number],
-    waist: [Number],
-    buttocks: [Number],
+    weight: [
+      {
+        value: Number,
+        date: Date,
+      },
+    ],
+    chest: [
+      {
+        value: Number,
+        date: Date,
+      },
+    ],
+    waist: [
+      {
+        value: Number,
+        date: Date,
+      },
+    ],
+    buttocks: [
+      {
+        value: Number,
+        date: Date,
+      },
+    ],
     recipes: [
       {
         type: Schema.Types.ObjectId,

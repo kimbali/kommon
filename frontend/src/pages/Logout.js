@@ -19,7 +19,7 @@ function Logout() {
       dispatch(logout());
 
       updateUser(null);
-      navigate(frontRoutes.login);
+      navigate(frontRoutes.home);
     } catch (err) {
       console.error(err);
     }

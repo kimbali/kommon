@@ -9,7 +9,7 @@ export const getMarathons = asyncHandler(async (req, res) => {
 
   const dateFilter = req.query?.startDate
     ? {
-        $or: [{ startDate: { $gt: today } }],
+        $or: [{ startDate: { $gte: today } }],
       }
     : {};
 

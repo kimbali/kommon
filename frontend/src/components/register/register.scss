@@ -38,6 +38,19 @@
         color: $primary-color;
       }
     }
+
+    &.disabled {
+      &.active {
+        .button {
+          background-color: $primary-color;
+          color: $white;
+        }
+
+        .step-label {
+          color: $primary-color;
+        }
+      }
+    }
   }
 }
 

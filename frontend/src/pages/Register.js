@@ -87,10 +87,16 @@ function Register() {
         <div className='register-steps'>
           {registerSteps.map((ele, i) => (
             <div
-              className={`single-step ${i < currentForm ? 'active' : ''}`}
+              className={`single-step ${i < currentForm ? 'active' : ''} ${
+                !userData ? 'disabled' : ''
+              }`}
               key={`register-step${i}`}
             >
-              <Button onClick={() => handleStep(i + 1)} isPrimary>
+              <Button
+                disabled={!userData}
+                onClick={() => handleStep(i + 1)}
+                isPrimary
+              >
                 {ele.step}
               </Button>
 

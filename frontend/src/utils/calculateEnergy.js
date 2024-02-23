@@ -76,26 +76,6 @@ const calculateEnergy = (type = '', ingredients = [], user) => {
 
 export default calculateEnergy;
 
-// const _calculateUserKcal = ({
-//   age,
-//   height,
-//   weight,
-//   activity,
-//   porpuse,
-//   breastfeed,
-// } = {}) => {
-//   if (!age || !height || !weight) {
-//     return 1700;
-//   }
-
-//   const totalKcalPerWeek =
-//     (655 + 9.6 * weight + 1.8 * height - 4.7 * age) * activity * porpuse -
-//     breastfeed;
-
-//   return Math.round(totalKcalPerWeek / 50) * 50;
-// };
-// _calculateUserKcal({ age: 32, height: 180, weight: 57, activity: 1.55, porpuse: 0.8, breastfeed: 200})
-
 export const createUniqueIngredientsList = ingredients => {
   return ingredients.reduce((acc, ele) => {
     const accSet = [...acc];

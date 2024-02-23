@@ -458,5 +458,8 @@
   "deleteUser": "Eliminar usuario",
   "editUser": "Modificar usuario",
   "modifyLanding": "Modificar textos de la landing",
-  "negativo": "Ninguna"
+  "negativo": "Ninguna",
+  "vacuum": "Vacuum",
+  "waterTracker": "Calendario de agua",
+  "downloaded": "Descargado"
 }

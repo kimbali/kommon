@@ -57,7 +57,7 @@ export const KcalReglaDeTres = (total, user, { returnNumber } = {}) => {
     return computation;
   }
 
-  return computation.toLocaleString('de-DE', { maximumFractionDigits: 2 });
+  return Math.round(computation);
 };
 
 const calculateEnergy = (type = '', ingredients = [], user) => {
@@ -71,7 +71,7 @@ const calculateEnergy = (type = '', ingredients = [], user) => {
 
   total = KcalReglaDeTres(total, user, { returnNumber: true }) / 100;
 
-  return total.toLocaleString('de-DE', { maximumFractionDigits: 2 });
+  return Math.floor(total);
 };
 
 export default calculateEnergy;

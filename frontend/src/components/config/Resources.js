@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import Text from '../text/Text';
 import { useTranslation } from 'react-i18next';
-import Space from '../space/Space';
-import Input from '../input/Input';
-import Button from '../button/Button';
-import { useUpdateConfigMutation } from '../../slices/configApiSlice';
 import { useConfig } from '../../context/configContext';
+import { useUpdateConfigMutation } from '../../slices/configApiSlice';
+import Text from '../text/Text';
+import Button from '../button/Button';
+import Input from '../input/Input';
+import Space from '../space/Space';
 
-function ActiveSections() {
+function Resources() {
   const { t } = useTranslation();
   const { config, updateConfig } = useConfig();
 
@@ -38,7 +38,7 @@ function ActiveSections() {
   return (
     <form onSubmit={handleSubmit}>
       <div className='content-left-and-right'>
-        <Text isSectionTitle>{t('inactiveSections')}</Text>
+        <Text isSectionTitle>{t('resources')}</Text>
 
         <div className='helper-and-button'>
           {showHelper && (
@@ -55,37 +55,25 @@ function ActiveSections() {
 
       <Space medium />
 
-      <table className='config-table'>
-        <tbody>
-          <tr>
-            <td>{t('meditations')}</td>
+      <Input
+        label={t('waterTracker')}
+        name='waterTracker'
+        onChange={handleOnChange}
+        value={formData?.waterTracker}
+        type='file'
+      />
 
-            <td className='only-icon center'>
-              <Input
-                type='toggle'
-                name='activeMeditations'
-                value={formData?.activeMeditations}
-                onChange={handleOnChange}
-              />
-            </td>
-          </tr>
+      <Space small />
 
-          <tr>
-            <td>{t('workoutsLevel')}</td>
-
-            <td className='only-icon center'>
-              <Input
-                type='toggle'
-                name='workoutsLevel'
-                value={!!formData?.workoutsLevel}
-                onChange={handleOnChange}
-              />
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <Input
+        label={t('vacuumVideo')}
+        name='vacuumVideo'
+        placeholder={t('vimeoLink')}
+        onChange={handleOnChange}
+        value={formData?.vacuumVideo}
+      />
     </form>
   );
 }
 
-export default ActiveSections;
+export default Resources;

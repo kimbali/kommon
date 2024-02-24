@@ -29,7 +29,7 @@ function MarathonDiet({ currentDiet, mealsData, dayId, onSave }) {
       return;
     }
 
-    const duplicatedList = mealsData.flatMap(ele => ele.recipe.ingredients);
+    const duplicatedList = mealsData.flatMap(ele => ele.recipe?.ingredients);
     const reducedList = createUniqueIngredientsList(duplicatedList);
 
     setIngredients(reducedList);

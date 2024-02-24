@@ -73,7 +73,7 @@ function RegionsConfig() {
   return (
     <div>
       <div className='content-left-and-right'>
-        <Text isSubtitle>{t('sendCostConfig')}</Text>
+        <Text isSectionTitle>{t('sendCostConfig')}</Text>
 
         <div className='content-on-the-right'>
           <Button isPrimary onClick={() => setShowFormModal(true)}>

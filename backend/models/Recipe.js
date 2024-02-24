@@ -1,18 +1,5 @@
 import { Schema, model } from 'mongoose';
 
-// const ingredientsSchema = new Schema(
-//   {
-//     quantity: { type: Number },
-//     ingredient: {
-//       type: Schema.Types.ObjectId,
-//       ref: 'Ingredient',
-//     },
-//   },
-//   {
-//     timestamps: true,
-//   }
-// );
-
 const recipeSchema = new Schema(
   {
     title: {

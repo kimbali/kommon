@@ -4,6 +4,13 @@ const ConfigSchema = new Schema(
   {
     activeMeditations: Boolean,
     workoutsLevel: Boolean,
+    vacuumVideo: String,
+    waterTracker: {
+      originalName: String,
+      size: String,
+      format: String,
+      url: String,
+    },
     landingConfig: [
       {
         lang: String,

@@ -50,3 +50,13 @@
     }
   }
 }
+
+.vacuum {
+  .video-player {
+    height: fit-content;
+
+    iframe {
+      width: 100%;
+    }
+  }
+}

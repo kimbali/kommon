@@ -244,7 +244,7 @@ function Input({
           onChange={handleOnChange}
         />
       )}
-
+      {console.log(name, value)}
       {type === 'radio' &&
         options.map(option => (
           <label

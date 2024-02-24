@@ -36,7 +36,7 @@ const s3Storage = multerS3({
 export const upload = multer({
   storage: s3Storage,
   limits: {
-    fileSize: 1 * 1024 * 1024,
+    fileSize: 40 * 1024 * 1024, // 40MB
   },
 });
 
@@ -86,7 +86,7 @@ export const uploadImage = asyncHandler(async (req, res) => {
   await s3.send(command);
 
   res.status(200).send({
-    message: 'Image uploaded successfully',
+    message: 'File uploaded successfully',
     image: {
       url: req.file.key,
       originalname: req.file.originalname,

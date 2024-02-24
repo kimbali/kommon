@@ -59,7 +59,7 @@ function DietsList() {
   return (
     <div>
       <div className='content-left-and-right'>
-        <Text isSubtitle>{t('dietsList')}</Text>
+        <Text isSectionTitle>{t('dietsList')}</Text>
 
         <Button isPrimary onClick={() => setShowFormModal(true)}>
           {t('addDiet')}

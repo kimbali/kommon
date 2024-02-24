@@ -358,7 +358,7 @@
   "semillasDeSesamo": "Semillas de Sésamo",
   "sendAddress": "Dirección de envío",
   "sendCost": "Precio gastos de envío",
-  "sendCostConfig": "Configuración de los gastos de envío",
+  "sendCostConfig": "Gastos de envío",
   "services": "Servicios",
   "shoppingList": "Lista de la compra",
   "shoppingListWeek": "Lista de la compra semanal.",
@@ -461,5 +461,7 @@
   "negativo": "Ninguna",
   "vacuum": "Vacuum",
   "waterTracker": "Calendario de agua",
-  "downloaded": "Descargado"
+  "downloaded": "Descargado",
+  "vacuumVideo": "Vacuum",
+  "resources": "Recursos"
 }

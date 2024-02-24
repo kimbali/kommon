@@ -36,7 +36,7 @@ function WorkoutCard({ data, onClick, hideTitle }) {
             </Text>
 
             {config?.workoutsLevel && (
-              <div className='pill'>{getLevelLabel(data.level)}</div>
+              <Text className='pill'>{getLevelLabel(data.level)}</Text>
             )}
           </div>
         </div>

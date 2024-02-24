@@ -59,13 +59,21 @@ export const createConfig = asyncHandler(async (req, res) => {
 // @route   PUT /api/configs/:id
 // @access  Private/Admin
 export const updateConfig = asyncHandler(async (req, res) => {
-  const { activeMeditations, workoutsLevel, landingConfig } = req.body;
+  const {
+    activeMeditations,
+    workoutsLevel,
+    landingConfig,
+    vacuumVideo,
+    waterTracker,
+  } = req.body;
 
   const config = await Config.findById(req.params.id);
 
   if (config) {
     config.activeMeditations = activeMeditations;
     config.workoutsLevel = workoutsLevel;
+    config.waterTracker = waterTracker || config.waterTracker;
+    config.vacuumVideo = vacuumVideo || config.vacuumVideo;
     config.landingConfig = landingConfig
       ? [...landingConfig]
       : config.landingConfig;

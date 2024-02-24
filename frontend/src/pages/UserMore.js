@@ -9,15 +9,31 @@ import VACUUM from '../styles/assets/vacuum.png';
 import KCAL_CALCULATOR from '../styles/assets/kcal_calculator.png';
 import WATER_TRACKER from '../styles/assets/water_tracker.png';
 import { useGetImageUrlQuery } from '../slices/imagesApiSlice';
+import downloadPDF from '../utils/downloadPDF';
+import toast from 'react-hot-toast';
+import Modal from '../components/modal/Modal';
+import Space from '../components/space/Space';
+import VideoPlayer from '../components/video/VideoPlayer';
 
 function UserMore() {
   const { t } = useTranslation();
   const { config } = useConfig();
+  const [showVacuumModal, setShowVacuumModal] = useState(false);
 
   const { data: imageS3 } = useGetImageUrlQuery({
-    url: '1708718770970_image_AGUA2.pdf',
+    url: config?.waterTracker?.url,
+    // url: '1708718770970_image_AGUA2.pdf',
   });
 
+  const handleDownload = () => {
+    downloadPDF(imageS3?.signedUrl);
+    toast.success(t('downloaded'));
+  };
+
+  const handleVacuum = () => {
+    setShowVacuumModal(true);
+  };
+  console.log(config);
   return (
     <div>
       <Text isTitle>{t('services')}</Text>
@@ -31,16 +47,12 @@ function UserMore() {
           />
 
           <NavLink
-            downloadLink={imageS3?.signedUrl}
+            onClick={handleDownload}
             image={WATER_TRACKER}
             label={t('waterTracker')}
           />
 
-          <NavLink
-            image={VACUUM}
-            label={t('vacuum')}
-            route={frontRoutes.caloriesCalculator}
-          />
+          <NavLink image={VACUUM} label={t('vacuum')} onClick={handleVacuum} />
 
           {config?.activeMeditations && (
             <NavLink
@@ -57,6 +69,16 @@ function UserMore() {
           />
         </ul>
       </nav>
+
+      {showVacuumModal && (
+        <Modal className='vacuum' onClose={setShowVacuumModal} isSecondary>
+          <Text isTitle>{t('vacuumVideo')}</Text>
+
+          <Space medium />
+
+          <VideoPlayer url={config?.vacuumVideo} />
+        </Modal>
+      )}
     </div>
   );
 }

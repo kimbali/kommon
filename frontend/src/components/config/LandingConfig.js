@@ -58,7 +58,7 @@ function LandingConfig() {
   return (
     <form onSubmit={handleSubmit}>
       <div className='content-left-and-right'>
-        <Text isSubtitle>{t('modifyLanding')}</Text>
+        <Text isSectionTitle>{t('modifyLanding')}</Text>
 
         <div className='helper-and-button'>
           <Button isPrimary type='submit'>

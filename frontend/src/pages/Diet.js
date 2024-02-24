@@ -52,7 +52,7 @@ function Diet() {
       return;
     }
 
-    const duplicatedList = mealsList.flatMap(ele => ele.recipe.ingredients);
+    const duplicatedList = mealsList.flatMap(ele => ele.recipe?.ingredients);
     const reducedList = createUniqueIngredientsList(duplicatedList);
 
     setTodayIngredients(reducedList);

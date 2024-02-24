@@ -33,7 +33,7 @@ function UserMore() {
   const handleVacuum = () => {
     setShowVacuumModal(true);
   };
-  console.log(config);
+
   return (
     <div>
       <Text isTitle>{t('services')}</Text>

@@ -8,7 +8,8 @@
   li {
     margin: 14px 0;
 
-    a {
+    a,
+    button {
       text-decoration: none;
       font-size: 32px;
       font-family: $avenirBlack;
@@ -52,16 +53,21 @@
     float: left;
     margin-right: 65px;
   }
-  .main-menu li a {
-    color: #fff;
-    border-bottom: 3px solid transparent;
-    padding-bottom: 2px;
-    text-decoration: none;
-    font-size: 17px;
-    font-family: 'AvenirHeavy';
-  }
-  .main-menu li a:hover {
-    border-color: #f30c88;
+  .main-menu li {
+    a,
+    button {
+      color: #fff;
+      border-bottom: 3px solid transparent;
+      padding-bottom: 2px;
+      text-decoration: none;
+      font-size: 17px;
+      font-family: 'AvenirHeavy';
+
+      &:hover,
+      &.active {
+        border-color: #f30c88;
+      }
+    }
   }
   .header-login {
     float: right;
@@ -821,6 +827,10 @@
   .gift-slider {
     padding: 0px 40px 0px 40px;
     position: relative;
+
+    .carousel-status {
+      display: none;
+    }
 
     .carousel.carousel-slider .control-arrow {
       background-color: $primary-color;

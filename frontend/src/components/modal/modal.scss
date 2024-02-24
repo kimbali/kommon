@@ -43,11 +43,12 @@
     position: fixed;
     right: 24px;
     top: 24px;
+    z-index: 10;
 
     svg {
       height: 24px;
       width: 24px;
-      color: $disabled;
+      color: $grey-decolored;
     }
 
     &:hover {

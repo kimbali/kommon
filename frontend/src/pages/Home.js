@@ -6,7 +6,6 @@ import BENEFIT_1 from '../styles/img/benefit-01.png';
 import BENEFIT_2 from '../styles/img/benefit-02.png';
 import BENEFIT_3 from '../styles/img/benefit-03.png';
 import BENEFIT_4 from '../styles/img/benefit-04.png';
-import IPHONE from '../styles/img/iphone.png';
 import FOR_WHO from '../styles/img/for_who.png';
 import RESULT from '../styles/img/result.png';
 import MASSAGE_OIL_SMALL from '../styles/img/Massage_oil_small.png';
@@ -35,17 +34,30 @@ import Modal from '../components/modal/Modal';
 import UserMenu from '../components/header/UserMenu';
 import { useGetConfigLandingQuery } from '../slices/configApiSlice';
 import Image from '../components/image/Image';
+import Calendary from '../components/calendar/Calendar';
 
 function Home() {
   const { t, i18n } = useTranslation();
   const lang = i18n.language;
 
   const [showMenu, setshowMenu] = useState();
+  const [showCalendar, setshowCalendar] = useState();
 
   const { data: labels } = useGetConfigLandingQuery(lang);
 
+  const handleCalendar = () => {
+    setshowMenu(false);
+    setshowCalendar(prev => !prev);
+  };
+
   return (
     <div className='home'>
+      {showCalendar && window.innerWidth < 1024 && (
+        <Modal onClose={setshowCalendar} className='calendar-wrapper-mobile'>
+          <Calendary />
+        </Modal>
+      )}
+
       {showMenu && (
         <Modal onClose={setshowMenu} fullWidth>
           <ul className='home-menu-mobile'>
@@ -65,9 +77,7 @@ function Home() {
               </a>
             </li>
             <li>
-              <a onClick={() => setshowMenu(false)} href='#shedule'>
-                {t('planning')}
-              </a>
+              <button onClick={handleCalendar}>{t('planning')}</button>
             </li>
             <li>
               <a onClick={() => setshowMenu(false)} href='#results'>
@@ -81,8 +91,9 @@ function Home() {
       <div className='promo-header'>
         <div className='content-wrapper'>
           <button onClick={() => setshowMenu(true)} className='mobile-menu-btn'>
-            <img src={MENU} alt='Breadcrumb menu' />
+            <img src={MENU} alt='Breadcrumb bodymaraton landing menu' />
           </button>
+
           <div className='promo-header-left'>
             <ul className='main-menu'>
               <li>
@@ -94,8 +105,15 @@ function Home() {
               <li>
                 <a href='#goals'>{t('goals')}</a>
               </li>
-              <li>
-                <a href='#shedule'>{t('planning')}</a>
+              <li className='calendar-wrapper-desktop'>
+                <button
+                  className={showCalendar ? 'active' : ''}
+                  onClick={handleCalendar}
+                >
+                  {t('planning')}
+                </button>
+
+                {showCalendar && <Calendary />}
               </li>
               <li>
                 <a href='#results'>{t('results')}</a>
@@ -541,7 +559,7 @@ function Home() {
         </div>
       </div>
 
-      <div id='shedule' className='options'>
+      <div className='options'>
         <div className='content-wrapper'>
           <div className='options-lbl'>{t('chooseOneOption')}</div>
           <div className='options-row'>

@@ -1,6 +1,32 @@
 import { translate } from '../traducciones/i18n';
 
+export const diasSemana = [
+  translate('monday').substring(0, 3),
+  translate('tuesday').substring(0, 3),
+  translate('wednesday').substring(0, 3),
+  translate('thursday').substring(0, 3),
+  translate('friday').substring(0, 3),
+  translate('saturday').substring(0, 3),
+  translate('sunday').substring(0, 3),
+];
+
+export const months = [
+  translate('january'),
+  translate('february'),
+  translate('march'),
+  translate('april'),
+  translate('may'),
+  translate('june'),
+  translate('july'),
+  translate('august'),
+  translate('september'),
+  translate('october'),
+  translate('november'),
+  translate('december'),
+];
+
 export const formatDate = date => {
+  // mar, 13 nov 23
   if (!date) return;
 
   const options = {
@@ -9,17 +35,28 @@ export const formatDate = date => {
     month: 'short',
     year: '2-digit',
   };
-  return new Date(date).toLocaleDateString('gb-GB', options); // mar, 13 nov 23
+  return new Date(date).toLocaleDateString('gb-GB', options);
+};
+
+export const monthDayWeekFormat = date => {
+  // Febrero 24, sáb
+
+  const mes = months[date.getMonth()];
+  const dia = date.getDate();
+  const diaSemana = diasSemana[date.getDay()];
+
+  return `${mes} ${dia}, ${diaSemana}`;
 };
 
 export const formatDateDayMonth = date => {
+  // 13 nov
   if (!date) return;
 
   const options = {
     day: 'numeric',
     month: 'short',
   };
-  return new Date(date).toLocaleDateString('gb-GB', options); // 13 nov
+  return new Date(date).toLocaleDateString('gb-GB', options);
 };
 
 function isValidHyphenFormat(dateString) {
@@ -28,6 +65,7 @@ function isValidHyphenFormat(dateString) {
 }
 
 export const formatDateHyphens = date => {
+  // 23-10-2023
   if (isValidHyphenFormat(date)) {
     return date;
   }
@@ -39,7 +77,7 @@ export const formatDateHyphens = date => {
       day: '2-digit',
       year: 'numeric',
     })
-    .replace(/\//g, '-'); // 23-10-2023
+    .replace(/\//g, '-');
 };
 
 export const formatDateShort = date => {
@@ -52,6 +90,7 @@ export const formatDateShort = date => {
 };
 
 export const formatWeekDayShort = date => {
+  // Sab
   if (!date) return;
 
   return date.toLocaleDateString('es', { weekday: 'short' }).slice(0, 3);
@@ -209,6 +248,10 @@ export const calculateDaysDifference = (startDate, endDate) => {
 };
 
 export const isSameDay = (date1, date2) => {
+  if (!date1 || !date2) {
+    return false;
+  }
+
   return (
     date1.getFullYear() === date2.getFullYear() &&
     date1.getMonth() === date2.getMonth() &&
@@ -227,6 +270,40 @@ export const weeksDatesList = monthArray => {
 
     return accUpdated;
   }, []);
+};
+
+export const generateCalendarData = (startDate, endDate) => {
+  const calendarData = [];
+  const currentDate = new Date(startDate);
+
+  while (currentDate <= endDate) {
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const firstDayOfMonth = new Date(year, month, 1).getDay();
+
+    const monthData = Array.from({ length: 7 }, () => []);
+
+    let currentDay = 1;
+    let currentColumnIndex = firstDayOfMonth === 0 ? 6 : firstDayOfMonth - 1;
+
+    while (currentDay <= daysInMonth) {
+      monthData[currentColumnIndex].push(new Date(year, month, currentDay));
+      currentDay++;
+      currentColumnIndex = (currentColumnIndex + 1) % 7;
+    }
+
+    // Fill in null values for empty columns at the beginning and end of the month
+    while (currentColumnIndex !== 0) {
+      monthData[currentColumnIndex].push(null);
+      currentColumnIndex = (currentColumnIndex + 1) % 7;
+    }
+
+    calendarData.push(monthData);
+    currentDate.setMonth(currentDate.getMonth() + 1);
+  }
+
+  return calendarData;
 };
 
 export default formatDate;

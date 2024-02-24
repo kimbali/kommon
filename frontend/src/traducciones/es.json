@@ -484,5 +484,13 @@
   "friday": "Viernes",
   "saturday": "Sábado",
   "untilNextMarathon": "Hasta la siguiente maratón",
-  "days": "días"
+  "days": "días",
+  "uploadFotosInit": "Subir fotos inicio maraton",
+  "uploadFotosFinish": "Subir fotos final maraton",
+  "uploadFotos": "Subir fotos",
+  "front": "Foto frontal",
+  "back": "Foto de espaldas",
+  "lateral": "Foto lateral",
+  "photosSectionTitle": "Tu progreso en fotos",
+  "photosSectionDescription": "Sube fotos 3 días antes y despues de empezar y terminar la maratón para ver tu progreso"
 }

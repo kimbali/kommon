@@ -13,8 +13,46 @@ const progressSchema = new Schema(
     },
     isPaid: Boolean,
     gift: String,
-    initialPhoto: String,
-    photoFinish: String,
+    initialPhotos: {
+      front: {
+        originalName: String,
+        size: String,
+        format: String,
+        url: String,
+      },
+      back: {
+        originalName: String,
+        size: String,
+        format: String,
+        url: String,
+      },
+      lateral: {
+        originalName: String,
+        size: String,
+        format: String,
+        url: String,
+      },
+    },
+    photoFinish: {
+      front: {
+        originalName: String,
+        size: String,
+        format: String,
+        url: String,
+      },
+      back: {
+        originalName: String,
+        size: String,
+        format: String,
+        url: String,
+      },
+      lateral: {
+        originalName: String,
+        size: String,
+        format: String,
+        url: String,
+      },
+    },
     weight: [
       {
         value: Number,

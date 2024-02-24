@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useUser } from '../context/userContext';
 import Text from '../components/text/Text';
 import Space from '../components/space/Space';
@@ -10,16 +10,35 @@ import { getProblemsLabel } from '../config/enums/problemsEnum';
 import { getAllergiesLabel } from '../config/enums/allergiesEnum';
 import { getYesNoLabel } from '../config/enums/yesNoEnum';
 import { useTranslation } from 'react-i18next';
+import Button from '../components/button/Button';
+import Modal from '../components/modal/Modal';
+import BodyFotosForm from '../components/progress/BodyFotosForm';
+import { useMarathon } from '../context/marathonContext';
+import { lessThan3DaysDifference } from '../utils/formatDate';
+import BodyTemplate from '../components/progress/BodyTemplate';
+import FRONT_TEMPLATE from '../styles/assets/front.png';
+import BACK_TEMPLATE from '../styles/assets/back.png';
+import LATERAL_TEMPLATE from '../styles/assets/side.png';
+import { useProgress } from '../context/progressContext';
 
 function UserProfile() {
   const { t } = useTranslation();
   const { user } = useUser();
+  const { marathon } = useMarathon();
+  const { userProgress, updateProgress } = useProgress();
+
+  const [showFotosModal, setShowFotosModal] = useState();
+
+  const handleSaveFotos = progressUpdated => {
+    setShowFotosModal(false);
+    updateProgress(progressUpdated);
+  };
 
   return (
     <div>
       <Text isTitle>Perfil</Text>
 
-      <Space medium />
+      <Space small />
 
       <Text isSubtitle>{t('personalInfo')}</Text>
 
@@ -77,6 +96,84 @@ function UserProfile() {
           },
         ]}
       />
+
+      <Space medium />
+
+      <div className='body-fotos-section'>
+        <Text isSectionTitle>{t('photosSectionTitle')}</Text>
+
+        <Space extraSmall />
+
+        <Text>{t('photosSectionDescription')}</Text>
+
+        <Space medium />
+
+        <div className='body-fotos'>
+          <BodyTemplate
+            title={t('front')}
+            template={FRONT_TEMPLATE}
+            photo={userProgress?.initialPhotos?.front}
+          />
+          <BodyTemplate
+            title={t('back')}
+            template={BACK_TEMPLATE}
+            photo={userProgress?.initialPhotos?.back}
+          />
+          <BodyTemplate
+            title={t('lateral')}
+            template={LATERAL_TEMPLATE}
+            photo={userProgress?.initialPhotos?.lateral}
+          />
+        </div>
+
+        <Space medium />
+
+        {lessThan3DaysDifference(marathon?.endDate) && (
+          <div className='body-fotos'>
+            <BodyTemplate
+              title={t('front')}
+              template={FRONT_TEMPLATE}
+              photo={userProgress?.photoFinish?.front}
+            />
+            <BodyTemplate
+              title={t('back')}
+              template={BACK_TEMPLATE}
+              photo={userProgress?.photoFinish?.back}
+            />
+            <BodyTemplate
+              title={t('lateral')}
+              template={LATERAL_TEMPLATE}
+              photo={userProgress?.photoFinish?.lateral}
+            />
+          </div>
+        )}
+
+        <Space medium />
+
+        <div className='buttons-container'>
+          <Button
+            onClick={() => setShowFotosModal('initialPhotos')}
+            isPrimary
+            disabled={!lessThan3DaysDifference(marathon?.startDate)}
+          >
+            {t('uploadFotosInit')}
+          </Button>
+
+          <Button
+            onClick={() => setShowFotosModal('photoFinish')}
+            isPrimary
+            disabled={!lessThan3DaysDifference(marathon?.endDate)}
+          >
+            {t('uploadFotosFinish')}
+          </Button>
+        </div>
+      </div>
+
+      {showFotosModal && (
+        <Modal onClose={setShowFotosModal}>
+          <BodyFotosForm onSave={handleSaveFotos} time={showFotosModal} />
+        </Modal>
+      )}
     </div>
   );
 }

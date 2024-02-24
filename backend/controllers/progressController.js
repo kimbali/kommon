@@ -55,7 +55,7 @@ export const updateProgress = asyncHandler(async (req, res) => {
   const {
     isPaid,
     gift,
-    initialPhoto,
+    initialPhotos,
     photoFinish,
     weight,
     chest,
@@ -72,7 +72,7 @@ export const updateProgress = asyncHandler(async (req, res) => {
   if (progress) {
     progress.isPaid = isPaid;
     progress.gift = gift || progress.gift;
-    progress.initialPhoto = initialPhoto || progress.initialPhoto;
+    progress.initialPhotos = initialPhotos || progress.initialPhotos;
     progress.photoFinish = photoFinish || progress.photoFinish;
     progress.weight = weight || progress.weight;
     progress.chest = chest || progress.chest;

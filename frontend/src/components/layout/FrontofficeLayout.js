@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './layout.scss';
-import {
-  Outlet,
-  useLocation,
-  useNavigate,
-  useSearchParams,
-} from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useGetMarathonDetailsForClientQuery } from '../../slices/marathonApiSlice';
 import { useGetMonthDayDetailsQuery } from '../../slices/daysApiSlice';
 import { useMarathon } from '../../context/marathonContext';
@@ -17,21 +12,16 @@ import Button from '../button/Button';
 import MENU from '../../styles/img/menu.png';
 import Modal from '../modal/Modal';
 import Space from '../space/Space';
-import { useGetProgressDetailsQuery } from '../../slices/progressApiSlice';
-import { useProgress } from '../../context/progressContext';
 import {
   getDatePositionInMonthArray,
   getWeeksArray,
 } from '../../utils/formatDate';
-import { useUser } from '../../context/userContext';
 import { useDate } from '../../context/dateContext';
 import frontRoutes from '../../config/frontRoutes';
 
 function MainLayout() {
   const location = useLocation();
-  const navigate = useNavigate();
 
-  const { user } = useUser();
   const { marathonId, setDayDetails, updateMarathon } = useMarathon();
   const {
     currentDay,

@@ -308,4 +308,26 @@ export const generateCalendarData = (startDate, endDate) => {
   return calendarData;
 };
 
+export const lessThan3DaysDifference = date => {
+  if (!date) {
+    return false;
+  }
+
+  const dateObj = new Date(date);
+  const today = new Date();
+
+  // Calcular la diferencia en milisegundos entre las dos fechas
+  const difference = today.getTime() - dateObj.getTime();
+
+  // Convertir la diferencia a días
+  const differenceInDays = Math.ceil(difference / (1000 * 3600 * 24));
+
+  // Comprobar si la diferencia está dentro de 3 días antes o después
+  if (differenceInDays >= -3 && differenceInDays <= 3) {
+    return true; // La fecha actual está dentro del rango de 3 días antes o después de date
+  } else {
+    return false; // La fecha actual está fuera del rango de 3 días antes o después de date
+  }
+};
+
 export default formatDate;

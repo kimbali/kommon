@@ -7,12 +7,10 @@ import { useUpdateProgressMutation } from '../../slices/progressApiSlice';
 import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 import { useProgress } from '../../context/progressContext';
-import { useDate } from '../../context/dateContext';
 
 function BodyParametersForm({ onSave }) {
   const { t } = useTranslation();
   const { userProgress } = useProgress();
-  const { currentDay } = useDate();
 
   const [formData, setFormData] = useState();
   const [updateProgress] = useUpdateProgressMutation();

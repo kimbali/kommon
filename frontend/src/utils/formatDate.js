@@ -216,7 +216,9 @@ export const createPorgressWeeksArray = (progress, monthArray) => {
       const accUpdated = acc;
       const position = getDatePositionInMonthArray(monthArray, current.date);
 
-      accUpdated[0][position.week - 1].push(current);
+      if (position?.week) {
+        accUpdated[0][position.week - 1].push(current);
+      }
 
       return accUpdated;
     },

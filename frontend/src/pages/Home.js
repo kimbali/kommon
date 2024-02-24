@@ -172,8 +172,7 @@ function Home() {
       <div id='awards' className='join-us'>
         <div className='content-wrapper'>
           <div className='join-us-right'>
-            <Image url={labels?.giftImage.url} alt={labels?.giftDescription} />
-            {/* <img src={IPHONE} alt='' /> */}
+            <Image url={labels?.giftImage?.url} alt={labels?.giftDescription} />
           </div>
           <div className='join-us-left'>
             <div className='join-us-lbl'>

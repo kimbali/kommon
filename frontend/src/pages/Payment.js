@@ -15,9 +15,9 @@ import {
 } from '../slices/usersApiSlices';
 import { useDispatch } from 'react-redux';
 import { setCredentials } from '../slices/authSlice';
-import { useSendEmailMutation } from '../slices/emailApiSlice';
 import { useTranslation } from 'react-i18next';
 import template from '../components/emails/template';
+import postEmail from '../utils/postEmail';
 
 function Payment() {
   const { t } = useTranslation();
@@ -35,7 +35,6 @@ function Payment() {
   const [register] = useRegisterMutation();
   const [createProgress] = useCreateProgressMutation();
   const [updateCheckout] = useCheckoutMutation();
-  const [sendEmail] = useSendEmailMutation();
 
   const { data: marathonsData } = useGetMarathonsQuery({
     isActive: true,
@@ -96,11 +95,11 @@ function Payment() {
 
       const templateHTML = await template();
 
-      // from: 'Body Maraton <onboarding@resend.dev>',
-      await sendEmail({
+      // from: 'Body Maraton TEST <onboarding@resend.dev>',
+      await postEmail({
         from: 'Body Maraton <noreply@bodymaraton.com>',
-        to: userData.email,
-        subject: 'Registro Bodymaraton',
+        to: userData.email.trim(),
+        subject: 'Te has registrado en Bodymaraton',
         html: templateHTML,
       });
     } catch (err) {

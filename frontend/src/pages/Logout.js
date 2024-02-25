@@ -16,7 +16,7 @@ function Logout() {
   const handleLogout = async () => {
     try {
       await logoutApiCall().unwrap();
-      dispatch(logout());
+      await dispatch(logout());
 
       window.location.reload();
       updateUser(null);

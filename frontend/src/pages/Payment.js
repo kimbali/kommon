@@ -17,6 +17,7 @@ import { useDispatch } from 'react-redux';
 import { setCredentials } from '../slices/authSlice';
 import { useSendEmailMutation } from '../slices/emailApiSlice';
 import { useTranslation } from 'react-i18next';
+import template from '../components/emails/template';
 
 function Payment() {
   const { t } = useTranslation();
@@ -93,7 +94,15 @@ function Payment() {
 
       await setShowEmailLink(true);
 
-      await sendEmail({ email: userData.email });
+      const templateHTML = await template();
+
+      // from: 'Body Maraton <onboarding@resend.dev>',
+      await sendEmail({
+        from: 'Body Maraton <noreply@bodymaraton.com>',
+        to: userData.email,
+        subject: 'Registro Bodymaraton',
+        html: templateHTML,
+      });
     } catch (err) {
       toast.error(err?.data?.message || err.error);
     }

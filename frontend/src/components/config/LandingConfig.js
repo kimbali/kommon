@@ -159,7 +159,7 @@ function LandingConfig() {
           label={t('imageBefore')}
           name='resultImageBefore'
           onChange={handleOnChange}
-          value={formData?.resultImageBefore}
+          value={formData?.find(ele => ele.lang === 'es')?.resultImageBefore}
           type='file'
         />
 
@@ -167,7 +167,7 @@ function LandingConfig() {
           label={t('imageAfter')}
           name='resultImageAfter'
           onChange={handleOnChange}
-          value={formData?.resultImageAfter}
+          value={formData?.find(ele => ele.lang === 'ca')?.resultImageAfter}
           type='file'
         />
       </div>

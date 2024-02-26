@@ -492,5 +492,6 @@
   "back": "Foto de espaldas",
   "lateral": "Foto lateral",
   "photosSectionTitle": "Tu progreso en fotos",
-  "photosSectionDescription": "Sube fotos 3 días antes y despues de empezar y terminar la maratón para ver tu progreso"
+  "photosSectionDescription": "Sube fotos 3 días antes y despues de empezar y terminar la maratón para ver tu progreso",
+  "loadAFile": "Carga un archivo"
 }

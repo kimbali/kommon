@@ -61,6 +61,7 @@ function Resources() {
         onChange={handleOnChange}
         value={formData?.waterTracker}
         type='file'
+        placeholder={t('loadAFile')}
       />
 
       <Space small />

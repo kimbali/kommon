@@ -275,7 +275,13 @@ function Input({
         ) : (
           <div className='input-file'>
             <Text className={value ? 'has-value' : 'placeholder'}>
-              {isLoading ? t('loading') : fileName ? fileName : t('imageLoad')}
+              {isLoading
+                ? t('loading')
+                : fileName
+                ? fileName
+                : placeholder
+                ? placeholder
+                : t('imageLoad')}
             </Text>
             <Text>
               <FontAwesomeIcon icon={faPlus} />

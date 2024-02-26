@@ -6,7 +6,7 @@ const ConfigSchema = new Schema(
     workoutsLevel: Boolean,
     vacuumVideo: String,
     waterTracker: {
-      originalName: String,
+      originalname: String,
       size: String,
       format: String,
       url: String,
@@ -17,7 +17,21 @@ const ConfigSchema = new Schema(
         giftTitle: String,
         giftDescription: String,
         giftImage: {
-          originalName: String,
+          originalname: String,
+          size: String,
+          format: String,
+          url: String,
+        },
+        resultName: String,
+        resultDescription: String,
+        resultImageBefore: {
+          originalname: String,
+          size: String,
+          format: String,
+          url: String,
+        },
+        resultImageAfter: {
+          originalname: String,
           size: String,
           format: String,
           url: String,

@@ -7,6 +7,7 @@ import DietsList from '../components/config/DietsList';
 import ActiveSections from '../components/config/ActiveSections';
 import LandingConfig from '../components/config/LandingConfig';
 import Resources from '../components/config/Resources';
+import GiftsList from '../components/config/GiftsList';
 
 function Configuration() {
   const { t } = useTranslation();
@@ -25,6 +26,12 @@ function Configuration() {
 
       <div className='config-section'>
         <DietsList />
+      </div>
+
+      <Space big />
+
+      <div className='config-section'>
+        <GiftsList />
       </div>
 
       <Space big />

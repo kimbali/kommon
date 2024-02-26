@@ -7,7 +7,6 @@ import BENEFIT_2 from '../styles/img/benefit-02.png';
 import BENEFIT_3 from '../styles/img/benefit-03.png';
 import BENEFIT_4 from '../styles/img/benefit-04.png';
 import FOR_WHO from '../styles/img/for_who.png';
-import RESULT from '../styles/img/result.png';
 import MASSAGE_OIL_SMALL from '../styles/img/Massage_oil_small.png';
 import LIME_GINGER from '../styles/img/lime-ginger-en-1cut2.png';
 import FR_CUT from '../styles/img/fr_cut.png';
@@ -35,6 +34,11 @@ import UserMenu from '../components/header/UserMenu';
 import { useGetConfigLandingQuery } from '../slices/configApiSlice';
 import Image from '../components/image/Image';
 import Calendary from '../components/calendar/Calendar';
+import Markdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import { useGetGiftsQuery } from '../slices/giftsApiSlice';
+import Text from '../components/text/Text';
+import Space from '../components/space/Space';
 
 function Home() {
   const { t, i18n } = useTranslation();
@@ -44,6 +48,7 @@ function Home() {
   const [showCalendar, setshowCalendar] = useState();
 
   const { data: labels } = useGetConfigLandingQuery(lang);
+  const { data: giftsData } = useGetGiftsQuery({});
 
   const handleCalendar = () => {
     setshowMenu(false);
@@ -241,17 +246,30 @@ function Home() {
                 <div className='result-slider-item'>
                   <div className='result-slider-left'>
                     <div className='result-slider-lbl'>
-                      {t('participantName')}
+                      {labels?.resultName}
                     </div>
-                    <div className='result-slider-txt'>
-                      <p>{t('100percentHappy')}</p>
-                      <p>{t('hereISee')}</p>
-                    </div>
+
+                    <Markdown
+                      className='result-slider-txt'
+                      remarkPlugins={[remarkGfm]}
+                    >
+                      {labels?.resultDescription}
+                    </Markdown>
                   </div>
+
                   <div className='result-slider-right'>
-                    <img src={RESULT} alt='marathon_result' />
+                    <Image
+                      url={labels?.resultImageBefore?.url}
+                      alt='Participante foto antes maraton'
+                      isBackground
+                    />
+
+                    <Image
+                      url={labels?.resultImageAfter?.url}
+                      alt='Participante foto despues maraton'
+                      isBackground
+                    />
                   </div>
-                  <div className='clear'></div>
                 </div>
               </div>
             </div>
@@ -259,222 +277,28 @@ function Home() {
         </div>
       </div>
 
-      <div className='gift'>
-        <div className='content-wrapper'>
-          <div className='gift-lbl'>{t('reciveAGift')}</div>
-          <div className='gift-slbl'>{t('letiqueCosmetic')}</div>
-          <div className='gift-slider'>
-            <div id='gift-slider' className='owl-carousel'>
-              {
-                <Carousel showThumbs={false}>
-                  <div className='gift-slider-section'>
-                    <div className='gift-slider-item'>
-                      <div className='gift-slider-img'>
-                        <img src={MASSAGE_OIL_SMALL} alt='massage oil small' />
-                      </div>
-                      <div className='gift-slider-cnt'>
-                        <div className='gift-slider-lbl'>{t('massageOil')}</div>
-                        <div className='gift-slider-txt'>
-                          {t('esencialOilCanela')}
-                        </div>
-                      </div>
-                    </div>
+      <div className='git-carousel-section content-wrapper'>
+        <div className='gift-lbl'>{t('reciveAGift')}</div>
 
-                    <div className='gift-slider-item'>
-                      <div className='gift-slider-img'>
-                        <img src={LIME_GINGER} alt='lime ginger' />
-                      </div>
-                      <div className='gift-slider-cnt'>
-                        <div className='gift-slider-lbl'>{t('bodyScrub')}</div>
-                        <div className='gift-slider-txt'>
-                          {t('exfoliantContains')}
-                        </div>
-                      </div>
-                    </div>
+        <div className='gift-slbl'>{t('letiqueCosmetic')}</div>
 
-                    <div className='gift-slider-item'>
-                      <div className='gift-slider-img'>
-                        <img src={FR_CUT} alt='' />
-                      </div>
-                      <div className='gift-slider-cnt'>
-                        <div className='gift-slider-lbl'>{t('frangipani')}</div>
-                        <div className='gift-slider-txt'>
-                          {t('frangipaniOil')}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+        <div className='gift-carousel'>
+          {giftsData?.gifts?.length > 0 &&
+            giftsData.gifts.map((ele, i) => (
+              <div className='gift-item' key={`gift-${i}`}>
+                <div className='image-container'>
+                  <Image isBackground url={ele.image?.url} />
+                </div>
 
-                  <div className='gift-slider-section'>
-                    <div className='gift-slider-item'>
-                      <div className='gift-slider-img'>
-                        <img src={CHOCOLATE_ALMOND} alt='' />
-                      </div>
-                      <div className='gift-slider-cnt'>
-                        <div className='gift-slider-lbl'>{t('chocolate')}</div>
-                        <div className='gift-slider-txt'>
-                          {t('chocolateOil')}
-                        </div>
-                      </div>
-                    </div>
-                    <div className='gift-slider-item'>
-                      <div className='gift-slider-img'>
-                        <img src={CHERRY} alt='' />
-                      </div>
-                      <div className='gift-slider-cnt'>
-                        <div className='gift-slider-lbl'>{t('cherry')}</div>
-                        <div className='gift-slider-txt'>{t('cherryOil')}</div>
-                      </div>
-                    </div>
-                    <div className='gift-slider-item'>
-                      <div className='gift-slider-img'>
-                        <img src={COFFEE} alt='' />
-                      </div>
-                      <div className='gift-slider-cnt'>
-                        <div className='gift-slider-lbl'>{t('coffee')}</div>
-                        <div className='gift-slider-txt'>{t('coffeeOil')}</div>
-                      </div>
-                    </div>
-                  </div>
+                <Text fontSize='18' isBold>
+                  {ele[lang].name}
+                </Text>
 
-                  <div className='gift-slider-section'>
-                    <div className='gift-slider-item'>
-                      <div className='gift-slider-img'>
-                        <img
-                          src={LYMPHATIC_DRAINAGE}
-                          alt='Lymphatic drainage'
-                        />
-                      </div>
-                      <div className='gift-slider-cnt'>
-                        <div className='gift-slider-lbl'>{t('drainage')}</div>
-                        <div className='gift-slider-txt'>
-                          {t('drainageOil')}
-                        </div>
-                      </div>
-                    </div>
-                    <div className='gift-slider-item'>
-                      <div className='gift-slider-img'>
-                        <img src={HOT_COLD} alt='Hot cold contrast cream' />
-                      </div>
-                      <div className='gift-slider-cnt'>
-                        <div className='gift-slider-lbl'>{t('hotCold')}</div>
-                        <div className='gift-slider-txt'>{t('hotColdOil')}</div>
-                      </div>
-                    </div>
-                    <div className='gift-slider-item'>
-                      <div className='gift-slider-img'>
-                        <img
-                          src={SUPER_FLAME}
-                          alt='Super flame body wrap gel'
-                        />
-                      </div>
-                      <div className='gift-slider-cnt'>
-                        <div className='gift-slider-lbl'>{t('flame')}</div>
-                        <div className='gift-slider-txt'>{t('flameOil')}</div>
-                      </div>
-                    </div>
-                  </div>
+                <Space extraSmall />
 
-                  <div className='gift-slider-section'>
-                    <div className='gift-slider-item'>
-                      <div className='gift-slider-img'>
-                        <img src={KELP} alt='Kelp mint cold body wrap gel' />
-                      </div>
-                      <div className='gift-slider-cnt'>
-                        <div className='gift-slider-lbl'>{t('kelpMint')}</div>
-                        <div className='gift-slider-txt'>
-                          {t('kelpMintOil')}
-                        </div>
-                      </div>
-                    </div>
-                    <div className='gift-slider-item'>
-                      <div className='gift-slider-img'>
-                        <img
-                          src={BATTER1}
-                          alt='Body cream butter jasmine-wild strawberry'
-                        />
-                      </div>
-                      <div className='gift-slider-cnt'>
-                        <div className='gift-slider-lbl'>
-                          {t('creamButter')}
-                        </div>
-                        <div className='gift-slider-txt'>
-                          {t('creamButterOil')}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className='gift-slider-item'>
-                      <div className='gift-slider-img'>
-                        <img src={ELASTIC} alt='Elastic skin body wrap gel' />
-                      </div>
-                      <div className='gift-slider-cnt'>
-                        <div className='gift-slider-lbl'>
-                          {t('elasticSkin')}
-                        </div>
-                        <div className='gift-slider-txt'>
-                          {t('elasticSkinOil')}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className='gift-slider-section'>
-                    <div className='gift-slider-item'>
-                      <div className='gift-slider-img'>
-                        <img src={ALGAE_SCRUB} alt='Body scrub algae' />
-                      </div>
-                      <div className='gift-slider-cnt'>
-                        <div className='gift-slider-lbl'>{t('algae')}</div>
-                        <div className='gift-slider-txt'>{t('algaeOil')}</div>
-                      </div>
-                    </div>
-
-                    <div className='gift-slider-item'>
-                      <div className='gift-slider-img'>
-                        <img src={ALGAE_DET} alt='Body wrap algae detox' />
-                      </div>
-                      <div className='gift-slider-cnt'>
-                        <div className='gift-slider-lbl'>{t('algaeDetox')}</div>
-                        <div className='gift-slider-txt'>
-                          {t('algaeDetoxOil')}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className='gift-slider-item'>
-                      <div className='gift-slider-img'>
-                        <img src={BATTER2} alt='Body cream mango papaya' />
-                      </div>
-                      <div className='gift-slider-cnt'>
-                        <div className='gift-slider-lbl'>
-                          {t('mangoPapaya')}
-                        </div>
-                        <div className='gift-slider-txt'>
-                          {t('mangoPapayaOil')}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className='gift-slider-section'>
-                    <div className='gift-slider-item'>
-                      <div className='gift-slider-img'>
-                        <img
-                          src={CINNAMON}
-                          alt='CINNAMON-ORANGE HOT BODY WRAP GEL'
-                        />
-                      </div>
-                      <div className='gift-slider-cnt'>
-                        <div className='gift-slider-lbl'>{t('wrapGel')}</div>
-                        <div className='gift-slider-txt'>{t('wrapGelOil')}</div>
-                      </div>
-                    </div>
-                  </div>
-                </Carousel>
-              }
-            </div>
-          </div>
+                <Text>{ele[lang].description}</Text>
+              </div>
+            ))}
         </div>
       </div>
 

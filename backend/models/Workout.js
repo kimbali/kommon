@@ -6,7 +6,7 @@ const workoutSchema = new Schema(
     description: String,
     minutes: String,
     image: {
-      originalName: String,
+      originalname: String,
       size: String,
       format: String,
       url: String,

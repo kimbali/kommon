@@ -62,9 +62,9 @@ export const updateConfig = asyncHandler(async (req, res) => {
   const {
     activeMeditations,
     workoutsLevel,
-    landingConfig,
     vacuumVideo,
     waterTracker,
+    landingConfig,
   } = req.body;
 
   const config = await Config.findById(req.params.id);

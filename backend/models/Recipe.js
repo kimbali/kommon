@@ -21,7 +21,7 @@ const recipeSchema = new Schema(
       default: 0,
     },
     image: {
-      originalName: String,
+      originalname: String,
       size: String,
       format: String,
       url: String,

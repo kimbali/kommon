@@ -23,6 +23,7 @@ import regionsRoutes from './routes/regionsRoutes.js';
 import sendEmailRoutes from './routes/sendEmailRoutes.js';
 import dietsRoutes from './routes/dietsRoutes.js';
 import configRoutes from './routes/configRoutes.js';
+import giftsRoutes from './routes/giftsRoutes.js';
 
 dotenv.config();
 
@@ -55,6 +56,7 @@ app.use('/api/regions', regionsRoutes);
 app.use('/api/email', sendEmailRoutes);
 app.use('/api/diets', dietsRoutes);
 app.use('/api/config', configRoutes);
+app.use('/api/gifts', giftsRoutes);
 
 // app.get('/api/config/paypal', (req, res) =>
 //   res.send(process.env.PAYPAL_CLIENT_ID)

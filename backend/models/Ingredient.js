@@ -19,7 +19,7 @@ const ingredientsSchema = new Schema(
       type: Number,
     },
     image: {
-      originalName: String,
+      originalname: String,
       size: String,
       format: String,
       url: String,

@@ -6,7 +6,7 @@ const meditationSchema = new Schema(
     description: String,
     minutes: Number,
     image: {
-      originalName: String,
+      originalname: String,
       size: String,
       format: String,
       url: String,

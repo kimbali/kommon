@@ -23,7 +23,7 @@
       }
 
       &:first-of-type {
-        width: 30%;
+        width: 50%;
       }
 
       .toggle {
@@ -34,9 +34,19 @@
 }
 
 .config-section {
-  background-color: $background-4;
+  background-color: $background-5;
   padding: 24px;
   border-radius: $border-radius-wrapper;
+
+  table {
+    background-color: $background-5;
+
+    tr {
+      &:hover {
+        background: $background-4;
+      }
+    }
+  }
 
   @media screen and (min-width: 1024px) {
     .content-left-and-right {

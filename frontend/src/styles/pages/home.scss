@@ -752,22 +752,47 @@
     -webkit-box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
     box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
-  }
-  .result-slider-left {
-    float: left;
-    padding: 20px 20px 20px 20px;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    text-align: left;
-    width: 48%;
-  }
-  .result-slider-right {
-    float: right;
-    width: 48%;
-  }
-  .result-slider-right img {
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (min-width: 1024px) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    .result-slider-left {
+      float: left;
+      padding: 20px 20px 20px 20px;
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      text-align: left;
+      width: 100%;
+
+      @media screen and (min-width: 1024px) {
+        width: 48%;
+      }
+    }
+    .result-slider-right {
+      display: flex;
+      height: 300px;
+
+      @media screen and (min-width: 1024px) {
+        height: 500px;
+      }
+
+      .image {
+        margin: 4px;
+        height: 100%;
+        width: 100%;
+        background-size: cover;
+        border-radius: $border-radius-element;
+
+        @media screen and (min-width: 1024px) {
+          width: 210px;
+        }
+      }
+    }
   }
   .result-slider-lbl {
     font-size: 32px;
@@ -789,27 +814,57 @@
     padding: 30px;
   }
 
-  .gift {
+  .git-carousel-section {
+    width: 100%;
     padding: 70px 0px 70px 0px;
     text-align: center;
-    background: #1f2126; /* Old browsers */
-    background: -moz-linear-gradient(
-      45deg,
-      #1f2126 0%,
-      #292c33 100%
-    ); /* FF3.6-15 */
-    background: -webkit-linear-gradient(
-      45deg,
-      #1f2126 0%,
-      #292c33 100%
-    ); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(
-      45deg,
-      #1f2126 0%,
-      #292c33 100%
-    ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1f2126', endColorstr='#292c33',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+    .gift-carousel {
+      width: 100%;
+      overflow-x: auto;
+      overflow-y: hidden;
+      display: flex;
+
+      &::-webkit-scrollbar {
+        height: 6px;
+        background-color: $background-2;
+        border-radius: $border-radius-element;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: $background-3;
+        border-radius: $border-radius-element;
+      }
+
+      .gift-item {
+        width: 300px;
+        min-width: 300px;
+        background-color: $white;
+        border-radius: $border-radius-element;
+        margin: 24px 12px;
+        padding: 24px 24px 12px;
+
+        .image-container {
+          height: 188px;
+          display: flex;
+          justify-content: center;
+          align-items: flex-end;
+          margin-bottom: 8px;
+
+          .image {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+          }
+        }
+
+        .text {
+          color: $black;
+        }
+      }
+    }
   }
+
   .gift-lbl {
     font-size: 42px;
     line-height: 47px;
@@ -824,30 +879,7 @@
     text-transform: uppercase;
     font-size: 21px;
   }
-  .gift-slider {
-    padding: 0px 40px 0px 40px;
-    position: relative;
 
-    .carousel-status {
-      display: none;
-    }
-
-    .carousel.carousel-slider .control-arrow {
-      background-color: $primary-color;
-      border-radius: 100%;
-      opacity: 1;
-      width: 32px;
-      height: 32px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      top: 50%;
-    }
-
-    .carousel .control-dots {
-      bottom: -14px;
-    }
-  }
   .gift-slider-item {
     width: 90%;
     background: #fff;
@@ -2209,11 +2241,6 @@
       float: none;
       width: 100%;
       margin-bottom: 20px;
-      padding: 0px 0px 0px 0px;
-    }
-    .result-slider-right {
-      float: none;
-      width: 100%;
       padding: 0px 0px 0px 0px;
     }
     .results .content-wrapper {

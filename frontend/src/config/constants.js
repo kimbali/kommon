@@ -20,6 +20,7 @@ export const REGIONS_URL = '/api/regions';
 export const EMAIL_URL = '/api/email';
 export const DIETS_URL = '/api/diets';
 export const CONFIG_URL = '/api/config';
+export const GIFTS_URL = '/api/gifts';
 
 // CONSTANTS ******
 export const USER_INFO = 'userInfo';

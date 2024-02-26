@@ -15,19 +15,19 @@ const progressSchema = new Schema(
     gift: String,
     initialPhotos: {
       front: {
-        originalName: String,
+        originalname: String,
         size: String,
         format: String,
         url: String,
       },
       back: {
-        originalName: String,
+        originalname: String,
         size: String,
         format: String,
         url: String,
       },
       lateral: {
-        originalName: String,
+        originalname: String,
         size: String,
         format: String,
         url: String,
@@ -35,19 +35,19 @@ const progressSchema = new Schema(
     },
     photoFinish: {
       front: {
-        originalName: String,
+        originalname: String,
         size: String,
         format: String,
         url: String,
       },
       back: {
-        originalName: String,
+        originalname: String,
         size: String,
         format: String,
         url: String,
       },
       lateral: {
-        originalName: String,
+        originalname: String,
         size: String,
         format: String,
         url: String,

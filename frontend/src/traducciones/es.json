@@ -457,7 +457,7 @@
   "cantDeleteAdminUser": "No se pueden borrar usuarios administradores",
   "deleteUser": "Eliminar usuario",
   "editUser": "Modificar usuario",
-  "modifyLanding": "Modificar textos de la landing",
+  "modifyLanding": "Landing",
   "negativo": "Ninguna",
   "vacuum": "Vacuum",
   "waterTracker": "Calendario de agua",
@@ -493,5 +493,13 @@
   "lateral": "Foto lateral",
   "photosSectionTitle": "Tu progreso en fotos",
   "photosSectionDescription": "Sube fotos 3 días antes y despues de empezar y terminar la maratón para ver tu progreso",
-  "loadAFile": "Carga un archivo"
+  "loadAFile": "Carga un archivo",
+  "imageBefore": "Imagen del antes",
+  "imageAfter": "Imagen del despues",
+  "addGift": "Agregar regalo",
+  "giftsList": "Lista de regalos",
+  "modifyGift": "Modificar regalo",
+  "newGift": "Nuevo regalo",
+  "giftName": "Nombre del regalo",
+  "gift": "Regalo"
 }

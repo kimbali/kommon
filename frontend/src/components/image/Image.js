@@ -1,7 +1,7 @@
 import React from 'react';
 import { useGetImageUrlQuery } from '../../slices/imagesApiSlice';
 
-function Image({ url, alt = '', className, isBackground = false }) {
+function Image({ url, alt = '', className = '', isBackground = false }) {
   const { data: imageS3 } = useGetImageUrlQuery(
     {
       url,
@@ -11,7 +11,7 @@ function Image({ url, alt = '', className, isBackground = false }) {
 
   return isBackground ? (
     <div
-      className={className}
+      className={`image ${className}`}
       style={{ backgroundImage: `url(${imageS3?.signedUrl})` }}
     />
   ) : (

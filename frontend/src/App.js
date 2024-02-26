@@ -152,7 +152,7 @@ function App() {
         dispatch(logout());
       }
     }
-  }, [dispatch]);
+  }, []);
 
   const handleSearchParam = (paramKey, handleParam) => {
     const storageId = localStorage.getItem(paramKey);

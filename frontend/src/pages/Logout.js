@@ -18,7 +18,6 @@ function Logout() {
       await logoutApiCall().unwrap();
       await dispatch(logout());
 
-      window.location.reload();
       updateUser(null);
       navigate(frontRoutes.home);
     } catch (err) {

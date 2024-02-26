@@ -71,7 +71,7 @@ function UserMore() {
       </nav>
 
       {showVacuumModal && (
-        <Modal className='vacuum' onClose={setShowVacuumModal} isSecondary>
+        <Modal className='vacuum' onClose={setShowVacuumModal}>
           <Text isTitle>{t('vacuumVideo')}</Text>
 
           <Space medium />

@@ -70,13 +70,13 @@ export const createPlanning = asyncHandler(async (req, res) => {
 // @route   PUT /api/plannings/:id
 // @access  Private/Admin
 export const updatePlanning = asyncHandler(async (req, res) => {
-  const { name, month } = req.body;
+  const { name, newDay } = req.body;
 
   const planning = await Planning.findById(req.params.id);
 
   if (planning) {
     planning.name = name || planning.name;
-    planning.month = month || planning.month;
+    planning.month = [...planning.month, newDay];
 
     const updatedPlanning = await planning.save();
     res.json(updatedPlanning);

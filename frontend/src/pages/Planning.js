@@ -38,8 +38,8 @@ function Planning() {
 
       if (newDay.data) {
         const updatedPlanning = {
-          ...planData,
-          month: [...planData.month, newDay.data._id],
+          planId: planData._id,
+          newDay: newDay.data,
         };
 
         await updatePlanning(updatedPlanning).unwrap();

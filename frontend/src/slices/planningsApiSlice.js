@@ -28,7 +28,7 @@ export const planningsApiSlice = apiSlice.injectEndpoints({
     updatePlanning: builder.mutation({
       query: data => {
         return {
-          url: `${PLANNINGS_URL}/${data._id}`,
+          url: `${PLANNINGS_URL}/${data.planId}`,
           method: 'PUT',
           body: data,
         };

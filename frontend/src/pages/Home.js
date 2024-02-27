@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import QA from '../styles/img/qa.png';
 import BENEFIT_1 from '../styles/img/benefit-01.png';
 import BENEFIT_2 from '../styles/img/benefit-02.png';
 import BENEFIT_3 from '../styles/img/benefit-03.png';
 import BENEFIT_4 from '../styles/img/benefit-04.png';
 import FOR_WHO from '../styles/img/for_who.png';
-import COACH_1 from '../styles/img/coach-01.png';
-import COACH_2 from '../styles/img/coach-02.png';
 import PLATAFORMA from '../styles/img/platform_img2.png';
 import MENU from '../styles/img/menu.png';
 import frontRoutes from '../config/frontRoutes';
@@ -22,6 +21,7 @@ import { useGetGiftsQuery } from '../slices/giftsApiSlice';
 import Text from '../components/text/Text';
 import Space from '../components/space/Space';
 import extraerUsername from '../utils/getInstagramName';
+import { useGetFaqsQuery } from '../slices/faqsApiSlice';
 
 function Home() {
   const { t, i18n } = useTranslation();
@@ -32,6 +32,7 @@ function Home() {
 
   const { data: labels } = useGetConfigLandingQuery(lang);
   const { data: giftsData } = useGetGiftsQuery({ quantity: true });
+  const { data: faqsData } = useGetFaqsQuery();
 
   const handleCalendar = () => {
     setshowMenu(false);
@@ -456,45 +457,20 @@ function Home() {
         <div className='content-wrapper'>
           <div className='faq-lbl'>{t('faq')}</div>
           <div className='faq-row'>
-            <details className='faq-item'>
-              <summary className='faq-item-q'>{t('dailyTrains')}</summary>
-              <p className='faq-item-a'>{t('sixTimes')}</p>
-            </details>
+            {faqsData?.length > 0 &&
+              faqsData.map((ele, index) => (
+                <details className='faq-item'>
+                  <summary className='faq-item-q'>
+                    <div
+                      className='image'
+                      style={{ backgroundImage: `url(${QA})` }}
+                    />
+                    <p>{ele[lang].title}</p>
+                  </summary>
 
-            <details className='faq-item'>
-              <summary className='faq-item-q'>{t('canITrain')}</summary>
-              <p className='faq-item-a'>{t('yourVideosAreFor')}</p>
-            </details>
-
-            <details className='faq-item'>
-              <summary className='faq-item-q'>{t('eatMenuList')}</summary>
-              <p className='faq-item-a'>{t('footsWillBeCalculated')}</p>
-            </details>
-
-            <details className='faq-item'>
-              <summary className='faq-item-q'>{t('howManyKilos')}</summary>
-              <p className='faq-item-a'>{t('pautasLooseWeight')}</p>
-            </details>
-
-            <details className='faq-item'>
-              <summary className='faq-item-q'>{t('howManyTime')}</summary>
-              <p className='faq-item-a'>{t('personalAreaAccess')}</p>
-            </details>
-
-            <details className='faq-item'>
-              <summary className='faq-item-q'>{t('howIWillRecive')}</summary>
-              <p className='faq-item-a'>{t('whenBuyMaraton')}</p>
-            </details>
-
-            <details className='faq-item'>
-              <summary className='faq-item-q'>{t('howICanWin')}</summary>
-              <p className='faq-item-a'>{t('theFinalAward')}</p>
-            </details>
-
-            <details className='faq-item'>
-              <summary className='faq-item-q'>{t('howChooseWinner')}</summary>
-              <p className='faq-item-a'>{t('eachPrincipiant')}</p>
-            </details>
+                  <p className='faq-item-a'>{ele[lang].description}</p>
+                </details>
+              ))}
           </div>
         </div>
       </div>

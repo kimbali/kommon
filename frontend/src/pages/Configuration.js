@@ -8,6 +8,7 @@ import ActiveSections from '../components/config/ActiveSections';
 import LandingConfig from '../components/config/LandingConfig';
 import Resources from '../components/config/Resources';
 import GiftsList from '../components/config/GiftsList';
+import FaqsList from '../components/config/FaqsList';
 
 function Configuration() {
   const { t } = useTranslation();
@@ -32,6 +33,12 @@ function Configuration() {
 
       <div className='config-section'>
         <GiftsList />
+      </div>
+
+      <Space big />
+
+      <div className='config-section'>
+        <FaqsList />
       </div>
 
       <Space big />

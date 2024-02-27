@@ -128,7 +128,7 @@
   "diet": "Menu",
   "dietForYou": "Menu adecuadamente diseñado según tus necesidades",
   "dietName": "Nombre de la dieta",
-  "dietsList": "Lista de dietas",
+  "dietsList": "Dietas",
   "dinner": "Cena",
   "done": "Fin",
   "downloadShoppingList": "Podrás descargarte la lista de la compra de los menus de la primera semana",
@@ -497,9 +497,15 @@
   "imageBefore": "Imagen del antes",
   "imageAfter": "Imagen del despues",
   "addGift": "Agregar regalo",
-  "giftsList": "Lista de regalos",
+  "giftsList": "Regalos",
   "modifyGift": "Modificar regalo",
   "newGift": "Nuevo regalo",
   "giftName": "Nombre del regalo",
-  "gift": "Regalo"
+  "gift": "Regalo",
+  "faqsList": "FAQs",
+  "addFaq": "Añadir un FAQ",
+  "newFaq": "Nuevo FAQ",
+  "faqName": "Título de la pregunta frequente",
+  "faqAnswer": "Respuesta",
+  "deleteFaq": "Eliminar FAQ"
 }

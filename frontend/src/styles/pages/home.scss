@@ -1945,29 +1945,34 @@
     position: relative;
 
     summary {
+      display: flex;
       list-style: none;
+
+      .image {
+        background-position: top;
+        background-repeat: no-repeat;
+        background-size: 28px;
+        width: 28px;
+        height: 28px;
+        margin-right: 12px;
+      }
+
+      p {
+        width: 95%;
+      }
+    }
+
+    &[open] summary {
+      .image {
+        background-position: bottom;
+      }
     }
 
     &::-webkit-details-marker {
       display: none;
     }
-
-    &::before {
-      display: block;
-      position: absolute;
-      top: 0;
-      left: -42px;
-      content: '';
-      background: url(../img/qa.png) left top no-repeat;
-      background-size: 28px;
-      width: 28px;
-      height: 28px;
-    }
-
-    &[open]::before {
-      background-position: bottom;
-    }
   }
+
   .faq-item-q {
     font-size: 18px;
     cursor: pointer;
@@ -1980,6 +1985,7 @@
     font-size: 18px;
     line-height: 26px;
     color: #6e6e6e;
+    padding-left: 38px;
   }
   .faq-item.open .faq-item-q::before {
     background-position: left -28px;

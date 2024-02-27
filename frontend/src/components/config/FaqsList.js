@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import LoadingError from '../loadingError/LoadingError';
 import Modal from '../modal/Modal';
-import GiftForm from './GiftForm';
+import FaqForm from './FaqForm';
 import Button from '../button/Button';
 import Space from '../space/Space';
 import ConfirmModal from '../modal/ConfirmModal';
@@ -10,36 +10,36 @@ import toast from 'react-hot-toast';
 import Text from '../text/Text';
 import { useTranslation } from 'react-i18next';
 import {
-  useDeleteGiftMutation,
-  useGetGiftsQuery,
-} from '../../slices/giftsApiSlice';
+  useDeleteFaqMutation,
+  useGetFaqsQuery,
+} from '../../slices/faqsApiSlice';
 import i18n from '../../traducciones/i18n';
 
-function GiftsList() {
+function FaqsList() {
   const { t } = useTranslation();
   const lang = i18n.language;
 
   const [showFormModal, setShowFormModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [currentGift, setCurrentGift] = useState(null);
+  const [currentFaq, setCurrentFaq] = useState(null);
 
-  const [deleteGift] = useDeleteGiftMutation();
-  const { data, isLoading, isError, refetch } = useGetGiftsQuery({});
+  const [deleteFaq] = useDeleteFaqMutation();
+  const { data, isLoading, isError, refetch } = useGetFaqsQuery({});
 
   const onSuccess = async () => {
     setShowFormModal(false);
-    setCurrentGift(null);
+    setCurrentFaq(null);
     await refetch();
   };
 
-  const handleEdit = gift => {
+  const handleEdit = faq => {
     setShowFormModal(true);
-    setCurrentGift(gift);
+    setCurrentFaq(faq);
   };
 
   const handleDelete = async () => {
     try {
-      await deleteGift(showDeleteModal._id);
+      await deleteFaq(showDeleteModal._id);
       toast.success(t('deleted'));
 
       setShowDeleteModal(false);
@@ -51,7 +51,7 @@ function GiftsList() {
 
   const handleCloseForm = () => {
     setShowFormModal(false);
-    setCurrentGift(null);
+    setCurrentFaq(null);
   };
 
   if (isLoading || isError) {
@@ -61,10 +61,10 @@ function GiftsList() {
   return (
     <div>
       <div className='content-left-and-right'>
-        <Text isSectionTitle>{t('giftsList')}</Text>
+        <Text isSectionTitle>{t('faqsList')}</Text>
 
         <Button isPrimary onClick={() => setShowFormModal(true)}>
-          {t('addGift')}
+          {t('addFaq')}
         </Button>
       </div>
 
@@ -79,25 +79,25 @@ function GiftsList() {
 
       <table className='config-table'>
         <tbody>
-          {data.map((gift, i) => (
-            <tr key={`gift-item-${i}`}>
-              <td>{gift[lang]?.name}</td>
+          {data.map((faq, i) => (
+            <tr key={`faq-item-${i}`}>
+              <td>{faq[lang]?.title}</td>
 
-              <td>{gift.quantity}</td>
+              <td>{faq.quantity}</td>
 
               <td className='only-icon center'>
                 <Button
                   className='background-2'
                   onlyIcon
                   iconLeft={faEdit}
-                  onClick={() => handleEdit(gift)}
+                  onClick={() => handleEdit(faq)}
                 />
 
                 <Button
                   className='background-2'
                   onlyIcon
                   iconLeft={faTrash}
-                  onClick={() => setShowDeleteModal(gift)}
+                  onClick={() => setShowDeleteModal(faq)}
                 />
               </td>
             </tr>
@@ -107,7 +107,7 @@ function GiftsList() {
 
       {showFormModal && (
         <Modal onClose={handleCloseForm}>
-          <GiftForm onSuccess={onSuccess} data={currentGift} />
+          <FaqForm onSuccess={onSuccess} data={currentFaq} />
         </Modal>
       )}
 
@@ -115,12 +115,12 @@ function GiftsList() {
         <ConfirmModal
           onConfirm={handleDelete}
           onClose={setShowDeleteModal}
-          title={t('deleteGift')}
-          text={`${t('confirmDelete')} ${showDeleteModal.name}?`}
+          title={t('deleteFaq')}
+          text={`${t('confirmDelete')} ${showDeleteModal?.es?.title}?`}
         />
       )}
     </div>
   );
 }
 
-export default GiftsList;
+export default FaqsList;

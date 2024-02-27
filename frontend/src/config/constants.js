@@ -21,6 +21,7 @@ export const EMAIL_URL = '/api/email';
 export const DIETS_URL = '/api/diets';
 export const CONFIG_URL = '/api/config';
 export const GIFTS_URL = '/api/gifts';
+export const FAQS_URL = '/api/faqs';
 
 // CONSTANTS ******
 export const USER_INFO = 'userInfo';

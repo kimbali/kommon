@@ -1,28 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
-import { Carousel } from 'react-responsive-carousel';
 import BENEFIT_1 from '../styles/img/benefit-01.png';
 import BENEFIT_2 from '../styles/img/benefit-02.png';
 import BENEFIT_3 from '../styles/img/benefit-03.png';
 import BENEFIT_4 from '../styles/img/benefit-04.png';
 import FOR_WHO from '../styles/img/for_who.png';
-import MASSAGE_OIL_SMALL from '../styles/img/Massage_oil_small.png';
-import LIME_GINGER from '../styles/img/lime-ginger-en-1cut2.png';
-import FR_CUT from '../styles/img/fr_cut.png';
-import CHOCOLATE_ALMOND from '../styles/img/Chocolate_cut.png';
-import CHERRY from '../styles/img/cereza_cut.png';
-import COFFEE from '../styles/img/Coffee_Scrub.png';
-import CINNAMON from '../styles/img/Cinnamon_orange_small.png';
-import BATTER1 from '../styles/img/Batter_1_small.png';
-import BATTER2 from '../styles/img/Batter_2_small.png';
-import ALGAE_DET from '../styles/img/algae_detox_inner.png';
-import ALGAE_SCRUB from '../styles/img/algae-scrub-mock-up-en2.png';
-import ELASTIC from '../styles/img/Elastic_Skin_small.png';
-import KELP from '../styles/img/Kelp_mint_small.png';
-import SUPER_FLAME from '../styles/img/Super_flame_small.png';
-import HOT_COLD from '../styles/img/Hot_Cold_small.png';
-import LYMPHATIC_DRAINAGE from '../styles/img/Lymphatic_Drainage_small.png';
 import COACH_1 from '../styles/img/coach-01.png';
 import COACH_2 from '../styles/img/coach-02.png';
 import PLATAFORMA from '../styles/img/platform_img2.png';
@@ -48,7 +30,7 @@ function Home() {
   const [showCalendar, setshowCalendar] = useState();
 
   const { data: labels } = useGetConfigLandingQuery(lang);
-  const { data: giftsData } = useGetGiftsQuery({});
+  const { data: giftsData } = useGetGiftsQuery({ quantity: true });
 
   const handleCalendar = () => {
     setshowMenu(false);
@@ -283,8 +265,8 @@ function Home() {
         <div className='gift-slbl'>{t('letiqueCosmetic')}</div>
 
         <div className='gift-carousel'>
-          {giftsData?.gifts?.length > 0 &&
-            giftsData.gifts.map((ele, i) => (
+          {giftsData?.length > 0 &&
+            giftsData.map((ele, i) => (
               <div className='gift-item' key={`gift-${i}`}>
                 <div className='image-container'>
                   <Image isBackground url={ele.image?.url} />

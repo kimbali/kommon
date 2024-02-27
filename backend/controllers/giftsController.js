@@ -4,13 +4,6 @@ import Gift from '../models/Gift.js';
 // @desc    Fetch all gifts
 // @route   GET /api/gifts
 // @access  Public
-// export const getGifts = asyncHandler(async (req, res) => {
-//   const findBy = req.query.quantity ? { quantity: req.query.quantity } : {};
-
-//   const gifts = await Gift.find(findBy);
-
-//   res.json({ gifts });
-// });
 export const getGifts = asyncHandler(async (req, res) => {
   const findBy = {};
 
@@ -20,7 +13,7 @@ export const getGifts = asyncHandler(async (req, res) => {
 
   const gifts = await Gift.find(findBy);
 
-  res.json({ gifts });
+  res.json(gifts);
 });
 
 // @desc    Fetch single gift

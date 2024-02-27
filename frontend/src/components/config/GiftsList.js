@@ -68,7 +68,7 @@ function GiftsList() {
         </Button>
       </div>
 
-      {data?.gifts.length === 0 && (
+      {data?.length === 0 && (
         <>
           <Space medium />
           <Text color='primary'>No hay regalos configurados</Text>
@@ -79,7 +79,7 @@ function GiftsList() {
 
       <table className='config-table'>
         <tbody>
-          {data.gifts.map((gift, i) => (
+          {data.map((gift, i) => (
             <tr key={`gift-item-${i}`}>
               <td>{gift[lang]?.name}</td>
 

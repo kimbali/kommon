@@ -59,8 +59,8 @@ const registerUser = asyncHandler(async (req, res) => {
     password,
     isAdmin,
     city,
-    address,
     phone,
+    address,
     hasPaid,
     createdByAdmin,
   });

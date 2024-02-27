@@ -22,15 +22,13 @@ import { useBuyOneGiftMutation } from '../slices/giftsApiSlice';
 
 function Payment() {
   const { t } = useTranslation();
+  const { state } = useLocation();
+  const dispatch = useDispatch();
   const { setMarathonId } = useMarathon();
   const { updateUser } = useUser();
 
-  const { state } = useLocation();
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
   const [showEmailLink, setShowEmailLink] = useState(false);
-  const [userData, setUserData] = useState(state);
+  const [userData] = useState(state);
   const [today] = useState(new Date().toISOString());
 
   const [register] = useRegisterMutation();
@@ -43,13 +41,11 @@ function Payment() {
     startDate: today,
   });
 
-  useEffect(() => {
-    if (!state) {
-      navigate(frontRoutes.register);
-    } else {
-      setUserData(state);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (!state) {
+  //     navigate(frontRoutes.register);
+  //   }
+  // }, []);
 
   const handleCreateUser = async () => {
     try {
@@ -81,10 +77,10 @@ function Payment() {
         marathon: marathon._id,
         user: res?._id,
         isPaid: true,
-        gift: state?.giftSelected,
+        gift: userData?.giftSelected,
       });
 
-      await buyOneGift(state.giftSelected);
+      await buyOneGift(userData.giftSelected);
 
       const progresses = res.progresses.concat(newProgress.data._id);
 

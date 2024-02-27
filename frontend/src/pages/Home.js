@@ -262,7 +262,7 @@ function Home() {
       <div className='git-carousel-section content-wrapper'>
         <div className='gift-lbl'>{t('reciveAGift')}</div>
 
-        <div className='gift-slbl'>{t('letiqueCosmetic')}</div>
+        <div className='gift-slbl'>{t('organicShop')}</div>
 
         <div className='gift-carousel'>
           {giftsData?.length > 0 &&

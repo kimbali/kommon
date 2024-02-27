@@ -33,6 +33,13 @@ export const giftsApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ['Gifts'],
     }),
+    buyOneGift: builder.mutation({
+      query: giftId => ({
+        url: `${GIFTS_URL}/buyone/${giftId}`,
+        method: 'PUT',
+      }),
+      invalidatesTags: ['Gifts'],
+    }),
     deleteGift: builder.mutation({
       query: giftId => ({
         url: `${GIFTS_URL}/${giftId}`,
@@ -48,5 +55,6 @@ export const {
   useGetGiftDetailsQuery,
   useCreateGiftMutation,
   useUpdateGiftMutation,
+  useBuyOneGiftMutation,
   useDeleteGiftMutation,
 } = giftsApiSlice;

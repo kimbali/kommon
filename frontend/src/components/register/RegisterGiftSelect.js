@@ -28,7 +28,10 @@ function RegisterGiftSelect({
 
         <button
           className={`${!hasGift ? 'selected' : ''}`}
-          onClick={() => setHasGift(false)}
+          onClick={() => {
+            setHasGift(false);
+            setGiftSelected(null);
+          }}
         >
           {t('basic')}
         </button>
@@ -36,7 +39,7 @@ function RegisterGiftSelect({
 
       <Space small />
 
-      {hasGift && giftsList.length > 0 && (
+      {hasGift && giftsList?.length > 0 && (
         <div className='gifts-wrapper'>
           {giftsList.map((ele, index) => (
             <GiftItem
@@ -45,6 +48,7 @@ function RegisterGiftSelect({
               image={ele.image?.url}
               text={ele[lang].name}
               key={ele._id}
+              giftId={ele._id}
             />
           ))}
         </div>

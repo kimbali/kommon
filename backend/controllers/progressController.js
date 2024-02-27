@@ -36,11 +36,12 @@ export const getProgressById = asyncHandler(async (req, res) => {
 // @route   POST /api/progresses
 // @access  Private
 export const createProgress = asyncHandler(async (req, res) => {
-  const { user, marathon, isPaid } = req.body;
+  const { user, marathon, isPaid, gift } = req.body;
   const newProgress = new Progress({
     marathon,
     user,
     isPaid,
+    gift,
   });
 
   const createdProgress = await newProgress.save();

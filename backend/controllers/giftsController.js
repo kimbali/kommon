@@ -69,6 +69,23 @@ export const updateGift = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc    Descrease 1 quantity
+// @route   PUT /api/gifts/buyone/:id
+// @access  Private/Admin
+export const buyOneGift = asyncHandler(async (req, res) => {
+  const gift = await Gift.findById(req.params.id);
+
+  if (gift) {
+    gift.quantity = gift.quantity - 1;
+
+    const updatedGift = await gift.save();
+    res.json(updatedGift);
+  } else {
+    res.status(404);
+    throw new Error('Gift not found');
+  }
+});
+
 // @desc    Delete a gift
 // @route   DELETE /api/gift/:id
 // @access  Private/Admin

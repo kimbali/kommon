@@ -85,7 +85,7 @@ function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
         return;
       }
 
-      navigate(frontRoutes.payment, { state: formData });
+      navigate(frontRoutes.payment, { state: { ...formData, giftSelected } });
     } else {
       onSuccess(2);
     }
@@ -95,6 +95,7 @@ function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
     <div>
       <form onSubmit={handlePayNow} className='personal-info-form'>
         <Text isTitle>{t('generalInfo')}</Text>
+
         <Text fontSize='18'>{t('tellUsMoreAboutYou')}</Text>
 
         <Space medium />

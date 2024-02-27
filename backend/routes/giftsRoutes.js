@@ -2,6 +2,7 @@ import express from 'express';
 import { protect, admin } from '../middleware/authMiddleware.js';
 import checkObjectId from '../middleware/checkObjectId.js';
 import {
+  buyOneGift,
   createGift,
   deleteAllGifts,
   deleteGift,
@@ -22,5 +23,6 @@ router
   .get(checkObjectId, getGiftById)
   .put(checkObjectId, protect, admin, updateGift)
   .delete(checkObjectId, protect, admin, deleteGift);
+router.route('/buyone/:id').put(checkObjectId, buyOneGift);
 
 export default router;

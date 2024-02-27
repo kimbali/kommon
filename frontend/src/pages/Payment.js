@@ -18,6 +18,7 @@ import { setCredentials } from '../slices/authSlice';
 import { useTranslation } from 'react-i18next';
 import template from '../components/emails/template';
 import postEmail from '../utils/postEmail';
+import { useBuyOneGiftMutation } from '../slices/giftsApiSlice';
 
 function Payment() {
   const { t } = useTranslation();
@@ -35,6 +36,7 @@ function Payment() {
   const [register] = useRegisterMutation();
   const [createProgress] = useCreateProgressMutation();
   const [updateCheckout] = useCheckoutMutation();
+  const [buyOneGift] = useBuyOneGiftMutation();
 
   const { data: marathonsData } = useGetMarathonsQuery({
     isActive: true,
@@ -73,12 +75,16 @@ function Payment() {
       if (!res) {
         return;
       }
+
       // TODO: Mirar si el usuario ya ha pagado, porque se ha creado desde Backoffice.
       const newProgress = await createProgress({
         marathon: marathon._id,
         user: res?._id,
         isPaid: true,
+        gift: state?.giftSelected,
       });
+
+      await buyOneGift(state.giftSelected);
 
       const progresses = res.progresses.concat(newProgress.data._id);
 

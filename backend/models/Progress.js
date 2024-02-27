@@ -12,7 +12,10 @@ const progressSchema = new Schema(
       ref: 'User',
     },
     isPaid: Boolean,
-    gift: String,
+    gift: {
+      type: Schema.Types.ObjectId,
+      ref: 'Gift',
+    },
     initialPhotos: {
       front: {
         originalname: String,

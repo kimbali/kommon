@@ -21,6 +21,7 @@ import remarkGfm from 'remark-gfm';
 import { useGetGiftsQuery } from '../slices/giftsApiSlice';
 import Text from '../components/text/Text';
 import Space from '../components/space/Space';
+import extraerUsername from '../utils/getInstagramName';
 
 function Home() {
   const { t, i18n } = useTranslation();
@@ -232,7 +233,7 @@ function Home() {
                     </div>
 
                     <Markdown
-                      className='result-slider-txt'
+                      className='markdown-text'
                       remarkPlugins={[remarkGfm]}
                     >
                       {labels?.resultDescription}
@@ -278,7 +279,9 @@ function Home() {
 
                 <Space extraSmall />
 
-                <Text>{ele[lang].description}</Text>
+                <Markdown className='markdown-text' remarkPlugins={[remarkGfm]}>
+                  {ele[lang].description}
+                </Markdown>
               </div>
             ))}
         </div>
@@ -287,44 +290,63 @@ function Home() {
       <div className='coach'>
         <div className='content-wrapper'>
           <div className='coach-lbl'>{t('whoHasPreparedMaraton')}</div>
+
           <div className='coach-row'>
             <div className='coach-item'>
               <div className='coach-item-left'>
-                <div className='coach-img'>
-                  <img src={COACH_1} alt='' />
-                </div>
-                <div className='coach-name'>{t('nutrisionist')}</div>
+                <Image
+                  isBackground
+                  className='coach-img'
+                  url={labels?.coach[0]?.image?.url}
+                  alt={labels?.coach[0]?.name}
+                />
+
+                <div className='coach-name'>{labels?.coach[0]?.name}</div>
+
                 <a
                   className='coach-link'
-                  href='https://www.instagram.com/nuria.mh/'
+                  href={labels?.coach[0]?.instagram}
                   target='_blank'
                   rel='noreferrer'
                 >
-                  @nuria.mh
+                  {extraerUsername(labels?.coach[0]?.instagram)}
                 </a>
               </div>
-              <div className='coach-item-right'>{t('100PersentSure')}</div>
-              <div className='clear'></div>
+
+              <div className='coach-item-right'>
+                <Markdown className='markdown-text' remarkPlugins={[remarkGfm]}>
+                  {labels?.coach[0]?.comment}
+                </Markdown>
+              </div>
             </div>
+
             <div className='coach-item'>
               <div className='coach-item-left'>
-                <div className='coach-img'>
-                  <img src={COACH_2} alt='' />
-                </div>
-                <div className='coach-name'>{t('entrenador')}</div>
+                <Image
+                  isBackground
+                  className='coach-img'
+                  url={labels?.coach[1]?.image?.url}
+                  alt={labels?.coach[1]?.name}
+                />
+
+                <div className='coach-name'>{labels?.coach[1]?.name}</div>
+
                 <a
                   className='coach-link'
-                  href='https://www.instagram.com/En_tr/'
+                  href={labels?.coach[1]?.instagram}
                   target='_blank'
                   rel='noreferrer'
                 >
-                  @En_tr
+                  {extraerUsername(labels?.coach[1]?.instagram)}
                 </a>
               </div>
-              <div className='coach-item-right'>{t('100PersentSure')}</div>
-              <div className='clear'></div>
+
+              <div className='coach-item-right'>
+                <Markdown className='markdown-text' remarkPlugins={[remarkGfm]}>
+                  {labels?.coach[1]?.comment}
+                </Markdown>
+              </div>
             </div>
-            <div className='clear'></div>
           </div>
         </div>
       </div>

@@ -17,6 +17,38 @@ function LandingConfig() {
 
   const [updateConfigApi] = useUpdateConfigMutation();
 
+  const handleArrayChange = ({ name: completeName, language, value }) => {
+    setShowHelper(true);
+
+    const [parent, position, name] = completeName.split('.');
+
+    let allLanguages = JSON.parse(JSON.stringify(formData)); // Deep copy
+    const index = allLanguages.findIndex(ele => ele.lang === language);
+
+    if (!language) {
+      const updatedArr = allLanguages.map(ele => {
+        let completeParent = ele[parent];
+        let son = completeParent[+position] || {};
+        son[name] = value;
+        completeParent[+position] = son;
+        return { ...ele, [parent]: completeParent };
+      });
+      setFormData([...updatedArr]);
+      return;
+    }
+
+    if (index === -1) {
+      toast.error('Rellena primero otros campos con traducciones');
+      return;
+    }
+
+    let completeParent = allLanguages[index][parent][+position] || {};
+    completeParent[name] = value;
+    allLanguages[index][parent][+position] = completeParent;
+
+    setFormData([...allLanguages]);
+  };
+
   const handleOnChange = ({ value, name, language }) => {
     setShowHelper(true);
 
@@ -172,7 +204,131 @@ function LandingConfig() {
         />
       </div>
 
+      <Space medium />
+
+      <Text isSubtitle className='primary'>
+        Entrenador 1
+      </Text>
+
       <Space small />
+
+      <div className='form-section'>
+        <Input
+          label='Título del entrenador'
+          name='coach.0.name'
+          value={formData?.find(ele => ele.lang === 'es')?.coach[0]?.name}
+          onChange={handleArrayChange}
+          language='es'
+        />
+
+        <Input
+          label='Título del entrenador'
+          name='coach.0.name'
+          value={formData?.find(ele => ele.lang === 'ca')?.coach[0]?.name}
+          onChange={handleArrayChange}
+          language='ca'
+        />
+      </div>
+
+      <div className='form-section'>
+        <Input
+          label='Comentario del entrenador'
+          name='coach.0.comment'
+          value={formData?.find(ele => ele.lang === 'es')?.coach[0]?.comment}
+          onChange={handleArrayChange}
+          type='textarea'
+          language='es'
+        />
+
+        <Input
+          label='Comentario del entrenador'
+          name='coach.0.comment'
+          value={formData?.find(ele => ele.lang === 'ca')?.coach[0]?.comment}
+          onChange={handleArrayChange}
+          type='textarea'
+          language='ca'
+        />
+      </div>
+
+      <div className='form-section'>
+        <Input
+          label='Link instagram'
+          name='coach.0.instagram'
+          value={formData?.find(ele => ele.lang === 'ca')?.coach[0]?.instagram}
+          onChange={handleArrayChange}
+        />
+
+        <Input
+          label={t('imageAfter')}
+          name='coach.0.image'
+          onChange={handleArrayChange}
+          value={formData?.find(ele => ele.lang === 'ca')?.coach[0]?.image}
+          type='file'
+        />
+      </div>
+
+      <Space medium />
+
+      <Text isSubtitle className='primary'>
+        Entrenador 2
+      </Text>
+
+      <Space small />
+
+      <div className='form-section'>
+        <Input
+          label='Título del entrenador'
+          name='coach.1.name'
+          value={formData?.find(ele => ele.lang === 'es')?.coach[1]?.name}
+          onChange={handleArrayChange}
+          language='es'
+        />
+
+        <Input
+          label='Título del entrenador'
+          name='coach.1.name'
+          value={formData?.find(ele => ele.lang === 'ca')?.coach[1]?.name}
+          onChange={handleArrayChange}
+          language='ca'
+        />
+      </div>
+
+      <div className='form-section'>
+        <Input
+          label='Comentario del entrenador'
+          name='coach.1.comment'
+          value={formData?.find(ele => ele.lang === 'es')?.coach[1]?.comment}
+          onChange={handleArrayChange}
+          type='textarea'
+          language='es'
+        />
+
+        <Input
+          label='Comentario del entrenador'
+          name='coach.1.comment'
+          value={formData?.find(ele => ele.lang === 'ca')?.coach[1]?.comment}
+          onChange={handleArrayChange}
+          type='textarea'
+          language='ca'
+        />
+      </div>
+
+      <div className='form-section'>
+        <Input
+          label='Link instagram'
+          name='coach.1.instagram'
+          value={formData?.find(ele => ele.lang === 'ca')?.coach[1]?.instagram}
+          onChange={handleArrayChange}
+        />
+
+        <Input
+          label={t('imageAfter')}
+          name='coach.1.image'
+          onChange={handleArrayChange}
+          value={formData?.find(ele => ele.lang === 'ca')?.coach[1]?.image}
+          type='file'
+        />
+      </div>
 
       <Space medium />
     </form>

@@ -36,6 +36,22 @@ const ConfigSchema = new Schema(
           format: String,
           url: String,
         },
+        coach: {
+          default: [],
+          type: [
+            {
+              name: String,
+              comment: String,
+              instagram: String,
+              image: {
+                originalname: String,
+                size: String,
+                format: String,
+                url: String,
+              },
+            },
+          ],
+        },
       },
     ],
   },

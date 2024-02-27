@@ -28,6 +28,7 @@ function Input({
   subLabel = '',
   maxLength,
   name = '',
+  isArray = false,
   noValueOption = '',
   onChange,
   onCreateOption,
@@ -58,6 +59,7 @@ function Input({
   const handleOnChange = event => {
     onChange({
       language,
+      isArray,
       name: event.target.name,
       value:
         type === 'file'

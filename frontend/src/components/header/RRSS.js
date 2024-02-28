@@ -15,7 +15,10 @@ function RRSS() {
         </Text>
       </a>
 
-      <a href=''>
+      <a
+        href='https://www.instagram.com/bodymaraton'
+        alt='Instagram bodymaraton'
+      >
         <Text>
           <img src={INSTAGRAM} alt='telegram' /> Instagram
         </Text>

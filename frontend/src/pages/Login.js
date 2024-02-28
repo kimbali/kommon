@@ -17,10 +17,12 @@ import TextedLogo from '../components/header/TextedLogo';
 import { useUser } from '../context/userContext';
 import { useTranslation } from 'react-i18next';
 import getTokenFromLocalStorage from '../utils/tokenStorage';
+import { useMarathon } from '../context/marathonContext';
 
 const Login = () => {
   const { t } = useTranslation();
-  const { updateUser, user } = useUser();
+  const { updateUser } = useUser();
+  const { setMarathonId } = useMarathon();
   const [formData, setFormData] = useState({
     email: JSON.parse(localStorage.getItem('userInfo'))?.email || '',
   });
@@ -54,13 +56,17 @@ const Login = () => {
 
       setToken(res.token);
 
-      const userProfile = await refetchProfile();
+      const { data: userProfile } = await refetchProfile();
 
-      updateUser({ ...userProfile.data });
+      updateUser({ ...userProfile });
 
       if (!res.isAdmin && !res.isFullRegistered) {
         navigate(frontRoutes.register);
       } else {
+        setMarathonId(
+          userProfile?.progresses[userProfile?.progresses?.length - 1]?.marathon
+            ._id
+        );
         navigate(res.isAdmin ? frontRoutes.marathonList : frontRoutes.main);
       }
     } catch (err) {

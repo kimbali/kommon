@@ -126,13 +126,18 @@ export const weeksOptionsList = ({
   endDate,
   isAdmin,
   todayPosition,
+  monthArray,
 }) => {
   const totalWeeks = calculateWeeks(startDate, endDate);
+  const weekLength = isAdmin ? 0 : monthArray[todayPosition.week - 1]?.length;
 
   const optionsWeeks = [...Array(totalWeeks).keys()].map((ele, index) => {
     const isDisabled =
       !isAdmin &&
-      !(todayPosition?.weekDay >= 5 && todayPosition?.week === index) &&
+      !(
+        todayPosition?.weekDay >= weekLength - 2 &&
+        todayPosition?.week === index
+      ) &&
       todayPosition?.week < index + 1;
 
     return {
@@ -329,5 +334,13 @@ export const lessThan3DaysDifference = date => {
     return false; // La fecha actual está fuera del rango de 3 días antes o después de date
   }
 };
+
+export function howManyDaysBetween(date1, date2) {
+  const millisecondsPerDay = 1000 * 60 * 60 * 24;
+  const timeDiff = Math.abs(date2 - date1);
+  const daysApart = Math.ceil(timeDiff / millisecondsPerDay);
+
+  return daysApart;
+}
 
 export default formatDate;

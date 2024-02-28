@@ -7,6 +7,7 @@ import {
   formatWeekDayShort,
   getDatePositionInMonthArray,
   getWeeksArray,
+  howManyDaysBetween,
   isSameDay,
   weeksOptionsList,
 } from '../../utils/formatDate';
@@ -35,8 +36,8 @@ function PlanningSelector({
   const {
     currentDay,
     setCurrentDay,
-    setCurrentDate,
     currentDate,
+    setCurrentDate,
     currentWeek,
     setCurrentWeek,
     monthArray,
@@ -70,6 +71,7 @@ function PlanningSelector({
       endDate,
       isAdmin: user?.isAdmin,
       todayPosition,
+      monthArray,
     });
     setWeekOptions(optionsWeeks);
     return optionsWeeks;
@@ -83,6 +85,16 @@ function PlanningSelector({
       const position = getDatePositionInMonthArray(monthArray, date);
       week = position.week;
       weekDay = position.weekDay;
+    }
+
+    if (
+      !user.isAdmin &&
+      !week &&
+      !weekDay &&
+      howManyDaysBetween(new Date(), monthArray[0][0]) <= 2
+    ) {
+      week = 1;
+      weekDay = 0;
     }
 
     const day = {
@@ -106,7 +118,14 @@ function PlanningSelector({
 
   useEffect(() => {
     if (marathon) {
-      handleSelectDay(currentDate || marathon.startDate);
+      const dateToShow =
+        (!user.isAdmin &&
+          howManyDaysBetween(new Date(), monthArray[0][0]) <= 2) ||
+        !currentDate
+          ? marathon.startDate
+          : currentDate;
+
+      handleSelectDay(dateToShow);
     } else {
       setMonthArray();
       setWeekOptions([]);

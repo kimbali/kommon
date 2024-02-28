@@ -50,7 +50,10 @@ export const calculateUserKcal = ({
   return Math.round(totalKcalPerWeek / 50) * 50;
 };
 
-export const KcalReglaDeTres = (total, user, { returnNumber } = {}) => {
+export const KcalReglaDeTres = (total, user = {}, { returnNumber } = {}) => {
+  if (!user) {
+    return;
+  }
   const computation = (total * calculateUserKcal(user)) / BASE_KCAL;
 
   if (returnNumber) {

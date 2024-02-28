@@ -24,7 +24,7 @@ function Payment() {
   const { t } = useTranslation();
   const { state } = useLocation();
   const dispatch = useDispatch();
-  const { setMarathonId } = useMarathon();
+  const { updateMarathon } = useMarathon();
   const { updateUser } = useUser();
 
   const [showEmailLink, setShowEmailLink] = useState(false);
@@ -91,7 +91,7 @@ function Payment() {
         hasPaid: true,
       });
 
-      setMarathonId(marathon._id);
+      updateMarathon(marathon);
 
       await setShowEmailLink(true);
 

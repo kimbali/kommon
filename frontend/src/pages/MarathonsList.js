@@ -23,11 +23,13 @@ import { useMarathon } from '../context/marathonContext';
 import Modal from '../components/modal/Modal';
 import MarathonForm from '../components/marathon/MarathonForm';
 import Space from '../components/space/Space';
+import { useDate } from '../context/dateContext';
 
 function MarathonsList() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { updateMarathon: updateMarathonContext } = useMarathon();
+  const { setCurrentDate } = useDate();
 
   const { data: marathonsData, refetch: refetchMarathons } =
     useGetMarathonsQuery({});
@@ -98,8 +100,9 @@ function MarathonsList() {
     setShowActivateModal(false);
   };
 
-  const handleGoToLiveMarathon = marahton => {
-    navigate(`${frontRoutes.main}?${MARATHON_ID}=${marahton._id}`, {
+  const handleGoToLiveMarathon = marathon => {
+    setCurrentDate(marathon.startDate);
+    navigate(`${frontRoutes.main}?${MARATHON_ID}=${marathon._id}`, {
       replace: true,
     });
   };
@@ -159,7 +162,6 @@ function MarathonsList() {
                   <Button
                     onClick={() => handleGoToLiveMarathon(eachMarathon)}
                     isSecondary
-                    // disabled={!eachMarathon.isActive}
                   >
                     {t('goToLive')}
                   </Button>

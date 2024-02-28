@@ -26,14 +26,17 @@ function MarathonDiet({ currentDiet, mealsData, dayId, onSave }) {
 
   useEffect(() => {
     if (!mealsData || mealsData?.length === 0) {
+      setIngredients([]);
       return;
     }
 
-    const duplicatedList = mealsData.flatMap(ele => ele.recipe?.ingredients);
+    const duplicatedList = mealsData
+      .filter(ele => ele.diet === currentDiet)
+      .flatMap(ele => ele.recipe?.ingredients);
     const reducedList = createUniqueIngredientsList(duplicatedList);
 
     setIngredients(reducedList);
-  }, [mealsData]);
+  }, [mealsData, currentDiet]);
 
   useEffect(() => {
     if (mealsData) {
@@ -44,7 +47,7 @@ function MarathonDiet({ currentDiet, mealsData, dayId, onSave }) {
 
   useEffect(() => {
     if (recipesData?.recipes) {
-      const options = recipesData.recipes.map(ele => {
+      const options = recipesData?.recipes.map(ele => {
         return { label: ele.title, value: ele._id };
       });
 
@@ -79,8 +82,8 @@ function MarathonDiet({ currentDiet, mealsData, dayId, onSave }) {
       ele => ele.diet === currentDiet && ele.meal === meal
     );
 
-    const optionSelected = options.find(
-      ele => ele.value === mealFound?.recipe._id
+    const optionSelected = options?.find(
+      ele => ele.value === mealFound?.recipe?._id
     );
 
     return optionSelected;

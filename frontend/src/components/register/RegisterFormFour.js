@@ -11,13 +11,11 @@ import formatDate, {
   hasMarathonStarted,
 } from '../../utils/formatDate';
 import { MARATHON_ID } from '../../config/constants';
-import { useMarathon } from '../../context/marathonContext';
 import { useTranslation } from 'react-i18next';
 
 function RegisterFormFour({ userData }) {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { setMarathonId } = useMarathon();
 
   const [{ startDate, endDate, _id: marathonId }] = useState(
     userData?.progresses[userData?.progresses.length - 1]?.marathon
@@ -28,8 +26,6 @@ function RegisterFormFour({ userData }) {
   const daysDifference = calculateDaysDifference(new Date(), endDate);
 
   const handleClick = () => {
-    setMarathonId(marathonId);
-
     navigate(`${frontRoutes.main}?${MARATHON_ID}=${marathonId}`, {
       replace: true,
     });
@@ -86,7 +82,7 @@ function RegisterFormFour({ userData }) {
       <Space big />
 
       <Button
-        disabled={!hasStarted || hasFinished}
+        // disabled={!hasStarted || hasFinished}
         big
         center
         isPrimary

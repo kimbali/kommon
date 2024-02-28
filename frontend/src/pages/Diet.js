@@ -49,15 +49,18 @@ function Diet() {
 
   useEffect(() => {
     if (!mealsList?.length > 0) {
+      setTodayIngredients([]);
       return;
     }
 
-    const duplicatedList = mealsList.flatMap(ele => ele.recipe?.ingredients);
+    const duplicatedList = mealsList
+      .filter(ele => ele.diet === currentDiet)
+      .flatMap(ele => ele.recipe?.ingredients);
     const reducedList = createUniqueIngredientsList(duplicatedList);
 
     setTodayIngredients(reducedList);
-  }, [mealsList]);
-
+  }, [mealsList, currentDiet]);
+  console.log(mealsList);
   if (!marathon) {
     return null;
   }
@@ -66,7 +69,6 @@ function Diet() {
     <div className='diet-tab'>
       <div className='content-on-the-left'>
         <Text isTitle>{t('todayDiet')}</Text>
-
         <EnergyDetails ingredients={todayIngredients} />
       </div>
 

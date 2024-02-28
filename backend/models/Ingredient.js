@@ -8,15 +8,19 @@ const ingredientsSchema = new Schema(
     },
     calories: {
       type: Number,
+      default: 0,
     },
     proteins: {
       type: Number,
+      default: 0,
     },
     fats: {
       type: Number,
+      default: 0,
     },
     carbohydrates: {
       type: Number,
+      default: 0,
     },
     image: {
       originalname: String,

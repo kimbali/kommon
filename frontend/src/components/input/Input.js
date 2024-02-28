@@ -63,7 +63,7 @@ function Input({
       name: event.target.name,
       value:
         type === 'number'
-          ? +event.target.value
+          ? event.target.value
           : type === 'file'
           ? event.target.files[0]
           : type === 'checkbox' || type === 'toggle'

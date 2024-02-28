@@ -17,7 +17,7 @@ import { useTranslation } from 'react-i18next';
 function MarathonSelector() {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { marathonId, updateMarathon, setMarathonId } = useMarathon();
+  const { marathonId, updateMarathon } = useMarathon();
 
   const [marathonOptions, setmarathonOptions] = useState([]);
   const [marathonSelected, setMarathonSelected] = useState(null);
@@ -79,7 +79,7 @@ function MarathonSelector() {
         }
       );
     } else {
-      setMarathonId('');
+      updateMarathon();
       navigate(`${frontRoutes.planning}`, {
         replace: true,
       });

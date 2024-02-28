@@ -9,7 +9,7 @@ const recipeSchema = new Schema(
     steps: [{ type: String, default: '' }],
     ingredients: [
       {
-        quantity: { type: Number },
+        quantity: { type: Number, default: 0 },
         ingredient: {
           type: Schema.Types.ObjectId,
           ref: 'Ingredient',

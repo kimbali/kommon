@@ -22,10 +22,12 @@ import Text from '../components/text/Text';
 import Space from '../components/space/Space';
 import extraerUsername from '../utils/getInstagramName';
 import { useGetFaqsQuery } from '../slices/faqsApiSlice';
+import { useConfig } from '../context/configContext';
 
 function Home() {
   const { t, i18n } = useTranslation();
   const lang = i18n.language;
+  const { config } = useConfig();
 
   const [showMenu, setshowMenu] = useState();
   const [showCalendar, setshowCalendar] = useState();
@@ -128,7 +130,8 @@ function Home() {
             <div className='promo-main-lbl-b'>{t('bodyMaratonPerfect')}</div>
             <div className='promo-main-txt'>{t('youAreOnTimeTo')}</div>
             <div className='promo-main-price'>
-              <b>29,90 €</b> <span>{t('freeGift')}</span>
+              <b>{config?.price.toLocaleString('de-DE')} €</b>{' '}
+              <span>{t('freeGift')}</span>
             </div>
             <Link to={frontRoutes.register} className='main-apply'>
               {t('signInNow')}
@@ -208,7 +211,8 @@ function Home() {
               <li>{t('healthyLifeWoman')}</li>
             </ul>
             <div className='promo-main-price'>
-              <b>29,90 €</b> <span>{t('freeGift')}</span>
+              <b>{config?.price.toLocaleString('de-DE')} €</b>{' '}
+              <span>{t('freeGift')}</span>
             </div>
             <Link to={frontRoutes.register} className='main-apply'>
               {t('signInNow')}
@@ -414,7 +418,9 @@ function Home() {
                 </div>
               </div>
               <div className='option-benefits-price'>
-                <div className='option-price'>29,90 €</div>
+                <div className='option-price'>
+                  {config?.price.toLocaleString('de-DE')} €
+                </div>
                 <Link to={frontRoutes.register} className='main-apply'>
                   {t('signInNow')}
                 </Link>
@@ -443,7 +449,9 @@ function Home() {
                 <div className='option-benefit'>{t('soportTelegram')}</div>
               </div>
               <div className='option-benefits-price'>
-                <div className='option-price'>29,90 €</div>
+                <div className='option-price'>
+                  {config?.price.toLocaleString('de-DE')} €
+                </div>
                 <Link to={frontRoutes.registerGift} className='main-apply'>
                   {t('signInNow')}
                 </Link>
@@ -459,7 +467,7 @@ function Home() {
           <div className='faq-row'>
             {faqsData?.length > 0 &&
               faqsData.map((ele, index) => (
-                <details className='faq-item'>
+                <details key={`faq-${index}`} className='faq-item'>
                   <summary className='faq-item-q'>
                     <div
                       className='image'

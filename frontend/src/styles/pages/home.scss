@@ -846,7 +846,17 @@
         background-color: $white;
         border-radius: $border-radius-element;
         margin: 24px 12px;
-        padding: 14px;
+        padding: 8px 14px 24px;
+
+        .markdown-text {
+          margin: 0;
+        }
+
+        @media screen and (min-width: 1024px) {
+          padding: 24px;
+          width: 330px;
+          min-width: 330px;
+        }
 
         .image-container {
           height: 188px;

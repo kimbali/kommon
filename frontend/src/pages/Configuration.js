@@ -20,7 +20,7 @@ function Configuration() {
       <Space big />
 
       <div className='config-section'>
-        <RegionsList />
+        <ActiveSections />
       </div>
 
       <Space big />
@@ -44,7 +44,7 @@ function Configuration() {
       <Space big />
 
       <div className='config-section'>
-        <ActiveSections />
+        <RegionsList />
       </div>
 
       <Space big />

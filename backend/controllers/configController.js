@@ -60,6 +60,7 @@ export const createConfig = asyncHandler(async (req, res) => {
 // @access  Private/Admin
 export const updateConfig = asyncHandler(async (req, res) => {
   const {
+    price,
     activeMeditations,
     workoutsLevel,
     vacuumVideo,
@@ -70,6 +71,7 @@ export const updateConfig = asyncHandler(async (req, res) => {
   const config = await Config.findById(req.params.id);
 
   if (config) {
+    config.price = price || config.price;
     config.activeMeditations = activeMeditations;
     config.workoutsLevel = workoutsLevel;
     config.waterTracker = waterTracker || config.waterTracker;

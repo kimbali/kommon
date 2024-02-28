@@ -62,7 +62,9 @@ function Input({
       isArray,
       name: event.target.name,
       value:
-        type === 'file'
+        type === 'number'
+          ? +event.target.value
+          : type === 'file'
           ? event.target.files[0]
           : type === 'checkbox' || type === 'toggle'
           ? event.target.checked

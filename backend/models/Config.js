@@ -2,6 +2,7 @@ import { model, Schema } from 'mongoose';
 
 const ConfigSchema = new Schema(
   {
+    price: Number,
     activeMeditations: Boolean,
     workoutsLevel: Boolean,
     vacuumVideo: String,

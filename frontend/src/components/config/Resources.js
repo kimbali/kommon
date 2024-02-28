@@ -56,6 +56,17 @@ function Resources() {
       <Space medium />
 
       <Input
+        label={t('marathonsPrice')}
+        name='price'
+        onChange={handleOnChange}
+        value={formData?.price}
+        type='number'
+        placeholder={t('marathonsPrice')}
+      />
+
+      <Space medium />
+
+      <Input
         label={t('waterTracker')}
         name='waterTracker'
         onChange={handleOnChange}

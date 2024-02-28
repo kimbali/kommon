@@ -9,15 +9,17 @@ import Button from '../button/Button';
 import frontRoutes from '../../config/frontRoutes';
 import { useGetRegionsQuery } from '../../slices/regionsApiSlice';
 import { useTranslation } from 'react-i18next';
+import { useConfig } from '../../context/configContext';
 
 function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { config } = useConfig();
+
   const [formData, setFormData] = useState({ ...userData });
   const [selectedCity, setSelectedCity] = useState();
   const [invalidFields, setInvalidFields] = useState('');
   const [regionOptions, setRegionOptions] = useState();
-
   const { data: regionsData } = useGetRegionsQuery({});
 
   useEffect(() => {
@@ -252,8 +254,28 @@ function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
             (!userData && hasGift && !giftSelected)
           }
         >
-          {userData ? t('continue') : `${t('pay')} 29,90€`}
+          {userData
+            ? t('continue')
+            : `${t('pay')} ${config?.price.toLocaleString()}€`}
         </Button>
+
+        <Space small />
+
+        {hasGift && formData?.city && (
+          <>
+            <Space small />
+
+            <Text center fontSize='16'>
+              {t('sendCostConfig')} +
+              {
+                regionsData?.regions?.find(
+                  ele => ele._id === selectedCity.value
+                )?.price
+              }{' '}
+              €
+            </Text>
+          </>
+        )}
 
         <Space medium />
 

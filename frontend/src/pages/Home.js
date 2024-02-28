@@ -130,7 +130,7 @@ function Home() {
             <div className='promo-main-lbl-b'>{t('bodyMaratonPerfect')}</div>
             <div className='promo-main-txt'>{t('youAreOnTimeTo')}</div>
             <div className='promo-main-price'>
-              <b>{config?.price.toLocaleString('de-DE')} €</b>{' '}
+              <b>{config?.price?.toLocaleString('de-DE')} €</b>{' '}
               <span>{t('freeGift')}</span>
             </div>
             <Link to={frontRoutes.register} className='main-apply'>
@@ -211,7 +211,7 @@ function Home() {
               <li>{t('healthyLifeWoman')}</li>
             </ul>
             <div className='promo-main-price'>
-              <b>{config?.price.toLocaleString('de-DE')} €</b>{' '}
+              <b>{config?.price?.toLocaleString('de-DE')} €</b>{' '}
               <span>{t('freeGift')}</span>
             </div>
             <Link to={frontRoutes.register} className='main-apply'>
@@ -419,7 +419,7 @@ function Home() {
               </div>
               <div className='option-benefits-price'>
                 <div className='option-price'>
-                  {config?.price.toLocaleString('de-DE')} €
+                  {config?.price?.toLocaleString('de-DE')} €
                 </div>
                 <Link to={frontRoutes.register} className='main-apply'>
                   {t('signInNow')}
@@ -450,7 +450,7 @@ function Home() {
               </div>
               <div className='option-benefits-price'>
                 <div className='option-price'>
-                  {config?.price.toLocaleString('de-DE')} €
+                  {config?.price?.toLocaleString('de-DE')} €
                 </div>
                 <Link to={frontRoutes.registerGift} className='main-apply'>
                   {t('signInNow')}

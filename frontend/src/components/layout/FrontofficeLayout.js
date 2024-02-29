@@ -18,13 +18,12 @@ import {
 } from '../../utils/formatDate';
 import { useDate } from '../../context/dateContext';
 import frontRoutes from '../../config/frontRoutes';
-import { useProgress } from '../../context/progressContext';
 import { useUser } from '../../context/userContext';
 
 function MainLayout() {
   const location = useLocation();
   const { user } = useUser();
-  const { userProgress } = useProgress();
+
   const { marathonId, setDayDetails, updateMarathon } = useMarathon();
   const {
     currentDay,
@@ -37,7 +36,7 @@ function MainLayout() {
   const [showNav, setShowNav] = useState(false);
 
   const { data: marathonData } = useGetMarathonDetailsForClientQuery(
-    marathonId || user?.progresses[user.progresses.length - 1].marathon._id,
+    marathonId || user?.progresses[user?.progresses?.length - 1].marathon?._id,
     {
       skip: !user,
     }

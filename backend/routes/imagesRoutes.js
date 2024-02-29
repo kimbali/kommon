@@ -12,7 +12,5 @@ const router = express.Router();
 
 router.route('/').post(upload.single('image'), uploadImage);
 router.route('/:url').get(getImage);
-// .put(checkObjectId, updateDay)
-// .delete(checkObjectId, deleteDay);
 
 export default router;

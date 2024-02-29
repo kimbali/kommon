@@ -759,7 +759,7 @@
     display: flex;
     flex-direction: column;
 
-    @media screen and (min-width: 1024px) {
+    @include media(desktop) {
       flex-direction: row;
       justify-content: space-between;
     }
@@ -773,7 +773,7 @@
       text-align: left;
       width: 100%;
 
-      @media screen and (min-width: 1024px) {
+      @include media(desktop) {
         width: 48%;
       }
     }
@@ -781,7 +781,7 @@
       display: flex;
       height: 300px;
 
-      @media screen and (min-width: 1024px) {
+      @include media(desktop) {
         height: 500px;
       }
 
@@ -792,7 +792,7 @@
         background-size: cover;
         border-radius: $border-radius-element;
 
-        @media screen and (min-width: 1024px) {
+        @include media(desktop) {
           width: 210px;
         }
       }
@@ -852,7 +852,7 @@
           margin: 0;
         }
 
-        @media screen and (min-width: 1024px) {
+        @include media(desktop) {
           padding: 24px;
           width: 330px;
           min-width: 330px;
@@ -914,7 +914,7 @@
       width: 70%;
     }
 
-    @media screen and (min-width: 1024px) {
+    @include media(desktop) {
       flex-direction: row;
 
       .gift-slider-item {
@@ -1825,7 +1825,7 @@
     grid-column-gap: 24px;
     grid-row-gap: 24px;
 
-    @media screen and (min-width: 1024px) {
+    @include media(desktop) {
       grid-template-columns: repeat(2, 1fr);
 
       .option-item {

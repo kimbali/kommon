@@ -60,7 +60,7 @@ function Diet() {
 
     setTodayIngredients(reducedList);
   }, [mealsList, currentDiet]);
-  console.log(mealsList);
+
   if (!marathon) {
     return null;
   }

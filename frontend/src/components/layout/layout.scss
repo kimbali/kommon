@@ -1,4 +1,6 @@
+@import '../../styles/common/mixins.scss';
 @import '../../styles/shared.scss';
+
 body {
   color: $secondary-color;
   font-family: $avenirBook;
@@ -40,7 +42,7 @@ body {
       'MAIN MAIN MAIN';
     // 'FOOTER FOOTER FOOTER';
 
-    @media screen and (min-width: 1024px) {
+    @include media(desktop) {
       gap: 24px;
       grid-template-columns: 1fr 2fr 2fr;
       grid-template-rows: 32px 1fr;
@@ -61,7 +63,7 @@ body {
       background-color: $background-1;
       height: fit-content;
 
-      @media screen and (min-width: 1024px) {
+      @include media(desktop) {
         gap: 24px;
         grid-template-columns: 1fr 2fr 2fr;
         grid-template-areas: 'LOGO RRSS USER';
@@ -72,7 +74,7 @@ body {
         font-size: 22px;
         text-decoration: none;
 
-        @media screen and (min-width: 1024px) {
+        @include media(desktop) {
           font-size: 26px;
         }
       }
@@ -95,7 +97,7 @@ body {
           height: 24px;
         }
 
-        @media screen and (min-width: 1024px) {
+        @include media(desktop) {
           display: none;
         }
       }
@@ -104,7 +106,7 @@ body {
     .rrss {
       display: none;
 
-      @media screen and (min-width: 1024px) {
+      @include media(desktop) {
         display: flex;
       }
 
@@ -153,7 +155,7 @@ body {
   main {
     padding: 0 24px;
 
-    @media screen and (min-width: 1024px) {
+    @include media(desktop) {
       padding: 0 40px;
     }
 
@@ -168,7 +170,7 @@ body {
       text-transform: uppercase;
       padding: 32px 0 0;
 
-      @media screen and (min-width: 1024px) {
+      @include media(desktop) {
         padding: 64px 32px 0;
       }
     }

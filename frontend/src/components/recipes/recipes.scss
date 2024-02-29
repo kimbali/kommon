@@ -184,7 +184,7 @@
     gap: 18px;
     justify-content: center;
 
-    @media screen and (min-width: 1024px) {
+    @include media(desktop) {
       justify-content: flex-start;
     }
   }
@@ -197,6 +197,10 @@
   height: fit-content;
   width: fit-content;
   border-radius: 0;
+
+  @include media(mobile) {
+    align-self: center;
+  }
 
   .text {
     font-size: 16px;
@@ -223,7 +227,7 @@
     margin: 24px 0;
   }
 
-  @media screen and (min-width: 1024px) {
+  @include media(desktop) {
     padding: 12px 22px 12px;
     margin-top: 0;
     justify-content: flex-start;

@@ -28,14 +28,14 @@
   flex-wrap: wrap;
   justify-content: center;
   row-gap: 16px;
+  column-gap: 12px;
 
-  @media screen and (min-width: 1024px) {
+  @include media(desktop) {
     justify-content: flex-start;
     flex-wrap: nowrap;
   }
 
   .day {
-    margin-right: 12px;
     text-align: center;
 
     .date {
@@ -135,7 +135,7 @@
   grid-template-rows: auto;
   gap: 18px;
 
-  @media screen and (min-width: 1024px) {
+  @include media(desktop) {
     grid-template-columns: repeat(auto-fill, minmax(160px, 220px));
   }
 
@@ -189,7 +189,7 @@
   }
 }
 
-@media screen and (max-width: 1024px) {
+@include media(mobile) {
   .marathon-selector-buttons {
     display: flex;
     flex-direction: column-reverse;

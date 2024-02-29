@@ -59,7 +59,7 @@ a {
     margin-bottom: 16px;
   }
 
-  @media screen and (min-width: 1024px) {
+  @include media(desktop) {
     flex-direction: row;
 
     button {
@@ -94,7 +94,7 @@ a {
     width: fit-content;
   }
 
-  @media screen and (min-width: 1024px) {
+  @include media(desktop) {
     flex-direction: row;
   }
 }
@@ -115,7 +115,7 @@ a {
     margin-bottom: 24px;
   }
 
-  @media screen and (min-width: 1024px) {
+  @include media(desktop) {
     flex-direction: row;
 
     button {
@@ -133,7 +133,7 @@ a {
   justify-content: flex-start;
   flex-direction: column;
 
-  @media screen and (min-width: 1024px) {
+  @include media(desktop) {
     flex-direction: row;
   }
 
@@ -142,7 +142,7 @@ a {
     margin-right: 0;
     margin-bottom: 16px;
 
-    @media screen and (min-width: 1024px) {
+    @include media(desktop) {
       margin-right: 16px;
     }
 
@@ -167,7 +167,7 @@ a {
   grid-template-columns: repeat(1, 1fr);
   gap: 22px;
 
-  @media screen and (min-width: 1024px) {
+  @include media(desktop) {
     grid-template-columns: repeat(5, 1fr);
   }
 
@@ -184,7 +184,7 @@ a {
   }
 
   &.workouts {
-    @media screen and (min-width: 1024px) {
+    @include media(desktop) {
       grid-template-columns: repeat(3, 1fr);
     }
 
@@ -205,7 +205,7 @@ a {
   max-width: 1350px;
   padding: 0 12px 32px;
 
-  @media screen and (min-width: 1024px) {
+  @include media(desktop) {
     padding: 0 24px 32px;
   }
 
@@ -222,7 +222,7 @@ a {
     border-radius: $border-radius-wrapper;
     max-width: 590px;
 
-    @media screen and (min-width: 1024px) {
+    @include media(desktop) {
       margin: 32px auto;
       padding: 32px;
     }

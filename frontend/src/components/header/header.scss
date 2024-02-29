@@ -25,7 +25,7 @@
     .text {
       text-transform: capitalize;
 
-      @media screen and (max-width: 1024px) {
+      @include media(mobile) {
         display: none;
       }
     }
@@ -46,7 +46,7 @@
       margin-bottom: 24px;
       text-transform: capitalize;
 
-      @media screen and (min-width: 1024px) {
+      @include media(desktop) {
         display: none;
       }
     }

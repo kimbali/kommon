@@ -28,7 +28,7 @@ footer {
     }
   }
 
-  @media screen and (min-width: 1024px) {
+  @include media(desktop) {
     flex-direction: row;
     justify-content: space-between;
   }

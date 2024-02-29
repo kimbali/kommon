@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../styles/common/mixins.scss';
 import './text.scss';
 import Button from '../button/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

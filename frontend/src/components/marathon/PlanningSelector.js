@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useGetDietsQuery } from '../../slices/dietsApiSlice';
 import {
-  formatDateHyphens,
   formatDateShort,
   formatWeekDayShort,
   getDatePositionInMonthArray,
-  getWeeksArray,
   howManyDaysBetween,
   isSameDay,
   weeksOptionsList,

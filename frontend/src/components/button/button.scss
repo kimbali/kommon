@@ -13,7 +13,7 @@
   box-shadow: $box-shadow-element;
   font-family: $avenirBook;
 
-  @media screen and (min-width: 1024px) {
+  @include media(desktop) {
     padding: 12px;
   }
 

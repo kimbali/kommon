@@ -49,7 +49,7 @@
     }
   }
 
-  @media screen and (min-width: 1024px) {
+  @include media(desktop) {
     .content-left-and-right {
       align-items: flex-end;
       button {

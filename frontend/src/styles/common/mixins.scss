@@ -1,0 +1,20 @@
+$mobile: 'screen and (max-width: 1023px)';
+$desktop: 'screen and (min-width: 1024px)';
+
+@mixin media($point) {
+  @if $point == mobile {
+    @media #{$mobile} {
+      @content;
+    }
+  } @else if $point == desktop {
+    @media #{$desktop} {
+      @content;
+    }
+  }
+}
+
+// use this...
+// @include media(desktop)
+// instead of...
+// @media screen and (min-width: 1024px) {
+// }

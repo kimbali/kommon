@@ -84,7 +84,7 @@ table {
 }
 
 .data-table {
-  @media screen and (max-width: 1024px) {
+  @include media(mobile) {
     overflow-x: scroll;
   }
 

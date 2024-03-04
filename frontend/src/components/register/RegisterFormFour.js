@@ -17,7 +17,7 @@ function RegisterFormFour({ userData }) {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const [{ startDate, endDate, _id: marathonId }] = useState(
+  const [{ startDate, endDate, _id: marathonId } = {}] = useState(
     userData?.progresses[userData?.progresses.length - 1]?.marathon
   );
 

@@ -16,6 +16,7 @@ import { useTranslation } from 'react-i18next';
 import { useGetDietsQuery } from '../slices/dietsApiSlice';
 import BodyParameter from '../components/progress/BodyParameter';
 import { useConfig } from '../context/configContext';
+import { calculateDaysDifference } from '../utils/formatDate';
 
 function Main() {
   const { t } = useTranslation();
@@ -27,6 +28,7 @@ function Main() {
 
   const [showRecipe, setShowRecipe] = useState();
   const [mealsList, setMealsList] = useState([]);
+  const [untilNext, setUntilNext] = useState();
 
   const [updateProgress] = useUpdateProgressMutation();
   const { data: dietsData } = useGetDietsQuery({ keyword: 'YES' });
@@ -64,6 +66,40 @@ function Main() {
   const navigateToMeditations = () => {
     navigate(frontRoutes.meditations);
   };
+
+  useEffect(() => {
+    if (userProgress) {
+      const days = calculateDaysDifference(
+        new Date(),
+        userProgress.marathon?.startDate
+      );
+
+      setUntilNext(days);
+    }
+  }, [userProgress]);
+
+  if (!dayDetails) {
+    return (
+      <div className='message-box'>
+        <div className='message-box-content'>
+          <Space medium />
+          <Text className='days-remaining' fontSize='24' isBold>
+            {t('quedan')}
+            <span className='primary'>
+              {untilNext} {t('days')}
+            </span>
+          </Text>
+          <Space medium />
+          <Text>{t('noMarathonYetTextTwo')}</Text>
+          <Text>{t('noMarathonYetText')}</Text>
+          <Space small />
+          <Space extraSmall />
+          <Text isPlaceholder>{t('noMarathonYetTextThree')}</Text>
+          <Space small />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className='main-tab'>

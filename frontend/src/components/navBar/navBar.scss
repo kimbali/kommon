@@ -1,7 +1,14 @@
 @import '../../styles/shared.scss';
+@import '../../styles/common/mixins.scss';
 
 nav {
   margin-top: 32px;
+
+  @include media(mobile) {
+    .current-date {
+      display: none;
+    }
+  }
 
   .text {
     color: $white;
@@ -14,9 +21,17 @@ nav {
   .nav-links {
     margin-bottom: 42px;
 
+    @include media(mobile) {
+      padding-top: 42px;
+    }
+
     li {
       transition: 0.2s;
-      margin-bottom: 24px;
+      margin-bottom: 32px;
+
+      @include media(desktop) {
+        margin-bottom: 24px;
+      }
 
       a {
         display: block;
@@ -59,6 +74,24 @@ nav {
 
           img {
             filter: opacity(1);
+          }
+        }
+
+        @include media(mobile) {
+          margin-left: 32px;
+
+          .nav-icon {
+            height: 36px;
+            width: 36px;
+            padding: 12px;
+
+            img {
+              width: 24px;
+            }
+          }
+
+          .subtitle {
+            font-size: 32px;
           }
         }
       }

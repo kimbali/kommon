@@ -39,7 +39,7 @@ function MainNavBar({ showNav }) {
         </>
       )}
 
-      <Text>{formatDate(currentDate)}</Text>
+      <Text className='current-date'>{formatDate(currentDate)}</Text>
       <Space medium />
 
       <ul className='nav-links'>

@@ -17,16 +17,16 @@ function RegisterFormFour({ userData }) {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const [{ startDate, endDate, _id: marathonId } = {}] = useState(
+  const [marathon] = useState(
     userData?.progresses[userData?.progresses.length - 1]?.marathon
   );
 
-  const hasStarted = hasMarathonStarted(startDate);
-  const hasFinished = hasMarathonFinished(endDate);
-  const daysDifference = calculateDaysDifference(new Date(), endDate);
+  const hasStarted = hasMarathonStarted(marathon?.startDate);
+  const hasFinished = hasMarathonFinished(marathon?.endDate);
+  const daysDifference = calculateDaysDifference(new Date(), marathon?.endDate);
 
   const handleClick = () => {
-    navigate(`${frontRoutes.main}?${MARATHON_ID}=${marathonId}`, {
+    navigate(`${frontRoutes.main}?${MARATHON_ID}=${marathon?._id}`, {
       replace: true,
     });
   };
@@ -49,7 +49,7 @@ function RegisterFormFour({ userData }) {
         <>
           <Text fontSize='18'>
             {t('marathonHasStarted')}{' '}
-            <span className='bold'> {formatDate(startDate)}</span>
+            <span className='bold'> {formatDate(marathon?.startDate)}</span>
           </Text>
 
           <Space small />
@@ -64,7 +64,7 @@ function RegisterFormFour({ userData }) {
         <>
           <Text fontSize='18'>
             {t('marathonStarts')}{' '}
-            <span className='bold'> {formatDate(startDate)}</span>
+            <span className='bold'> {formatDate(marathon?.startDate)}</span>
           </Text>
 
           <Space medium />

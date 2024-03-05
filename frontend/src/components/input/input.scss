@@ -18,6 +18,7 @@ form {
 .field {
   position: relative;
   cursor: pointer;
+  display: flex;
 
   .input-file p {
     height: 50px;
@@ -407,6 +408,20 @@ select {
       background-color: $background-2;
       border-radius: 0 $border-radius-element $border-radius-element 0;
       color: $white;
+    }
+  }
+
+  .trash-input {
+    padding: 0 12px;
+    border-radius: $border-radius-element;
+    background-color: $background-4;
+    box-shadow: $box-shadow-element;
+    border: 1px solid #404350;
+    cursor: pointer;
+    margin-left: 4px;
+
+    svg {
+      font-size: 14px;
     }
   }
 }

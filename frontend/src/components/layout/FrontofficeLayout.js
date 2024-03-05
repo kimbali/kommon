@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './layout.scss';
-import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { useGetMarathonDetailsForClientQuery } from '../../slices/marathonApiSlice';
 import { useGetMonthDayDetailsQuery } from '../../slices/daysApiSlice';
 import { useMarathon } from '../../context/marathonContext';
@@ -36,7 +36,7 @@ function MainLayout() {
   const [showNav, setShowNav] = useState(false);
 
   const { data: marathonData } = useGetMarathonDetailsForClientQuery(
-    marathonId || user?.progresses[user?.progresses?.length - 1].marathon?._id,
+    marathonId || user?.progresses[user?.progresses?.length - 1]?.marathon?._id,
     {
       skip: !user,
     }

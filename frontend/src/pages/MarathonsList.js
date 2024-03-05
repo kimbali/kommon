@@ -125,69 +125,71 @@ function MarathonsList() {
 
       <Space medium />
 
-      <table border='1'>
-        <thead>
-          <tr>
-            <th>{t('marathon')}</th>
-            <th>{t('plan')}</th>
-            <th>
-              <button onClick={sortByStartDate}>
-                {t('startDate')} <FontAwesomeIcon icon={faSort} />
-              </button>
-            </th>
-            <th style={{ padding: '12px' }}>{t('endDate')}</th>
-            <th>{t('config')}</th>
-            <th>{t('see')}</th>
-            <th>{t('active')}</th>
-            <th>{t('trash')}</th>
-          </tr>
-        </thead>
+      <div className='scroll-table'>
+        <table border='1'>
+          <thead>
+            <tr>
+              <th>{t('marathon')}</th>
+              <th>{t('plan')}</th>
+              <th>
+                <button onClick={sortByStartDate}>
+                  {t('startDate')} <FontAwesomeIcon icon={faSort} />
+                </button>
+              </th>
+              <th style={{ padding: '12px' }}>{t('endDate')}</th>
+              <th>{t('config')}</th>
+              <th>{t('see')}</th>
+              <th>{t('active')}</th>
+              <th>{t('trash')}</th>
+            </tr>
+          </thead>
 
-        <tbody>
-          {marathons?.length > 0 &&
-            marathons.map((eachMarathon, i) => (
-              <tr key={`marathon-${i}`}>
-                <td>{eachMarathon.name}</td>
-                <td>{eachMarathon.planning.name}</td>
-                <td>{formatDate(eachMarathon.startDate)}</td>
-                <td>{formatDate(eachMarathon.endDate)}</td>
-                <td>
-                  <Button
-                    onClick={() => handleEditButton(eachMarathon)}
-                    onlyIcon
-                    iconLeft={faCalendarDays}
-                  />
-                </td>
-                <td>
-                  <Button
-                    onClick={() => handleGoToLiveMarathon(eachMarathon)}
-                    isSecondary
-                  >
-                    {t('goToLive')}
-                  </Button>
-                </td>
-                <td>
-                  <Button
-                    onClick={() => setShowActivateModal(eachMarathon)}
-                    isPrimary
-                    disabled={eachMarathon.isActive}
-                  >
-                    {eachMarathon.isActive ? t('active') : t('publish')}
-                  </Button>
-                </td>
-                <td>
-                  <Button
-                    onClick={() => setShowDeleteModal(eachMarathon)}
-                    onlyIcon
-                    iconLeft={faTrash}
-                  >
-                    {t('delete')}
-                  </Button>
-                </td>
-              </tr>
-            ))}
-        </tbody>
-      </table>
+          <tbody>
+            {marathons?.length > 0 &&
+              marathons.map((eachMarathon, i) => (
+                <tr key={`marathon-${i}`}>
+                  <td>{eachMarathon.name}</td>
+                  <td>{eachMarathon.planning.name}</td>
+                  <td>{formatDate(eachMarathon.startDate)}</td>
+                  <td>{formatDate(eachMarathon.endDate)}</td>
+                  <td>
+                    <Button
+                      onClick={() => handleEditButton(eachMarathon)}
+                      onlyIcon
+                      iconLeft={faCalendarDays}
+                    />
+                  </td>
+                  <td>
+                    <Button
+                      onClick={() => handleGoToLiveMarathon(eachMarathon)}
+                      isSecondary
+                    >
+                      {t('goToLive')}
+                    </Button>
+                  </td>
+                  <td>
+                    <Button
+                      onClick={() => setShowActivateModal(eachMarathon)}
+                      isPrimary
+                      disabled={eachMarathon.isActive}
+                    >
+                      {eachMarathon.isActive ? t('active') : t('publish')}
+                    </Button>
+                  </td>
+                  <td>
+                    <Button
+                      onClick={() => setShowDeleteModal(eachMarathon)}
+                      onlyIcon
+                      iconLeft={faTrash}
+                    >
+                      {t('delete')}
+                    </Button>
+                  </td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
+      </div>
 
       {showDeleteModal && (
         <ConfirmModal

@@ -5,7 +5,12 @@ import CreatableSelect from 'react-select/creatable';
 import makeAnimated from 'react-select/animated';
 import { useUploadRecipeImageMutation } from '../../slices/imagesApiSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash, faPlus } from '@fortawesome/free-solid-svg-icons';
+import {
+  faEye,
+  faEyeSlash,
+  faPlus,
+  faTrash,
+} from '@fortawesome/free-solid-svg-icons';
 import Text from '../text/Text';
 import Spinner from '../spinner/Spinner';
 import Button from '../button/Button';
@@ -43,6 +48,7 @@ function Input({
   labelLink = '',
   disabled = false,
   language = '',
+  trashClick,
 }) {
   const animatedComponents = useMemo(() => makeAnimated(), []);
 
@@ -298,6 +304,15 @@ function Input({
           className='password-cta'
           onClick={togglePasswordType}
           iconLeft={type === 'password' ? faEyeSlash : faEye}
+        />
+      )}
+
+      {!!trashClick && (
+        <Button
+          className='trash-input'
+          onClick={trashClick}
+          iconLeft={faTrash}
+          onlyIcon
         />
       )}
 

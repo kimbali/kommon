@@ -22,6 +22,10 @@ const problemsEnum = [
 export const getProblemsLabel = value => {
   const problem = problemsEnum.find(ele => ele.value === value);
 
+  if (value === 'NO') {
+    return '';
+  }
+
   return problem?.label || value;
 };
 

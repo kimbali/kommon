@@ -186,7 +186,28 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 // @route   GET /api/users
 // @access  Private/Admin
 const getUsers = asyncHandler(async (req, res) => {
-  const users = await User.find({});
+  let query = {};
+
+  if (req.query.keyword) {
+    const keyword = req.query.keyword;
+    query = {
+      $or: [
+        { email: { $regex: keyword, $options: 'i' } },
+        { name: { $regex: keyword, $options: 'i' } },
+      ],
+    };
+  }
+
+  let users = await User.find(query).populate('progresses');
+
+  if (req.query.marathon) {
+    users = users.filter(ele =>
+      ele?.progresses?.some(
+        progress => String(progress?.marathon) === req.query.marathon
+      )
+    );
+  }
+
   res.json(users);
 });
 

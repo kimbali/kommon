@@ -29,7 +29,7 @@
   "algaeDetoxOil": "La envoltura de algas elimina las toxinas y el exceso de líquido en el cuerpo, y también nutre la piel de microelementos y vitaminas.",
   "algaeOil": "Exfoliante corporal con sal marina, trocitos de algas y polvo de concha de ostras proporciona una limpieza eficaz y elimina las células muertas de la piel.",
   "alGusto": "Al gusto",
-  "allergies": "Alergias alimentarias",
+  "allergies": "Alergias",
   "allergiesAsk": "¿Tienes alguna alergia alimentaria?",
   "allergiesRequired": "Selecciona una opción de la lista",
   "allergy": "Alergia",
@@ -402,7 +402,7 @@
   "selectWeek": "Selecciona una semana",
   "selectWorkout": "Selecciona un workout",
   "selectWorkoutLevel": "Selecciona un nivel",
-  "semillasDeSesamo": "Semillas de Sésamo",
+  "semillasDeSesamo": "Sésamo",
   "send": "Enviar",
   "sendAddress": "Dirección de envío",
   "sendCost": "Precio gastos de envío",
@@ -508,10 +508,12 @@
   "yourPorpose": "¿Cuál es tu propósito?",
   "yourProgress": "Tu progreso",
   "yourVideosAreFor": "Nuestros videos están pensados para que puedas entrenar en casa para que sea más cómodo y práctico para ti. Sin embargo, si sueles ir al gimnasio, puedes ejecutarlos allí, añadiendo unas tobilleras o mancuernas para subir la intensidad.",
+
   "noMarathonYet": "Acceso privado",
   "noMarathonYetText": "Recibiras un email dos días antes de que empiece tu Maratón",
   "noMarathonYetTextTwo": "Cada sábado tendras acceso a la próxima semana",
   "noMarathonYetTextThree": "Revisa durante el fin de semana la lista de la compra, la encontraras en el menu",
   "remaining": "Quedan",
-  "quedan": "Próxima maratón en "
+  "quedan": "Próxima maratón en ",
+  "searchByNameAndEmail": "Nombre o email"
 }

@@ -24,7 +24,13 @@ export const getPatologiesLabel = values => {
     patologyEnum.find(ele => ele.value === each)
   );
 
-  return patologies.reduce((acc, ele) => `${acc} ${ele.label} /`, '');
+  return patologies.reduce((acc, ele) => {
+    if (ele.value === 'NO') {
+      return '';
+    }
+
+    return `${acc} ${ele.label} `;
+  }, '');
 };
 
 export default patologyEnum;

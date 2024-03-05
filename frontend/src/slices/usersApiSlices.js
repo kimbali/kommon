@@ -1,6 +1,5 @@
 import { apiSlice } from './apiSlice';
 import { USERS_URL } from '../config/constants';
-import getTokenFromLocalStorage from '../utils/tokenStorage';
 
 export const userApiSlice = apiSlice.injectEndpoints({
   endpoints: builder => ({
@@ -25,7 +24,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
       }),
     }),
     getUserProfile: builder.query({
-      query: token => ({
+      query: () => ({
         url: `${USERS_URL}/profile`,
       }),
       providesTags: ['User'],
@@ -46,8 +45,8 @@ export const userApiSlice = apiSlice.injectEndpoints({
       }),
     }),
     getUsers: builder.query({
-      query: () => ({
-        url: USERS_URL,
+      query: ({ keyWord, marathon }) => ({
+        url: `${USERS_URL}?keyword=${keyWord}&marathon=${marathon}`,
       }),
       providesTags: ['User'],
       keepUnusedDataFor: 5,

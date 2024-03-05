@@ -84,8 +84,34 @@ table {
 }
 
 .data-table {
-  @include media(mobile) {
+  .scroll-table {
+    width: 100%;
     overflow-x: scroll;
+
+    &::-webkit-scrollbar {
+      height: 6px;
+      background-color: $background-2;
+      border-radius: $border-radius-element;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $background-3;
+      border-radius: $border-radius-element;
+    }
+  }
+
+  .filters {
+    display: flex;
+    column-gap: 16px;
+
+    @include media(mobile) {
+      flex-direction: column;
+      row-gap: 12px;
+    }
+
+    .field .multi-select .multi-prefix__input-container {
+      height: 36px;
+    }
   }
 
   table {
@@ -99,6 +125,10 @@ table {
 
       &.currency {
         text-align: right;
+      }
+
+      &.left {
+        text-align: left;
       }
     }
 
@@ -116,6 +146,7 @@ table {
 
         svg {
           font-size: 14px;
+          margin: 0;
         }
       }
 

@@ -69,9 +69,11 @@ const Calendar = () => {
     <div className='calendar'>
       <div className='calendar-header'>
         <div className='content-left-and-right'>
-          <Text isSectionTitle>{monthDayWeekFormat(new Date())}</Text>
+          <Text isSectionTitle className='today'>
+            {monthDayWeekFormat(new Date())}
+          </Text>
 
-          <Text>
+          <Text className='calendary-header-days'>
             {t('untilNextMarathon')}
             <span className='primary'>
               {' '}

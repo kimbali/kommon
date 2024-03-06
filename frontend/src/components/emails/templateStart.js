@@ -1,4 +1,13 @@
-<!DOCTYPE html>
+import { loadImage } from '../../utils/fetchImage';
+
+async function templateStart() {
+  const girlFoto = '1708855366397_image_main-img.png';
+  const logoTransparent = '1708855335399_image_logo-transparent.png';
+
+  const fetchedImageUrlLogo = await loadImage(logoTransparent);
+  const fetchedImageUrlGirl = await loadImage(girlFoto);
+
+  return `<!DOCTYPE html>
   <html lang="en">
     <head>
       <meta charset="UTF-8">
@@ -10,7 +19,7 @@
       <table style="border: none; width: 600px; border-collapse: collapse; width: 100%; margin: 32px 0;">
         <tr>
           <th style="text-align: center">
-            <img src="" alt="Bodymaraton logo"
+            <img src="${fetchedImageUrlLogo}" alt="Bodymaraton logo"
               style="display: inline-block; height: 122px;">
           </th>
         </tr>
@@ -47,9 +56,12 @@
   
         <tr style="margin-bottom: 24px;">
           <th style="text-align: center;">
-            <img src="" alt="Bodymaraton girl" style="display: inline-block; height: 380px; border-radius: 100%;" />
+            <img src="${fetchedImageUrlGirl}" alt="Bodymaraton girl" style="display: inline-block; height: 380px; border-radius: 100%;" />
           </th>
         </tr>
       </table>
     </body>
-  </html>
+  </html>`;
+}
+
+export default templateStart;

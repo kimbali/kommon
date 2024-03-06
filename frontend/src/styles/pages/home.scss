@@ -859,16 +859,17 @@
         }
 
         .image-container {
-          height: 188px;
+          height: 178px;
           display: flex;
           justify-content: center;
           align-items: flex-end;
           margin-bottom: 8px;
 
           .image {
-            width: 100%;
-            height: 100%;
+            width: 80%;
+            height: 80%;
             background-size: cover;
+            margin-bottom: 8px;
           }
         }
 

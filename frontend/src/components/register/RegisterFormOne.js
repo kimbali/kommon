@@ -10,6 +10,7 @@ import frontRoutes from '../../config/frontRoutes';
 import { useGetRegionsQuery } from '../../slices/regionsApiSlice';
 import { useTranslation } from 'react-i18next';
 import { useConfig } from '../../context/configContext';
+import { scrollToTop } from '../../utils/layoutHelpers';
 
 function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
   const { t } = useTranslation();
@@ -274,15 +275,13 @@ function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
           </>
         )}
 
-        <Space medium />
-
         {!userData && hasGift && !giftSelected && (
           <>
-            <Space medium />
+            <Space small />
 
-            <Text center error fontSize='16'>
+            <Button isLink onClick={() => scrollToTop()} center color='primary'>
               {t('selectAGift')}
-            </Text>
+            </Button>
           </>
         )}
 

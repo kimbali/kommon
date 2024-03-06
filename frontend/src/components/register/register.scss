@@ -139,7 +139,7 @@
 
     .gift-item {
       cursor: pointer;
-      background-color: #dedfe1;
+      background-color: $white;
       margin: 0 4px;
       padding: 1rem;
       border-radius: 1rem;
@@ -150,9 +150,25 @@
       align-items: center;
       position: relative;
       min-width: 150px;
+      position: relative;
+
+      &:after {
+        content: '';
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        border-radius: 1rem;
+        height: 168px;
+        top: 0;
+        background-color: rgba($color: #dedfe1, $alpha: 0.9);
+      }
 
       &:hover {
         background-color: $white;
+
+        &:after {
+          background-color: transparent;
+        }
       }
 
       &.selected {
@@ -177,9 +193,11 @@
         height: 100%;
         width: 100%;
         background-size: cover;
+        z-index: 1;
       }
 
       .text {
+        z-index: 1;
         display: block;
         text-align: center;
         width: 100%;

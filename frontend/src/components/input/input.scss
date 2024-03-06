@@ -18,7 +18,7 @@ form {
 .field {
   position: relative;
   cursor: pointer;
-  display: flex;
+  width: 100%;
 
   .input-file p {
     height: 50px;
@@ -279,6 +279,10 @@ form {
       padding-left: 8px;
       border: thin solid #404350;
 
+      .multi-prefix__value-container {
+        min-width: 80px;
+      }
+
       .multi-prefix__single-value {
         color: $secondary-color;
         font-family: $avenirBook;
@@ -320,7 +324,7 @@ form {
     }
 
     .multi-prefix__indicator {
-      padding-right: 16px;
+      padding-right: 12px;
 
       svg {
         height: 22px;
@@ -329,7 +333,13 @@ form {
     }
 
     .multi-prefix__clear-indicator {
-      padding-right: 8px;
+      padding-right: 0;
+      position: absolute;
+      right: -32px;
+
+      svg {
+        color: transparent;
+      }
     }
 
     input::placeholder {
@@ -410,20 +420,6 @@ select {
       color: $white;
     }
   }
-
-  .trash-input {
-    padding: 0 12px;
-    border-radius: $border-radius-element;
-    background-color: $background-4;
-    box-shadow: $box-shadow-element;
-    border: 1px solid #404350;
-    cursor: pointer;
-    margin-left: 4px;
-
-    svg {
-      font-size: 14px;
-    }
-  }
 }
 
 .search-input {
@@ -466,4 +462,27 @@ input[type='number']::-webkit-outer-spin-button {
 
 .emojiFlag {
   height: 11px;
+}
+
+.input-wrapper {
+  display: flex;
+  position: relative;
+
+  .trash-input {
+    padding: 0 12px;
+    border-radius: $border-radius-element;
+    background-color: $background-4;
+    box-shadow: $box-shadow-element;
+    border: 1px solid #404350;
+    cursor: pointer;
+    margin-left: 4px;
+
+    svg {
+      font-size: 14px;
+    }
+
+    &.active {
+      background-color: $primary-color;
+    }
+  }
 }

@@ -16,7 +16,7 @@ import {
 import { useDispatch } from 'react-redux';
 import { setCredentials } from '../slices/authSlice';
 import { useTranslation } from 'react-i18next';
-import template from '../components/emails/template';
+import templateRegister from '../components/emails/templateRegister';
 import postEmail from '../utils/postEmail';
 import { useBuyOneGiftMutation } from '../slices/giftsApiSlice';
 
@@ -95,7 +95,7 @@ function Payment() {
 
       await setShowEmailLink(true);
 
-      const templateHTML = await template();
+      const templateHTML = await templateRegister();
 
       // from: 'Body Maraton TEST <onboarding@resend.dev>',
       await postEmail({

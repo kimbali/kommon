@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import {
+  useForgotPasswordMutation,
   useGetUserProfileQuery,
   useLoginMutation,
 } from '../slices/usersApiSlices';
@@ -18,6 +19,8 @@ import { useUser } from '../context/userContext';
 import { useTranslation } from 'react-i18next';
 import getTokenFromLocalStorage from '../utils/tokenStorage';
 import { useMarathon } from '../context/marathonContext';
+import Modal from '../components/modal/Modal';
+import templateResetPassword from '../components/emails/templateResetPassword';
 
 const Login = () => {
   const { t } = useTranslation();
@@ -26,6 +29,7 @@ const Login = () => {
   const [formData, setFormData] = useState({
     email: JSON.parse(localStorage.getItem('userInfo'))?.email || '',
   });
+  const [showResetPassword, setShowResetPassword] = useState(false);
   const [invalidFields, setInvalidFields] = useState('');
   const [token, setToken] = useState(getTokenFromLocalStorage());
   const dispatch = useDispatch();
@@ -33,6 +37,7 @@ const Login = () => {
 
   const [login] = useLoginMutation();
   const { refetch: refetchProfile } = useGetUserProfileQuery(token);
+  const [forgotPassword] = useForgotPasswordMutation();
 
   const handleOnChange = ({ name, value }) => {
     setFormData({ ...formData, [name]: value });
@@ -74,6 +79,26 @@ const Login = () => {
     }
   };
 
+  const handleSubmitResetPassword = async e => {
+    e.preventDefault();
+    setInvalidFields();
+
+    if (!formData.email) {
+      setInvalidFields(['email']);
+      return;
+    }
+
+    try {
+      const templateHTML = await templateResetPassword();
+
+      await forgotPassword({ email: formData.email, template: templateHTML });
+    } catch (err) {
+      toast.error(t('error'));
+    }
+
+    setShowResetPassword(false);
+  };
+
   return (
     <div className='page-wrapper'>
       <Space medium />
@@ -107,12 +132,44 @@ const Login = () => {
 
         <Space big />
 
-        <div className='content-on-the-right allways'>
+        <div className='content-left-and-right reverse center allways'>
+          <Button onClick={() => setShowResetPassword(true)} isLink>
+            {t('resetPassword')}
+          </Button>
+
           <Button type='submit' isPrimary>
             {t('continue')}
           </Button>
         </div>
       </form>
+
+      {showResetPassword && (
+        <Modal onClose={setShowResetPassword} isSecondary>
+          <form onSubmit={handleSubmitResetPassword}>
+            <Text isTitle>{t('resetPasswordEmail')}</Text>
+
+            <Space small />
+
+            <Text isSubtitle>{t('resetPasswordText')}</Text>
+
+            <Space medium />
+
+            <Input
+              name='email'
+              placeholder={t('emailPlaceholder')}
+              onChange={handleOnChange}
+              value={formData.email}
+              error={{ invalidFields, message: 'Email field required' }}
+            />
+
+            <Space big />
+
+            <Button center type='submit' isPrimary>
+              {t('sendEmail')}
+            </Button>
+          </form>
+        </Modal>
+      )}
     </div>
   );
 };

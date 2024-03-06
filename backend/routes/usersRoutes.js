@@ -13,6 +13,8 @@ import {
   updateUser,
   deleteAllNoAdminUsers,
   updateUserCheckout,
+  forgotPassword,
+  resetPassword,
 } from '../controllers/userController.js';
 
 const router = express.Router();
@@ -22,6 +24,8 @@ router
   .post(registerUser)
   .get(protect, admin, getUsers)
   .delete(protect, admin, deleteAllNoAdminUsers);
+router.post('/forgot-password', forgotPassword);
+router.post('/reset-password', resetPassword);
 router.post('/auth', authUser);
 router.post('/logout', logoutUser);
 router

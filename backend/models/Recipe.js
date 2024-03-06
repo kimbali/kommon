@@ -4,7 +4,7 @@ const recipeSchema = new Schema(
   {
     title: {
       type: String,
-      default: 'Missing title',
+      default: 'Receta',
     },
     steps: [{ type: String, default: '' }],
     ingredients: [

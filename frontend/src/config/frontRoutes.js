@@ -36,6 +36,7 @@ const frontRoutes = {
   workoutDetailsMain: '/workouts/:id',
   workouts: '/workouts',
   workoutsConfig: '/config/workouts',
+  resetPassword: '/reset-password',
 };
 
 export default frontRoutes;

@@ -120,11 +120,15 @@
 
 button.link,
 .link {
-  color: $secondary-color;
+  color: $primary-color;
   text-decoration: underline;
   transition: 0.2s;
+  padding-left: 0;
+  padding-right: 0;
+  box-shadow: none;
 
   .text {
+    color: $primary-color;
     font-size: 12px;
   }
 

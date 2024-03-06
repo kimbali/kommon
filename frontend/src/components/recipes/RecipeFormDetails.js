@@ -29,7 +29,7 @@ function RecipeFormDetails({
 
   return (
     <div className='recipe-form-details'>
-      <Text isTitle>{title || 'Missing title'}</Text>
+      <Text isTitle>{title || 'Receta'}</Text>
 
       <Space small />
 

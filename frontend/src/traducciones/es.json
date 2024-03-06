@@ -515,5 +515,13 @@
   "noMarathonYetTextThree": "Revisa durante el fin de semana la lista de la compra, la encontraras en el menu",
   "remaining": "Quedan",
   "quedan": "Próxima maratón en ",
-  "searchByNameAndEmail": "Nombre o email"
+  "searchByNameAndEmail": "Nombre o email",
+  "changeUser": "Cambiar de usuario",
+  "resetPassword": "He olvidado la contraseña",
+  "resetPasswordEmail": "Nueva contraseña",
+  "resetPasswordText": "Introduce el email con el que te registrastes",
+  "sendEmail": "Mandar email de recuperación",
+  "passwordChanged": "Contraseña actualizada",
+  "newPassword": "Nueva contraseña",
+  "repeatPassword": "Repite la contraseña"
 }

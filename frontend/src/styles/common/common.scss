@@ -115,11 +115,28 @@ a {
     margin-bottom: 24px;
   }
 
+  &.reverse {
+    flex-direction: column-reverse;
+  }
+
+  &.center {
+    justify-content: center;
+    align-items: center;
+  }
+
   @include media(desktop) {
     flex-direction: row;
 
     button {
       margin-bottom: 0;
+    }
+
+    &.reverse {
+      flex-direction: row;
+    }
+
+    &.center {
+      justify-content: space-between;
     }
   }
 

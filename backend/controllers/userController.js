@@ -1,8 +1,8 @@
 import asyncHandler from '../middleware/asyncHandler.js';
-import generateToken, {
-  generateTokenForStorage,
-} from '../utils/generateToken.js';
+import generateToken from '../utils/generateToken.js';
 import User from '../models/User.js';
+import sendEmail from './emailController.js';
+import jwt from 'jsonwebtoken';
 
 // @desc    Auth user & get token
 // @route   POST /api/users/auth
@@ -13,7 +13,7 @@ const authUser = asyncHandler(async (req, res) => {
   const user = await User.findOne({ email });
 
   if (user && (await user.matchPassword(password))) {
-    const token = generateTokenForStorage(res, user._id);
+    const token = generateToken(res, user._id);
 
     res.json({
       _id: user._id,
@@ -243,6 +243,7 @@ const getUserById = asyncHandler(async (req, res) => {
     throw new Error('User not found');
   }
 });
+
 // @desc    Update user
 // @route   PUT /api/users/:id
 // @access  Private/Admin
@@ -261,6 +262,94 @@ const updateUser = asyncHandler(async (req, res) => {
   } else {
     res.status(404);
     throw new Error('User not found');
+  }
+});
+
+// @desc    Update user
+// @route   PUT /api/users/forgot-password
+// @access  Private/Admin
+export const forgotPassword = asyncHandler(async (req, res) => {
+  const { email, template } = req.body;
+
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({
+        message: 'El correo electrónico no está asociado a ninguna cuenta.',
+      });
+    }
+
+    const token = await generateToken(req, user, '1h');
+
+    user.resetPasswordToken = token;
+    user.resetPasswordExpires = Date.now() + 3600000; // 1 hora
+    await user.save();
+
+    await sendEmail(req, res, {
+      from: 'Body Maraton <onboarding@resend.dev>',
+      to: 'kimgarcianton@hotmail.com',
+      // to: req.body.email,
+      subject: 'Reset password',
+      html: template.replace('/login', `/reset-password#${token}`),
+    });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ message: 'Ha ocurrido un error al procesar la solicitud.' });
+  }
+});
+
+// @desc    Update user
+// @route   PUT /api/users/reset-passowrd
+// @access  Private/Admin
+export const resetPassword = asyncHandler(async (req, res) => {
+  const { newPassword, token } = req.body;
+
+  try {
+    if (!newPassword || !token) {
+      return res.status(400).json({
+        message:
+          'Se requiere una nueva contraseña y un token para restablecer la contraseña.',
+      });
+    }
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    const user = await User.findById(decoded.userId);
+    if (!user) {
+      return res.status(404).json({
+        message:
+          'No se encontró ningún usuario asociado al token proporcionado.',
+      });
+    }
+
+    if (user.resetPasswordToken !== token) {
+      return res
+        .status(400)
+        .json({ message: 'El token proporcionado no es válido.' });
+    }
+
+    if (Date.now() > user.resetPasswordExpires) {
+      return res
+        .status(400)
+        .json({ message: 'El token proporcionado ha caducado.' });
+    }
+
+    user.password = newPassword;
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpires = undefined;
+    await user.save();
+
+    res
+      .status(200)
+      .json({ message: 'La contraseña se ha restablecido correctamente.' });
+  } catch (error) {
+    console.error(error);
+    // Maneja los errores y envía una respuesta de error
+    res
+      .status(500)
+      .json({ message: 'Ha ocurrido un error al restablecer la contraseña.' });
   }
 });
 

@@ -150,14 +150,15 @@ function RecipeForm({ recipe, onCreate, isEdit }) {
 
         <form>
           <div className='section grid-container'>
-            <Input
-              className='cols-4'
-              label={t('title')}
-              name='title'
-              placeholder={t('recipeTitle')}
-              onChange={handleOnChange}
-              value={formData.title}
-            />
+            <div className='cols-4'>
+              <Input
+                label={t('title')}
+                name='title'
+                placeholder={t('recipeTitle')}
+                onChange={handleOnChange}
+                value={formData.title}
+              />
+            </div>
 
             <div className='cols-3'>
               <Input

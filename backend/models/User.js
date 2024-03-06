@@ -9,6 +9,8 @@ const userSchema = new Schema(
       unique: true,
     },
     password: String,
+    resetPasswordToken: String,
+    resetPasswordExpires: String,
     isAdmin: {
       type: Boolean,
       required: true,

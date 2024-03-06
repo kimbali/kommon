@@ -106,6 +106,7 @@ function Users() {
           selectedOption={marathonSelected}
           name='marathon'
           trashClick={() => setMarathonSelected()}
+          isClearable
         />
 
         <form onSubmit={handleSearchSubmit} className='search-input'>

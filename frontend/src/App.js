@@ -65,6 +65,7 @@ import {
 } from './slices/configApiSlice';
 import { useConfig } from './context/configContext';
 import ContactUs from './pages/ContactUs';
+import ResetPassword from './pages/ResetPassword';
 
 function App() {
   const { t } = useTranslation();
@@ -182,6 +183,7 @@ function App() {
         <Route path={frontRoutes.home} element={<Home />} />
         <Route path={frontRoutes.register} element={<Register />} />
         <Route path={frontRoutes.login} element={<Login />} />
+        <Route path={frontRoutes.resetPassword} element={<ResetPassword />} />
         <Route path={frontRoutes.payment} element={<Payment />} />
         <Route path={frontRoutes.logout} element={<Logout />} />
 

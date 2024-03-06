@@ -107,7 +107,7 @@ function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
           name='email'
           placeholder={t('emailPlaceholder')}
           onChange={handleOnChange}
-          value={formData.email}
+          value={formData?.email}
           error={{ invalidFields, message: t('emailRequired') }}
           disabled={!!userData}
         />
@@ -119,7 +119,7 @@ function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
           name='name'
           placeholder={t('userNameComplete')}
           onChange={handleOnChange}
-          value={formData.name}
+          value={formData?.name}
           error={{ invalidFields, message: t('nameRequired') }}
         />
 
@@ -130,7 +130,7 @@ function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
           name='phone'
           placeholder={t('phonePlaceholder')}
           onChange={handleOnChange}
-          value={formData.phone}
+          value={formData?.phone}
           error={{
             invalidFields,
             message: t('phoneRequired'),
@@ -163,7 +163,7 @@ function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
               name='address'
               placeholder={t('completeAddress')}
               onChange={handleOnChange}
-              value={formData.address}
+              value={formData?.address}
               error={{
                 invalidFields,
                 message: t('addressRequired'),
@@ -182,7 +182,7 @@ function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
               name='password'
               placeholder={t('passwordPlaceholder')}
               onChange={handleOnChange}
-              value={formData.password}
+              value={formData?.password}
               error={{ invalidFields, message: 'Password field required' }}
             />
 
@@ -194,7 +194,7 @@ function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
               name='confirmPassword'
               placeholder={t('passwordPlaceholder')}
               onChange={handleOnChange}
-              value={formData.confirmPassword}
+              value={formData?.confirmPassword}
               error={{
                 invalidFields,
                 message: t('confirmPasswordRequired'),
@@ -210,7 +210,7 @@ function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
             <Input
               name='termsAndConditions'
               type='checkbox'
-              className={formData.termsAndConditions ? 'checked' : ''}
+              className={formData?.termsAndConditions ? 'checked' : ''}
               label={
                 <Text>
                   {t('iveRead')}
@@ -219,14 +219,14 @@ function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
                   </Link>
                 </Text>
               }
-              value={formData.termsAndConditions}
+              value={formData?.termsAndConditions}
               onChange={handleOnChange}
             />
 
             <Input
               name='privacyPolicy'
               type='checkbox'
-              className={formData.privacyPolicy ? 'checked' : ''}
+              className={formData?.privacyPolicy ? 'checked' : ''}
               label={
                 <Text>
                   {t('iveReadThe')}
@@ -235,7 +235,7 @@ function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
                   </Link>
                 </Text>
               }
-              value={formData.privacyPolicy}
+              value={formData?.privacyPolicy}
               onChange={handleOnChange}
             />
           </>
@@ -250,7 +250,7 @@ function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
           center
           disabled={
             (!userData &&
-              (!formData.termsAndConditions || !formData.privacyPolicy)) ||
+              (!formData?.termsAndConditions || !formData?.privacyPolicy)) ||
             (!userData && hasGift && !giftSelected)
           }
         >
@@ -267,11 +267,8 @@ function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
 
             <Text center fontSize='16'>
               {t('sendCostConfig')} +
-              {
-                regionsData?.regions?.find(
-                  ele => ele._id === selectedCity.value
-                )?.price
-              }{' '}
+              {regionsData?.regions?.find(ele => ele._id === selectedCity.value)
+                ?.price || ''}{' '}
               €
             </Text>
           </>

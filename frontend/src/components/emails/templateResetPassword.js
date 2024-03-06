@@ -1,6 +1,6 @@
 import { loadImage } from '../../utils/fetchImage';
 
-async function template() {
+async function templateResetPassword() {
   const girlFoto = '1708855366397_image_main-img.png';
   const logoTransparent = '1708855335399_image_logo-transparent.png';
 
@@ -26,31 +26,20 @@ async function template() {
   
         <tr>
           <th style="text-align: center;">
-            <h1 style="text-align: center; font-size: 36px; margin-bottom: 12px; color: #ef0482">¡Felicidades!</h1>
-          </th>
-        </tr>
-  
-        <tr>
-          <th style="text-align: center;">
-            <p style="text-align: center; margin-top: 0; font-size: 24px; font-weight: bold; color: #ef0482">Te has registrado con éxito</p>
+            <h1 style="text-align: center; font-size: 36px; margin-bottom: 12px; color: #ef0482">Reset password</h1>
           </th>
         </tr>
   
         <tr style="margin-bottom: 24px;">
           <th style="text-align: center;">
-            <p style="text-align: center; font-size: 18px; margin-bottom: 14px; color: white;">Sigue el enlace de abajo para acceder a tu área personal</p>
+            <p style="text-align: center; font-size: 18px; margin-bottom: 14px; color: white;">Sigue el enlace de abajo para cambiar tu contraseña</p>
           </th>
         </tr>
   
-        <tr style="margin-bottom: 24px;">
-          <th style="text-align: center;">
-            <p style="text-align: center; font-size: 18px; margin-top: 0; color: white;">La Maratón comenzará el dia indicado</p>
-          </th>
-        </tr>
   
         <tr style="margin-bottom: 32px;">
           <th style="text-align: center;">
-            <a href="https://bodymaraton.com/login" target="_blank" style="display: inline-block; margin: 32px auto; text-align: center; text-decoration: none; border-radius: 15px; box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; background-color: #ef0482; color: white; padding: 12px 24px; font-size: 20px; margin-top: 32px; font-weight: bold; margin-bottom: 52px;">Accede a tu área personal</a>
+            <a href="https://bodymaraton.com/login" target="_blank" style="display: inline-block; margin: 32px auto; text-align: center; text-decoration: none; border-radius: 15px; box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; background-color: #ef0482; color: white; padding: 12px 24px; font-size: 20px; margin-top: 32px; font-weight: bold; margin-bottom: 52px;">Cambiar contraseña</a>
           </th>
         </tr>
   
@@ -64,4 +53,4 @@ async function template() {
   </html>`;
 }
 
-export default template;
+export default templateResetPassword;

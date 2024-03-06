@@ -49,6 +49,7 @@ function Input({
   disabled = false,
   language = '',
   trashClick,
+  isClearable = false,
 }) {
   const animatedComponents = useMemo(() => makeAnimated(), []);
 
@@ -74,6 +75,8 @@ function Input({
           ? event.target.files[0]
           : type === 'checkbox' || type === 'toggle'
           ? event.target.checked
+          : name === 'email'
+          ? event.target.value.toLowerCase()
           : event.target.value,
     });
   };
@@ -82,7 +85,12 @@ function Input({
     onChange({ name, value: values.map(each => each.value) });
   };
 
-  const handleSingleSelectChange = ({ value, label }) => {
+  const handleSingleSelectChange = element => {
+    if (!element) {
+      onChange({ name, value: '', label: '' });
+      return;
+    }
+    const { value, label } = element;
     onChange({ name, value, label });
   };
 
@@ -115,189 +123,196 @@ function Input({
     );
 
   return (
-    <div className={`field ${className} ${name} ${type}`}>
-      {label && (
-        <div className='label-wrapper'>
-          <label className='main-label' htmlFor={name}>
-            {label} {selectCreatable ? t('writeNameToCreate') : ''}{' '}
-            {language && flag}
-          </label>
+    <div className='input-wrapper'>
+      <div className={`field ${className} ${name} ${type}`}>
+        {label && (
+          <div className='label-wrapper'>
+            <label className='main-label' htmlFor={name}>
+              {label} {selectCreatable ? t('writeNameToCreate') : ''}{' '}
+              {language && flag}
+            </label>
 
-          {subLabel && <Text className='sublabel'>{subLabel}</Text>}
-        </div>
-      )}
+            {subLabel && <Text className='sublabel'>{subLabel}</Text>}
+          </div>
+        )}
 
-      {type !== 'select' &&
-        type !== 'textarea' &&
-        type !== 'radio' &&
-        type !== 'toggle' &&
-        !isMultiSelect &&
-        !isSingleSelect &&
-        !selectCreatable && (
-          <input
+        {type !== 'select' &&
+          type !== 'textarea' &&
+          type !== 'radio' &&
+          type !== 'toggle' &&
+          !isMultiSelect &&
+          !isSingleSelect &&
+          !selectCreatable && (
+            <input
+              id={name}
+              name={name}
+              value={
+                type === 'file'
+                  ? ''
+                  : type === 'date' && value
+                  ? new Date(value).toISOString().split('T')[0]
+                  : value
+              }
+              onChange={type === 'file' ? handleUploadImage : handleOnChange}
+              placeholder={type === 'number' ? '0' : placeholder}
+              required={required}
+              type={type || 'text'}
+              maxLength={maxLength}
+              className={`${value ? 'has-value' : 'no-value'} ${
+                hasError ? 'has-error' : ''
+              }`}
+              checked={!!value}
+              disabled={disabled}
+            />
+          )}
+
+        {type === 'select' && (
+          <select
             id={name}
             name={name}
-            value={
-              type === 'file'
-                ? ''
-                : type === 'date' && value
-                ? new Date(value).toISOString().split('T')[0]
-                : value
-            }
-            onChange={type === 'file' ? handleUploadImage : handleOnChange}
-            placeholder={type === 'number' ? '0' : placeholder}
+            value={value}
+            onChange={handleOnChange}
             required={required}
-            type={type || 'text'}
-            maxLength={maxLength}
-            className={`${value ? 'has-value' : 'no-value'} ${
-              hasError ? 'has-error' : ''
+            className={`${value ? 'has-value' : 'no-value'}`}
+          >
+            <option value='' disabled={!noValueOption}>
+              {noValueOption || selectOption}
+            </option>
+
+            {options.map((eachOption, index) => (
+              <option
+                key={`option-${index}`}
+                value={eachOption.value}
+                disabled={eachOption.disabled}
+              >
+                {eachOption.label}
+              </option>
+            ))}
+          </select>
+        )}
+
+        {isSingleSelect && (
+          <Select
+            components={animatedComponents}
+            className={`multi-select ${
+              defaultValue ? 'has-value' : 'no-value'
             }`}
-            checked={!!value}
-            disabled={disabled}
+            isClearable={isClearable}
+            closeMenuOnSelect
+            options={options}
+            onChange={handleSingleSelectChange}
+            placeholder={placeholder}
+            classNamePrefix='multi-prefix'
+            defaultValue={defaultValue}
+            value={selectedOption}
+            menuPortalTarget={document.body}
+            // menuPosition={'fixed'}
+            styles={{
+              menuPortal: provided => ({ ...provided, zIndex: 9999 }),
+              menu: provided => ({
+                ...provided,
+                zIndex: 9999,
+                color: '#464545',
+              }),
+            }}
           />
         )}
 
-      {type === 'select' && (
-        <select
-          id={name}
-          name={name}
-          value={value}
-          onChange={handleOnChange}
-          required={required}
-          className={`${value ? 'has-value' : 'no-value'}`}
-        >
-          <option value='' disabled={!noValueOption}>
-            {noValueOption || selectOption}
-          </option>
+        {isMultiSelect && (
+          <Select
+            components={animatedComponents}
+            className='multi-select'
+            closeMenuOnSelect={false}
+            isMulti
+            options={options}
+            onChange={handleMultiSelectChange}
+            placeholder={placeholder}
+            classNamePrefix='multi-prefix'
+            defaultValue={defaultValue}
+          />
+        )}
 
-          {options.map((eachOption, index) => (
-            <option
-              key={`option-${index}`}
-              value={eachOption.value}
-              disabled={eachOption.disabled}
+        {selectCreatable && (
+          <CreatableSelect
+            components={animatedComponents}
+            className='multi-select'
+            classNamePrefix='multi-prefix'
+            onCreateOption={onCreateOption}
+            onChange={handleSingleSelectChange}
+            options={options}
+            placeholder={placeholder}
+            defaultValue={defaultValue}
+            value={selectedOption}
+          />
+        )}
+
+        {type === 'textarea' && (
+          <textarea
+            id={name}
+            name={name}
+            value={value}
+            onChange={handleOnChange}
+            placeholder={placeholder}
+            required={required}
+            className={`${value ? 'has-value' : 'no-value'}`}
+          />
+        )}
+
+        {type === 'toggle' && (
+          <Toggle
+            id={name}
+            name={name}
+            checked={value}
+            onChange={handleOnChange}
+          />
+        )}
+
+        {type === 'radio' &&
+          options.map(option => (
+            <label
+              className='radio-label'
+              key={`${option.value}-${name}`}
+              htmlFor={`${option.value}-${name}`}
             >
-              {eachOption.label}
-            </option>
+              <input
+                name={name}
+                id={`${option.value}-${name}`}
+                type='radio'
+                value={option.value}
+                onChange={handleOnChange}
+                checked={selectedOption === option.value}
+              />
+              <Text isBold>
+                {option.label}
+                {option.sublabel && <span>{option.sublabel}</span>}
+              </Text>
+            </label>
           ))}
-        </select>
-      )}
 
-      {isSingleSelect && (
-        <Select
-          components={animatedComponents}
-          className={`multi-select ${defaultValue ? 'has-value' : 'no-value'}`}
-          closeMenuOnSelect
-          options={options}
-          onChange={handleSingleSelectChange}
-          placeholder={placeholder}
-          classNamePrefix='multi-prefix'
-          defaultValue={defaultValue}
-          value={selectedOption}
-          menuPortalTarget={document.body}
-          menuPosition={'fixed'}
-          styles={{
-            menuPortal: provided => ({ ...provided, zIndex: 9999 }),
-            menu: provided => ({
-              ...provided,
-              zIndex: 9999,
-              color: '#464545',
-            }),
-          }}
-        />
-      )}
+        {type === 'file' &&
+          (isLoading ? (
+            <div className='dots-spinner-wrapper'>
+              <Spinner type='dots' />
+            </div>
+          ) : (
+            <div className='input-file'>
+              <Text className={value ? 'has-value' : 'placeholder'}>
+                {isLoading
+                  ? t('loading')
+                  : fileName
+                  ? fileName
+                  : placeholder
+                  ? placeholder
+                  : t('imageLoad')}
+              </Text>
+              <Text>
+                <FontAwesomeIcon icon={faPlus} />
+              </Text>
+            </div>
+          ))}
 
-      {isMultiSelect && (
-        <Select
-          components={animatedComponents}
-          className='multi-select'
-          closeMenuOnSelect={false}
-          isMulti
-          options={options}
-          onChange={handleMultiSelectChange}
-          placeholder={placeholder}
-          classNamePrefix='multi-prefix'
-          defaultValue={defaultValue}
-        />
-      )}
-
-      {selectCreatable && (
-        <CreatableSelect
-          components={animatedComponents}
-          className='multi-select'
-          classNamePrefix='multi-prefix'
-          onCreateOption={onCreateOption}
-          onChange={handleSingleSelectChange}
-          options={options}
-          placeholder={placeholder}
-          defaultValue={defaultValue}
-          value={selectedOption}
-        />
-      )}
-
-      {type === 'textarea' && (
-        <textarea
-          id={name}
-          name={name}
-          value={value}
-          onChange={handleOnChange}
-          placeholder={placeholder}
-          required={required}
-          className={`${value ? 'has-value' : 'no-value'}`}
-        />
-      )}
-
-      {type === 'toggle' && (
-        <Toggle
-          id={name}
-          name={name}
-          checked={value}
-          onChange={handleOnChange}
-        />
-      )}
-
-      {type === 'radio' &&
-        options.map(option => (
-          <label
-            className='radio-label'
-            key={`${option.value}-${name}`}
-            htmlFor={`${option.value}-${name}`}
-          >
-            <input
-              name={name}
-              id={`${option.value}-${name}`}
-              type='radio'
-              value={option.value}
-              onChange={handleOnChange}
-              checked={selectedOption === option.value}
-            />
-            <Text isBold>
-              {option.label}
-              {option.sublabel && <span>{option.sublabel}</span>}
-            </Text>
-          </label>
-        ))}
-
-      {type === 'file' &&
-        (isLoading ? (
-          <div className='dots-spinner-wrapper'>
-            <Spinner type='dots' />
-          </div>
-        ) : (
-          <div className='input-file'>
-            <Text className={value ? 'has-value' : 'placeholder'}>
-              {isLoading
-                ? t('loading')
-                : fileName
-                ? fileName
-                : placeholder
-                ? placeholder
-                : t('imageLoad')}
-            </Text>
-            <Text>
-              <FontAwesomeIcon icon={faPlus} />
-            </Text>
-          </div>
-        ))}
+        {hasError && <Text error>{error?.message}</Text>}
+      </div>
 
       {typeParams === 'password' && (
         <Button
@@ -307,16 +322,14 @@ function Input({
         />
       )}
 
-      {!!trashClick && (
+      {!!trashClick && isClearable && (
         <Button
-          className='trash-input'
+          className={`trash-input ${value || selectedOption ? 'active' : ''}`}
           onClick={trashClick}
           iconLeft={faTrash}
           onlyIcon
         />
       )}
-
-      {hasError && <Text error>{error?.message}</Text>}
     </div>
   );
 }

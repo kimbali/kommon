@@ -85,17 +85,6 @@ function NewUser({ onCreate, onCancel, user }) {
       <Space small />
 
       <Input
-        label={t('password')}
-        name='password'
-        placeholder={t('passwordPlaceholder')}
-        onChange={handleOnChange}
-        value={formData.password}
-        error={{ invalidFields, message: t('passwordRequired') }}
-      />
-
-      <Space small />
-
-      <Input
         label={t('adminUserAsk')}
         placeholder=''
         type='radio'

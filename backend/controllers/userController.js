@@ -286,9 +286,8 @@ export const forgotPassword = asyncHandler(async (req, res) => {
     await user.save();
 
     await sendEmail(req, res, {
-      from: 'Body Maraton <onboarding@resend.dev>',
-      to: 'kimgarcianton@hotmail.com',
-      // to: req.body.email,
+      from: 'Body Maraton <noreply@bodymaraton.com>',
+      to: req.body.email,
       subject: 'Reset password',
       html: template.replace('/login', `/reset-password#${token}`),
     });

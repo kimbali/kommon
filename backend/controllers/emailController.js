@@ -24,7 +24,7 @@ export const sendEmail = asyncHandler(async (req, res, emailInfo) => {
   const resend = new Resend(process.env.RESEND_KEY);
 
   try {
-    const emailContent = emailInfo || req.body;
+    const emailContent = emailInfo?.from ? emailInfo : req.body;
     const data = await resend.emails.send(emailContent);
 
     res.status(200).json({ data });

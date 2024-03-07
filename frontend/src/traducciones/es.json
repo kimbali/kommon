@@ -514,7 +514,7 @@
   "noMarathonYetTextTwo": "Cada sábado tendras acceso a la próxima semana",
   "noMarathonYetTextThree": "Revisa durante el fin de semana la lista de la compra, la encontraras en el menu",
   "remaining": "Quedan",
-  "quedan": "Próxima maratón en ",
+  "quedan": "La Maratón empieza en ",
   "searchByNameAndEmail": "Nombre o email",
   "changeUser": "Cambiar de usuario",
   "resetPassword": "He olvidado la contraseña",
@@ -524,7 +524,7 @@
   "passwordChanged": "Contraseña actualizada",
   "newPassword": "Nueva contraseña",
   "repeatPassword": "Repite la contraseña",
-  "sendStartEmail": "Mandar email inicio maratón",
+  "sendStartEmail": "Inicio maratón",
   "confirmSendStartEmail": "Se mandará un email a todos los usuarios de la maraton seleccionada, avisando de que su maratón empieza en dos días",
   "emailsSent": "Emails mandados"
 }

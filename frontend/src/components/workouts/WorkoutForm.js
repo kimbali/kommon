@@ -113,9 +113,11 @@ function WorkoutForm({ data, onSuccess, isEdit }) {
 
         <Space medium />
 
-        <Button isPrimary type='submit'>
-          {isEdit ? 'Edit workout' : 'Create workout'}
-        </Button>
+        <div className='content-on-the-right'>
+          <Button isPrimary type='submit'>
+            {isEdit ? 'Edit workout' : 'Create workout'}
+          </Button>
+        </div>
       </form>
     </div>
   );

@@ -52,59 +52,59 @@ function MeditationForm({ data, onSuccess, isEdit }) {
       <Space small />
 
       <form onSubmit={isEdit ? handleEditMeditation : handleCreateMeditation}>
-        <div className='grid-container'>
-          <Input
-            className='cols-4'
-            label={t('title')}
-            name='title'
-            placeholder='Title'
-            onChange={handleOnChange}
-            value={formData.title}
-          />
+        <Input
+          className='cols-4'
+          label={t('title')}
+          name='title'
+          placeholder='Title'
+          onChange={handleOnChange}
+          value={formData.title}
+        />
 
-          <Input
-            className='cols-4'
-            type='textarea'
-            label={t('description')}
-            placeholder={t('descriptionPlaceholder')}
-            name='description'
-            onChange={handleOnChange}
-            value={formData.description}
-          />
+        <Input
+          className='cols-4'
+          type='textarea'
+          label={t('description')}
+          placeholder={t('descriptionPlaceholder')}
+          name='description'
+          onChange={handleOnChange}
+          value={formData.description}
+        />
 
-          <Input
-            className='cols-4'
-            label={t('audio')}
-            name='audio'
-            placeholder={t('audioLink')}
-            onChange={handleOnChange}
-            value={formData.audio}
-          />
+        <Input
+          className='cols-4'
+          label={t('audio')}
+          name='audio'
+          placeholder={t('audioLink')}
+          onChange={handleOnChange}
+          value={formData.audio}
+        />
 
-          <Input
-            className='cols-4'
-            label={t('image')}
-            name='image'
-            onChange={handleOnChange}
-            value={formData.image}
-            type='file'
-          />
+        <Input
+          className='cols-4'
+          label={t('image')}
+          name='image'
+          onChange={handleOnChange}
+          value={formData.image}
+          type='file'
+        />
 
-          <Input
-            className='cols-4'
-            label={t('minutes')}
-            name='minutes'
-            placeholder={t('placeholderNumber')}
-            onChange={handleOnChange}
-            value={formData.minutes}
-          />
-        </div>
+        <Input
+          className='cols-4'
+          label={t('minutes')}
+          name='minutes'
+          placeholder={t('placeholderNumber')}
+          onChange={handleOnChange}
+          value={formData.minutes}
+        />
 
         <Space medium />
 
-        <Button isPrimary type='submit'>
-          {isEdit ? t('edit') : t('create')}
-        </Button>
+        <div className='content-on-the-right'>
+          <Button isPrimary type='submit'>
+            {isEdit ? t('edit') : t('create')}
+          </Button>
+        </div>
       </form>
     </div>
   );

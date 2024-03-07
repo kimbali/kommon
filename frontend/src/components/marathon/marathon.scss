@@ -7,14 +7,14 @@
   span {
     color: $grey-decolored;
   }
+}
 
-  .start-end-date {
-    text-transform: uppercase;
-    display: flex;
+.start-end-date {
+  text-transform: uppercase;
+  display: flex;
 
-    .text {
-      margin-left: 16px;
-    }
+  .text {
+    margin-left: 16px;
   }
 }
 

@@ -103,6 +103,8 @@ table {
   .filters {
     display: flex;
     column-gap: 16px;
+    width: 100%;
+    margin-bottom: 12px;
 
     @include media(mobile) {
       flex-direction: column;

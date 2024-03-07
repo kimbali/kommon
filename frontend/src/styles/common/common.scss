@@ -294,3 +294,9 @@ a {
     }
   }
 }
+
+.align-right {
+  margin-left: auto;
+  width: 100%;
+  justify-content: flex-end;
+}

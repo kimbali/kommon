@@ -3,6 +3,7 @@ import Button from '../components/button/Button';
 import {
   faAdd,
   faAddressCard,
+  faCalendarDays,
   faCheck,
   faEdit,
   faEuro,
@@ -25,9 +26,14 @@ import { getAllergiesLabel } from '../config/enums/allergiesEnum';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Input from '../components/input/Input';
 import { useGetMarathonsQuery } from '../slices/marathonApiSlice';
+import Text from '../components/text/Text';
+import formatDate from '../utils/formatDate';
+import templateStart from '../components/emails/templateStart';
+import postEmail from '../utils/postEmail';
 
 function Users() {
   const { t } = useTranslation();
+  const [showSendEmail, setShowSendEmail] = useState(false);
   const [showNewUserModal, setshowNewUserModal] = useState(false);
   const [showDeleteUserModal, setshowDeleteUserModal] = useState(false);
   const [searchValue, setSearchValue] = useState('');
@@ -87,40 +93,92 @@ function Users() {
     setMarathonSelected(marathon);
   };
 
+  const handleSendEmail = async () => {
+    try {
+      const listOfMails = usersData.map(ele => ele.email);
+
+      const templateHTML = await templateStart();
+
+      await postEmail({
+        from: 'Body Maraton <noreply@bodymaraton.com>',
+        // from: 'Body Maraton TEST <onboarding@resend.dev>',
+        to: listOfMails,
+        subject: '¡Empieza tu Body Maratón!',
+        html: templateHTML,
+      });
+
+      toast.success(t('emailsSent'));
+      setShowSendEmail(false);
+    } catch {
+      toast.error(t('error'));
+    }
+  };
+
   return (
     <div className='data-table'>
-      <div className='filters'>
-        <Button
-          onClick={() => setshowNewUserModal(true)}
-          isPrimary
-          iconLeft={faAdd}
-        >
-          {t('newUser')}
-        </Button>
+      <div className='content-left-and-right'>
+        <div className='filters'>
+          <Button
+            onClick={() => setshowNewUserModal(true)}
+            isPrimary
+            iconLeft={faAdd}
+          >
+            {t('newUser')}
+          </Button>
 
-        <Input
-          placeholder={t('marathon')}
-          isSingleSelect
-          options={marathonOptions}
-          onChange={handleMarathonChange}
-          selectedOption={marathonSelected}
-          name='marathon'
-          trashClick={() => setMarathonSelected()}
-          isClearable
-        />
+          <form onSubmit={handleSearchSubmit} className='search-input'>
+            <Input
+              onChange={handleSearchValueChange}
+              placeholder={t('searchByNameAndEmail')}
+              iconLeft={faMagnifyingGlass}
+              isSecondary
+              name='search'
+              value={searchValue}
+              type='search'
+            />
+            <Button type='submit' isPrimary iconLeft={faMagnifyingGlass} />
+          </form>
+        </div>
 
-        <form onSubmit={handleSearchSubmit} className='search-input'>
+        <div className='filters align-right'>
           <Input
-            onChange={handleSearchValueChange}
-            placeholder={t('searchByNameAndEmail')}
-            iconLeft={faMagnifyingGlass}
-            isSecondary
-            name='search'
-            value={searchValue}
-            type='search'
+            placeholder={t('marathon')}
+            isSingleSelect
+            options={marathonOptions}
+            onChange={handleMarathonChange}
+            selectedOption={marathonSelected}
+            name='marathon'
+            trashClick={() => setMarathonSelected()}
+            isClearable
           />
-          <Button type='submit' isPrimary iconLeft={faMagnifyingGlass} />
-        </form>
+
+          <Button
+            onClick={() => setShowSendEmail(true)}
+            disabled={!marathonSelected}
+            isSecondary
+          >
+            {t('sendStartEmail')}
+          </Button>
+        </div>
+      </div>
+
+      <Space small />
+
+      <div className='content-left-and-right'>
+        <Text color='primary' isBold className='first-element'>
+          TOTAL USUARIOS: {usersData?.length}
+        </Text>
+
+        {marathonSelected && (
+          <div className=' start-end-date'>
+            <span>
+              <FontAwesomeIcon icon={faCalendarDays} />
+            </span>
+            <Text>{formatDate(marathonSelected?.value?.startDate)}</Text>
+            <Text>-</Text>
+            <Text>{formatDate(marathonSelected?.value?.endDate)}</Text>
+          </div>
+        )}
       </div>
 
       <Space medium />
@@ -219,6 +277,15 @@ function Users() {
               : `${t('confirmDelete')} ${showDeleteUserModal.name}`
           }
           disableConfirm={!!showDeleteUserModal.isAdmin}
+        />
+      )}
+
+      {showSendEmail && (
+        <ConfirmModal
+          onConfirm={handleSendEmail}
+          onClose={setShowSendEmail}
+          title={t('sendStartEmail')}
+          text={t('confirmSendStartEmail')}
         />
       )}
     </div>

@@ -87,7 +87,7 @@ function Input({
 
   const handleSingleSelectChange = element => {
     if (!element) {
-      onChange({ name, value: '', label: '' });
+      onChange();
       return;
     }
     const { value, label } = element;

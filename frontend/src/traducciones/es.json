@@ -523,5 +523,8 @@
   "sendEmail": "Mandar email de recuperación",
   "passwordChanged": "Contraseña actualizada",
   "newPassword": "Nueva contraseña",
-  "repeatPassword": "Repite la contraseña"
+  "repeatPassword": "Repite la contraseña",
+  "sendStartEmail": "Mandar email inicio maratón",
+  "confirmSendStartEmail": "Se mandará un email a todos los usuarios de la maraton seleccionada, avisando de que su maratón empieza en dos días",
+  "emailsSent": "Emails mandados"
 }

@@ -526,5 +526,6 @@
   "repeatPassword": "Repite la contraseña",
   "sendStartEmail": "Inicio maratón",
   "confirmSendStartEmail": "Se mandará un email a todos los usuarios de la maraton seleccionada, avisando de que su maratón empieza en dos días",
-  "emailsSent": "Emails mandados"
+  "emailsSent": "Emails mandados",
+  "declein": "Rechazar"
 }

@@ -19,8 +19,9 @@ function CookiesDisclaimer({ setShowCookies }) {
     };
   }, []);
 
-  const handleCookie = () => {
-    Cookies.set(COOKIE_DISCLAIMER, true, { expires: 31 });
+  const handleCookie = isAccepted => {
+    localStorage.setItem(COOKIE_DISCLAIMER, isAccepted);
+
     setShowCookies(false);
   };
 
@@ -38,7 +39,11 @@ function CookiesDisclaimer({ setShowCookies }) {
           </span>
         </Text>
 
-        <Button onClick={handleCookie} isPrimary>
+        <Button onClick={() => handleCookie(false)} isSecondary>
+          {t('declein')}
+        </Button>
+
+        <Button onClick={() => handleCookie(true)} isPrimary>
           {t('accept')}
         </Button>
       </div>

@@ -84,9 +84,9 @@ function App() {
   const [createConfigDoc] = useCreateConfigMutation();
 
   useEffect(() => {
-    const cookieAccepted = Cookies.get(COOKIE_DISCLAIMER);
+    const localCookie = localStorage.getItem(COOKIE_DISCLAIMER);
 
-    if (!cookieAccepted) {
+    if (!localCookie) {
       setShowCookies(true);
     }
   }, []);

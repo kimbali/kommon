@@ -55,7 +55,6 @@ import UserMore from './pages/UserMore';
 import { useProgress } from './context/progressContext';
 import Configuration from './pages/Configuration';
 import { useTranslation } from 'react-i18next';
-import Cookies from 'js-cookie';
 import CookiesDisclaimer from './components/cookies/CookiesDisclaimer';
 import UserPayment from './pages/UserPayment';
 import CaloriesCalculator from './pages/CaloriesCalculator';

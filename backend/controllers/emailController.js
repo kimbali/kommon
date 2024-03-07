@@ -23,11 +23,18 @@ const app = express();
 export const sendEmail = asyncHandler(async (req, res, emailInfo) => {
   const resend = new Resend(process.env.RESEND_KEY);
 
-  try {
-    const emailContent = emailInfo?.from ? emailInfo : req.body;
-    const data = await resend.emails.send(emailContent);
+  const emailContent = emailInfo?.from ? emailInfo : req.body;
 
-    res.status(200).json({ data });
+  try {
+    if (Array.isArray(emailContent?.to)) {
+      const data = emailContent.to.forEach(async ele => {
+        await resend.emails.send({ ...emailContent, to: ele });
+      });
+      res.status(200).json({ data });
+    } else {
+      const data = await resend.emails.send(emailContent);
+      res.status(200).json({ data });
+    }
   } catch (error) {
     res.status(500).json({ error });
   }

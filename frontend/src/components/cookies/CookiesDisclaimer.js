@@ -5,7 +5,6 @@ import Text from '../text/Text';
 import Button from '../button/Button';
 import { Link } from 'react-router-dom';
 import frontRoutes from '../../config/frontRoutes';
-import Cookies from 'js-cookie';
 import { COOKIE_DISCLAIMER } from '../../config/constants';
 
 function CookiesDisclaimer({ setShowCookies }) {

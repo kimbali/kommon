@@ -279,13 +279,13 @@ function Home() {
                 </div>
 
                 <Text fontSize='18' isBold>
-                  {ele[lang].name}
+                  {ele[lang]?.name}
                 </Text>
 
                 <Space extraSmall />
 
                 <Markdown className='markdown-text' remarkPlugins={[remarkGfm]}>
-                  {ele[lang].description}
+                  {ele[lang]?.description}
                 </Markdown>
               </div>
             ))}
@@ -473,10 +473,10 @@ function Home() {
                       className='image'
                       style={{ backgroundImage: `url(${QA})` }}
                     />
-                    <p>{ele[lang].title}</p>
+                    <p>{ele[lang]?.title}</p>
                   </summary>
 
-                  <p className='faq-item-a'>{ele[lang].description}</p>
+                  <p className='faq-item-a'>{ele[lang]?.description}</p>
                 </details>
               ))}
           </div>

@@ -5,7 +5,7 @@ form {
 
     .field {
       width: 100%;
-      margin: 0 0 24px;
+      // margin: 0 0 24px;
       display: flex;
       flex-direction: column;
 
@@ -45,7 +45,7 @@ form {
     .form-section {
       flex-wrap: nowrap;
 
-      .field {
+      .input-wrapper {
         width: 50%;
         margin-bottom: 24px;
 

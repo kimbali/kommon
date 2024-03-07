@@ -82,8 +82,6 @@ function GiftForm({ data, onSuccess }) {
           />
         </div>
 
-        <Space medium />
-
         <div className='form-section'>
           <Input
             label={t('description')}
@@ -103,8 +101,6 @@ function GiftForm({ data, onSuccess }) {
             language='ca'
           />
         </div>
-
-        <Space medium />
 
         <Input
           label={t('quantity')}

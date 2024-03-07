@@ -13,8 +13,8 @@ function RegisterGiftSelect({
 }) {
   const { t } = useTranslation();
   const lang = i18n.language;
-
   const { data: giftsList } = useGetGiftsQuery({ quantity: true });
+  console.log(lang);
 
   return (
     <div className={`gift-selector ${hasGift ? 'show-gifts' : ''}`}>
@@ -46,7 +46,7 @@ function RegisterGiftSelect({
               giftSelected={giftSelected}
               selectGift={setGiftSelected}
               image={ele.image?.url}
-              text={ele[lang].name}
+              text={ele[lang]?.name}
               key={ele._id}
               giftId={ele._id}
             />

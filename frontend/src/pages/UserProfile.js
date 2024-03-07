@@ -40,145 +40,136 @@ function UserProfile() {
 
       <Space small />
 
-      <Text isSubtitle>{t('personalInfo')}</Text>
+      <div className='user-profile'>
+        <div className='section'>
+          <Text isSubtitle>{t('personalInfo')}</Text>
 
-      <Space extraSmall />
-
-      <div className='background-2'>
-        <ResumeTable
-          list={[
-            { name: t('name'), value: user?.name },
-            { name: t('mail'), value: user?.email },
-            { name: t('region'), value: user?.city?.region || '-' },
-            { name: t('address'), value: user?.address || '-' },
-            { name: t('tel'), value: user?.phone },
-          ]}
-        />
-      </div>
-
-      <Space medium />
-
-      <Text isSubtitle>{t('parameters')}</Text>
-
-      <Space extraSmall />
-      <div className='background-2'>
-        <ResumeTable
-          list={[
-            { name: t('age'), value: user?.age },
-            { name: t('height'), value: user?.height },
-            { name: t('weightKg'), value: user?.weight },
-            { name: t('chestCm'), value: user?.chest },
-            { name: t('waistCm'), value: user?.waist },
-            { name: t('buttocksCm'), value: user?.buttocks },
-          ]}
-        />
-      </div>
-
-      <Space medium />
-
-      <Text isSubtitle>{t('lifeStyle')}</Text>
-
-      <Space extraSmall />
-
-      <div className='background-2'>
-        <ResumeTable
-          list={[
-            { name: t('activity'), value: getActivityLabel(user?.activity) },
-            {
-              name: t('allergies'),
-              value: getAllergiesLabel(user?.allergies),
-            },
-            {
-              name: t('patologies'),
-              value: getPatologiesLabel(user?.patologies),
-            },
-            { name: t('porpuse'), value: getPorpuseLabel(user?.porpuse) },
-            { name: t('breastfeed'), value: getYesNoLabel(user?.breastfeed) },
-            {
-              name: t('problem'),
-              value: getProblemsLabel(user?.problem) || '-',
-            },
-          ]}
-        />
-      </div>
-
-      <Space medium />
-
-      <div className='body-fotos-section'>
-        <Text isSectionTitle>{t('photosSectionTitle')}</Text>
-
-        <Space extraSmall />
-
-        <Text>{t('photosSectionDescription')}</Text>
-
-        <Space medium />
-
-        <div className='body-fotos'>
-          <BodyTemplate
-            title={t('front')}
-            template={FRONT_TEMPLATE}
-            photo={userProgress?.initialPhotos?.front}
-          />
-          <BodyTemplate
-            title={t('back')}
-            template={BACK_TEMPLATE}
-            photo={userProgress?.initialPhotos?.back}
-          />
-          <BodyTemplate
-            title={t('lateral')}
-            template={LATERAL_TEMPLATE}
-            photo={userProgress?.initialPhotos?.lateral}
+          <ResumeTable
+            list={[
+              { name: t('name'), value: user?.name },
+              { name: t('mail'), value: user?.email },
+              { name: t('region'), value: user?.city?.region || '-' },
+              { name: t('address'), value: user?.address || '-' },
+              { name: t('tel'), value: user?.phone },
+            ]}
           />
         </div>
 
-        <Space medium />
+        <div className='section'>
+          <Text isSubtitle>{t('parameters')}</Text>
 
-        {lessThan3DaysDifference(marathon?.endDate) && (
+          <ResumeTable
+            list={[
+              { name: t('age'), value: user?.age },
+              { name: t('height'), value: user?.height },
+              { name: t('weightKg'), value: user?.weight },
+              { name: t('chestCm'), value: user?.chest },
+              { name: t('waistCm'), value: user?.waist },
+              { name: t('buttocksCm'), value: user?.buttocks },
+            ]}
+          />
+        </div>
+
+        <div className='section'>
+          <Text isSubtitle>{t('lifeStyle')}</Text>
+
+          <ResumeTable
+            list={[
+              { name: t('activity'), value: getActivityLabel(user?.activity) },
+              {
+                name: t('allergies'),
+                value: getAllergiesLabel(user?.allergies),
+              },
+              {
+                name: t('patologies'),
+                value: getPatologiesLabel(user?.patologies),
+              },
+              { name: t('porpuse'), value: getPorpuseLabel(user?.porpuse) },
+              { name: t('breastfeed'), value: getYesNoLabel(user?.breastfeed) },
+              {
+                name: t('problem'),
+                value: getProblemsLabel(user?.problem) || '-',
+              },
+            ]}
+          />
+        </div>
+
+        <div className='body-fotos-section'>
+          <Text isSectionTitle>{t('photosSectionTitle')}</Text>
+
+          <Space extraSmall />
+
+          <Text>{t('photosSectionDescription')}</Text>
+
+          <Space medium />
+
           <div className='body-fotos'>
             <BodyTemplate
               title={t('front')}
               template={FRONT_TEMPLATE}
-              photo={userProgress?.photoFinish?.front}
+              photo={userProgress?.initialPhotos?.front}
             />
             <BodyTemplate
               title={t('back')}
               template={BACK_TEMPLATE}
-              photo={userProgress?.photoFinish?.back}
+              photo={userProgress?.initialPhotos?.back}
             />
             <BodyTemplate
               title={t('lateral')}
               template={LATERAL_TEMPLATE}
-              photo={userProgress?.photoFinish?.lateral}
+              photo={userProgress?.initialPhotos?.lateral}
             />
           </div>
-        )}
 
-        <Space medium />
+          <Space medium />
 
-        <div className='buttons-container'>
-          <Button
-            onClick={() => setShowFotosModal('initialPhotos')}
-            isPrimary
-            disabled={!lessThan3DaysDifference(marathon?.startDate)}
-          >
-            {t('uploadFotosInit')}
-          </Button>
+          {lessThan3DaysDifference(marathon?.endDate) && (
+            <div className='body-fotos'>
+              <BodyTemplate
+                title={t('front')}
+                template={FRONT_TEMPLATE}
+                photo={userProgress?.photoFinish?.front}
+              />
+              <BodyTemplate
+                title={t('back')}
+                template={BACK_TEMPLATE}
+                photo={userProgress?.photoFinish?.back}
+              />
+              <BodyTemplate
+                title={t('lateral')}
+                template={LATERAL_TEMPLATE}
+                photo={userProgress?.photoFinish?.lateral}
+              />
+            </div>
+          )}
 
-          <Button
-            onClick={() => setShowFotosModal('photoFinish')}
-            isPrimary
-            disabled={!lessThan3DaysDifference(marathon?.endDate)}
-          >
-            {t('uploadFotosFinish')}
-          </Button>
+          <Space medium />
+
+          <div className='buttons-container'>
+            <Button
+              onClick={() => setShowFotosModal('initialPhotos')}
+              isPrimary
+              disabled={!lessThan3DaysDifference(marathon?.startDate)}
+            >
+              {t('uploadFotosInit')}
+            </Button>
+
+            <Button
+              onClick={() => setShowFotosModal('photoFinish')}
+              isPrimary
+              disabled={!lessThan3DaysDifference(marathon?.endDate)}
+            >
+              {t('uploadFotosFinish')}
+            </Button>
+          </div>
         </div>
-      </div>
 
-      {showFotosModal && (
-        <Modal onClose={setShowFotosModal}>
-          <BodyFotosForm onSave={handleSaveFotos} time={showFotosModal} />
-        </Modal>
-      )}
+        {showFotosModal && (
+          <Modal onClose={setShowFotosModal}>
+            <BodyFotosForm onSave={handleSaveFotos} time={showFotosModal} />
+          </Modal>
+        )}
+      </div>
     </div>
   );
 }

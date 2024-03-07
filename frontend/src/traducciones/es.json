@@ -524,8 +524,9 @@
   "passwordChanged": "Contraseña actualizada",
   "newPassword": "Nueva contraseña",
   "repeatPassword": "Repite la contraseña",
-  "sendStartEmail": "Inicio maratón",
+  "sendStartEmail": "@ Inicio maratón",
   "confirmSendStartEmail": "Se mandará un email a todos los usuarios de la maraton seleccionada, avisando de que su maratón empieza en dos días",
   "emailsSent": "Emails mandados",
-  "declein": "Rechazar"
+  "declein": "Rechazar",
+  "allergyWarning": "Tienes alergia a alguno de los ingredientes de esta receta"
 }

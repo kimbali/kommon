@@ -44,32 +44,35 @@ function UserProfile() {
 
       <Space extraSmall />
 
-      <ResumeTable
-        list={[
-          { name: t('name'), value: user?.name },
-          { name: t('mail'), value: user?.email },
-          { name: t('region'), value: user?.city?.region || '-' },
-          { name: t('address'), value: user?.address || '-' },
-          { name: t('tel'), value: user?.phone },
-        ]}
-      />
+      <div className='background-2'>
+        <ResumeTable
+          list={[
+            { name: t('name'), value: user?.name },
+            { name: t('mail'), value: user?.email },
+            { name: t('region'), value: user?.city?.region || '-' },
+            { name: t('address'), value: user?.address || '-' },
+            { name: t('tel'), value: user?.phone },
+          ]}
+        />
+      </div>
 
       <Space medium />
 
       <Text isSubtitle>{t('parameters')}</Text>
 
       <Space extraSmall />
-
-      <ResumeTable
-        list={[
-          { name: t('age'), value: user?.age },
-          { name: t('height'), value: user?.height },
-          { name: t('weightKg'), value: user?.weight },
-          { name: t('chestCm'), value: user?.chest },
-          { name: t('waistCm'), value: user?.waist },
-          { name: t('buttocksCm'), value: user?.buttocks },
-        ]}
-      />
+      <div className='background-2'>
+        <ResumeTable
+          list={[
+            { name: t('age'), value: user?.age },
+            { name: t('height'), value: user?.height },
+            { name: t('weightKg'), value: user?.weight },
+            { name: t('chestCm'), value: user?.chest },
+            { name: t('waistCm'), value: user?.waist },
+            { name: t('buttocksCm'), value: user?.buttocks },
+          ]}
+        />
+      </div>
 
       <Space medium />
 
@@ -77,25 +80,27 @@ function UserProfile() {
 
       <Space extraSmall />
 
-      <ResumeTable
-        list={[
-          { name: t('activity'), value: getActivityLabel(user?.activity) },
-          {
-            name: t('allergies'),
-            value: getAllergiesLabel(user?.allergies),
-          },
-          {
-            name: t('patologies'),
-            value: getPatologiesLabel(user?.patologies),
-          },
-          { name: t('porpuse'), value: getPorpuseLabel(user?.porpuse) },
-          { name: t('breastfeed'), value: getYesNoLabel(user?.breastfeed) },
-          {
-            name: t('problem'),
-            value: getProblemsLabel(user?.problem) || '-',
-          },
-        ]}
-      />
+      <div className='background-2'>
+        <ResumeTable
+          list={[
+            { name: t('activity'), value: getActivityLabel(user?.activity) },
+            {
+              name: t('allergies'),
+              value: getAllergiesLabel(user?.allergies),
+            },
+            {
+              name: t('patologies'),
+              value: getPatologiesLabel(user?.patologies),
+            },
+            { name: t('porpuse'), value: getPorpuseLabel(user?.porpuse) },
+            { name: t('breastfeed'), value: getYesNoLabel(user?.breastfeed) },
+            {
+              name: t('problem'),
+              value: getProblemsLabel(user?.problem) || '-',
+            },
+          ]}
+        />
+      </div>
 
       <Space medium />
 

@@ -10,6 +10,8 @@ import { KcalReglaDeTres } from '../utils/calculateEnergy';
 import { useUser } from '../context/userContext';
 import { useTranslation } from 'react-i18next';
 import EnergyDetails from '../components/recipes/EnergyDetails';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faWarning } from '@fortawesome/free-solid-svg-icons';
 
 function DietDetailsMain() {
   const { t } = useTranslation();
@@ -17,6 +19,7 @@ function DietDetailsMain() {
   const { user } = useUser();
   const { dayDetails } = useMarathon();
   const [meal, setMeal] = useState();
+  const [hasAllergy, setHasAllergy] = useState(false);
 
   useEffect(() => {
     if (dayDetails && id) {
@@ -24,6 +27,16 @@ function DietDetailsMain() {
       setMeal(mealDetails);
     }
   }, [dayDetails, id]);
+
+  useEffect(() => {
+    if (user && meal) {
+      const hasAllergies = meal?.recipe?.ingredients?.find(ele =>
+        user.allergies.indexOf(ele.ingredient.allergy) >= 0 ? true : false
+      );
+
+      setHasAllergy(!!hasAllergies);
+    }
+  }, [user, meal]);
 
   const { data: imageS3 } = useGetImageUrlQuery(
     {
@@ -59,7 +72,15 @@ function DietDetailsMain() {
         <div className='recipe-details-content  background-2'>
           <Text isSectionTitle>{t('ingredients')}</Text>
 
-          <Space small />
+          <Space extraSmall />
+
+          {hasAllergy && (
+            <Text color='primary' isBold>
+              <FontAwesomeIcon icon={faWarning} /> {t('allergyWarning')}
+            </Text>
+          )}
+
+          <Space extraSmall />
 
           {ingredients.length > 0 && ingredients[0] && (
             <ResumeTable
@@ -75,21 +96,17 @@ function DietDetailsMain() {
             />
           )}
 
-          {!!+minutes && (
-            <>
-              <Space medium />
+          <Space medium />
 
-              <Text className='steps-title' isSectionTitle>
-                <span>
-                  {t('instruccion')}
+          <Text className='steps-title' isSectionTitle>
+            <span>
+              {t('instruccion')}
 
-                  {!!+minutes && ` (${minutes} ${t('min')})`}
-                </span>
-              </Text>
-            </>
-          )}
+              {!!+minutes && ` (${minutes} ${t('min')})`}
+            </span>
+          </Text>
 
-          <Space small />
+          <Space extraSmall />
 
           <ol className='steps'>
             {steps.length > 0 &&

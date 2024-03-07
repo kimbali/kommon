@@ -3,15 +3,27 @@
     font-size: 26px;
   }
 
-  .marathon-config-scrollx .single-workout {
-    width: 362px;
+  .marathon-config-scrollx {
+    grid-template-columns: repeat(5, 264px);
 
-    &.even {
-      width: 500px;
+    @include media(desktop) {
+      grid-template-columns: repeat(5, 226px);
+
+      .food-image {
+        height: 182px;
+      }
     }
 
-    .workout-card {
-      height: 282px;
+    .single-workout {
+      width: 362px;
+
+      &.even {
+        width: 500px;
+      }
+
+      .workout-card {
+        height: 282px;
+      }
     }
   }
 

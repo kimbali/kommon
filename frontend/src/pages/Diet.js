@@ -67,7 +67,7 @@ function Diet() {
 
   return (
     <div className='diet-tab'>
-      <div className='content-on-the-left'>
+      <div className='content-left-and-right'>
         <Text isTitle>{t('todayDiet')}</Text>
         <EnergyDetails ingredients={todayIngredients} />
       </div>

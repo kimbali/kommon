@@ -2,10 +2,6 @@ import { model, Schema } from 'mongoose';
 
 const LegalSchema = new Schema(
   {
-    termsAndConditions: String,
-    privacyPolicy: String,
-    cookiesFiles: String,
-    avisoLegal: String,
     es: {
       termsAndConditions: String,
       privacyPolicy: String,

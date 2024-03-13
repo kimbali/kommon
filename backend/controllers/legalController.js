@@ -38,12 +38,12 @@ export const createLegal = asyncHandler(async (req, res) => {
 // @route   PUT /api/legals/:id
 // @access  Private/Admin
 export const updateLegal = asyncHandler(async (req, res) => {
-  const { es, ca } = req.body;
+  const { es = {}, ca = {} } = req.body;
   const legal = await Legal.findById(req.params.id);
 
   if (legal) {
-    legal.es = { ...es } || legal.es;
-    legal.ca = { ...ca } || legal.ca;
+    legal.es = { ...legal.es, ...es };
+    legal.ca = { ...legal.ca, ...ca };
 
     const updatedLegal = await legal.save();
     res.json(updatedLegal);

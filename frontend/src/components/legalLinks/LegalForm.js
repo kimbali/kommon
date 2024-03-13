@@ -21,7 +21,11 @@ function LegalForm({ onSuccess, legalKey, label }) {
 
   useEffect(() => {
     if (legalsData?.legals) {
-      setFormData(legalsData.legals[0]);
+      setFormData({
+        _id: legalsData?.legals[0]._id,
+        es: { [legalKey]: legalsData.legals[0].es[legalKey] },
+        ca: { [legalKey]: legalsData.legals[0].ca[legalKey] },
+      });
     }
   }, [legalsData]);
 

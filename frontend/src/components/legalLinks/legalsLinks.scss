@@ -41,6 +41,10 @@
 }
 
 .legal-form {
+  .main-label {
+    color: $black;
+  }
+
   textarea {
     height: 20vw;
   }

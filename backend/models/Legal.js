@@ -6,6 +6,18 @@ const LegalSchema = new Schema(
     privacyPolicy: String,
     cookiesFiles: String,
     avisoLegal: String,
+    es: {
+      termsAndConditions: String,
+      privacyPolicy: String,
+      cookiesFiles: String,
+      avisoLegal: String,
+    },
+    ca: {
+      termsAndConditions: String,
+      privacyPolicy: String,
+      cookiesFiles: String,
+      avisoLegal: String,
+    },
   },
   {
     timestamps: true,

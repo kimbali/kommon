@@ -28,7 +28,7 @@ export const getLegalById = asyncHandler(async (req, res) => {
 // @route   POST /api/legals
 // @access  Private/Admin
 export const createLegal = asyncHandler(async (req, res) => {
-  const newLegal = new Legal();
+  const newLegal = new Legal({ es, ca });
 
   const createdLegal = await newLegal.save();
   res.status(201).json(createdLegal);
@@ -38,15 +38,12 @@ export const createLegal = asyncHandler(async (req, res) => {
 // @route   PUT /api/legals/:id
 // @access  Private/Admin
 export const updateLegal = asyncHandler(async (req, res) => {
-  const { termsAndConditions, privacyPolicy, cookiesFiles, avisoLegal } =
-    req.body;
+  const { es, ca } = req.body;
   const legal = await Legal.findById(req.params.id);
 
   if (legal) {
-    legal.termsAndConditions = termsAndConditions || legal.termsAndConditions;
-    legal.privacyPolicy = privacyPolicy || legal.privacyPolicy;
-    legal.cookiesFiles = cookiesFiles || legal.cookiesFiles;
-    legal.avisoLegal = avisoLegal || legal.avisoLegal;
+    legal.es = { ...es } || legal.es;
+    legal.ca = { ...ca } || legal.ca;
 
     const updatedLegal = await legal.save();
     res.json(updatedLegal);

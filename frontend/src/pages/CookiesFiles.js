@@ -12,7 +12,8 @@ import { useUser } from '../context/userContext';
 import { useTranslation } from 'react-i18next';
 
 function CookiesFiles() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language;
   const { user } = useUser();
   const [showEditForm, setShowEditForm] = useState(false);
 
@@ -63,7 +64,7 @@ function CookiesFiles() {
           h2: 'h4',
         }}
       >
-        {legalsData?.legals[0].cookiesFiles}
+        {legalsData?.legals[0][lang]?.cookiesFiles}
       </Markdown>
     </div>
   );

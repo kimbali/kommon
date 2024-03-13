@@ -13,7 +13,8 @@ import { useTranslation } from 'react-i18next';
 
 function LegalForm({ onSuccess, legalKey, label }) {
   const { t } = useTranslation();
-  const [formData, setFormData] = useState({});
+
+  const [formData, setFormData] = useState({ es: {}, ca: {} });
 
   const { data: legalsData } = useGetLegalsQuery({});
   const [updateLegals] = useUpdateLegalMutation();
@@ -24,8 +25,11 @@ function LegalForm({ onSuccess, legalKey, label }) {
     }
   }, [legalsData]);
 
-  const handleOnChange = ({ name, value }) => {
-    setFormData({ ...formData, [name]: value });
+  const handleOnChange = ({ name, value, language }) => {
+    setFormData({
+      ...formData,
+      [language]: { ...formData[language], [name]: value },
+    });
   };
 
   const handleOnSubmit = async e => {
@@ -42,16 +46,18 @@ function LegalForm({ onSuccess, legalKey, label }) {
 
   return (
     <form onSubmit={handleOnSubmit} className='legal-form'>
-      <Text color='black'>
-        Para saber como escribir textos en formato Markdown ver documentación:
+      <Text center color='black'>
+        Para saber como escribir textos en formato Markdown ver documentación:{' '}
         <Link
           to='https://www.markdownguide.org/basic-syntax/'
           target='_blank'
           rel='noopener noreferrer'
         >
-          Markdown syntax documentation
+          Markdown syntax documentatión
         </Link>
       </Text>
+
+      <Space small />
 
       <Input
         type='textarea'
@@ -59,7 +65,20 @@ function LegalForm({ onSuccess, legalKey, label }) {
         placeholder='Utiliza un guión "-" seguido de un salto de linea para crear listas y ** para crear titulos'
         name={legalKey}
         onChange={handleOnChange}
-        value={formData[legalKey]}
+        value={formData.es?.[legalKey]}
+        language='es'
+      />
+
+      <Space small />
+
+      <Input
+        type='textarea'
+        label={label}
+        placeholder='Utiliza un guión "-" seguido de un salto de linea para crear listas y ** para crear titulos'
+        name={legalKey}
+        onChange={handleOnChange}
+        value={formData.ca?.[legalKey]}
+        language='ca'
       />
 
       <Space small />

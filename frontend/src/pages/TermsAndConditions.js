@@ -12,8 +12,11 @@ import { useUser } from '../context/userContext';
 import { useTranslation } from 'react-i18next';
 
 function TermsAndConditions() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language;
+
   const { user } = useUser();
+
   const [showEditForm, setShowEditForm] = useState(false);
 
   const { data: legalsData, refetch: refetchLegals } = useGetLegalsQuery({});
@@ -63,7 +66,7 @@ function TermsAndConditions() {
           h2: 'h4',
         }}
       >
-        {legalsData?.legals[0].termsAndConditions}
+        {legalsData?.legals[0][lang]?.termsAndConditions}
       </Markdown>
     </div>
   );

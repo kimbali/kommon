@@ -198,7 +198,7 @@ const getUsers = asyncHandler(async (req, res) => {
     };
   }
 
-  let users = await User.find(query).populate('progresses');
+  let users = await User.find(query).select('-password').populate('progresses');
 
   if (req.query.marathon) {
     users = users.filter(ele =>

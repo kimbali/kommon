@@ -4,15 +4,22 @@ import Space from '../components/space/Space';
 import Input from '../components/input/Input';
 import { useTranslation } from 'react-i18next';
 import { useUser } from '../context/userContext';
-import activitiesEnum from '../config/enums/activitiesEnum';
-import porpusesEnum from '../config/enums/porpusesEnum';
+import activitiesEnum, {
+  getActivityNumeral,
+} from '../config/enums/activitiesEnum';
+import porpusesEnum, { getPorpuseNumeral } from '../config/enums/porpusesEnum';
 import Button from '../components/button/Button';
-import { caloriesCalculatorFormula } from '../utils/calculateEnergy';
+import {
+  breastfeedNumeral,
+  caloriesCalculatorFormula,
+} from '../utils/calculateEnergy';
 
-function CaloriesCalculator() {
+function CaloriesCalculator({ isAdmin = false, adminUser }) {
   const { t } = useTranslation();
   const { user } = useUser();
-  const [formData, setFormData] = useState({ ...user });
+  const [formData, setFormData] = useState(
+    isAdmin ? { ...adminUser } : { ...user }
+  );
   const [totalCalories, setTotalCalories] = useState(0);
 
   const handleOnChange = ({ name, value }) => {
@@ -112,6 +119,56 @@ function CaloriesCalculator() {
         <Text center isBold fontSize='32'>
           {totalCalories} kcal
         </Text>
+
+        <Space medium />
+
+        {isAdmin && (
+          <>
+            <Text>{`
+            Fórmula = 655 
+            + ( 9.6 * peso )      
+            + ( 1.8 * altura )
+            - ( 4.7 * edad )
+            * ( actividad )
+            * ( meta )
+            - ( dar el pecho )
+            `}</Text>
+
+            <Space medium />
+
+            <Text>{`
+            655 
+             + ( 9.6 * ${formData?.weight} )      
+             + ( 1.8 * ${formData?.height} )
+             - ( 4.7 * ${formData?.age} )
+             * ( ${getActivityNumeral(formData?.activity)} )
+             * ( ${getPorpuseNumeral(formData?.porpuse)} )
+             - ( ${breastfeedNumeral(formData?.breastfeed)} )
+            `}</Text>
+
+            <Space medium />
+
+            <Text>
+              Total fórmula ={' '}
+              {Math.round(
+                (655 +
+                  9.6 * +formData?.weight +
+                  1.8 * +formData?.height -
+                  4.7 * +formData?.age) *
+                  getActivityNumeral(formData?.activity) *
+                  getPorpuseNumeral(formData?.porpuse) -
+                  breastfeedNumeral(formData?.breastfeed)
+              )}
+            </Text>
+
+            <Space extraSmall />
+
+            <Text>
+              Total redondeado a múltiplos de 50 ={' '}
+              {caloriesCalculatorFormula(formData)}
+            </Text>
+          </>
+        )}
       </form>
     </div>
   );

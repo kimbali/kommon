@@ -1,32 +1,53 @@
-.new-user-form {
-  .field {
-    label.main-label {
-      font-size: 16px;
-      font-family: $avenirBlack;
-      padding: 0 0 8px;
-      margin: 0;
+.new-user {
+  .calories-calculator {
+    @include media(desktop) {
+      width: 50%;
+      margin: 0 auto;
     }
 
-    .radio-label {
-      padding: 10px 0;
+    .background-2 {
+      background-color: $background-4;
+    }
+  }
 
-      .text {
-        font-family: $avenirBook;
+  .new-user-form {
+    @include media(desktop) {
+      max-width: 50%;
+    }
+
+    .content-on-the-right {
+      margin-left: auto;
+    }
+
+    .field {
+      label.main-label {
+        font-size: 16px;
+        font-family: $avenirBlack;
+        padding: 0 0 8px;
+        margin: 0;
       }
 
-      input {
-        width: 20px;
-        height: 20px;
+      .radio-label {
+        padding: 10px 0;
 
-        &::after {
-          width: 22px;
-          height: 22px;
-          left: -1px;
+        .text {
+          font-family: $avenirBook;
         }
 
-        &:checked {
+        input {
+          width: 20px;
+          height: 20px;
+
           &::after {
-            background-size: 10px;
+            width: 22px;
+            height: 22px;
+            left: -1px;
+          }
+
+          &:checked {
+            &::after {
+              background-size: 10px;
+            }
           }
         }
       }

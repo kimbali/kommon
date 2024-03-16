@@ -14,7 +14,6 @@ function RegisterGiftSelect({
   const { t } = useTranslation();
   const lang = i18n.language;
   const { data: giftsList } = useGetGiftsQuery({ quantity: true });
-  console.log(lang);
 
   return (
     <div className={`gift-selector ${hasGift ? 'show-gifts' : ''}`}>

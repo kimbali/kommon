@@ -2,7 +2,7 @@ import { BASE_KCAL } from '../config/constants';
 import { getActivityNumeral } from '../config/enums/activitiesEnum';
 import { getPorpuseNumeral } from '../config/enums/porpusesEnum';
 
-const breastfeedNumeral = value => {
+export const breastfeedNumeral = value => {
   return value === 'YES' ? 200 : 0;
 };
 

@@ -257,7 +257,7 @@ function Users() {
       </div>
 
       {showNewUserModal && (
-        <Modal onClose={setshowNewUserModal} isSecondary>
+        <Modal onClose={setshowNewUserModal} fullWidth>
           <NewUser
             onCreate={handleCreate}
             onCancel={() => setshowNewUserModal(false)}

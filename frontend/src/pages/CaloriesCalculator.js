@@ -125,10 +125,10 @@ function CaloriesCalculator({ isAdmin = false, adminUser }) {
         {isAdmin && (
           <>
             <Text>{`
-            Fórmula = 655 
+            Fórmula = (655 
             + ( 9.6 * peso )      
             + ( 1.8 * altura )
-            - ( 4.7 * edad )
+            - ( 4.7 * edad ))
             * ( actividad )
             * ( meta )
             - ( dar el pecho )
@@ -137,10 +137,10 @@ function CaloriesCalculator({ isAdmin = false, adminUser }) {
             <Space medium />
 
             <Text>{`
-            655 
+            (655 
              + ( 9.6 * ${formData?.weight} )      
              + ( 1.8 * ${formData?.height} )
-             - ( 4.7 * ${formData?.age} )
+             - ( 4.7 * ${formData?.age} ))
              * ( ${getActivityNumeral(formData?.activity)} )
              * ( ${getPorpuseNumeral(formData?.porpuse)} )
              - ( ${breastfeedNumeral(formData?.breastfeed)} )

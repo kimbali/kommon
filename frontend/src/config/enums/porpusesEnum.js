@@ -9,7 +9,7 @@ const porpusesEnum = [
   {
     label: translate('tonificar'),
     value: 'TONIFICAR',
-    numeral: 1,
+    numeral: 0.9,
   },
 ];
 

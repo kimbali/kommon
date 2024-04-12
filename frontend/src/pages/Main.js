@@ -21,9 +21,8 @@ import { calculateDaysDifference } from '../utils/formatDate';
 function Main() {
   const { t } = useTranslation();
   const navigate = useNavigate();
-
   const { config } = useConfig();
-  const { dayDetails } = useMarathon();
+  const { dayDetails, dayDetailsLoading } = useMarathon();
   const { userProgress, updateUserProgress } = useProgress();
 
   const [showRecipe, setShowRecipe] = useState();
@@ -77,6 +76,10 @@ function Main() {
       setUntilNext(days);
     }
   }, [userProgress]);
+
+  if (dayDetailsLoading) {
+    return;
+  }
 
   if (!dayDetails) {
     return (

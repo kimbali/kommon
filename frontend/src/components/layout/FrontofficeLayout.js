@@ -24,7 +24,8 @@ function MainLayout() {
   const location = useLocation();
   const { user } = useUser();
 
-  const { marathonId, setDayDetails, updateMarathon } = useMarathon();
+  const { marathonId, setDayDetails, updateMarathon, setDayDetailsLoading } =
+    useMarathon();
   const {
     currentDay,
     setCurrentDay,
@@ -42,7 +43,11 @@ function MainLayout() {
     }
   );
 
-  const { data: dayData, isError } = useGetMonthDayDetailsQuery(currentDay, {
+  const {
+    data: dayData,
+    isError,
+    isLoading,
+  } = useGetMonthDayDetailsQuery(currentDay, {
     skip: !currentDay,
   });
 
@@ -72,12 +77,14 @@ function MainLayout() {
   }, [marathonData]);
 
   useEffect(() => {
+    setDayDetailsLoading(isLoading);
     if (dayData) {
       setDayDetails(dayData);
     }
     if (isError) {
       setDayDetails(null);
     }
+    setDayDetailsLoading(isLoading);
   }, [dayData, isError]);
 
   useEffect(() => {

@@ -6,6 +6,7 @@ export const MarathonProvider = ({ children }) => {
   const [marathon, setMarathon] = useState(null);
   const [marathonId, setMarathonId] = useState(null);
   const [dayDetails, setDayDetails] = useState(null);
+  const [dayDetailsLoading, setDayDetailsLoading] = useState(null);
 
   const updateMarathon = newMarathon => {
     setMarathon(newMarathon);
@@ -21,6 +22,8 @@ export const MarathonProvider = ({ children }) => {
         setMarathonId,
         dayDetails,
         setDayDetails,
+        dayDetailsLoading,
+        setDayDetailsLoading,
       }}
     >
       {children}

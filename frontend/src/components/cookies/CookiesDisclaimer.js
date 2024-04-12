@@ -19,7 +19,7 @@ function CookiesDisclaimer({ setShowCookies }) {
   }, []);
 
   const handleCookie = isAccepted => {
-    localStorage.setItem(COOKIE_DISCLAIMER, isAccepted);
+    sessionStorage.setItem(COOKIE_DISCLAIMER, isAccepted);
 
     setShowCookies(false);
   };

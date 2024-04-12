@@ -85,20 +85,27 @@ function Main() {
     return (
       <div className='message-box'>
         <div className='message-box-content'>
-          <Space medium />
           <Text className='days-remaining' fontSize='24' isBold>
             {t('quedan')}
-            <span className='primary'>
-              {untilNext} {t('days')}
-            </span>
           </Text>
+
           <Space medium />
-          <Text>{t('noMarathonYetTextTwo')}</Text>
+
+          <Text color='primary' fontSize='18' isBold>
+            {untilNext ? `${untilNext} ${t('days')}` : ''}
+          </Text>
+
+          <Space medium />
+
           <Text>{t('noMarathonYetText')}</Text>
+
           <Space small />
-          <Space extraSmall />
-          <Text isPlaceholder>{t('noMarathonYetTextThree')}</Text>
+
+          <Text>{t('noMarathonYetTextTwo')}</Text>
+
           <Space small />
+
+          <Text>{t('noMarathonYetTextThree')}</Text>
         </div>
       </div>
     );

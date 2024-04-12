@@ -35,6 +35,15 @@ export const marathonsApiSlice = apiSlice.injectEndpoints({
       },
       invalidatesTags: ['Marathons'],
     }),
+    updateParticipants: builder.mutation({
+      query: marathonId => {
+        return {
+          url: `${MARATHON_URL}/participants/${marathonId}`,
+          method: 'PUT',
+        };
+      },
+      invalidatesTags: ['Marathons'],
+    }),
     deleteMarathon: builder.mutation({
       query: marathonId => ({
         url: `${MARATHON_URL}/${marathonId}`,
@@ -62,6 +71,7 @@ export const {
   useGetMarathonDetailsQuery,
   useCreateMarathonMutation,
   useUpdateMarathonMutation,
+  useUpdateParticipantsMutation,
   useDeleteMarathonMutation,
   useGetMarathonDetailsForClientQuery,
   useGetShoppingListQuery,

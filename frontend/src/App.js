@@ -83,7 +83,7 @@ function App() {
   const [createConfigDoc] = useCreateConfigMutation();
 
   useEffect(() => {
-    const localCookie = localStorage.getItem(COOKIE_DISCLAIMER);
+    const localCookie = sessionStorage.getItem(COOKIE_DISCLAIMER);
 
     if (!localCookie) {
       setShowCookies(true);
@@ -144,7 +144,7 @@ function App() {
   }, [configData]);
 
   useEffect(() => {
-    const expirationTime = localStorage.getItem(EXPIRATION_TIME);
+    const expirationTime = sessionStorage.getItem(EXPIRATION_TIME);
     if (expirationTime) {
       const currentTime = new Date().getTime();
 
@@ -155,11 +155,11 @@ function App() {
   }, []);
 
   const handleSearchParam = (paramKey, handleParam) => {
-    const storageId = localStorage.getItem(paramKey);
+    const storageId = sessionStorage.getItem(paramKey);
     const urlparam = searchParams.get(paramKey);
 
     if (urlparam && storageId !== urlparam) {
-      localStorage.setItem(paramKey, urlparam);
+      sessionStorage.setItem(paramKey, urlparam);
       handleParam(urlparam);
     } else {
       handleParam(storageId);

@@ -17,7 +17,7 @@ import loginValidator from '../utils/validators/loginValidator';
 import TextedLogo from '../components/header/TextedLogo';
 import { useUser } from '../context/userContext';
 import { useTranslation } from 'react-i18next';
-import getTokenFromLocalStorage from '../utils/tokenStorage';
+import getTokenFromsessionStorage from '../utils/tokenStorage';
 import { useMarathon } from '../context/marathonContext';
 import Modal from '../components/modal/Modal';
 import templateResetPassword from '../components/emails/templateResetPassword';
@@ -27,11 +27,11 @@ const Login = () => {
   const { updateUser } = useUser();
   const { setMarathonId } = useMarathon();
   const [formData, setFormData] = useState({
-    email: JSON.parse(localStorage.getItem('userInfo'))?.email || '',
+    email: JSON.parse(sessionStorage.getItem('userInfo'))?.email || '',
   });
   const [showResetPassword, setShowResetPassword] = useState(false);
   const [invalidFields, setInvalidFields] = useState('');
-  const [token, setToken] = useState(getTokenFromLocalStorage());
+  const [token, setToken] = useState(getTokenFromsessionStorage());
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

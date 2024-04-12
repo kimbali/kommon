@@ -246,7 +246,8 @@ a {
   }
 }
 
-.background-2 {
+.background-2,
+.background-3 {
   background-color: $background-2;
   padding: 16px;
   border-radius: $border-radius-wrapper;
@@ -255,6 +256,10 @@ a {
   &.no-margin {
     margin: 0;
   }
+}
+
+.background-3 {
+  background-color: $background-3;
 }
 
 .half-page-width {

@@ -19,6 +19,7 @@ import {
 import { useDate } from '../../context/dateContext';
 import frontRoutes from '../../config/frontRoutes';
 import { useUser } from '../../context/userContext';
+import Text from '../text/Text';
 
 function MainLayout() {
   const location = useLocation();

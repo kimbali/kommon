@@ -128,7 +128,13 @@ export const getShoppingList = asyncHandler(async (req, res) => {
 // @access  Private/Admin
 export const createMarathon = asyncHandler(async (req, res) => {
   const { startDate, endDate, name, planning } = req.body;
-  const newMarathon = new Marathon({ startDate, endDate, name, planning });
+  const newMarathon = new Marathon({
+    startDate,
+    endDate,
+    name,
+    planning,
+    participants: 0,
+  });
 
   const createdMarathon = await newMarathon.save();
 
@@ -160,6 +166,23 @@ export const updateMarathon = asyncHandler(async (req, res) => {
       'name'
     );
     res.json(marathonUpdated);
+  } else {
+    res.status(404);
+    throw new Error('Marathon not found');
+  }
+});
+
+// @desc    Update participants
+// @route   PUT /api/marathons/participants/:id
+// @access  Public
+export const updateParticipants = asyncHandler(async (req, res) => {
+  const marathon = await Marathon.findById(req.params.id);
+
+  if (marathon) {
+    marathon.participants = marathon.participants + 1;
+
+    await marathon.save();
+    res.json({ message: 'Marathon updated' });
   } else {
     res.status(404);
     throw new Error('Marathon not found');

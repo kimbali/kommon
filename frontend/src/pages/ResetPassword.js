@@ -17,7 +17,7 @@ const ResetPassword = () => {
   const [error, setError] = useState(false);
   const [token, setToken] = useState('');
   const [formData, setFormData] = useState({
-    email: JSON.parse(localStorage.getItem('userInfo'))?.email || '',
+    email: JSON.parse(sessionStorage.getItem('userInfo'))?.email || '',
   });
 
   useEffect(() => {

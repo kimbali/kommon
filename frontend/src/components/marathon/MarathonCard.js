@@ -8,7 +8,12 @@ import { useTranslation } from 'react-i18next';
 import frontRoutes from '../../config/frontRoutes';
 import { useNavigate } from 'react-router-dom';
 
-function MarathonCard({ handleSelectMarathon, marathon, isCurrent = false }) {
+function MarathonCard({
+  handleSelectMarathon,
+  marathon,
+  isCurrent = false,
+  disabled,
+}) {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -32,14 +37,18 @@ function MarathonCard({ handleSelectMarathon, marathon, isCurrent = false }) {
         {formatDateDayMonth(marathon?.endDate)}
       </div>
 
-      <Space extraSmall />
+      <Space small />
 
       {isCurrent ? (
-        <Button small onClick={goToProgress} isPrimary>
+        <Button disabled={disabled} onClick={goToProgress} isPrimary>
           {t('goToProgress')}
         </Button>
       ) : (
-        <Button small onClick={() => handleSelectMarathon(marathon)} isPrimary>
+        <Button
+          disabled={disabled}
+          onClick={() => handleSelectMarathon(marathon)}
+          isPrimary
+        >
           {t('signUp')}
         </Button>
       )}

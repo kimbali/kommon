@@ -9,6 +9,7 @@ import {
   getMarathons,
   getShoppingList,
   updateMarathon,
+  updateParticipants,
 } from '../controllers/marathonController.js';
 
 const router = express.Router();
@@ -20,6 +21,7 @@ router
   .put(checkObjectId, protect, admin, updateMarathon)
   .delete(checkObjectId, protect, admin, deleteMarathon);
 router.route('/client/:id').get(checkObjectId, protect, getMarathonClientById);
+router.route('/participants/:id').put(checkObjectId, updateParticipants);
 router
   .route('/shopping-list/:id/:week')
   .get(checkObjectId, protect, getShoppingList);

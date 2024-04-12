@@ -38,6 +38,18 @@ export const formatDate = date => {
   return new Date(date).toLocaleDateString('gb-GB', options);
 };
 
+export const formatDateLong = date => {
+  // domingo, 14 de abril
+  if (!date) return;
+
+  const options = {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+  };
+  return new Date(date).toLocaleDateString('gb-GB', options);
+};
+
 export const monthDayWeekFormat = date => {
   // Febrero 24, sáb
 

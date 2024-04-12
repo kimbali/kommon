@@ -48,18 +48,18 @@ function UserMarathons() {
 
       <Space medium />
 
-      <div className='user-marathons'>
-        {marathonsData?.marathons?.length > 0 &&
-          marathonsData?.marathons
-            .filter(ele => ele._id !== marathon?._id)
-            .map((ele, i) => (
+      {marathonsData?.marathons?.length > 0 &&
+        marathonsData?.marathons
+          .filter(ele => ele._id !== marathon?._id)
+          .map((ele, i) => (
+            <div className='user-marathons'>
               <MarathonCard
                 marathon={ele}
                 handleSelectMarathon={handleSelectMarathon}
                 key={`marathon-card-${i}`}
               />
-            ))}
-      </div>
+            </div>
+          ))}
     </div>
   );
 }

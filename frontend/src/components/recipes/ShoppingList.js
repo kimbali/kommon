@@ -53,8 +53,8 @@ function ShoppingList() {
 
       <Space medium />
 
-      {supermarketIngredients.map(section => (
-        <div key={section.name}>
+      {supermarketIngredients.map((section, index) => (
+        <div key={`section-${index}`}>
           <Text isSubtitle color='primary'>
             {getSupermarketLabel(section.name)}
           </Text>

@@ -10,6 +10,7 @@ const MarathonsSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'Planning',
     },
+    participants: { type: Number, default: 0 },
   },
   {
     timestamps: true,

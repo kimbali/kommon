@@ -76,7 +76,8 @@ h3 {
   font-size: 14px;
   color: $secondary-color;
 
-  &.bold {
+  &.bold,
+  .bold {
     font-family: $avenirBlack;
   }
 

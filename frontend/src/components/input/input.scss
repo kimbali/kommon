@@ -456,8 +456,9 @@ input[type='number']::-webkit-outer-spin-button {
 
 .password-cta {
   position: absolute;
-  bottom: 0;
+  bottom: 4px;
   right: 0;
+  box-shadow: none;
 }
 
 .emojiFlag {

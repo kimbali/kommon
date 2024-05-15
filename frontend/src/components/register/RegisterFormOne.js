@@ -257,7 +257,7 @@ function RegisterFormOne({ onSuccess, giftSelected, userData, hasGift }) {
         >
           {userData
             ? t('continue')
-            : `${t('pay')} ${config?.price.toLocaleString()}€`}
+            : `${t('pay')} ${config?.price?.toLocaleString()}€`}
         </Button>
 
         <Space small />

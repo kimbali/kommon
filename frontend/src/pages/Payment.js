@@ -150,7 +150,10 @@ function Payment() {
             <Space extraSmall />
 
             <Text center color='disabled'>
-              Plazas restantes: {20 - marathonsData?.marathons[0]?.participants}
+              Plazas restantes:{' '}
+              {marathonsData?.marathons[0]
+                ? 20 - marathonsData?.marathons[0]?.participants
+                : '-'}
             </Text>
 
             <Space big />

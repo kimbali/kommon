@@ -115,7 +115,7 @@ function Main() {
     return;
   }
 
-  if (!dayToShow) {
+  if (!dayToShow && untilNext > 0) {
     return (
       <div className='message-box'>
         <div className='message-box-content'>

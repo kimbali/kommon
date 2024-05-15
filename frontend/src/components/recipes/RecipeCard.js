@@ -43,7 +43,7 @@ function RecipeCard({ recipe, meal = '', onClick }) {
     <button onClick={onClick} className='recipe-card-cta'>
       <div className='recipe-card'>
         <div className='recipe-card-details'>
-          <div>
+          <div className='recipe-card-details-top'>
             {isLoading ? (
               <div className='image-loader-wrapper'>
                 <Spinner type='image-loader' />

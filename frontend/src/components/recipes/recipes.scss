@@ -12,6 +12,10 @@
       flex-direction: column;
       justify-content: space-between;
       height: 100%;
+
+      .recipe-card-details-top {
+        margin-bottom: 12px;
+      }
     }
 
     .meal {

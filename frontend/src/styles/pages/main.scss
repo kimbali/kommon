@@ -4,13 +4,13 @@
   }
 
   .marathon-config-scrollx {
-    grid-template-columns: repeat(5, 264px);
+    grid-template-columns: repeat(5, 212px);
 
     @include media(desktop) {
-      grid-template-columns: repeat(5, 226px);
+      grid-template-columns: repeat(5, 212px);
 
       .food-image {
-        height: 182px;
+        height: 164px;
       }
     }
 

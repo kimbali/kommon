@@ -1,19 +1,12 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
 const DateContext = createContext();
 
 export const DateProvider = ({ children }) => {
-  const [outOfMarathon, setOutOfMarathon] = useState(false);
   const [currentDate, setCurrentDate] = useState();
   const [currentWeek, setCurrentWeek] = useState({ value: 1 });
   const [monthArray, setMonthArray] = useState();
   const [currentDay, setCurrentDay] = useState();
-
-  useEffect(() => {
-    if (currentDate?.week && currentDate?.weekDay) {
-      setOutOfMarathon(true);
-    }
-  }, [currentDay]);
 
   return (
     <DateContext.Provider

@@ -16,30 +16,64 @@ import { useTranslation } from 'react-i18next';
 import { useGetDietsQuery } from '../slices/dietsApiSlice';
 import BodyParameter from '../components/progress/BodyParameter';
 import { useConfig } from '../context/configContext';
-import { calculateDaysDifference } from '../utils/formatDate';
+import {
+  calculateDaysDifference,
+  getDatePositionInMonthArray,
+  getWeeksArray,
+} from '../utils/formatDate';
+import { useGetMonthDayDetailsQuery } from '../slices/daysApiSlice';
+import { useUser } from '../context/userContext';
+import { useDate } from '../context/dateContext';
 
 function Main() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { config } = useConfig();
-  const { dayDetails, dayDetailsLoading } = useMarathon();
+  const { user } = useUser();
+  const { dayDetails, dayDetailsLoading, marathon } = useMarathon();
   const { userProgress, updateUserProgress } = useProgress();
+  const { setCurrentDate } = useDate();
 
+  const [dayToShow, setDayToShow] = useState();
   const [showRecipe, setShowRecipe] = useState();
   const [mealsList, setMealsList] = useState([]);
   const [untilNext, setUntilNext] = useState();
 
+  const month = getWeeksArray(marathon?.startDate, marathon?.endDate);
+  const todayPos = getDatePositionInMonthArray(month, new Date());
+  const currentDay = {
+    week: todayPos?.week,
+    weekDay: todayPos?.weekDay,
+    planningId: marathon?.planning._id,
+  };
+
+  const { data: todayData } = useGetMonthDayDetailsQuery(currentDay, {
+    skip: !currentDay,
+  });
   const [updateProgress] = useUpdateProgressMutation();
   const { data: dietsData } = useGetDietsQuery({ keyword: 'YES' });
 
   useEffect(() => {
-    if (dietsData && dayDetails) {
-      const list = dayDetails.meals.filter(
+    if (dayDetails && user?.isAdmin) {
+      setDayToShow(dayDetails);
+      return;
+    }
+
+    if (todayData && !user?.isAdmin) {
+      setDayToShow(todayData);
+      setCurrentDate(new Date());
+      return;
+    }
+  }, [dayDetails, todayData]);
+
+  useEffect(() => {
+    if (dietsData && dayToShow) {
+      const list = dayToShow.meals.filter(
         ele => ele.diet === dietsData.diets[0]._id
       );
       setMealsList(list);
     }
-  }, [dietsData, dayDetails]);
+  }, [dietsData, dayToShow]);
 
   const isCheckedTask = task => {
     return userProgress?.tasksChecked?.findIndex(ele => ele === task._id) > -1;
@@ -81,7 +115,7 @@ function Main() {
     return;
   }
 
-  if (!dayDetails) {
+  if (!dayToShow) {
     return (
       <div className='message-box'>
         <div className='message-box-content'>
@@ -118,8 +152,8 @@ function Main() {
       <Space small />
 
       <div className='marathon-config-scrollx no-fix-content'>
-        {dayDetails?.workouts.length > 0 &&
-          dayDetails.workouts.map((eachWorkout, i) => (
+        {dayToShow?.workouts.length > 0 &&
+          dayToShow.workouts.map((eachWorkout, i) => (
             <div
               className={`single-workout ${i % 2 ? 'even' : 'pair'}`}
               key={`${i}-workout`}
@@ -161,8 +195,8 @@ function Main() {
           <Space small />
 
           <div className='marathon-config-scrollx no-fix-content'>
-            {dayDetails?.meditations.length > 0 &&
-              dayDetails.meditations.map((ele, i) => (
+            {dayToShow?.meditations.length > 0 &&
+              dayToShow.meditations.map((ele, i) => (
                 <div className='single-workout' key={`${i}-meditation`}>
                   <MeditationCard data={ele} onClick={navigateToMeditations} />
                 </div>
@@ -185,8 +219,8 @@ function Main() {
             <Space small />
 
             <form>
-              {dayDetails?.tasks.length > 0 &&
-                dayDetails.tasks.map((eachTask, i) => {
+              {dayToShow?.tasks.length > 0 &&
+                dayToShow.tasks.map((eachTask, i) => {
                   const isChecked = isCheckedTask(eachTask);
 
                   return (

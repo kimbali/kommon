@@ -54,4 +54,13 @@
     background-repeat: no-repeat;
     background-size: cover;
   }
+
+  .body-foto {
+    position: relative;
+
+    .body-siluete {
+      position: absolute;
+      top: 0;
+    }
+  }
 }

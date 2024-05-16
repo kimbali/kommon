@@ -3,7 +3,7 @@ import Text from '../text/Text';
 import Image from '../image/Image';
 import Space from '../space/Space';
 
-function BodyTemplate({ title, template, photo }) {
+function BodyTemplate({ title, template, photo, siluete }) {
   return (
     <div className='body-template'>
       <Text fontSize='16' isBold center>
@@ -13,14 +13,25 @@ function BodyTemplate({ title, template, photo }) {
       <Space extraSmall />
 
       {photo ? (
-        <Image
-          className='body-template-image'
-          isBackground
-          url={photo.url}
-          alt='Bodymaraton user front foto'
-        />
+        <div className='body-foto'>
+          {/* <img
+            className='body-siluete'
+            src={siluete}
+            alt='Bodymaraton siluete'
+          /> */}
+          <Image
+            className='body-template-image'
+            isBackground
+            url={photo.url}
+            alt='Bodymaraton user front foto'
+          />
+        </div>
       ) : (
-        <img src={template} alt='Bodymaraton template front foto' />
+        <img
+          className='body-user'
+          src={siluete}
+          alt='Bodymaraton template front foto'
+        />
       )}
     </div>
   );

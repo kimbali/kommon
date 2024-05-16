@@ -19,19 +19,22 @@ import BodyTemplate from '../components/progress/BodyTemplate';
 import FRONT_TEMPLATE from '../styles/assets/front.png';
 import BACK_TEMPLATE from '../styles/assets/back.png';
 import LATERAL_TEMPLATE from '../styles/assets/side.png';
+import FRONT_SILUETE from '../styles/assets/siluete_frente.png';
+import BACK_SILUETE from '../styles/assets/siluete_dorso.png';
+import LATERAL_SILUETE from '../styles/assets/siluete_perfil.png';
 import { useProgress } from '../context/progressContext';
 
 function UserProfile() {
   const { t } = useTranslation();
   const { user } = useUser();
   const { marathon } = useMarathon();
-  const { userProgress, updateProgress } = useProgress();
+  const { userProgress, updateUserProgress } = useProgress();
 
   const [showFotosModal, setShowFotosModal] = useState();
 
   const handleSaveFotos = progressUpdated => {
     setShowFotosModal(false);
-    updateProgress(progressUpdated);
+    updateUserProgress(progressUpdated);
   };
 
   return (
@@ -108,16 +111,19 @@ function UserProfile() {
               title={t('front')}
               template={FRONT_TEMPLATE}
               photo={userProgress?.initialPhotos?.front}
+              siluete={FRONT_SILUETE}
             />
             <BodyTemplate
               title={t('back')}
               template={BACK_TEMPLATE}
               photo={userProgress?.initialPhotos?.back}
+              siluete={BACK_SILUETE}
             />
             <BodyTemplate
               title={t('lateral')}
               template={LATERAL_TEMPLATE}
               photo={userProgress?.initialPhotos?.lateral}
+              siluete={LATERAL_SILUETE}
             />
           </div>
 

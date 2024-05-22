@@ -77,6 +77,18 @@ function NewUser({ onCreate, onCancel, user }) {
         <Space small />
 
         <Input
+          type='password'
+          label={t('password')}
+          name='password'
+          placeholder={t('passwordPlaceholder')}
+          onChange={handleOnChange}
+          value={formData?.password}
+          error={{ invalidFields, message: 'Password field required' }}
+        />
+
+        <Space small />
+
+        <Input
           label={t('name')}
           name='name'
           placeholder={t('userName')}

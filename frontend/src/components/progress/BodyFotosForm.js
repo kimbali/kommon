@@ -24,7 +24,10 @@ function BodyFotosForm({ onSave, time }) {
     e.preventDefault();
 
     try {
-      const updatedProgress = { ...userProgress, [time]: { ...formData } };
+      const updatedProgress = {
+        ...userProgress,
+        [time]: { ...userProgress[time], ...formData },
+      };
       await updateProgress({ ...updatedProgress });
 
       onSave({ ...updatedProgress });

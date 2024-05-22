@@ -52,11 +52,10 @@ function UserMarathons() {
         marathonsData?.marathons
           .filter(ele => ele._id !== marathon?._id)
           .map((ele, i) => (
-            <div className='user-marathons'>
+            <div key={`marathon-card-${i}`} className='user-marathons'>
               <MarathonCard
                 marathon={ele}
                 handleSelectMarathon={handleSelectMarathon}
-                key={`marathon-card-${i}`}
               />
             </div>
           ))}

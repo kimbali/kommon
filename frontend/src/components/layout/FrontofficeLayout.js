@@ -61,7 +61,7 @@ function MainLayout() {
         currentDate || new Date()
       );
 
-      // //TODO: Abilitar cuando funcione todo
+      // // TODO: Abilitar cuando funcione todo
       // if (!user?.isAdmin && !todayPos.week && !todayPos.weekDay) {
       //   navigate(frontRoutes.profileMarathons);
       // }

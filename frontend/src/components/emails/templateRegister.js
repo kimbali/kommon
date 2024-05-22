@@ -15,7 +15,7 @@ async function templateRegister() {
       <title>Body maraton</title>
     </head>
     <body
-      style="min-height: 100vh; padding: 24px 12px; background: rgb(239,4,130); background: linear-gradient(0deg, rgba(239,4,130,1) 0%, rgba(35,39,55,1) 40%); color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
+      style="padding: 24px 12px; background: rgb(239,4,130); background: linear-gradient(0deg, rgba(239,4,130,1) 0%, rgba(35,39,55,1) 40%); color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
       <table style="border: none; width: 600px; border-collapse: collapse; width: 100%; margin: 32px 0;">
         <tr>
           <th style="text-align: center">

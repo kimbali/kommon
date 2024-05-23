@@ -126,11 +126,13 @@ function BodyFotosForm({ onSave, time }) {
         isClearable
       />
 
-      <Space medium />
+      <Space big />
 
       <Button isPrimary center type='submit'>
-        {t('save')}
+        Subir fotos
       </Button>
+
+      <Space medium />
     </form>
   );
 }

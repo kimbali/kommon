@@ -37,6 +37,13 @@ function UserProfile() {
 
       <Space small />
 
+      <Text>
+        Recuerda actualizar tus parámetros corporales en la pestaña de progreso
+        para seguir tu evolución y resultados.
+      </Text>
+
+      <Space big />
+
       <div className='user-profile'>
         <div className='section'>
           <Text isSubtitle>{t('personalInfo')}</Text>
@@ -53,7 +60,7 @@ function UserProfile() {
         </div>
 
         <div className='section'>
-          <Text isSubtitle>{t('parameters')}</Text>
+          <Text isSubtitle>{t('parameters')} iniciales</Text>
 
           <ResumeTable
             list={[

@@ -48,7 +48,7 @@ function Input({
   labelLink = '',
   disabled = false,
   language = '',
-  trashClick,
+  clearClick,
   isClearable = false,
 }) {
   const animatedComponents = useMemo(() => makeAnimated(), []);
@@ -322,10 +322,15 @@ function Input({
         />
       )}
 
-      {!!trashClick && isClearable && (
+      {!!clearClick && isClearable && (
         <Button
-          className={`trash-input ${value || selectedOption ? 'active' : ''}`}
-          onClick={trashClick}
+          className={`trash-input ${value || selectedOption ? 'active' : ''} ${
+            type === 'file' ? 'file-type' : ''
+          }`}
+          onClick={() => {
+            setFileName();
+            clearClick();
+          }}
           iconLeft={faDeleteLeft}
           onlyIcon
         />

@@ -415,7 +415,7 @@ select {
     }
 
     p:last-of-type {
-      background-color: $background-2;
+      background-color: $background-4;
       border-radius: 0 $border-radius-element $border-radius-element 0;
       color: $white;
     }
@@ -482,6 +482,12 @@ input[type='number']::-webkit-outer-spin-button {
     cursor: pointer;
     margin-left: -6px;
     z-index: 4;
+
+    &.file-type {
+      height: 50px;
+      align-self: flex-end;
+      background-color: $background-5;
+    }
 
     svg {
       font-size: 14px;

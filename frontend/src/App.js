@@ -65,6 +65,7 @@ import {
 import { useConfig } from './context/configContext';
 import ContactUs from './pages/ContactUs';
 import ResetPassword from './pages/ResetPassword';
+import Warning from './components/warning/Warning';
 
 function App() {
   const { t } = useTranslation();
@@ -261,6 +262,8 @@ function App() {
       <Footer />
 
       {showCookies && <CookiesDisclaimer setShowCookies={setShowCookies} />}
+
+      <Warning />
     </div>
   );
 }

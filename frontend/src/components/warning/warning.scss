@@ -1,0 +1,19 @@
+.warning {
+  position: absolute;
+  top: 52px;
+  margin: 12px;
+  background-color: $white;
+  padding: 12px 16px;
+  border-radius: $border-radius-element;
+  box-shadow: $box-shadow-wrapper;
+
+  @include media(desktop) {
+    top: 42px;
+    right: 12px;
+    max-width: 332px;
+  }
+
+  .text {
+    color: $grey-dark;
+  }
+}

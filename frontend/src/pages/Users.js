@@ -148,7 +148,7 @@ function Users() {
             onChange={handleMarathonChange}
             selectedOption={marathonSelected}
             name='marathon'
-            trashClick={() => setMarathonSelected()}
+            clearClick={() => setMarathonSelected()}
             isClearable
           />
 

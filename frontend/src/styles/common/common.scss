@@ -283,6 +283,11 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 32px;
+
+  @include media(desktop) {
+    margin: 0;
+  }
 
   .message-box-content {
     padding: 32px 24px;

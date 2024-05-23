@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Text from '../text/Text';
 import Image from '../image/Image';
 import Space from '../space/Space';
+import DownloadButton from '../button/DownloadButton';
 
-function BodyTemplate({ title, template, photo, siluete }) {
+function BodyTemplate({ title, photo, siluete, download = false }) {
+  const [signedUrl, setSignedUrl] = useState('');
+
   return (
     <div className='body-template'>
       <Text fontSize='16' isBold center>
@@ -14,16 +17,12 @@ function BodyTemplate({ title, template, photo, siluete }) {
 
       {photo ? (
         <div className='body-foto'>
-          {/* <img
-            className='body-siluete'
-            src={siluete}
-            alt='Bodymaraton siluete'
-          /> */}
           <Image
             className='body-template-image'
             isBackground
             url={photo.url}
             alt='Bodymaraton user front foto'
+            setSignedUrl={setSignedUrl}
           />
         </div>
       ) : (
@@ -32,6 +31,16 @@ function BodyTemplate({ title, template, photo, siluete }) {
           src={siluete}
           alt='Bodymaraton template front foto'
         />
+      )}
+
+      {download && photo && (
+        <>
+          <Space extraSmall />
+          <DownloadButton
+            imageName={photo?.originalname}
+            signedUrl={signedUrl}
+          />
+        </>
       )}
     </div>
   );

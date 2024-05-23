@@ -6,10 +6,10 @@ import makeAnimated from 'react-select/animated';
 import { useUploadRecipeImageMutation } from '../../slices/imagesApiSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
+  faDeleteLeft,
   faEye,
   faEyeSlash,
   faPlus,
-  faTrash,
 } from '@fortawesome/free-solid-svg-icons';
 import Text from '../text/Text';
 import Spinner from '../spinner/Spinner';
@@ -326,7 +326,7 @@ function Input({
         <Button
           className={`trash-input ${value || selectedOption ? 'active' : ''}`}
           onClick={trashClick}
-          iconLeft={faTrash}
+          iconLeft={faDeleteLeft}
           onlyIcon
         />
       )}

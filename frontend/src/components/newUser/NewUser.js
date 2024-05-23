@@ -11,6 +11,7 @@ import yesNoEnum from '../../config/enums/yesNoEnum';
 import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 import CaloriesCalculator from '../../pages/CaloriesCalculator';
+import BodyPhotos from '../progress/BodyPhotos';
 
 function NewUser({ onCreate, onCancel, user }) {
   const { t } = useTranslation();
@@ -57,83 +58,103 @@ function NewUser({ onCreate, onCancel, user }) {
 
   return (
     <div className='new-user content-left-and-right'>
-      <form onSubmit={handleSubmit} className='new-user-form'>
-        <Text isTitle>
-          {typeof user === 'object' ? t('editUser') : t('createNewUser')}
-        </Text>
+      <div className='new-user-form'>
+        <form onSubmit={handleSubmit}>
+          <Text isTitle>
+            {typeof user === 'object' ? t('editUser') : t('createNewUser')}
+          </Text>
 
-        <Space small />
+          <Space small />
 
-        <Input
-          label={t('email')}
-          name='email'
-          placeholder={t('emailPlaceholder')}
-          onChange={handleOnChange}
-          value={formData.email}
-          error={{ invalidFields, message: t('emailRequired') }}
-          disabled={typeof user === 'object' && !!user}
-        />
+          <Input
+            label={t('email')}
+            name='email'
+            placeholder={t('emailPlaceholder')}
+            onChange={handleOnChange}
+            value={formData.email}
+            error={{ invalidFields, message: t('emailRequired') }}
+            disabled={typeof user === 'object' && !!user}
+          />
 
-        <Space small />
+          <Space small />
 
-        <Input
-          type='password'
-          label={t('password')}
-          name='password'
-          placeholder={t('passwordPlaceholder')}
-          onChange={handleOnChange}
-          value={formData?.password}
-          error={{ invalidFields, message: 'Password field required' }}
-        />
+          <Input
+            type='password'
+            label={t('password')}
+            name='password'
+            placeholder={t('passwordPlaceholder')}
+            onChange={handleOnChange}
+            value={formData?.password}
+            error={{ invalidFields, message: 'Password field required' }}
+          />
 
-        <Space small />
+          <Space small />
 
-        <Input
-          label={t('name')}
-          name='name'
-          placeholder={t('userName')}
-          onChange={handleOnChange}
-          value={formData.name}
-        />
+          <Input
+            label={t('name')}
+            name='name'
+            placeholder={t('userName')}
+            onChange={handleOnChange}
+            value={formData.name}
+          />
 
-        <Space small />
+          <Space small />
 
-        <Input
-          label={t('adminUserAsk')}
-          placeholder=''
-          type='radio'
-          onChange={handleOnChange}
-          name='isAdmin'
-          selectedOption={formData.isAdmin ? 'YES' : 'NO'}
-          options={yesNoEnum}
-        />
+          <Input
+            label={t('adminUserAsk')}
+            placeholder=''
+            type='radio'
+            onChange={handleOnChange}
+            name='isAdmin'
+            selectedOption={formData.isAdmin ? 'YES' : 'NO'}
+            options={yesNoEnum}
+          />
 
-        <Space small />
+          <Space small />
 
-        <Input
-          label={t('hasPaidAsk')}
-          placeholder=''
-          type='radio'
-          onChange={handleOnChange}
-          name='hasPaid'
-          selectedOption={formData.hasPaid ? 'YES' : 'NO'}
-          options={yesNoEnum}
-        />
+          <Input
+            label={t('hasPaidAsk')}
+            placeholder=''
+            type='radio'
+            onChange={handleOnChange}
+            name='hasPaid'
+            selectedOption={formData.hasPaid ? 'YES' : 'NO'}
+            options={yesNoEnum}
+          />
+
+          <Space big />
+
+          <div className='content-on-the-right'>
+            <Button onClick={onCancel} isSecondary>
+              {t('cancel')}
+            </Button>
+
+            <Button type='submit' isPrimary>
+              {t('save')}
+            </Button>
+          </div>
+        </form>
 
         <Space big />
+        <CaloriesCalculator isAdmin adminUser={user} />
+      </div>
 
-        <div className='content-on-the-right'>
-          <Button onClick={onCancel} isSecondary>
-            {t('cancel')}
-          </Button>
+      <div>
+        <Text isSectionTitle>Fotos inicio maratón</Text>
+        <Space medium />
 
-          <Button type='submit' isPrimary>
-            {t('save')}
-          </Button>
-        </div>
-      </form>
+        <BodyPhotos
+          photos={user?.progresses[user.progresses.length - 1].initialPhotos}
+          download
+        />
 
-      <CaloriesCalculator isAdmin adminUser={user} />
+        <Text isSectionTitle>Fotos final maratón</Text>
+        <Space medium />
+        <BodyPhotos
+          photos={user?.progresses[user.progresses.length - 1].photoFinish}
+          download
+        />
+      </div>
     </div>
   );
 }

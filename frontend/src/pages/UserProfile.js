@@ -15,14 +15,8 @@ import Modal from '../components/modal/Modal';
 import BodyFotosForm from '../components/progress/BodyFotosForm';
 import { useMarathon } from '../context/marathonContext';
 import { lessThan3DaysDifference } from '../utils/formatDate';
-import BodyTemplate from '../components/progress/BodyTemplate';
-import FRONT_TEMPLATE from '../styles/assets/front.png';
-import BACK_TEMPLATE from '../styles/assets/back.png';
-import LATERAL_TEMPLATE from '../styles/assets/side.png';
-import FRONT_SILUETE from '../styles/assets/siluete_frente.png';
-import BACK_SILUETE from '../styles/assets/siluete_dorso.png';
-import LATERAL_SILUETE from '../styles/assets/siluete_perfil.png';
 import { useProgress } from '../context/progressContext';
+import BodyPhotos from '../components/progress/BodyPhotos';
 
 function UserProfile() {
   const { t } = useTranslation();
@@ -106,47 +100,12 @@ function UserProfile() {
 
           <Space medium />
 
-          <div className='body-fotos'>
-            <BodyTemplate
-              title={t('front')}
-              template={FRONT_TEMPLATE}
-              photo={userProgress?.initialPhotos?.front}
-              siluete={FRONT_SILUETE}
-            />
-            <BodyTemplate
-              title={t('back')}
-              template={BACK_TEMPLATE}
-              photo={userProgress?.initialPhotos?.back}
-              siluete={BACK_SILUETE}
-            />
-            <BodyTemplate
-              title={t('lateral')}
-              template={LATERAL_TEMPLATE}
-              photo={userProgress?.initialPhotos?.lateral}
-              siluete={LATERAL_SILUETE}
-            />
-          </div>
+          <BodyPhotos photos={userProgress?.initialPhotos} />
 
           <Space medium />
 
           {lessThan3DaysDifference(marathon?.endDate) && (
-            <div className='body-fotos'>
-              <BodyTemplate
-                title={t('front')}
-                template={FRONT_TEMPLATE}
-                photo={userProgress?.photoFinish?.front}
-              />
-              <BodyTemplate
-                title={t('back')}
-                template={BACK_TEMPLATE}
-                photo={userProgress?.photoFinish?.back}
-              />
-              <BodyTemplate
-                title={t('lateral')}
-                template={LATERAL_TEMPLATE}
-                photo={userProgress?.photoFinish?.lateral}
-              />
-            </div>
+            <BodyPhotos photos={userProgress?.photoFinish} />
           )}
 
           <Space medium />

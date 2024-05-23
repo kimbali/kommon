@@ -475,12 +475,13 @@ input[type='number']::-webkit-outer-spin-button {
 
   .trash-input {
     padding: 0 12px;
-    border-radius: $border-radius-element;
+    border-radius: 0 $border-radius-element $border-radius-element 0;
     background-color: $background-4;
     box-shadow: $box-shadow-element;
     border: 1px solid #404350;
     cursor: pointer;
-    margin-left: 4px;
+    margin-left: -6px;
+    z-index: 4;
 
     svg {
       font-size: 14px;

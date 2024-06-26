@@ -1,13 +1,13 @@
 import { translate } from '../traducciones/i18n';
 
 export const diasSemana = [
+  translate('sunday').substring(0, 3),
   translate('monday').substring(0, 3),
   translate('tuesday').substring(0, 3),
   translate('wednesday').substring(0, 3),
   translate('thursday').substring(0, 3),
   translate('friday').substring(0, 3),
   translate('saturday').substring(0, 3),
-  translate('sunday').substring(0, 3),
 ];
 
 export const months = [

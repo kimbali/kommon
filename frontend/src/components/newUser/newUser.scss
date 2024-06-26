@@ -1,4 +1,7 @@
 .new-user {
+  max-width: 1200px;
+  margin: 0 auto;
+
   .calories-calculator {
     @include media(desktop) {
       width: 100%;
@@ -13,6 +16,15 @@
   .new-user-form {
     @include media(desktop) {
       max-width: 50%;
+    }
+
+    .side-radios {
+      display: flex;
+      justify-content: space-around;
+
+      .input-wrapper {
+        width: 40%;
+      }
     }
 
     .content-on-the-right {

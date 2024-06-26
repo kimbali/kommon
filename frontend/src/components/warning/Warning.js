@@ -21,7 +21,11 @@ function Warning() {
   };
 
   const showInThisPath =
-    pathname !== frontRoutes.register && pathname !== frontRoutes.profile;
+    pathname !== frontRoutes.register &&
+    pathname !== frontRoutes.profile &&
+    pathname !== frontRoutes.home &&
+    pathname !== frontRoutes.login &&
+    pathname.indexOf('/config/') === -1;
 
   useEffect(() => {
     setShowWarning(false);

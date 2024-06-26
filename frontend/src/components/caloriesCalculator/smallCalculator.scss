@@ -1,0 +1,66 @@
+.small-calories-calculator {
+  @include media(desktop) {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .background-2 {
+    background-color: $background-4;
+  }
+
+  form {
+    &.background-2 {
+      padding: 24px;
+    }
+
+    .side {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+
+      .sizes {
+        display: flex;
+        flex-direction: column;
+        row-gap: 14px;
+        width: 20%;
+      }
+
+      .radios {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+      }
+
+      .field label.main-label {
+        font-family: 'AvenirMedium';
+        font-size: 14px;
+      }
+
+      .field {
+        input {
+          font-size: 14px;
+          padding: 8px;
+          height: 40px;
+        }
+
+        .radio-label {
+          .text {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+
+    .subtitle {
+      font-size: 18px;
+      font-family: $avenirBlack;
+    }
+
+    .radio .label-wrapper {
+      .main-label {
+        // border-bottom: none;
+        // padding: 8px 0;
+      }
+    }
+  }
+}

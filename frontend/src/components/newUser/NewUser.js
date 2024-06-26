@@ -10,8 +10,8 @@ import {
 import yesNoEnum from '../../config/enums/yesNoEnum';
 import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
-import CaloriesCalculator from '../../pages/CaloriesCalculator';
 import BodyPhotos from '../progress/BodyPhotos';
+import SmallCaloriesCalculator from '../caloriesCalculator/SmallCaloriesCalculator';
 
 function NewUser({ onCreate, onCancel, user }) {
   const { t } = useTranslation();
@@ -98,29 +98,29 @@ function NewUser({ onCreate, onCancel, user }) {
             value={formData.name}
           />
 
-          <Space small />
+          <Space medium />
 
-          <Input
-            label={t('adminUserAsk')}
-            placeholder=''
-            type='radio'
-            onChange={handleOnChange}
-            name='isAdmin'
-            selectedOption={formData.isAdmin ? 'YES' : 'NO'}
-            options={yesNoEnum}
-          />
+          <div className='side-radios'>
+            <Input
+              label={t('adminUserAsk')}
+              placeholder=''
+              type='radio'
+              onChange={handleOnChange}
+              name='isAdmin'
+              selectedOption={formData.isAdmin ? 'YES' : 'NO'}
+              options={yesNoEnum}
+            />
 
-          <Space small />
-
-          <Input
-            label={t('hasPaidAsk')}
-            placeholder=''
-            type='radio'
-            onChange={handleOnChange}
-            name='hasPaid'
-            selectedOption={formData.hasPaid ? 'YES' : 'NO'}
-            options={yesNoEnum}
-          />
+            <Input
+              label={t('hasPaidAsk')}
+              placeholder=''
+              type='radio'
+              onChange={handleOnChange}
+              name='hasPaid'
+              selectedOption={formData.hasPaid ? 'YES' : 'NO'}
+              options={yesNoEnum}
+            />
+          </div>
 
           <Space big />
 
@@ -137,7 +137,7 @@ function NewUser({ onCreate, onCancel, user }) {
 
         <Space big />
 
-        <CaloriesCalculator isAdmin adminUser={user} />
+        <SmallCaloriesCalculator isAdmin adminUser={user} />
       </div>
 
       <div>
@@ -156,8 +156,8 @@ function NewUser({ onCreate, onCancel, user }) {
         <Space medium />
         <BodyPhotos
           photos={
-            user?.progresses
-              ? user?.progresses[user.progresses.length - 1].photoFinish
+            user?.progresses.length > 0
+              ? user?.progresses[user.progresses.length - 1]?.photoFinish
               : ''
           }
           download

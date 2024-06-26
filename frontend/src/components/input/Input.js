@@ -31,6 +31,7 @@ function Input({
   keyValue = '',
   label,
   subLabel = '',
+  hideSubLabel = false,
   maxLength,
   name = '',
   isArray = false,
@@ -132,7 +133,9 @@ function Input({
               {language && flag}
             </label>
 
-            {subLabel && <Text className='sublabel'>{subLabel}</Text>}
+            {subLabel && !hideSubLabel && (
+              <Text className='sublabel'>{subLabel}</Text>
+            )}
           </div>
         )}
 
@@ -284,7 +287,9 @@ function Input({
               />
               <Text isBold>
                 {option.label}
-                {option.sublabel && <span>{option.sublabel}</span>}
+                {option.sublabel && !hideSubLabel && (
+                  <span>{option.sublabel}</span>
+                )}
               </Text>
             </label>
           ))}

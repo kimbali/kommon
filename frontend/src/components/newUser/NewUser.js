@@ -136,22 +136,30 @@ function NewUser({ onCreate, onCancel, user }) {
         </form>
 
         <Space big />
+
         <CaloriesCalculator isAdmin adminUser={user} />
       </div>
 
       <div>
         <Text isSectionTitle>Fotos inicio maratón</Text>
         <Space medium />
-
         <BodyPhotos
-          photos={user?.progresses[user.progresses.length - 1].initialPhotos}
+          photos={
+            user?.progresses
+              ? user?.progresses[user?.progresses?.length - 1]?.initialPhotos
+              : ''
+          }
           download
         />
 
         <Text isSectionTitle>Fotos final maratón</Text>
         <Space medium />
         <BodyPhotos
-          photos={user?.progresses[user.progresses.length - 1].photoFinish}
+          photos={
+            user?.progresses
+              ? user?.progresses[user.progresses.length - 1].photoFinish
+              : ''
+          }
           download
         />
       </div>

@@ -51,6 +51,7 @@
 }
 
 .calendar {
+  box-shadow: $box-shadow-wrapper;
   background-color: $background-7;
   color: $white;
   position: absolute;
@@ -58,7 +59,7 @@
   top: 42px;
   left: 0;
   width: 610px;
-  max-height: 80vh;
+  max-height: 60vh;
   border-radius: 14px;
   overflow-y: scroll;
 

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useProgress } from '../../context/progressContext';
 import { lessThan3DaysDifference } from '../../utils/formatDate';
 import { Link } from 'react-router-dom';
@@ -7,6 +8,7 @@ import Text from '../text/Text';
 import Space from '../space/Space';
 
 function Warning() {
+  const { pathname } = useLocation();
   const [showWarning, setShowWarning] = useState(false);
   const { userProgress } = useProgress();
 
@@ -18,23 +20,28 @@ function Warning() {
     }
   };
 
+  const showInThisPath =
+    pathname !== frontRoutes.register && pathname !== frontRoutes.profile;
+
   useEffect(() => {
     setShowWarning(false);
 
     if (
       lessThan3DaysDifference(userProgress?.marathon?.startDate) &&
-      !hasAllPictures(userProgress.initialPhotos)
+      !hasAllPictures(userProgress.initialPhotos) &&
+      showInThisPath
     ) {
       setShowWarning('init');
     }
 
     if (
       lessThan3DaysDifference(userProgress?.marathon?.endDate) &&
-      !hasAllPictures(userProgress.photoFinish)
+      !hasAllPictures(userProgress.photoFinish) &&
+      showInThisPath
     ) {
       setShowWarning('fin');
     }
-  }, [userProgress]);
+  }, [userProgress, pathname]);
 
   return (
     showWarning && (
@@ -64,7 +71,10 @@ function Warning() {
           </div>
         )}
 
-        <Link to={frontRoutes.profile}>Mi perfil</Link>
+        <Link className='center' to={frontRoutes.profile}>
+          Ver mi perfil
+        </Link>
+        <Space extraSmall />
       </div>
     )
   );

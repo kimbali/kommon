@@ -300,7 +300,6 @@ function Home() {
             <div className='coach-item'>
               <div className='coach-item-left'>
                 <Image
-                  isBackground
                   className='coach-img'
                   url={labels?.coach[0]?.image?.url}
                   alt={labels?.coach[0]?.name}
@@ -325,7 +324,7 @@ function Home() {
               </div>
             </div>
 
-            <div className='coach-item'>
+            {/* <div className='coach-item'>
               <div className='coach-item-left'>
                 <Image
                   isBackground
@@ -351,7 +350,7 @@ function Home() {
                   {labels?.coach[1]?.comment}
                 </Markdown>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

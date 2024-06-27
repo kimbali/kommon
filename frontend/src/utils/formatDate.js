@@ -144,6 +144,7 @@ export const weeksOptionsList = ({
   const weekLength = isAdmin ? 0 : monthArray[todayPosition.week - 1]?.length;
 
   const optionsWeeks = [...Array(totalWeeks).keys()].map((ele, index) => {
+    // Next line is to disable following weeks
     const isDisabled =
       !isAdmin &&
       !(
@@ -155,7 +156,8 @@ export const weeksOptionsList = ({
     return {
       label: `${translate('week')} ${index + 1}`,
       value: index + 1,
-      isDisabled,
+      // implemented here
+      isDisabled: false,
     };
   });
 

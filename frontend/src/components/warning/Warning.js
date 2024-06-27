@@ -25,12 +25,11 @@ function Warning() {
     pathname !== frontRoutes.profile &&
     pathname !== frontRoutes.home &&
     pathname !== frontRoutes.login &&
-    pathname !== frontRoutes.shoppingList;
-  // pathname.indexOf('/config/') === -1;
+    pathname !== frontRoutes.shoppingList &&
+    pathname.indexOf('/config/') === -1;
 
   useEffect(() => {
     setShowWarning(false);
-
     if (
       lessThan3DaysDifference(userProgress?.marathon?.startDate) &&
       !hasAllPictures(userProgress.initialPhotos) &&

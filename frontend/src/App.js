@@ -66,6 +66,7 @@ import { useConfig } from './context/configContext';
 import ContactUs from './pages/ContactUs';
 import ResetPassword from './pages/ResetPassword';
 import Warning from './components/warning/Warning';
+import ListaDeLaCompra from './pages/ListaDeLaCompra';
 
 function App() {
   const { t } = useTranslation();
@@ -223,6 +224,10 @@ function App() {
           <Route
             path={frontRoutes.caloriesCalculator}
             element={<CaloriesCalculator />}
+          />
+          <Route
+            path={frontRoutes.shoppingList}
+            element={<ListaDeLaCompra />}
           />
         </Route>
 

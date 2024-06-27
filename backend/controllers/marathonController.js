@@ -66,7 +66,8 @@ export const getShoppingList = asyncHandler(async (req, res) => {
     path: 'planning',
     populate: {
       path: 'month',
-      match: { week: req.params.week },
+      // match: { week: req.params.week },
+      match: { week: { $in: [1, 2] } },
       populate: {
         path: 'meals.recipe',
         select: 'ingredients',

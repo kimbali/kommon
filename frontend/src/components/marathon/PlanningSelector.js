@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useGetDietsQuery } from '../../slices/dietsApiSlice';
 import {
   formatDateShort,
@@ -19,6 +20,7 @@ import Modal from '../modal/Modal';
 import ShoppingList from '../recipes/ShoppingList';
 import { useDate } from '../../context/dateContext';
 import { useMarathon } from '../../context/marathonContext';
+import frontRoutes from '../../config/frontRoutes';
 
 function PlanningSelector({
   setCurrentDiet,
@@ -164,9 +166,13 @@ function PlanningSelector({
               )}
             />
 
-            <Button className='shooping-list-cta' onClick={handleShoppingList}>
+            {/* <Button className='shooping-list-cta' onClick={handleShoppingList}>
               {t('shoppingList')}
-            </Button>
+            </Button> */}
+
+            <Link className='shooping-list-cta' to={frontRoutes.shoppingList}>
+              {t('shoppingList')}
+            </Link>
           </div>
         )}
 

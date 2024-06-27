@@ -208,10 +208,19 @@
 .shooping-list-cta {
   box-shadow: none;
   border-bottom: thin dashed $white;
-  padding: 16px 0 2px;
+  padding: 12px 0 2px;
   height: fit-content;
   width: fit-content;
   border-radius: 0;
+  font-size: 16px;
+  font-family: $avenirBook;
+  color: $white;
+  text-decoration: none;
+  margin-bottom: 8px;
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
 
   @include media(mobile) {
     align-self: center;

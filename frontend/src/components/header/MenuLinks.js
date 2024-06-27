@@ -21,7 +21,7 @@ function MenuLinks() {
   return (
     <ul className='user-menu-links'>
       <Text className='user-name' isSectionTitle>
-        {user.name}
+        {user?.name}
       </Text>
 
       <li>

@@ -76,16 +76,34 @@ function Main() {
   }, [dietsData, dayToShow]);
 
   const isCheckedTask = task => {
-    return userProgress?.tasksChecked?.findIndex(ele => ele === task._id) > -1;
+    return (
+      userProgress?.tasksChecked?.findIndex(
+        ele =>
+          ele.taskId === task._id &&
+          ele.week === dayDetails.week &&
+          ele.weekDay === dayDetails.weekDay
+      ) > -1
+    );
   };
 
   const handleCheckTask = async task => {
-    let updatedList;
+    let updatedList = [...userProgress.tasksChecked];
 
     if (isCheckedTask(task)) {
-      updatedList = userProgress.tasksChecked?.filter(ele => ele !== task._id);
+      const index = userProgress.tasksChecked?.findIndex(
+        ele =>
+          ele.taskId === task._id &&
+          ele.week === dayDetails.week &&
+          ele.weekDay === dayDetails.weekDay
+      );
+
+      updatedList.splice(index, 1);
     } else {
-      updatedList = userProgress.tasksChecked?.concat(task._id);
+      updatedList = updatedList.concat({
+        taskId: task._id,
+        week: dayDetails.week,
+        weekDay: dayDetails.weekDay,
+      });
     }
 
     await updateProgress({ ...userProgress, tasksChecked: updatedList });

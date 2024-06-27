@@ -4,7 +4,6 @@ form {
     color: $secondary-color;
     font-size: 16px;
     margin: 8px 0 6px 0;
-    cursor: pointer;
     font-family: $avenirBook;
     margin-bottom: 6px;
     display: block;
@@ -17,7 +16,6 @@ form {
 
 .field {
   position: relative;
-  cursor: pointer;
   width: 100%;
 
   .input-file p {
@@ -156,7 +154,6 @@ form {
     label {
       margin: 0;
       color: $secondary-color;
-      cursor: pointer;
       font-family: $avenirHeavy;
       font-size: 18px;
 

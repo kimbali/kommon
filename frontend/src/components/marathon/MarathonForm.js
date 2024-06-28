@@ -137,22 +137,31 @@ function MarathonForm({ onSucces, onCancel, marathon }) {
 
       <Space small />
 
-      <Input
-        label={t('startDate')}
-        name='startDate'
-        type='date'
-        onChange={handleOnChange}
-        value={formData?.startDate}
-      />
+      <div className='side-dates'>
+        <Input
+          label={t('startDate')}
+          name='startDate'
+          type='date'
+          onChange={handleOnChange}
+          value={formData?.startDate}
+        />
+
+        <Input
+          label={t('endDate')}
+          name='endDate'
+          type='date'
+          onChange={handleOnChange}
+          value={formData?.endDate}
+        />
+      </div>
 
       <Space small />
 
       <Input
-        label={t('endDate')}
-        name='endDate'
-        type='date'
+        label={t('telegramLink')}
+        name='telegramLink'
         onChange={handleOnChange}
-        value={formData?.endDate}
+        value={formData?.telegramLink}
       />
 
       <Space medium />

@@ -11,6 +11,7 @@ const MarathonsSchema = new Schema(
       ref: 'Planning',
     },
     participants: { type: Number, default: 0 },
+    telegramLink: String,
   },
   {
     timestamps: true,

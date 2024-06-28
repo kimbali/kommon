@@ -216,3 +216,16 @@
     }
   }
 }
+
+.side-dates {
+  display: flex;
+  column-gap: 14px;
+
+  .input-wrapper {
+    width: 100%;
+  }
+
+  .field {
+    width: 100%;
+  }
+}

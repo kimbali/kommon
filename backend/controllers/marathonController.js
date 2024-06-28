@@ -128,13 +128,14 @@ export const getShoppingList = asyncHandler(async (req, res) => {
 // @route   POST /api/marathons
 // @access  Private/Admin
 export const createMarathon = asyncHandler(async (req, res) => {
-  const { startDate, endDate, name, planning } = req.body;
+  const { startDate, endDate, name, planning, telegramLink } = req.body;
   const newMarathon = new Marathon({
     startDate,
     endDate,
     name,
     planning,
     participants: 0,
+    telegramLink,
   });
 
   const createdMarathon = await newMarathon.save();
@@ -150,7 +151,8 @@ export const createMarathon = asyncHandler(async (req, res) => {
 // @route   PUT /api/marathons/:id
 // @access  Private/Admin
 export const updateMarathon = asyncHandler(async (req, res) => {
-  const { startDate, endDate, name, planning, isActive } = req.body;
+  const { startDate, endDate, name, planning, isActive, telegramLink } =
+    req.body;
 
   const marathon = await Marathon.findById(req.params.id);
 
@@ -160,6 +162,7 @@ export const updateMarathon = asyncHandler(async (req, res) => {
     marathon.name = name || marathon.name;
     marathon.planning = planning || marathon.planning;
     marathon.isActive = isActive || marathon.isActive;
+    marathon.telegramLink = telegramLink || marathon.telegramLink;
 
     const updatedMarathon = await marathon.save();
     const marathonUpdated = await Marathon.findById(req.params.id).populate(

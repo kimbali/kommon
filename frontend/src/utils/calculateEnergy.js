@@ -22,7 +22,7 @@ export const caloriesCalculatorFormula = ({
   const totalKcalPerWeek =
     (655 + 9.6 * +weight + 1.8 * +height - 4.7 * +age) *
       getActivityNumeral(activity) *
-      getPorpuseNumeral(porpuse) -
+      getPorpuseNumeral(porpuse) +
     breastfeedNumeral(breastfeed);
 
   return Math.round(totalKcalPerWeek / 50) * 50;

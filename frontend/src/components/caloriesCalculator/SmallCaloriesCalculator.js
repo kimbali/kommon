@@ -114,18 +114,9 @@ function SmallCaloriesCalculator({ isAdmin = false, adminUser }) {
              - ( 4.7 * ${formData?.age} ))
              * ( ${getActivityNumeral(formData?.activity)} )
              * ( ${getPorpuseNumeral(formData?.porpuse)} )
-             - ( ${breastfeedNumeral(formData?.breastfeed)} )
+             + ( ${breastfeedNumeral(formData?.breastfeed)} )
             = `}
-          {Math.round(
-            (655 +
-              9.6 * +formData?.weight +
-              1.8 * +formData?.height -
-              4.7 * +formData?.age) *
-              getActivityNumeral(formData?.activity) *
-              getPorpuseNumeral(formData?.porpuse) -
-              breastfeedNumeral(formData?.breastfeed)
-          )}{' '}
-          kcal
+          {totalCalories} kcal
         </Text>
       </form>
     </div>
